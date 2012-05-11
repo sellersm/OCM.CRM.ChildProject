@@ -1,0 +1,53 @@
+﻿<PageDefinitionSpec 
+    xmlns="bb_appfx_pagedefinition" 
+    xmlns:common="bb_appfx_commontypes"
+    ID="c032a432-c083-41d0-9093-32b9f40ea716"
+    Name="Alter Constituent Page for Child Project"
+    Description="Used to alter the Constituent page for those that are Child Project orgs"
+    Author="Cary Mayeda"
+    ContextRecordType="None"	
+    >
+
+<!-- 
+Remarks:    Adds view as Child project task to the "View as" action group
+			Requires "Constituent Child Project Expression View Form" to be added to the Constituent page ExpressionDataForms datalist. Unfortunately, this can't be done through an alter page, because it only lets you list one.
+
+History:
+Date            Modified By     Comments
+02-May-2012		CMayeda         Initial Version
+-->
+
+
+	<!-- Note:  A page can optionally have a view form associated with it as the "Expression form".  While implemented as a view data form,
+	this form has no UI in this context, and is simply used as a way of loading additional information associated with the page.  The fields
+	returned by the expression form can be used as expressions in various properties throughout the page.  To specify an expression form for this
+	page, add the following attribute:		ExpressionDataFormID="<some guid>"-->
+
+	<!-- define how the page header should appear -->
+	<PageHeader Caption="REPLACE_WITH_CAPTION" ImageKey="REPLACE_WITH_IMAGEKEY" />
+
+
+	<AlterExistingPages xmlns="bb_appfx_pagedefinition">
+		<AlterPages>
+			<!--Constituent Page-->
+			<AlterPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f">
+				<AlterPageActionGroups>
+					<AlterPageActionGroup PageActionGroupID="c2197930-2542-4786-b716-f6feb5395d7e"> <!-- "View as" action group-->
+						<AlterActions>
+							<AddAction>
+								<Action ID="d12d001c-8875-42e2-a21c-f58b49a31302" Caption="Child project" Visible="=Page.Fields!ISCHILDPROJECT">
+									<ShowPage PageID="29d5b7a5-d032-4b66-80f9-b1d451292ad6" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+										<ActionContext>
+											<PageContextID />
+										</ActionContext>
+									</ShowPage>
+								</Action>
+							</AddAction>
+						</AlterActions>
+					</AlterPageActionGroup>
+				</AlterPageActionGroups>
+			</AlterPage>
+		</AlterPages>
+	</AlterExistingPages>
+	
+</PageDefinitionSpec>

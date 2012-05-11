@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>ChildProject.Extension.Add.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>ChildProjectExtensionAddFormUIModel</ClassName>
+  <HtmlInfo GenerateHtml="false">
+    <HtmlFile>ChildProjectExtensionAddForm2.html</HtmlFile>
+    <HtmlFolder>custom\ChildProject</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

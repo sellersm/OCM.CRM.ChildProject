@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="b9660428-7da6-4430-8502-542722dfee1f" 
+	Name="Month"
+	Description="List of Months"
+	Author="Cary Mayeda"
+	DBTablename="USR_MONTHCODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+/>

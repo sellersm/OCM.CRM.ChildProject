@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="ad9f48f0-02d4-4267-879c-873174a7805d" 
+	Name="Child Project Highest Education Available"
+	Description="Child Project Highest Education Available code table"
+	Author="Cary Mayeda"
+	DBTablename="USR_CHILDPROJECTHIGHESTEDUCATIONCODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+/>

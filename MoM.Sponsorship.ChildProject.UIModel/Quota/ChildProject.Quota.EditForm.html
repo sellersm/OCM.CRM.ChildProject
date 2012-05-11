@@ -1,0 +1,229 @@
+﻿<style type="text/css">
+    .HeaderHeight
+    {
+        height:25px;    
+    }
+    .toolbar
+    {
+        width: auto;
+        border-bottom: solid 1px #D4DCB9;
+        padding-bottom: 5px;
+    }
+    .toolbar-headertext
+    {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .boldtext
+    {
+        font-weight: bold;
+    }
+    .smallspacer
+    {
+        width: 2px;
+    }
+    .spacer
+    {
+        width: 20px;
+    }
+    .smallverticalspacer
+    {
+        height:5px;
+    }
+    
+ 
+    
+    /* Form / Section Divs */
+    
+    ##MAP#ChildProjectQuotaEditForm
+    {
+        padding: 10px;
+        width: 450px;
+    }
+    
+    
+    /* object widths */
+    
+    ##MAP#DECREASEDQUOTA_value, ##MAP#APPROVEDQUOTAINITIAL_value, 
+    ##MAP#APPROVEDQUOTA01OCT_value, ##MAP#APPROVEDQUOTA02NOV_value, ##MAP#APPROVEDQUOTA03DEC_value, 
+    ##MAP#APPROVEDQUOTA04JAN_value, ##MAP#APPROVEDQUOTA05FEB_value, ##MAP#APPROVEDQUOTA06MAR_value, 
+    ##MAP#APPROVEDQUOTA07APR_value, ##MAP#APPROVEDQUOTA08MAY_value, ##MAP#APPROVEDQUOTA09JUN_value, 
+    ##MAP#APPROVEDQUOTA10JUL_value, ##MAP#APPROVEDQUOTA11AUG_value, ##MAP#APPROVEDQUOTA12SEP_value 
+    {
+        width: 30px;
+    }
+       
+    ##MAP#NEWCHILDRENSTATUSCODE_value,
+    ##MAP#PERFORMANCECODEID_value,
+    ##MAP#MARKETINGDEMANDSTATUSCODE_value,
+    ##MAP#OVERRIDETRIGGERSTATUSCODE_value
+    {
+        width: 50px;
+    }
+    
+</style>
+<div id="#MAP#ChildProjectQuotaEditForm">
+    <h2 class="HeaderHeight">
+        Edit child project quota</h2>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span id="#MAP#QUOTATYPECODE_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#QUOTATYPECODE_value" />
+                </td>
+            </tr>
+            <tr><td class=smallverticalspacer"></td></tr>
+            <tr>
+                <td>
+                    <span id="#MAP#APPROVEDQUOTAINITIAL_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTAINITIAL_value" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <br />
+        <h3>
+            Approved quotas</h3>
+        <table>
+            <tr id="#MAP#APPROVEDQUOTAQ1_container">
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA01OCT_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA01OCT_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA02NOV_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA02NOV_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA03DEC_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA03DEC_value" />
+                </td>
+            </tr>
+            <tr id="#MAP#APPROVEDQUOTAQ2_container">
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA04JAN_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA04JAN_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA05FEB_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA05FEB_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA06MAR_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA06MAR_value" />
+                </td>
+            </tr>
+            <tr id="#MAP#APPROVEDQUOTAQ3_container">
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA07APR_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA07APR_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA08MAY_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA08MAY_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA09JUN_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA09JUN_value" />
+                </td>
+            </tr>
+            <tr id="#MAP#APPROVEDQUOTAQ4_container">
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA10JUL_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA10JUL_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA11AUG_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA11AUG_value" />
+                </td>
+                <td class="spacer" />
+                <td>
+                    <span id="#MAP#APPROVEDQUOTA12SEP_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#APPROVEDQUOTA12SEP_value" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <br />
+        <h3>
+            Quota statuses</h3>
+        <table>
+    <tr id="#MAP#NEWCHILDRENSTATUSCODE_container">
+      <td>
+        <label id="#MAP#NEWCHILDRENSTATUSCODE_caption" for="#MAP#NEWCHILDRENSTATUSCODE_value"></label>
+      </td>
+      <td>
+        <input id="#MAP#NEWCHILDRENSTATUSCODE_value" type="text" />
+      </td>
+    </tr>
+            <tr id="#MAP#PERFORMANCECODE_container">
+                <td>
+                    <span id="#MAP#PERFORMANCECODEID_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#PERFORMANCECODEID_value" />
+                </td>
+            </tr>
+            <tr id="#MAP#MARKETINGDEMANDSTATUSCODE_container">
+                <td>
+                    <span id="#MAP#MARKETINGDEMANDSTATUSCODE_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#MARKETINGDEMANDSTATUSCODE_value"/>
+                </td>
+            </tr>
+            <tr id="#MAP#OVERRIDETRIGGERSTATUSCODE_container">
+                <td>
+                    <span id="#MAP#OVERRIDETRIGGERSTATUSCODE_caption"></span>
+                </td>
+                <td>
+                    <input type="text" id="#MAP#OVERRIDETRIGGERSTATUSCODE_value"/>
+                </td>
+            </tr>
+        </table>
+        <!-- To define fields in multiple columns on the form, simply add/move the fields to this div
+        <div class="bbui-forms-fieldset-column">
+            <table>
+            </table>
+        </div>
+        -->
+    </div>
+</div>

@@ -1,0 +1,255 @@
+﻿<PageDefinitionSpec
+    xmlns="bb_appfx_pagedefinition"
+    xmlns:common="bb_appfx_commontypes"
+    ID="29d5b7a5-d032-4b66-80f9-b1d451292ad6"
+    Name="Child Project Extension Page"
+    Description="Used to view the Child Project extension of an Organization Constituent"
+    Author="Cary Mayeda"
+    ExpressionDataFormID="9b09d107-78a8-487f-9699-0ab996be70b4" 
+	ContextRecordType="Child Project Extension"	
+	>
+
+	<!-- 
+Remarks:    Context ID is the Child Project Extension table ID, which is also Constituent ID 
+			
+History:
+Date            Modified By     Comments
+27-Mar-2012        CMayeda         Initial Version
+-->
+	
+	<!-- define how the page header should appear -->
+	<PageHeader Caption="=Page.Fields!LOOKUPID + &quot; - &quot; + Page.Fields!NAME" ImageKey="CATALOG:Blackbaud.AppFx.Constituent.School.Catalog,Blackbaud.AppFx.Constituent.School.Catalog.schoolhouse_32.png" />
+	<SummarySection ID="f7f2f4b0-a7b6-4ee2-856d-f825676a9015" Caption="Child Project" HideCaption="true">
+		<DataForm ID="9b09d107-78a8-487f-9699-0ab996be70b4" />
+	</SummarySection>
+	<Tabs>
+		<Tab Caption="Project Info" ID="36747a18-a1c8-41a2-b828-966aa2e0ab77">
+			<Sections>
+				<Section ID="2d46209a-27f3-41aa-9010-323579bce031" Caption="Project Information">
+					<DataForm ID="8fe5c882-2f35-4906-8438-4f445d351548" />
+					<SectionContext>
+						<PageContextID xmlns="bb_appfx_commontypes" />
+					</SectionContext>
+					<Actions>
+						<Action ID="842bccbf-2243-4d04-9b56-172be8b4ca1f" Caption="Edit">
+							<ShowDataForm DataFormID="3f2f3a67-e063-4897-9002-a18458778969" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<PageContextID />
+								</ActionContext>
+							</ShowDataForm>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+		<Tab Caption="Project Quota" ID="82d266f7-8ff6-46d7-b583-4af28413d8ae">
+			<Sections>
+				<Section ID="f9095713-32ae-4db4-a037-890990e62b27" Caption="Project Quota">
+					<DataForm ID="c7c88c72-fb7a-4a90-92f5-e31da377bfb9" />
+					<Actions>
+						<Action ID="28cba157-5142-4052-943a-719c37acc405" Caption="Edit">
+							<ShowDataForm DataFormID="151e5109-8f2d-4ea6-984c-58eed60793eb" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<PageContextID />
+								</ActionContext>
+							</ShowDataForm>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+		<Tab Caption="Registered Children" ID="3b7be70e-7900-4c5c-82ab-430ca3c3a512">
+			<Sections>
+				<Section ID="e24196c7-1f06-4211-9bd0-5f6fbf5b1a78" Caption="Registered Children">
+					<DataList ID="07b00060-496b-43f8-a87a-6d2dc7df464a" ShowBorder="true">
+						<RenderStyle>
+							<StandardView AutoSize="true" />
+						</RenderStyle>
+					</DataList>
+					<Actions>
+						<Action ID="a38acab2-706e-4ccd-b0b8-a027799b86f9" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)">
+							<ShowPage PageID="0f392d71-5884-4363-b6e3-a75755f8402a" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<SectionField>SPONSORSHIPOPPORTUNITYID</SectionField>
+								</ActionContext>
+							</ShowPage>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+		<Tab Caption="Required Documentation" ID="bd93ee6d-32a7-44e5-a072-87dc8ba29a74">
+			<Sections>
+				<Section ID="ef41f5f0-2c71-44a4-854d-aadd5fe4a530" Caption="Required Documentation">
+					<DataForm ID="0b32a8d0-5e87-4701-99bc-515761b50351" />
+					<Actions>
+						<Action ID="f5c9a34c-d722-4d6f-8c1f-8ad952d57888" Caption="Edit">
+							<ShowDataForm DataFormID="8fd24692-77fb-4074-ad45-4c9ac6cbf190" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<PageContextID />
+								</ActionContext>
+							</ShowDataForm>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+		<Tab Caption="Community 1" ID="1a817c71-2e3e-4598-b235-9f21b14e96b6">
+			<Sections>
+				<Section ID="45c94151-9029-44f1-9c67-5c0cdeb3ceee" Caption="Community Information">
+					<DataForm ID="5e1ad2a6-5c0c-4e42-8841-6ab8f7ed52b5" />
+					<Actions>
+						<Action ID="48700791-d529-4d0d-842a-fbd4d188c741" Caption="Edit">
+							<ShowDataForm DataFormID="f95b8041-b78b-4337-a04e-540d31dcc146" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<PageContextID />
+								</ActionContext>
+							</ShowDataForm>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+		<Tab Caption="Community 2" ID="8e36d148-ecb4-4a71-9641-101b11a006e4">
+			<Sections>
+				<Section ID="e2b92ca6-3cad-4a6e-bb93-337ce27c1265" Caption="Community Information">
+					<DataForm ID="5d8256e5-bbc9-4b3d-8b23-123b4c4bfe44" />
+					<Actions>
+						<Action ID="1a6e60d6-374f-40a3-8730-4da44545b633" Caption="Edit">
+							<ShowDataForm DataFormID="d3bf5f48-0bdf-443c-bf23-b7fce9406697" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<PageContextID />
+								</ActionContext>
+							</ShowDataForm>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+		<Tab Caption="Community 3" ID="36e192fc-e2c1-4380-a54b-9605f0168bf2">
+			<Sections>
+				<Section ID="1792abc9-dc90-4ff3-b704-48fdcae85961" Caption="Community Information">
+					<DataForm ID="d3c9d00c-3be7-4c58-b2a0-cbe01d8af2ae" />
+					<Actions>
+						<Action ID="c5a39082-881b-441b-9090-197ff8d07710" Caption="Edit">
+							<ShowDataForm DataFormID="10d5a378-157e-445f-bf23-6ae975056ab1" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<PageContextID />
+								</ActionContext>
+							</ShowDataForm>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+		<Tab Caption="Relationships" ID="0fad87b3-0cc5-49ef-bdb7-83b65fab338b">
+			<Sections>
+				<Section ID="96f8a704-e966-4524-ab19-2c8de95a2efc" Caption="Relationships">
+					<DataList ID="403b8b1b-e146-4fa6-92c7-f4a857389195">
+						<RenderStyle>
+							<GroupedView>
+								<Groups>
+									<Group ColumnName="RELATIONSHIPTYPE" />
+									<Group ColumnName="TYPE" />
+								</Groups>
+								<DetailViewForm ViewDataFormID="e9190728-2a47-4d07-8af9-63fa16cf3900" HeaderCaption="=Fields!NAME" />
+							</GroupedView>
+						</RenderStyle>
+					</DataList>
+					<Actions>
+						<Action ID="1e1ebf28-e659-4c24-87b9-92a118708fd4" Caption="=String.Concat(&quot;Go to &quot;,Fields!NAME)" ImageKey="res:goto_round" DefaultAction="True">
+							<ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<SectionField>RECIPROCALID</SectionField>
+								</ActionContext>
+							</ShowPage>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+	</Tabs>
+	<PageActionGroups>
+		<PageActionGroup ID="d9500d3c-3303-4daf-a68a-fe6bd77e54bc" Caption="Tasks">
+			<Actions>
+				<Action ID="ea165300-d243-442f-9518-28fb5ec337cc" Caption="Edit">
+					<ShowDataForm DataFormID="a3d38811-6c7b-466e-8eb9-6a6a78af2072" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+						<PostActionEvent>
+							<RefreshPage />
+						</PostActionEvent>
+					</ShowDataForm>
+				</Action>
+				<Action ID="4FEF0EF5-E43F-4C96-BC0E-2ABB0C630786" Caption="Update country">
+					<ExecuteRecordOperation RecordOperationID="8f0b7777-709a-43c6-9f5b-650a2e0fad71" ShowPrompt="false" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+						<PostActionEvent>
+							<RefreshPage />
+						</PostActionEvent>
+					</ExecuteRecordOperation>
+				</Action>
+				<Action ID="bd9d3511-1445-44fc-996f-dc92e1098638" Caption="Add interaction" ImageKey="res:newitem">
+					<ShowAddDataForm DataFormID="723ad883-f995-4c40-afed-6a7914b536e3" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+						<PostActionEvent>
+							<GoToPage>
+								<SpecificPage PageID="c7fb41d2-840f-4c19-a4fc-3f8ce7ece1aa" TabID="2380b21e-5c30-4126-b986-9fa3e0c7f9e1">
+									<ActionContext />
+								</SpecificPage>
+							</GoToPage>
+						</PostActionEvent>
+					</ShowAddDataForm>
+				</Action>
+			</Actions>
+		</PageActionGroup>
+		<PageActionGroup ID="e579872e-d9f7-4a73-9a2b-672ce9279847" Caption="View as">
+			<Actions>
+				<Action ID="082b0de5-02ee-4aef-aee5-db44c6a7f831" Caption="Constituent" ImageKey="CATALOG:Blackbaud.AppFx.ProspectResearch.Catalog,Blackbaud.AppFx.ProspectResearch.Catalog.organization.png">
+					<ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+					</ShowPage>
+				</Action>
+			</Actions>
+		</PageActionGroup>
+		<PageActionGroup ID="53f0ee6f-c0e0-4d1e-9ea6-70ee3d0f98fc" Caption="More information">
+			<Actions>
+				<Action ID="4f05d310-30bf-4420-b283-1258611bce23" Caption="Contact" ImageKey="CATALOG:Blackbaud.AppFx.Marketing.Catalog,Blackbaud.AppFx.Marketing.Catalog.postage_stamp_32.png">
+					<ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f" TabID="9b8834f7-f140-4cf4-8007-53344671ae23" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+					</ShowPage>
+				</Action>
+				<Action ID="d236d3dc-5116-4764-ae01-fb032593f36f" Caption="Relationships" ImageKey="RES:relationshipmapspec">
+					<ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f" TabID="bcd9ae35-b911-4eb5-bf9d-2e1a39e6a1a6" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+					</ShowPage>
+				</Action>
+				<Action ID="68c042d3-705c-4344-8985-623fc09a620c" Caption="Interactions" ImageKey="catalog:Blackbaud.AppFx.Constituent.Catalog.dll,Blackbaud.AppFx.Constituent.Catalog.interactions.png">
+					<ShowPage PageID="ede4cf10-a84d-4434-87ef-ae143c78eaaf" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+					</ShowPage>
+				</Action>
+				<Action ID="76662417-4ede-45b2-bcac-e33d3e07beec" Caption="Documentation" ImageKey="CATALOG:Blackbaud.AppFx.Marketing.Catalog,Blackbaud.AppFx.Marketing.Catalog.documents.png">
+					<ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f" TabID="5c057afa-92d3-43c8-a8c8-c7ab6a3cc988" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+					</ShowPage>
+				</Action>
+			</Actions>
+		</PageActionGroup>
+	</PageActionGroups>
+</PageDefinitionSpec>

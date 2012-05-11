@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>ChildProject.ExtensionSummary.Edit.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>ChildProjectExtensionSummaryEditFormUIModel</ClassName>
+  <HtmlInfo GenerateHtml="false">
+    <HtmlFile>ChildProject.ExtensionSummary.EditForm.html</HtmlFile>
+    <HtmlFolder></HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

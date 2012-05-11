@@ -1,0 +1,96 @@
+﻿<ViewDataFormTemplateSpec 
+    xmlns="bb_appfx_viewdataformtemplate"
+    xmlns:common="bb_appfx_commontypes"
+    ID="7554322A-EAFA-4BB2-B4B1-935BBA43D83C"
+    Name="Child Project Required Docs View Form"
+    Description="Used for viewing the Required Documents information for a Child Project Extension"
+    Author="Cary Mayeda"
+    DataFormInstanceID="0B32A8D0-5E87-4701-99BC-515761B50351"
+    RecordType="Child Project Extension"
+    common:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    >
+
+<!-- 
+Remarks:    ID is a foreign key to the related CONSTITUENT.ID
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+
+
+	<SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_REQUIREDDOCS">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_REQUIREDDOCS
+(
+	@ID uniqueidentifier,
+	@DATALOADED bit = 0 output,
+    @DOCSTATUSCOMMUNITYDESCCODE nvarchar(100) = null output,
+    @DOCSTATUSCOMMUNITYPHOTOCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMAPPROVALFORMCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMCAPITALPROPOSALCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMCOMMUNITYFORMCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMINTENTTOPARTNERCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMPARTNERINFOCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMPROGRAMCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODE nvarchar(100) = null output,
+    @DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODE nvarchar(100) = null output
+    
+)
+as
+	set nocount on;
+	
+	-- be sure to set this, in case the select returns no rows
+	set @DATALOADED = 0;
+	
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.
+	select @DATALOADED = 1,
+           @DOCSTATUSCOMMUNITYDESCCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE where ID = DOCSTATUSCOMMUNITYDESCCODEID), 
+           @DOCSTATUSCOMMUNITYPHOTOCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE where ID = DOCSTATUSCOMMUNITYPHOTOCODEID), 
+           @DOCSTATUSPROJECTFORMAPPROVALFORMCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMAPPROVALFORMCODEID), 
+           @DOCSTATUSPROJECTFORMCAPITALPROPOSALCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMCAPITALPROPOSALCODEID), 
+           @DOCSTATUSPROJECTFORMCOMMUNITYFORMCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID), 
+           @DOCSTATUSPROJECTFORMINTENTTOPARTNERCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID), 
+           @DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID), 
+           @DOCSTATUSPROJECTFORMPARTNERINFOCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMPARTNERINFOCODEID), 
+           @DOCSTATUSPROJECTFORMPROGRAMCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMPROGRAMCODEID), 
+           @DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID), 
+           @DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where ID = DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID)
+	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	where ID = @ID
+	
+	return 0;
+]]>
+		</common:CreateProcedureSQL>
+	</SPDataForm>
+	<common:FormMetaData FixedDialog="true">
+		<common:FormFields>
+			<common:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
+			<common:FormField FieldID="DOCSTATUSCOMMUNITYDESCCODE" MaxLength="100" Caption="Community description" />
+			<common:FormField FieldID="DOCSTATUSCOMMUNITYPHOTOCODE" MaxLength="100" Caption="Community photo" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMAPPROVALFORMCODE" MaxLength="100" Caption="Approval form" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMCAPITALPROPOSALCODE" MaxLength="100" Caption="Capital proposal" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMCOMMUNITYFORMCODE" MaxLength="100" Caption="Community form" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMINTENTTOPARTNERCODE" MaxLength="100" Caption="Intent to partner" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODE" MaxLength="100" Caption="Partner agreement" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMPARTNERINFOCODE" MaxLength="100" Caption="Partner information" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMPROGRAMCODE" MaxLength="100" Caption="Program" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODE" MaxLength="100" Caption="Sponsorship proposal - full" />
+			<common:FormField FieldID="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODE" MaxLength="100" Caption="Sponsorship proposal - summary" />
+		</common:FormFields>
+		<common:FormUIComponent />
+
+        <common:WebUIComponent>
+			<common:WebUI>
+				<common:DefaultWebUI/>
+			</common:WebUI>        
+        </common:WebUIComponent>
+
+
+	</common:FormMetaData>
+</ViewDataFormTemplateSpec>

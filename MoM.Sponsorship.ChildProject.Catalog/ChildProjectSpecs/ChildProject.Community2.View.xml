@@ -1,0 +1,317 @@
+<ViewDataFormTemplateSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="27A61E8A-FE9B-4C12-BE67-9C8FDC0E9E04"
+    Name="Child Project Community 2 View Form"
+    Description="Used for viewing the second tab of Community Informaiton for a Child Project Extension"
+    Author="Cary Mayeda"
+    DataFormInstanceID="5D8256E5-BBC9-4B3D-8B23-123B4C4BFE44"
+    RecordType="Child Project Extension"
+    c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    OwnerIDMapperID="00000000-0000-0000-0000-000000000000"
+    xmlns="bb_appfx_viewdataformtemplate"
+	>
+
+<!-- 
+Remarks:    ID is a foreign key to the related CONSTITUENT.ID
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+	
+    <SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_COMMUNITY2">
+        <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_COMMUNITY2 
+(
+	@ID uniqueidentifier,
+	@DATALOADED bit = 0 output,
+    @HIGHESTEDUCATIONAVAILABLECODE nvarchar(100) = null output,
+	@HIGHESTEDUCATIONAVAILABLECODEID uniqueidentifier = null output,
+    @HIGHESTEDUCATIONAVAILABLEOTHER nvarchar(50) = null output,
+    @EDUCATIONSYSTEMDIVISIONS nvarchar(200) = null output,
+    @EDUCATIONTYPEPUBLIC bit = null output,
+    @EDUCATIONTYPEPRIVATE bit = null output,
+    @EDUCATIONTYPERELIGIOUS bit = null output,
+    @EDUCATIONTYPEOTHER bit = null output,
+    @EDUCATIONTYPEOTHERDESC nvarchar(50) = null output,
+    @VOCATIONALTRAININGAVAILABLE nvarchar(200) = null output,
+    @PERCENTCHILDRENNOTINSCHOOL tinyint = null output,
+    @PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL tinyint = null output,
+    @PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL tinyint = null output,
+    @AVGFAMILYMONTHLYINCOME decimal(8,2) = null output,
+    @AVGFAMILYMONTHLYINCOMEINUSDOLLARS money = null output,
+    @PRIMARYOCCUPATIONHERDING bit = null output,
+    @PRIMARYOCCUPATIONDAYLABOR bit = null output,
+    @PRIMARYOCCUPATIONDOMESTIC bit = null output,
+    @PRIMARYOCCUPATIONFACTORY bit = null output,
+    @PRIMARYOCCUPATIONFISHING bit = null output,
+    @PRIMARYOCCUPATIONGOVERNMENT bit = null output,
+    @PRIMARYOCCUPATIONSTREETVENDING bit = null output,
+    @PRIMARYOCCUPATIONFARMING bit = null output,
+    @PRIMARYOCCUPATIONTRADING bit = null output,
+    @PRIMARYOCCUPATIONPLANTATION bit = null output,
+    @PRIMARYOCCUPATIONPORTER bit = null output,
+    @PRIMARYOCCUPATIONOTHER bit = null output,
+    @PRIMARYOCCUPATIONOTHERDESC nvarchar(50) = null output,
+    @AVGHOURSPERWEEK tinyint = null output,
+    @UNEMPLOYMENTRATE tinyint = null output,
+    @LOCALTRADITIONS nvarchar(1000) = null output,
+    @HOLIDAYS nvarchar(200) = null output,
+    @PRIMARYETHNICGROUPS nvarchar(50) = null output,
+    @PRIMARYLANGUAGES nvarchar(50) = null output,
+    @FAMILYSTRUCTUREPARTRIARCHAL bit = null output,
+    @FAMILYSTRUCTUREMATRIARCHAL bit = null output,
+    @FAMILYSTRUCTUREFAMILYDISINTEGRATION bit = null output,
+    @FAMILYSTRUCTURESINGLEPARENT bit = null output,
+    @FAMILYSTRUCTUREEXTENDEDFAMILY bit = null output,
+    @FAMILYSTRUCTURECHILDHEADED bit = null output,
+    @FAMILYSTRUCTUREOTHER bit = null output,
+    @FAMILYSTRUCTUREOTHERDESC nvarchar(50) = null output,
+    @SOCIALISSUESALCOHOLABUSE bit = null output,
+    @SOCIALISSUESCHILDABUSE bit = null output,
+    @SOCIALISSUESCHILDLABOR bit = null output,
+    @SOCIALISSUESCHILDPROSTITUTION bit = null output,
+    @SOCIALISSUESCHILDTRAFFICKING bit = null output,
+    @SOCIALISSUESCHILDHEADEDHOUSEHOLDS bit = null output,
+    @SOCIALISSUESDRUGABUSE bit = null output,
+    @SOCIALISSUESFORCEDMARRIAGE bit = null output,
+    @SOCIALISSUESGIRLCHILDDISCRIMINATION bit = null output,
+    @SOCIALISSUESHIGHDIVORCE bit = null output,
+    @SOCIALISSUESORPHANS bit = null output,
+    @SOCIALISSUESREFUGEES bit = null output,
+    @SOCIALISSUESSINGLEPARENTFAMILIES bit = null output,
+    @SOCIALISSUESTRAUMA bit = null output,
+    @SOCIALISSUESWAR bit = null output,
+    @SOCIALISSUESOTHER bit = null output,
+    @SOCIALISSUESOTHERDESC nvarchar(50) = null output,
+	
+    @LEGALPROTECTIONAWARENOTENFORCED bit = null output,
+    @LEGALPROTECTIONNOTAWARE bit = null output,
+    @LEGALPROTECTIONAWAREENFORCED bit = null output,
+    @CHILDLABORREGULARLYINLABORPOOL bit = null output,
+    @CHILDLABORRSOMETIMESINLABORPOOL bit = null output,
+    @CHILDLABORNOTINLABORPOOL bit = null output,
+    @CHILDCAREWHENPARENTABSENTADOPTION bit = null output,
+    @CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY bit = null output,
+    @CHILDCAREWHENPARENTABSENTFOSTERCARE bit = null output,
+    @CHILDCAREWHENPARENTABSENTINSTITUTION bit = null output,
+    @CHILDCAREWHENPARENTABSENTNOCARE bit = null output,
+    @CHILDCAREWHENPARENTABSENTOTHER bit = null output,
+    @CHILDCAREWHENPARENTABSENTOTHERDESC nvarchar(50) = null output,
+    @LOCALADOPTIONACCEPTED nvarchar(20) = null output,
+    @FOREIGNADOPTIONLEGAL nvarchar(20) = null output,
+	
+	@HIGHESTEDUCATIONAVAILABLEOTHERSEPARATOR nvarchar(1) = null output,
+	@EDUCATIONTYPEOTHERSEPARATOR nvarchar(1) = null output,
+	@PRIMARYOCCUPATIONOTHERSEPARATOR nvarchar(1) = null output,
+	@FAMILYSTRUCTUREOTHERSEPARATOR nvarchar(1) = null output,
+	@SOCIALISSUESOTHERSEPARATOR nvarchar(1) = null output
+
+)
+as
+	set nocount on;
+	
+	-- be sure to set this, in case the select returns no rows
+	set @DATALOADED = 0;
+	
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.
+	select @DATALOADED = 1,
+           @HIGHESTEDUCATIONAVAILABLECODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTHIGHESTEDUCATIONCODE where ID = HIGHESTEDUCATIONAVAILABLECODEID), 
+		   @HIGHESTEDUCATIONAVAILABLECODEID = HIGHESTEDUCATIONAVAILABLECODEID,
+		   @HIGHESTEDUCATIONAVAILABLEOTHER = HIGHESTEDUCATIONAVAILABLEOTHER, 
+           @EDUCATIONSYSTEMDIVISIONS = EDUCATIONSYSTEMDIVISIONS, 
+           @EDUCATIONTYPEPUBLIC = EDUCATIONTYPEPUBLIC, 
+           @EDUCATIONTYPEPRIVATE = EDUCATIONTYPEPRIVATE, 
+           @EDUCATIONTYPERELIGIOUS = EDUCATIONTYPERELIGIOUS, 
+           @EDUCATIONTYPEOTHER = EDUCATIONTYPEOTHER, 
+           @EDUCATIONTYPEOTHERDESC = EDUCATIONTYPEOTHERDESC, 
+           @VOCATIONALTRAININGAVAILABLE = VOCATIONALTRAININGAVAILABLE, 
+           @PERCENTCHILDRENNOTINSCHOOL = PERCENTCHILDRENNOTINSCHOOL, 
+           @PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL = PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL, 
+           @PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL = PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL, 
+           @AVGFAMILYMONTHLYINCOME = AVGFAMILYMONTHLYINCOME, 
+           @AVGFAMILYMONTHLYINCOMEINUSDOLLARS = AVGFAMILYMONTHLYINCOMEINUSDOLLARS, 
+           @PRIMARYOCCUPATIONHERDING = PRIMARYOCCUPATIONHERDING, 
+           @PRIMARYOCCUPATIONDAYLABOR = PRIMARYOCCUPATIONDAYLABOR, 
+           @PRIMARYOCCUPATIONDOMESTIC = PRIMARYOCCUPATIONDOMESTIC, 
+           @PRIMARYOCCUPATIONFACTORY = PRIMARYOCCUPATIONFACTORY, 
+           @PRIMARYOCCUPATIONFISHING = PRIMARYOCCUPATIONFISHING, 
+           @PRIMARYOCCUPATIONGOVERNMENT = PRIMARYOCCUPATIONGOVERNMENT, 
+           @PRIMARYOCCUPATIONSTREETVENDING = PRIMARYOCCUPATIONSTREETVENDING, 
+           @PRIMARYOCCUPATIONFARMING = PRIMARYOCCUPATIONFARMING, 
+           @PRIMARYOCCUPATIONTRADING = PRIMARYOCCUPATIONTRADING, 
+           @PRIMARYOCCUPATIONPLANTATION = PRIMARYOCCUPATIONPLANTATION, 
+           @PRIMARYOCCUPATIONPORTER = PRIMARYOCCUPATIONPORTER, 
+           @PRIMARYOCCUPATIONOTHER = PRIMARYOCCUPATIONOTHER, 
+           @PRIMARYOCCUPATIONOTHERDESC = PRIMARYOCCUPATIONOTHERDESC, 
+           @AVGHOURSPERWEEK = AVGHOURSPERWEEK, 
+           @UNEMPLOYMENTRATE = UNEMPLOYMENTRATE, 
+           @LOCALTRADITIONS = LOCALTRADITIONS, 
+           @HOLIDAYS = HOLIDAYS, 
+           @PRIMARYETHNICGROUPS = PRIMARYETHNICGROUPS, 
+           @PRIMARYLANGUAGES = PRIMARYLANGUAGES, 
+           @FAMILYSTRUCTUREPARTRIARCHAL = FAMILYSTRUCTUREPARTRIARCHAL, 
+           @FAMILYSTRUCTUREMATRIARCHAL = FAMILYSTRUCTUREMATRIARCHAL, 
+           @FAMILYSTRUCTUREFAMILYDISINTEGRATION = FAMILYSTRUCTUREFAMILYDISINTEGRATION, 
+           @FAMILYSTRUCTURESINGLEPARENT = FAMILYSTRUCTURESINGLEPARENT, 
+           @FAMILYSTRUCTUREEXTENDEDFAMILY = FAMILYSTRUCTUREEXTENDEDFAMILY, 
+           @FAMILYSTRUCTURECHILDHEADED = FAMILYSTRUCTURECHILDHEADED, 
+           @FAMILYSTRUCTUREOTHER = FAMILYSTRUCTUREOTHER, 
+           @FAMILYSTRUCTUREOTHERDESC = FAMILYSTRUCTUREOTHERDESC, 
+           @SOCIALISSUESALCOHOLABUSE = SOCIALISSUESALCOHOLABUSE, 
+           @SOCIALISSUESCHILDABUSE = SOCIALISSUESCHILDABUSE, 
+           @SOCIALISSUESCHILDLABOR = SOCIALISSUESCHILDLABOR, 
+           @SOCIALISSUESCHILDPROSTITUTION = SOCIALISSUESCHILDPROSTITUTION, 
+           @SOCIALISSUESCHILDTRAFFICKING = SOCIALISSUESCHILDTRAFFICKING, 
+           @SOCIALISSUESCHILDHEADEDHOUSEHOLDS = SOCIALISSUESCHILDHEADEDHOUSEHOLDS, 
+           @SOCIALISSUESDRUGABUSE = SOCIALISSUESDRUGABUSE, 
+           @SOCIALISSUESFORCEDMARRIAGE = SOCIALISSUESFORCEDMARRIAGE, 
+           @SOCIALISSUESGIRLCHILDDISCRIMINATION = SOCIALISSUESGIRLCHILDDISCRIMINATION, 
+           @SOCIALISSUESHIGHDIVORCE = SOCIALISSUESHIGHDIVORCE, 
+           @SOCIALISSUESORPHANS = SOCIALISSUESORPHANS, 
+           @SOCIALISSUESREFUGEES = SOCIALISSUESREFUGEES, 
+           @SOCIALISSUESSINGLEPARENTFAMILIES = SOCIALISSUESSINGLEPARENTFAMILIES, 
+           @SOCIALISSUESTRAUMA = SOCIALISSUESTRAUMA, 
+           @SOCIALISSUESWAR = SOCIALISSUESWAR, 
+           @SOCIALISSUESOTHER = SOCIALISSUESOTHER, 
+           @SOCIALISSUESOTHERDESC = SOCIALISSUESOTHERDESC, 
+		   
+           @LEGALPROTECTIONAWARENOTENFORCED = LEGALPROTECTIONAWARENOTENFORCED, 
+           @LEGALPROTECTIONNOTAWARE = LEGALPROTECTIONNOTAWARE, 
+           @LEGALPROTECTIONAWAREENFORCED = LEGALPROTECTIONAWAREENFORCED, 
+           @CHILDLABORREGULARLYINLABORPOOL = CHILDLABORREGULARLYINLABORPOOL, 
+           @CHILDLABORRSOMETIMESINLABORPOOL = CHILDLABORRSOMETIMESINLABORPOOL, 
+           @CHILDLABORNOTINLABORPOOL = CHILDLABORNOTINLABORPOOL, 
+           @CHILDCAREWHENPARENTABSENTADOPTION = CHILDCAREWHENPARENTABSENTADOPTION, 
+           @CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY = CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY, 
+           @CHILDCAREWHENPARENTABSENTFOSTERCARE = CHILDCAREWHENPARENTABSENTFOSTERCARE, 
+           @CHILDCAREWHENPARENTABSENTINSTITUTION = CHILDCAREWHENPARENTABSENTINSTITUTION, 
+           @CHILDCAREWHENPARENTABSENTNOCARE = CHILDCAREWHENPARENTABSENTNOCARE, 
+           @CHILDCAREWHENPARENTABSENTOTHER = CHILDCAREWHENPARENTABSENTOTHER, 
+           @CHILDCAREWHENPARENTABSENTOTHERDESC = CHILDCAREWHENPARENTABSENTOTHERDESC, 
+           @LOCALADOPTIONACCEPTED = LOCALADOPTIONACCEPTED, 
+           @FOREIGNADOPTIONLEGAL = FOREIGNADOPTIONLEGAL,
+		   
+		   @HIGHESTEDUCATIONAVAILABLEOTHERSEPARATOR = '-',
+		   @EDUCATIONTYPEOTHERSEPARATOR = '-',
+		   @PRIMARYOCCUPATIONOTHERSEPARATOR = '-',
+		   @FAMILYSTRUCTUREOTHERSEPARATOR = '-',
+		   @SOCIALISSUESOTHERSEPARATOR = '-'
+
+	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	where ID = @ID
+	
+	return 0;
+]]>
+</c:CreateProcedureSQL>
+    </SPDataForm>
+    <c:FormMetaData FixedDialog="true">
+        <c:FormFields>
+            <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
+            <c:FormField FieldID="HIGHESTEDUCATIONAVAILABLECODE" MaxLength="100" Caption="Higest education available in local community" />
+			<c:FormField FieldID="HIGHESTEDUCATIONAVAILABLECODEID" DataType="Guid" Caption="Higest education available in local community id" />
+			<c:FormField FieldID="HIGHESTEDUCATIONAVAILABLEOTHER" MaxLength="50" Caption="other" />
+            <c:FormField FieldID="EDUCATIONSYSTEMDIVISIONS" MaxLength="200" Caption="Education system divisions" Multiline="true" />
+            <c:FormField FieldID="EDUCATIONTYPEPUBLIC" DataType="Boolean" Caption="Public" />
+            <c:FormField FieldID="EDUCATIONTYPEPRIVATE" DataType="Boolean" Caption="Private" />
+            <c:FormField FieldID="EDUCATIONTYPERELIGIOUS" DataType="Boolean" Caption="Religious" />
+            <c:FormField FieldID="EDUCATIONTYPEOTHER" DataType="Boolean" Caption="Other" />
+            <c:FormField FieldID="EDUCATIONTYPEOTHERDESC" MaxLength="50" Caption="Otherdesc" />
+            <c:FormField FieldID="VOCATIONALTRAININGAVAILABLE" MaxLength="200" Caption="Types of vocational training available" Multiline="true" />
+            <c:FormField FieldID="PERCENTCHILDRENNOTINSCHOOL" DataType="TinyInt" Caption="Percentage of children of school age who are not in school" />
+            <c:FormField FieldID="PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL" DataType="TinyInt" Caption="Percentage of children who have completed primary school" />
+            <c:FormField FieldID="PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL" DataType="TinyInt" Caption="Percentage of youth who have completed secondary school" />
+            <c:FormField FieldID="AVGFAMILYMONTHLYINCOME" DataType="Decimal" Precision="8" Scale="2" Caption="Local average family monthly income" />
+            <c:FormField FieldID="AVGFAMILYMONTHLYINCOMEINUSDOLLARS" DataType="Money" Caption="US average family month income" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONHERDING" DataType="Boolean" Caption="Animal herding" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONDAYLABOR" DataType="Boolean" Caption="Day labor" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONDOMESTIC" DataType="Boolean" Caption="Domestic Services" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONFACTORY" DataType="Boolean" Caption="Factory work" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONFISHING" DataType="Boolean" Caption="Fishing" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONGOVERNMENT" DataType="Boolean" Caption="Government worker" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONSTREETVENDING" DataType="Boolean" Caption="Street vending" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONFARMING" DataType="Boolean" Caption="Subsistence farming" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONTRADING" DataType="Boolean" Caption="Petty or market trading" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONPLANTATION" DataType="Boolean" Caption="Plantation work" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONPORTER" DataType="Boolean" Caption="Porter or Coolie" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONOTHER" DataType="Boolean" Caption="Other" />
+            <c:FormField FieldID="PRIMARYOCCUPATIONOTHERDESC" MaxLength="50" Caption="OtherDesc" />
+            <c:FormField FieldID="AVGHOURSPERWEEK" DataType="TinyInt" Caption="Average number of hours adults work per week" />
+            <c:FormField FieldID="UNEMPLOYMENTRATE" DataType="TinyInt" Caption="Unemployment rate" />
+            <c:FormField FieldID="LOCALTRADITIONS" MaxLength="1000" Caption="Local traditions, rituals and customs" Multiline="true" />
+            <c:FormField FieldID="HOLIDAYS" MaxLength="200" Caption="Community or local reglious holidays" Multiline="true" />
+            <c:FormField FieldID="PRIMARYETHNICGROUPS" MaxLength="50" Caption="Primary ethnic group(s)" />
+            <c:FormField FieldID="PRIMARYLANGUAGES" MaxLength="50" Caption="Primary language(s)" />
+            <c:FormField FieldID="FAMILYSTRUCTUREPARTRIARCHAL" DataType="Boolean" Caption="Patriarchal" />
+            <c:FormField FieldID="FAMILYSTRUCTUREMATRIARCHAL" DataType="Boolean" Caption="Matriarchal" />
+            <c:FormField FieldID="FAMILYSTRUCTUREFAMILYDISINTEGRATION" DataType="Boolean" Caption="Family disintegration" />
+            <c:FormField FieldID="FAMILYSTRUCTURESINGLEPARENT" DataType="Boolean" Caption="Single parent" />
+            <c:FormField FieldID="FAMILYSTRUCTUREEXTENDEDFAMILY" DataType="Boolean" Caption="Extended family structure" />
+            <c:FormField FieldID="FAMILYSTRUCTURECHILDHEADED" DataType="Boolean" Caption="Child-headed households" />
+            <c:FormField FieldID="FAMILYSTRUCTUREOTHER" DataType="Boolean" Caption="Other" />
+            <c:FormField FieldID="FAMILYSTRUCTUREOTHERDESC" MaxLength="50" Caption="Family structure other description" />
+            <c:FormField FieldID="SOCIALISSUESALCOHOLABUSE" DataType="Boolean" Caption="Alcohol abuse" />
+            <c:FormField FieldID="SOCIALISSUESCHILDABUSE" DataType="Boolean" Caption="Child abuse/dometic violence" />
+            <c:FormField FieldID="SOCIALISSUESCHILDLABOR" DataType="Boolean" Caption="Child labor" />
+            <c:FormField FieldID="SOCIALISSUESCHILDPROSTITUTION" DataType="Boolean" Caption="Child prostitution" />
+            <c:FormField FieldID="SOCIALISSUESCHILDTRAFFICKING" DataType="Boolean" Caption="Child trafficking" />
+            <c:FormField FieldID="SOCIALISSUESCHILDHEADEDHOUSEHOLDS" DataType="Boolean" Caption="Child-headed households" />
+            <c:FormField FieldID="SOCIALISSUESDRUGABUSE" DataType="Boolean" Caption="Drug abuse" />
+            <c:FormField FieldID="SOCIALISSUESFORCEDMARRIAGE" DataType="Boolean" Caption="Forced/arranged marriage" />
+            <c:FormField FieldID="SOCIALISSUESGIRLCHILDDISCRIMINATION" DataType="Boolean" Caption="Girl-child discrimination" />
+            <c:FormField FieldID="SOCIALISSUESHIGHDIVORCE" DataType="Boolean" Caption="High divorce" />
+            <c:FormField FieldID="SOCIALISSUESORPHANS" DataType="Boolean" Caption="Oprhans" />
+            <c:FormField FieldID="SOCIALISSUESREFUGEES" DataType="Boolean" Caption="Refugees" />
+            <c:FormField FieldID="SOCIALISSUESSINGLEPARENTFAMILIES" DataType="Boolean" Caption="Single-parent families" />
+            <c:FormField FieldID="SOCIALISSUESTRAUMA" DataType="Boolean" Caption="Trauma or Post traumatic stree disorder" />
+            <c:FormField FieldID="SOCIALISSUESWAR" DataType="Boolean" Caption="War or conflict" />
+            <c:FormField FieldID="SOCIALISSUESOTHER" DataType="Boolean" Caption="Other" />
+            <c:FormField FieldID="SOCIALISSUESOTHERDESC" MaxLength="50" Caption="Social issues other description" />
+			<c:FormField FieldID="LEGALPROTECTIONNOTAWARE" DataType="Boolean" Caption="Community is unaware of the Convention on the Rights of the Child. There are no local laws to protect children." />
+			<c:FormField FieldID="LEGALPROTECTIONAWARENOTENFORCED" DataType="Boolean" Caption="Community is aware of the Convention on the Rights of the Child, but it is not enforced. There are local laws to protect children, but they are not enforced." />
+			<c:FormField FieldID="LEGALPROTECTIONAWAREENFORCED" DataType="Boolean" Caption="Community is aware of the Covention on the Rights of the Child and effort is made to educate and post information on this topic. There are local laws to protect children and they are enforced." />
+            <c:FormField FieldID="CHILDLABORREGULARLYINLABORPOOL" DataType="Boolean" Caption="Children regularly participate in the labor pool and in dangerous tasks, such as farming, factory work, and exposure to hazardous materials." />
+            <c:FormField FieldID="CHILDLABORRSOMETIMESINLABORPOOL" DataType="Boolean" Caption="Children sometimes participate in the labor pool and in dangerous tasks, but do have the opportunity for education." />
+            <c:FormField FieldID="CHILDLABORNOTINLABORPOOL" DataType="Boolean" Caption="Children do not participate in the labor pool.  Education for children is  highly encouraged and supported." />
+            <c:FormField FieldID="CHILDCAREWHENPARENTABSENTADOPTION" DataType="Boolean" Caption="Adoption" />
+            <c:FormField FieldID="CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY" DataType="Boolean" Caption="Extended family" />
+            <c:FormField FieldID="CHILDCAREWHENPARENTABSENTFOSTERCARE" DataType="Boolean" Caption="Foster care" />
+            <c:FormField FieldID="CHILDCAREWHENPARENTABSENTINSTITUTION" DataType="Boolean" Caption="Institution" />
+            <c:FormField FieldID="CHILDCAREWHENPARENTABSENTNOCARE" DataType="Boolean" Caption="No care available" />
+            <c:FormField FieldID="CHILDCAREWHENPARENTABSENTOTHER" DataType="Boolean" Caption="Other" />
+            <c:FormField FieldID="CHILDCAREWHENPARENTABSENTOTHERDESC" MaxLength="50" Caption="Child care when parent absent other description" />
+            <c:FormField FieldID="LOCALADOPTIONACCEPTED" DataType="String" Caption="Is local adoption accepted?" />
+            <c:FormField FieldID="FOREIGNADOPTIONLEGAL" DataType="String" Caption="Is foreign adoption legal?" />
+
+			<c:FormField FieldID="HIGHESTEDUCATIONAVAILABLEOTHERSEPARATOR" DataType="String" />
+			<c:FormField FieldID="EDUCATIONTYPEOTHERSEPARATOR" DataType="String" />
+			<c:FormField FieldID="PRIMARYOCCUPATIONOTHERSEPARATOR" DataType="String" />
+			<c:FormField FieldID="FAMILYSTRUCTUREOTHERSEPARATOR" DataType="String" />
+			<c:FormField FieldID="SOCIALISSUESOTHERSEPARATOR" DataType="String" />
+
+		</c:FormFields>
+        <c:FormUIComponent />
+
+        <c:WebUIComponent>
+            <c:UIModel AssemblyName="MoM.Sponsorship.ChildProject.UIModel.dll" ClassName="MoM.Sponsorship.ChildProject.UIModel.ChildProjectCommunity2ViewFormUIModel" />
+            <c:WebUI>
+				<c:ExternalResource Url="browser/htmlforms/custom/ChildProject.Community2.ViewForm.html"/>
+			</c:WebUI>
+        </c:WebUIComponent>
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+    </c:FormMetaData>
+</ViewDataFormTemplateSpec>
