@@ -10,21 +10,20 @@
 	>
 
 <!-- 
-	Remarks:  This is used to extend an Organization Constituent for the Child Project.  
-			  The Child Project is used for as the field office in the sponsorship location.				
-			  The table extension contains all the child project specific data including quota, project form, community form.
-			  
-			  ChildProject.ExtensionPass1.Table.xml and USR_UFN_COUNTRYCURRENTQUOTA.xml must be loaded first.
+	Remarks:  *************                 THIS IS ONLY USED WHEN USR_CHILDPROJECTEXTENSION DOES NOT EXIST YET                   *************
+			  *************  USE THE SPEC FILE ChildProject.Extension.Table.xml TO MAKE ANY CHANGES TO USR_CHILDPROJECTEXTENSION  *************
+			  *********************************************************************************************************************************
+			  This is used to create the first pass of the table to extend an Organization Constituent for the Child Project.  
 			  The reason is that the fields DECREASEDQUOTA, GROWTHQUOTA, CURRENTQUOTA all use USR_UFN_CHILDPROJECTCURRENTQUOTA. 
 			  However, USR_UFN_CHILDPROJECTCURRENTQUOTA can not be loaded until the table exists. 
-			  ChildProject.ExtensionPass1.Table.xml is only used once.
+			  Therefore, in this spec DECREASEDQUOTA, GROWTHQUOTA, CURRENTQUOTA are all set to 0
+			  ChildProject.ExtensionPass1.Table.xml is only used once.  After that use ChildProject.Extension.Table.xml
 
 			  Make sure not to change the ID guid.  They need to match in both table specs.
-			  
+
 	History:
 	Date            Modified By     Comments
-	07-Apr-2012     CMayeda         Initial Version
-	21-May-2012		CMayeda			Updated remarks to describe ChildProject.ExtensionPass1.Table.xml  
+	21-May-2012     CMayeda         Initial Version
 -->
 	
 	<!-- define fields on the table -->
@@ -158,9 +157,9 @@
 				<EnumValue ID="1" Translation="Country quota"/>
 			</EnumValues>
 		</EnumField>
-		<ComputedColumnField Name="DECREASEDQUOTA" Description ="Decreased Quota"  Expression="case when APPROVEDQUOTAINITIAL &gt; dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) then APPROVEDQUOTAINITIAL - dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) else 0 end" Persisted="false" />
-		<ComputedColumnField Name="GROWTHQUOTA" Description ="Growth Quota"  Expression="case when APPROVEDQUOTAINITIAL &lt; dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) then dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) - APPROVEDQUOTAINITIAL else 0 end" Persisted="false" />
-		<ComputedColumnField Name="CURRENTQUOTA" Description ="Current Quota"  Expression="dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID)" Persisted="false" />
+		<ComputedColumnField Name="DECREASEDQUOTA" Description ="Decreased Quota"  Expression="0" Persisted="false" />
+		<ComputedColumnField Name="GROWTHQUOTA" Description ="Growth Quota"  Expression="0" Persisted="false" />
+		<ComputedColumnField Name="CURRENTQUOTA" Description ="Current Quota"  Expression="0" Persisted="false" />
 		<NumberField Name="APPROVEDQUOTAINITIAL" Description ="Approved Quota Initial" DefaultValue="0" Type="smallint" />
 		<NumberField Name="APPROVEDQUOTA01OCT" Description ="Approved Quota 01 Oct" DefaultValue="0" Type="smallint" />
 		<NumberField Name="APPROVEDQUOTA02NOV" Description ="Approved Quota 02 Nov" DefaultValue="0" Type="smallint" />

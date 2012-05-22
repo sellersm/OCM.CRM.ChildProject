@@ -148,6 +148,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\Update.Country.RecordOperation.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProjectPass1.Package.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml" />
+    <EmbeddedResource Include="Tables\ChildProject.ExtensionPass1.Table.xml" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Climate Code.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Code Template.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Community Type Code.sql" />

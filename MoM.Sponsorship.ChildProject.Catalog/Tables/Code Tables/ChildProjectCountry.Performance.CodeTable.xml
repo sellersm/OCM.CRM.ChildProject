@@ -5,7 +5,7 @@
 	Name="Child Project and Country Performance status"
 	Description="Child Project and Country Performance Status"
 	Author="Cary Mayeda"
-	DBTablename="USR_CHILDPROJECTCOUNTRYTPERFORMANCECODE"
+	DBTablename="USR_CHILDPROJECTCOUNTRYPERFORMANCECODE"
 	Category="Child Project Extension"
 	SortMethod="UserDefined"
 
