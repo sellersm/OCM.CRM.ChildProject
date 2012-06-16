@@ -55,9 +55,11 @@
   <ItemGroup>
     <Reference Include="Blackbaud.AppFx">
       <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Blackbaud.AppFx.XmlTypes">
       <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.XmlTypes.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
