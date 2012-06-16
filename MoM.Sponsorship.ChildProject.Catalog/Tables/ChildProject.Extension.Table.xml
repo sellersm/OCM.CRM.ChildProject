@@ -180,7 +180,7 @@
 				<EnumValue ID="1" Translation="Yes"/>				
 			</EnumValues>
 		</EnumField>
-		<CodeTableField Name="PERFORMANCECODEID" Description="Project Performance Status" CodeTable="USR_CHILDPROJECTPERFORMANCECODE" />
+		<CodeTableField Name="PERFORMANCECODEID" Description="Project Performance Status" CodeTable="USR_CHILDPROJECTCOUNTRYPERFORMANCECODE" />
 		<EnumField Name="MARKETINGDEMANDSTATUSCODE" DefaultValue="0" Description="Marketing Demand Status">
 			<EnumValues>
 				<EnumValue ID="0" Translation="No"/>

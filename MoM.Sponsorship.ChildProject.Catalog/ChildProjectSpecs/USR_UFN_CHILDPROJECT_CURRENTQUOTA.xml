@@ -38,7 +38,6 @@ BEGIN
 		set @currentQuota = 0
 		--set @currentQuota = USR_UFN_COUNTRY_CURRENTQUOTA (
 	end
-	temp
 	else
 	begin
 

@@ -2,8 +2,8 @@
     xmlns="bb_appfx_package"
     xmlns:common="bb_appfx_commontypes"
     ID="1577db34-4508-4e57-bdc6-5fece0f306b8"
-    Name="Child Project Package"
-    Description="Used to load all specs for Child Project"
+    Name="Child Project Extension Package"
+    Description="Used to load all specs for Child Project extension"
     Author="Cary Mayeda"
     >
 
