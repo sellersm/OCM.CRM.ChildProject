@@ -1,0 +1,105 @@
+<ViewDataFormTemplateSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="aa3e5fbc-21c8-4a4a-9ace-3450dff54cd1"
+    Name="Child Project Extension Summary View Form"
+    Description="Used for viewing the summary information for a Child Project Extension"
+    Author="Cary Mayeda"
+    DataFormInstanceID="9b09d107-78a8-487f-9699-0ab996be70b4"
+    RecordType="Child Project Extension"
+    c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    OwnerIDMapperID="00000000-0000-0000-0000-000000000000"
+    xmlns="bb_appfx_viewdataformtemplate"
+    >
+
+<!-- 
+Remarks:    Uses Blackbaud's view - V_QUERY_CONSTITUENTPRIMARYADDRESS to pull in the Country
+			ID is a foreign key to the related CONSTITUENT.ID
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+	
+    <SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_EXTENSION">
+        <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_EXTENSION 
+(
+	@ID uniqueidentifier,
+	@DATALOADED bit = 0 output,
+    @NAME nvarchar(100) = null output,
+	@LOOKUPID nvarchar(36) = null output,
+	@COUNTRY nvarchar(100) = null output,
+	@CHILDPROJECTTYPE nvarchar(100) = null output,
+    @CHILDPROJECTTYPECODEID uniqueidentifier = null output,
+    @CHILDPROJECTTYPEOTHER nvarchar(50) = null output,
+    @CHILDPROJECTSTATUS nvarchar(100) = null output,
+	@CHILDPROJECTCATEGORY nvarchar(100) = null output,
+	@CHILDPROJECTSUBCATEGORY nvarchar(100) = null output,
+	
+	@CHILDPROJECTTYPEOTHERSEPARATOR nvarchar(1) = null output
+)
+as
+	set nocount on;
+	
+	-- be sure to set this, in case the select returns no rows
+	set @DATALOADED = 0;
+	
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.
+	
+	select	@DATALOADED = 1,
+			@ID = cp_ext.ID, 
+			@NAME = CONSTITUENT.NAME,
+			@LOOKUPID = CONSTITUENT.LOOKUPID,
+			@COUNTRY = (select NAME from CONSTITUENT where ID = cp_ext.COUNTRYEXTENSIONID),
+			@CHILDPROJECTTYPE = (select DESCRIPTION from dbo.USR_CHILDPROJECTTYPECODE where ID = cp_ext.CHILDPROJECTTYPECODEID), 
+			@CHILDPROJECTTYPECODEID = CHILDPROJECTTYPECODEID,
+			@CHILDPROJECTTYPEOTHER = cp_ext.CHILDPROJECTTYPEOTHER, 
+			@CHILDPROJECTSTATUS = (select DESCRIPTION from dbo.USR_CHILDPROJECTSTATUSCODE where ID = cp_ext.CHILDPROJECTSTATUSCODEID),
+			@CHILDPROJECTCATEGORY = (select DESCRIPTION from dbo.USR_CHILDPROJECTCATEGORYCODE where ID = cp_ext.CHILDPROJECTCATEGORYCODEID),
+			@CHILDPROJECTSUBCATEGORY = (select DESCRIPTION from dbo.USR_CHILDPROJECTSUBCATEGORYCODE where ID = cp_ext.CHILDPROJECTSUBCATEGORYCODEID),
+			
+			@CHILDPROJECTTYPEOTHERSEPARATOR = '-'
+			
+	  from	dbo.USR_CHILDPROJECTEXTENSION (nolock) cp_ext
+inner join	dbo.CONSTITUENT (nolock) on 
+				CONSTITUENT.ID = cp_ext.ID
+ left join  V_QUERY_CONSTITUENTPRIMARYADDRESS (nolock) primaryaddress on
+				primaryaddress.CONSTITUENTID = cp_ext.ID
+	 where	cp_ext.ID = @ID
+
+
+	return 0;
+]]>
+</c:CreateProcedureSQL>
+    </SPDataForm>
+    <c:FormMetaData FixedDialog="true">
+        <c:FormFields>
+            <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="Child project ID" />
+            <c:FormField FieldID="LOOKUPID" DataType="String" Caption="Lookup ID" />
+			<c:FormField FieldID="NAME" DataType="String" Hidden="true" Caption="Name" />
+			<c:FormField FieldID="COUNTRY" DataType="String" Caption="Country" />
+			<c:FormField FieldID="CHILDPROJECTTYPE" DataType="String" MaxLength="100" Caption="Project type" />
+			<c:FormField FieldID="CHILDPROJECTTYPECODEID" DataType="Guid" Caption="Project type code" />
+			<c:FormField FieldID="CHILDPROJECTTYPEOTHER" DataType="String" MaxLength="50" Caption="Other description" />
+            <c:FormField FieldID="CHILDPROJECTSTATUS" DataType="String" MaxLength="100" Caption="Status" />
+			<c:FormField FieldID="CHILDPROJECTCATEGORY" DataType="String" Caption="Category" />
+			<c:FormField FieldID="CHILDPROJECTSUBCATEGORY" DataType="String" Caption="Subcategory" />
+
+			<c:FormField FieldID="CHILDPROJECTTYPEOTHERSEPARATOR" DataType="String" />
+		</c:FormFields>
+        <c:FormUIComponent />
+
+        <c:WebUIComponent>
+            <c:UIModel AssemblyName="MoM.Sponsorship.ChildProject.UIModel.dll" ClassName="MoM.Sponsorship.ChildProject.UIModel.ChildProjectExtensionSummaryViewFormUIModel" />
+            <c:WebUI>
+                <c:ExternalResource Url="browser/htmlforms/custom/ChildProject.ExtensionSummary.ViewForm.html" />
+            </c:WebUI>
+        </c:WebUIComponent>
+
+        
+    </c:FormMetaData>
+</ViewDataFormTemplateSpec>

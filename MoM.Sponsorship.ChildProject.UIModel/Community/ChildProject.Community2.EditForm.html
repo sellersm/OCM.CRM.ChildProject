@@ -1,0 +1,501 @@
+﻿<style type="text/css">
+    .toolbar
+    {
+        width: 350px;
+        border-bottom: solid 1px #D4DCB9;
+        padding-bottom: 5px;
+    }
+    .toolbar-headertext
+    {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .boldtext
+    {
+        font-weight: bold;
+    }
+    .smallspacer
+    {
+        width: 2px;
+    }
+    .spacer
+    {
+        width: 7px;
+    }
+    
+    
+    /* Form / Section Divs */
+    ##MAP#ChildProjectCommunityTwoEditForm
+    {
+        width: 1200px;
+        height: 650px;
+        padding: 10px;
+
+    }
+    #ColumnOne
+    {
+        float: left;
+        padding-right: 30px;
+        width: 600px;
+    }
+    #ColumnTwo
+    {
+        float: right;
+        width: 550px;
+    }
+    #Community2
+    {
+        clear: both;
+    }
+    
+    /* object widths */
+    
+    ##MAP#HIGHESTEDUCATIONAVAILABLECODEID_value
+    {
+        width: 125px;
+    }
+    ##MAP#EDUCATIONTYPEOTHERDESC_value, ##MAP#HIGHESTEDUCATIONAVAILABLEOTHER_value
+    {
+        width: 150px;
+    }
+    ##MAP#EDUCATIONSYSTEMDIVISIONS_value
+    {
+        width: 340px;
+    }
+    ##MAP#VOCATIONALTRAININGAVAILABLE_value
+    {
+        width:375px;
+    }
+    ##MAP#PERCENTCHILDRENNOTINSCHOOL_value, ##MAP#PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL_value, ##MAP#PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL_value,
+    ##MAP#AVGHOURSPERWEEK_value, ##MAP#UNEMPLOYMENTRATE_value
+    {
+        width: 25px;
+    }
+    ##MAP#AVGFAMILYMONTHLYINCOME_value, ##MAP#AVGFAMILYMONTHLYINCOMEINUSDOLLARS_value
+    {
+        width: 50px;
+    }
+    ##MAP#LOCALTRADITIONS_value, ##MAP#HOLIDAYS_value
+    {
+        width:370px;
+        border-width:thin;
+        border-color:Gray;
+    }
+    ##MAP#PRIMARYETHNICGROUPS_value, ##MAP#PRIMARYLANGUAGES_value
+    {
+        width:370px;
+    }
+
+</style>
+<div id="#MAP#ChildProjectCommunityTwoEditForm">
+    <div id="ColumnOne">
+        <h3>
+            Education</h3>
+        <table>
+            <tr id="#MAP#HIGHESTEDUCATIONAVAILABLECODEID_container">
+                <td>
+                    <label id="#MAP#HIGHESTEDUCATIONAVAILABLECODEID_caption" for="#MAP#HIGHESTEDUCATIONAVAILABLECODEID_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#HIGHESTEDUCATIONAVAILABLECODEID_value" type="text" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <label id="#MAP#HIGHESTEDUCATIONAVAILABLEOTHER_caption" for="#MAP#HIGHESTEDUCATIONAVAILABLEOTHER_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#HIGHESTEDUCATIONAVAILABLEOTHER_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#EDUCATIONSYSTEMDIVISIONS_container">
+                <td valign="top">
+                    <label id="#MAP#EDUCATIONSYSTEMDIVISIONS_caption" for="#MAP#EDUCATIONSYSTEMDIVISIONS_value">
+                    </label>
+                </td>
+                <td colspan="4">
+                    <textarea id="#MAP#EDUCATIONSYSTEMDIVISIONS_value" rows="2" cols="1"></textarea>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td colspan="5" class="toolbar">
+                    Types of education available
+                </td>
+            </tr>
+            <tr id="#MAP#EDUCATIONTYPEPUBLIC_container">
+                <td>
+                    <input id="#MAP#EDUCATIONTYPEPUBLIC_value" type="checkbox" />
+                    <label for="#MAP#EDUCATIONTYPEPUBLIC_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#EDUCATIONTYPEPRIVATE_value" type="checkbox" />
+                    <label for="#MAP#EDUCATIONTYPEPRIVATE_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#EDUCATIONTYPERELIGIOUS_value" type="checkbox" />
+                    <label for="#MAP#EDUCATIONTYPERELIGIOUS_value" />
+                </td>
+            </tr>
+  
+            <tr id="#MAP#EDUCATIONTYPEOTHER_container">
+                <td colspan="5">
+                    <input id="#MAP#EDUCATIONTYPEOTHER_value" type="checkbox" />
+                    <label for="#MAP#EDUCATIONTYPEOTHER_value" />
+                    <input id="#MAP#EDUCATIONTYPEOTHERDESC_value" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr id="#MAP#VOCATIONALTRAININGAVAILABLE_container">
+                <td valign="top">
+                    <label id="#MAP#VOCATIONALTRAININGAVAILABLE_caption" for="#MAP#VOCATIONALTRAININGAVAILABLE_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#VOCATIONALTRAININGAVAILABLE_value" type="text" />
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr id="#MAP#PERCENTCHILDRENNOTINSCHOOL_container">
+                <td>
+                    <label id="#MAP#PERCENTCHILDRENNOTINSCHOOL_caption" for="#MAP#PERCENTCHILDRENNOTINSCHOOL_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#PERCENTCHILDRENNOTINSCHOOL_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL_container">
+                <td>
+                    <label id="#MAP#PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL_caption" for="#MAP#PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL_container">
+                <td>
+                    <label id="#MAP#PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL_caption" for="#MAP#PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL_value" type="text" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <h3>
+            Economy</h3>
+        <table>
+            <tr id="#MAP#AVGFAMILYMONTHLYINCOME_container">
+                <td>
+                    <label id="#MAP#AVGFAMILYMONTHLYINCOME_caption" for="#MAP#AVGFAMILYMONTHLYINCOME_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#AVGFAMILYMONTHLYINCOME_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#AVGFAMILYMONTHLYINCOMEINUSDOLLARS_container">
+                <td>
+                    <label id="#MAP#AVGFAMILYMONTHLYINCOMEINUSDOLLARS_caption" for="#MAP#AVGFAMILYMONTHLYINCOMEINUSDOLLARS_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#AVGFAMILYMONTHLYINCOMEINUSDOLLARS_value" type="text" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="5" class="toolbar">
+                    Primary Occupation
+                </td>
+            </tr>
+            <tr id="#MAP#PRIMARYOCCUPATIONHERDING_container">
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONHERDING_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONHERDING_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONDAYLABOR_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONDAYLABOR_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONDOMESTIC_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONDOMESTIC_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONFACTORY_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONFACTORY_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONFISHING_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONFISHING_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONGOVERNMENT_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONGOVERNMENT_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONSTREETVENDING_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONSTREETVENDING_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONFARMING_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONFARMING_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONTRADING_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONTRADING_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONPLANTATION_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONPLANTATION_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#PRIMARYOCCUPATIONPORTER_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONPORTER_value" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <input id="#MAP#PRIMARYOCCUPATIONOTHER_value" type="checkbox" />
+                    <label for="#MAP#PRIMARYOCCUPATIONOTHER_value" />
+                    <input type="text" id="#MAP#PRIMARYOCCUPATIONOTHERDESC_value" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr id="#MAP#AVGHOURSPERWEEK_container">
+                <td>
+                    <label id="#MAP#AVGHOURSPERWEEK_caption" for="#MAP#AVGHOURSPERWEEK_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#AVGHOURSPERWEEK_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#UNEMPLOYMENTRATE_container">
+                <td>
+                    <label id="#MAP#UNEMPLOYMENTRATE_caption" for="#MAP#UNEMPLOYMENTRATE_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#UNEMPLOYMENTRATE_value" type="text" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="ColumnTwo">
+        <h3>
+            Culture</h3>
+        <table>
+            <tr id="#MAP#LOCALTRADITIONS_container">
+                <td>
+                    <span id="#MAP#LOCALTRADITIONS_caption" />
+                </td>
+                <td>
+                    <textarea id="#MAP#LOCALTRADITIONS_value" rows="5" cols="2" />
+                </td>
+                <td class="spacer" />
+            </tr>
+            <tr id="#MAP#HOLIDAYS_container">
+                <td>
+                    <span id="#MAP#HOLIDAYS_caption" />
+                </td>
+                <td>
+                    <textarea id="#MAP#HOLIDAYS_value"  rows="3" cols="2"  />
+                </td>
+                <td class="spacer" />
+            </tr>
+            <tr id="#MAP#PRIMARYETHNICGROUPS_container">
+                <td>
+                    <span id="#MAP#PRIMARYETHNICGROUPS_caption" />
+                </td>
+                <td>
+                    <input type="text" id="#MAP#PRIMARYETHNICGROUPS_value" />
+                </td>
+            </tr>
+            <tr id="#MAP#PRIMARYLANGUAGES_container">
+                <td>
+                    <span id="#MAP#PRIMARYLANGUAGES_caption" />
+                </td>
+                <td>
+                    <input type="text" id="#MAP#PRIMARYLANGUAGES_value" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="5" class="toolbar">
+                    Family structure
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#FAMILYSTRUCTUREPARTRIARCHAL_value" type="checkbox" />
+                    <label for="#MAP#FAMILYSTRUCTUREPARTRIARCHAL_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#FAMILYSTRUCTUREMATRIARCHAL_value" type="checkbox" />
+                    <label for="#MAP#FAMILYSTRUCTUREMATRIARCHAL_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#FAMILYSTRUCTUREFAMILYDISINTEGRATION_value" type="checkbox" />
+                    <label for="#MAP#FAMILYSTRUCTUREFAMILYDISINTEGRATION_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#FAMILYSTRUCTURESINGLEPARENT_value" type="checkbox" />
+                    <label for="#MAP#FAMILYSTRUCTURESINGLEPARENT_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#FAMILYSTRUCTUREEXTENDEDFAMILY_value" type="checkbox" />
+                    <label for="#MAP#FAMILYSTRUCTUREEXTENDEDFAMILY_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#FAMILYSTRUCTURECHILDHEADED_value" type="checkbox" />
+                    <label for="#MAP#FAMILYSTRUCTURECHILDHEADED_value" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input id="#MAP#FAMILYSTRUCTUREOTHER_value" type="checkbox" />
+                    <label for="#MAP#FAMILYSTRUCTUREOTHER_value" />
+                    <input type="text" id="#MAP#FAMILYSTRUCTUREOTHERDESC_value" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="5" class="toolbar">
+                    Social issues
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#SOCIALISSUESALCOHOLABUSE_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESALCOHOLABUSE_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESCHILDABUSE_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESCHILDABUSE_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESCHILDLABOR_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESCHILDLABOR_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#SOCIALISSUESCHILDPROSTITUTION_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESCHILDPROSTITUTION_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESCHILDTRAFFICKING_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESCHILDTRAFFICKING_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESCHILDHEADEDHOUSEHOLDS_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESCHILDHEADEDHOUSEHOLDS_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#SOCIALISSUESDRUGABUSE_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESDRUGABUSE_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESFORCEDMARRIAGE_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESFORCEDMARRIAGE_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESGIRLCHILDDISCRIMINATION_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESGIRLCHILDDISCRIMINATION_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#SOCIALISSUESHIGHDIVORCE_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESHIGHDIVORCE_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESORPHANS_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESORPHANS_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESREFUGEES_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESREFUGEES_value" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#SOCIALISSUESSINGLEPARENTFAMILIES_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESSINGLEPARENTFAMILIES_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESTRAUMA_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESTRAUMA_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#SOCIALISSUESWAR_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESWAR_value" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <input id="#MAP#SOCIALISSUESOTHER_value" type="checkbox" />
+                    <label for="#MAP#SOCIALISSUESOTHER_value" />
+                    <input type="text" id="#MAP#SOCIALISSUESOTHERDESC_value" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- To define fields in multiple columns on the form, simply add/move the fields to this div
+        <div class="bbui-forms-fieldset-column">
+            <table>
+            </table>
+        </div>
+        -->
+</div>

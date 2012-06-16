@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+	<SpecFileName>ChildProject.ProjectInfo.Edit.xml</SpecFileName>
+	<Namespace></Namespace>
+	<ClassName>ChildProjectProjectInfoEditFormUIModel</ClassName>
+	<HtmlInfo GenerateHtml="false">
+		<HtmlFile>ChildProjectProjectInfoEditForm.html</HtmlFile>
+		<HtmlFolder>custom\ChildProject</HtmlFolder>
+	</HtmlInfo>
+	<GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

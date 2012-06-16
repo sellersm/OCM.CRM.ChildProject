@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="F3781825-1785-4F15-86C9-87FB168C5AD6" 
+	Name="Child Project Form Status"
+	Description="Child Project Project Form Status code table"
+	Author="Cary Mayeda"
+	DBTablename="USR_CHILDPROJECTFORMSTATUSCODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+/>

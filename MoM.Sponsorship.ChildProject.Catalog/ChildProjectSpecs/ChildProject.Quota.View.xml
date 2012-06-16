@@ -1,0 +1,127 @@
+<ViewDataFormTemplateSpec 
+	xmlns:c="bb_appfx_commontypes"
+	ID="da5dca4e-1878-49d5-932a-a09a878023ca"
+	Name="Child Project Quota View Form"
+	Description="Used for viewing Quota information on a given Child Project"
+	Author="Cary Mayeda"
+	DataFormInstanceID="c7c88c72-fb7a-4a90-92f5-e31da377bfb9"
+	RecordType="Child Project Extension"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+	OwnerIDMapperID="00000000-0000-0000-0000-000000000000"
+	xmlns="bb_appfx_viewdataformtemplate"
+	>
+
+<!-- 
+Remarks:    ID is a foreign key to the related CONSTITUENT.ID
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+
+	<SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_QUOTA">
+		<c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_QUOTA
+(
+	@ID uniqueidentifier,
+	@DATALOADED bit = 0 output,
+	@QUOTATYPE nvarchar(100) = null output,
+	@QUOTATYPECODE tinyint = null output,
+	@CURRENTQUOTA smallint = null output,	
+	@DECREASEDQUOTA smallint = null output,
+	@GROWTHQUOTA smallint = null output,
+	@APPROVEDQUOTAINITIAL smallint = null output,
+	@APPROVEDQUOTA01OCT smallint = null output,
+	@APPROVEDQUOTA02NOV smallint = null output,
+	@APPROVEDQUOTA03DEC smallint = null output,
+	@APPROVEDQUOTA04JAN smallint = null output,
+	@APPROVEDQUOTA05FEB smallint = null output,
+	@APPROVEDQUOTA06MAR smallint = null output,
+	@APPROVEDQUOTA07APR smallint = null output,
+	@APPROVEDQUOTA08MAY smallint = null output,
+	@APPROVEDQUOTA09JUN smallint = null output,
+	@APPROVEDQUOTA10JUL smallint = null output,
+	@APPROVEDQUOTA11AUG smallint = null output,
+	@APPROVEDQUOTA12SEP smallint = null output,
+	@NEWCHILDRENSTATUS nvarchar(20) = null output,
+	@PERFORMANCECODE nvarchar(100) = null output,
+	@MARKETINGDEMANDSTATUS nvarchar(20) = null output,
+	@OVERRIDETRIGGERSTATUS nvarchar(20) = null output
+)
+as
+	set nocount on;
+	
+	-- be sure to set this, in case the select returns no rows
+	set @DATALOADED = 0;
+	
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.
+	select @DATALOADED = 1,
+			@QUOTATYPE = QUOTATYPE,
+			@QUOTATYPECODE = QUOTATYPECODE,
+			@CURRENTQUOTA = CURRENTQUOTA,
+			@GROWTHQUOTA = GROWTHQUOTA,
+			@DECREASEDQUOTA = DECREASEDQUOTA, 
+			@APPROVEDQUOTAINITIAL = APPROVEDQUOTAINITIAL, 
+			@APPROVEDQUOTA01OCT = APPROVEDQUOTA01OCT, 
+			@APPROVEDQUOTA02NOV = APPROVEDQUOTA02NOV, 
+			@APPROVEDQUOTA03DEC = APPROVEDQUOTA03DEC, 
+			@APPROVEDQUOTA04JAN = APPROVEDQUOTA04JAN, 
+			@APPROVEDQUOTA05FEB = APPROVEDQUOTA05FEB, 
+			@APPROVEDQUOTA06MAR = APPROVEDQUOTA06MAR, 
+			@APPROVEDQUOTA07APR = APPROVEDQUOTA07APR, 
+			@APPROVEDQUOTA08MAY = APPROVEDQUOTA08MAY, 
+			@APPROVEDQUOTA09JUN = APPROVEDQUOTA09JUN, 
+			@APPROVEDQUOTA10JUL = APPROVEDQUOTA10JUL, 
+			@APPROVEDQUOTA11AUG = APPROVEDQUOTA11AUG, 
+			@APPROVEDQUOTA12SEP = APPROVEDQUOTA12SEP, 
+			@NEWCHILDRENSTATUS = NEWCHILDRENSTATUS, 
+			@PERFORMANCECODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTCOUNTRYPERFORMANCECODE where ID = PERFORMANCECODEID), 
+			@MARKETINGDEMANDSTATUS = MARKETINGDEMANDSTATUS, 
+			@OVERRIDETRIGGERSTATUS = OVERRIDETRIGGERSTATUS
+	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	where ID = @ID
+	
+	return 0;
+]]>
+</c:CreateProcedureSQL>
+	</SPDataForm>
+	<c:FormMetaData FixedDialog="true">
+		<c:FormFields>
+			<c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
+			<c:FormField FieldID="QUOTATYPE" DataType="String" Caption="Quota type"/>
+			<c:FormField FieldID="QUOTATYPECODE" DataType="TinyInt" Caption ="Quota type code" Hidden="true" />
+			<c:FormField FieldID="APPROVEDQUOTAINITIAL" DataType="SmallInt" Caption="Initial quota" />
+			<c:FormField FieldID="CURRENTQUOTA" DataType="SmallInt" Caption="Current quota" />
+			<c:FormField FieldID="GROWTHQUOTA" DataType="SmallInt" Caption="Growth quota" />
+			<c:FormField FieldID="DECREASEDQUOTA" DataType="SmallInt" Caption="Decreased quota" />
+			<c:FormField FieldID="APPROVEDQUOTA01OCT" DataType="SmallInt" Caption="01 - October" />
+			<c:FormField FieldID="APPROVEDQUOTA02NOV" DataType="SmallInt" Caption="02 - November" />
+			<c:FormField FieldID="APPROVEDQUOTA03DEC" DataType="SmallInt" Caption="03 - December" />
+			<c:FormField FieldID="APPROVEDQUOTA04JAN" DataType="SmallInt" Caption="04 - January" />
+			<c:FormField FieldID="APPROVEDQUOTA05FEB" DataType="SmallInt" Caption="05 - February" />
+			<c:FormField FieldID="APPROVEDQUOTA06MAR" DataType="SmallInt" Caption="06 - March" />
+			<c:FormField FieldID="APPROVEDQUOTA07APR" DataType="SmallInt" Caption="07 - April" />
+			<c:FormField FieldID="APPROVEDQUOTA08MAY" DataType="SmallInt" Caption="08 - May" />
+			<c:FormField FieldID="APPROVEDQUOTA09JUN" DataType="SmallInt" Caption="09 - June" />
+			<c:FormField FieldID="APPROVEDQUOTA10JUL" DataType="SmallInt" Caption="10 - July" />
+			<c:FormField FieldID="APPROVEDQUOTA11AUG" DataType="SmallInt" Caption="11 - August" />
+			<c:FormField FieldID="APPROVEDQUOTA12SEP" DataType="SmallInt" Caption="12 - September" />
+			<c:FormField FieldID="NEWCHILDRENSTATUS" DataType="String" Caption="New children status" />
+			<c:FormField FieldID="PERFORMANCECODE" DataType ="String" MaxLength="100" Caption="Performance" />
+			<c:FormField FieldID="MARKETINGDEMANDSTATUS" DataType="String" Caption="Marketing demand status"/>		
+			<c:FormField FieldID="OVERRIDETRIGGERSTATUS" DataType="String" Caption="Override trigger status"/>			
+		</c:FormFields>
+		<c:FormUIComponent />
+
+		<c:WebUIComponent>
+			<c:UIModel AssemblyName="MoM.Sponsorship.ChildProject.UIModel.dll" ClassName="MoM.Sponsorship.ChildProject.UIModel.ChildProjectQuotaViewFormUIModel" />
+			<c:WebUI>
+				<c:ExternalResource Url="browser/htmlforms/custom/ChildProject.Quota.ViewForm.html" />
+			</c:WebUI>
+		</c:WebUIComponent>
+	</c:FormMetaData>
+</ViewDataFormTemplateSpec>

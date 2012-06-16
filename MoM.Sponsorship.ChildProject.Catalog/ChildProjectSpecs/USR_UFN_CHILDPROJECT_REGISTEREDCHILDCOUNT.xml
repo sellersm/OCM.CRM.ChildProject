@@ -1,0 +1,31 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="a3b3bd45-ee42-4600-bd32-d66335e25215"
+	Name="USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT"
+	Description="Total Number of children registered to a child project"
+	Author="Cary Mayeda"
+	DBFunctionName="USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT"
+	>
+
+	<CreateFunctionSQL>
+		<![CDATA[
+create function dbo.USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT(@CHILDPROJECTID uniqueidentifier)
+returns smallint
+with execute as caller
+as begin
+	declare @registeredChildrenCount smallint;
+	select 	@registeredChildrenCount = count(so.ID)
+      from sponsorshipopportunity so
+	  join dbo.SPONSORSHIPLOCATION sl on
+				so.SPONSORSHIPLOCATIONID = sl.ID 					
+	 where so.ELIGIBILITYCODE in (0,1)
+	   and sl.FIELDOFFICEID = @CHILDPROJECTID ; 
+
+	return @registeredChildrenCount;
+end
+
+		]]>
+	</CreateFunctionSQL>
+
+</SQLFunctionSpec>

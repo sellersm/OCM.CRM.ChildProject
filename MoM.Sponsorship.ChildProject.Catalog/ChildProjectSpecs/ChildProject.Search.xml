@@ -1,0 +1,86 @@
+﻿<SearchListSpec 
+    xmlns="bb_appfx_searchlist"
+    xmlns:common="bb_appfx_commontypes"
+    ID="a62848b0-d378-4c5f-886d-aa791a59fe55"
+    Name="Child Project Search"
+    Description="Search for a child project"
+    Author="Cary Mayeda"
+    RecordType="Child Project Extension"
+    TranslationFunctionID="ec1bc00b-fc28-435a-a6ad-07938211558f" 
+	QuickFindCriteriaFieldID="LOOKUPID"
+	>
+
+<!-- 
+Remarks:    
+
+History:
+Date            Modified By     Comments
+20-Apr-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+
+	<!-- describe the SP used to fetch the results from the given filters.  Note that the @MAXROWS parameter is required, and should be 
+	used to limit the number of rows returned to a reasonable number. -->
+	<SPSearchList SPName="USR_USP_SEARCHLIST_CHILDPROJECT">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_SEARCHLIST_CHILDPROJECT
+(
+	@NAME nvarchar(155) = null,
+	@LOOKUPID nvarchar(7) = null,
+	@MAXROWS smallint = 500
+)
+as
+	set @NAME = coalesce(@NAME,'') + '%' ;
+	set @NAME = replace(@NAME,'*','%');
+	set @LOOKUPID = coalesce(@LOOKUPID,'') + '%' ;
+
+	select top(@MAXROWS)
+			c.ID,
+			c.LOOKUPID, 
+			c.NAME, 
+			sc.DESCRIPTION as STATUS 
+	  from  USR_CHILDPROJECTEXTENSION  cp_ext
+      join	CONSTITUENT c on
+				cp_ext.ID = c.ID
+	  join  USR_CHILDPROJECTSTATUSCODE sc on
+				cp_ext.CHILDPROJECTSTATUSCODEID = sc.ID
+     where  (c.NAME LIKE @NAME) 
+	   and  (c.LOOKUPID like @LOOKUPID)
+	  
+  order by  c.LOOKUPID asc
+			]]>
+		</common:CreateProcedureSQL>
+	</SPSearchList>
+
+	<!-- describe the filter fields for the search screen -->
+	<common:FormMetaData>
+		<common:FormFields>
+			<common:FormField FieldID="NAME" Caption="Name" DataType="String" MaxLength="154" />
+			<common:FormField FieldID="LOOKUPID" Caption="Lookup ID" DataType="String" MaxLength="6" />
+		</common:FormFields>
+
+		<!-- indicate the client-side component for the filter user interface 
+		<common:FormUIComponent FormUIComponentType="CustomComponent">
+			<common:CustomComponentID AssemblyName="REPLACE_WITH_ASSEMBLYNAME" ClassName="REPLACE_WITH_FULLCLASSNAME" />
+		</common:FormUIComponent> -->
+
+		<common:WebUIComponent>
+			<common:WebUI>
+				<common:DefaultWebUI />
+			</common:WebUI>
+		</common:WebUIComponent>
+	</common:FormMetaData> 
+
+		<!-- also describe the output fields for the search screen -->
+	<Output TranslationField="Name">
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="LOOKUPID" Caption="Lookup ID" DataType="String" />
+			<OutputField FieldID="NAME" Caption="Project Name" DataType="String" />
+			<OutputField FieldID="STATUS" Caption="Status" DataType="String" />
+		</OutputFields>
+	</Output>
+
+</SearchListSpec>
+

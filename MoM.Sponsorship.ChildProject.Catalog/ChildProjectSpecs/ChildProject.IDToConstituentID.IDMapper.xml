@@ -1,0 +1,38 @@
+﻿<IDMapperSpec
+	xmlns="bb_appfx_idmapper"
+	xmlns:common="bb_appfx_commontypes"
+	ID="62fa093a-e230-4f98-ba66-92392e5aff06"
+	Name="Child Project To Constituent"
+	Description="Maps a Child Project Extension ID to a Constituent ID" 
+	Author="Cary Mayeda"
+	SourceRecordType="Child Project Extension" 
+	TargetRecordType="Constituent"
+	>
+
+	<!-- describe the procedure that translates the source ID to the target -->
+	<SPIDMapper SPName="USP_IDMAPPER_CHILDPROJECTEXTENSIONTOCONSTITUENT">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+			
+create procedure dbo.USP_IDMAPPER_CHILDPROJECTEXTENSIONTOCONSTITUENT
+(
+	@SOURCEID uniqueidentifier,
+	@TARGETID uniqueidentifier output
+)
+as
+	set nocount on;
+
+	-- write the SQL to fetch @TARGETID based on @SOURCEID
+	select
+		@TARGETID = ID
+	from
+		dbo.USR_CHILDPROJECTEXTENSION
+	where
+		ID = @SOURCEID;
+
+	return 0;
+			]]>
+		</common:CreateProcedureSQL>
+	</SPIDMapper>
+	
+</IDMapperSpec>

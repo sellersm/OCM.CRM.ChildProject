@@ -1,0 +1,139 @@
+﻿<style type="text/css">
+    .HeaderBottomPadding
+    {
+        padding-bottom: 7px;
+    }
+    
+    .toolbar
+    {
+        width: 350px;
+        border-bottom: solid 1px #D4DCB9;
+        padding-bottom: 5px;
+    }
+    .toolbar-headertext
+    {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .boldtext
+    {
+        font-weight: bold;
+    }
+    .smallspacer
+    {
+        width: 2px;
+    }
+    .spacer
+    {
+        width: 7px;
+    }
+    
+    
+    /* Form / Section Divs */
+    ##MAP#ChildProjectExtensionEditForm
+    {
+        width: 620px;
+        padding: 10px;
+    }
+    
+    
+    /* object widths */
+       
+    ##MAP#NAME_value
+    {
+        width: 500px;
+    }
+    ##MAP#LOOKUPID_value
+    {
+        width: 50px;
+    }
+    ##MAP#CHILDPROJECTTYPEOTHER_value
+    {
+        width: 185px;
+    }
+    ##MAP#CHILDPROJECTSTATUSCODEID_value
+    {
+        width:125px;
+    }
+</style>
+<div id="#MAP#ChildProjectExtensionEditForm">
+    <h2 class="HeaderBottomPadding">
+        Edit a child project</h2>
+    <div>
+        <h3>
+            Project Information</h3>
+        <table>
+            <tr id="#MAP#NAME_container">
+                <td>
+                    <label id="#MAP#NAME_caption" for="#MAP#NAME_value" />
+                </td>
+                <td colspan="3">
+                    <input id="#MAP#NAME_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#LOOKUPID_container">
+                <td>
+                    <label id="#MAP#LOOKUPID_caption" for="#MAP#LOOKUPID_value" />
+                </td>
+                <td colspan="3">
+                    <input id="#MAP#LOOKUPID_value" type="text" />
+                    &nbsp;&nbsp;ISO country code followed by the project id (e.g. IN-001)
+                </td>
+            </tr>
+            <tr id="#MAP#CHILDPROJECTTYPECODEID_container">
+                <td>
+                    <label id="#MAP#CHILDPROJECTTYPECODEID_caption" for="#MAP#CHILDPROJECTTYPECODEID_value" />
+                </td>
+                <td>
+                    <input id="#MAP#CHILDPROJECTTYPECODEID_value" type="text" />
+                </td>
+                <td>
+                    <label id="#MAP#CHILDPROJECTTYPEOTHER_caption" for="#MAP#CHILDPROJECTTYPEOTHER_value" />
+                </td>
+                <td>
+                    <input id="#MAP#CHILDPROJECTTYPEOTHER_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#CHILDPROJECTCATEGORYCODEID_container">
+                <td>
+                    <label id="#MAP#CHILDPROJECTCATEGORYCODEID_caption" for="#MAP#CHILDPROJECTCATEGORYCODEID_value" />
+                </td>
+                <td>
+                    <input id="#MAP#CHILDPROJECTCATEGORYCODEID_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#CHILDPROJECTSUBCATEGORYCODEID_container">
+                <td>
+                    <label id="#MAP#CHILDPROJECTSUBCATEGORYCODEID_caption" for="#MAP#CHILDPROJECTSUBCATEGORYCODEID_value" />
+                </td>
+                <td>
+                    <input id="#MAP#CHILDPROJECTSUBCATEGORYCODEID_value" type="text" />
+                </td>
+            </tr>
+
+            
+        </table>
+    </div>
+    <div>
+        <br />
+        <h3>
+            Project Status</h3>
+        <table>
+            <tr id="#MAP#CHILDPROJECTSTATUSCODEID_container">
+                <td>
+                    <label id="#MAP#CHILDPROJECTSTATUSCODEID_caption" for="#MAP#CHILDPROJECTSTATUSCODEID_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#CHILDPROJECTSTATUSCODEID_value" type="text" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- To define fields in multiple columns on the form, simply add/move the fields to this div
+        <div class="bbui-forms-fieldset-column">
+            <table>
+            </table>
+        </div>
+        -->
+</div>

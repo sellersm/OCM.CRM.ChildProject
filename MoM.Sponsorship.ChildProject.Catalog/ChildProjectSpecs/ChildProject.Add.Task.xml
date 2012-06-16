@@ -1,0 +1,35 @@
+﻿<TaskSpec
+	xmlns="bb_appfx_task"
+	xmlns:common="bb_appfx_commontypes"
+	ID="c96297b9-41ec-4829-9e21-10df0dfb477a"
+	Name="Add a child project"
+	Description="Add a new child project."
+	Author="Cary Mayeda"
+	ImageKey="CATALOG:Blackbaud.AppFx.Constituent.School.Catalog,Blackbaud.AppFx.Constituent.School.Catalog.schoolhouse_32.png"
+	FunctionalAreaID="9ea48d9c-7e2d-42e6-91cc-210792618017"
+	TaskGroup="Opportunity"
+	Sequence="25"
+	>
+
+<!-- 
+Remarks:    
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+
+
+	<ShowAddDataForm DataFormID="5c128565-4494-4510-aa82-a9b8608bb613" xmlns="bb_appfx_commontypes">
+		<PostActionEvent>
+			<GoToPage>
+				<SpecificPage PageID="29d5b7a5-d032-4b66-80f9-b1d451292ad6" TabID="00000000-0000-0000-0000-000000000000">
+					<ActionContext>
+						<!-->IDMapperDescriptor IDMapperID="62fa093a-e230-4f98-ba66-92392e5aff06" SourceIDValueSource="ContextID" /-->
+					</ActionContext>
+				</SpecificPage>
+			</GoToPage>
+		</PostActionEvent>
+	</ShowAddDataForm>
+</TaskSpec>

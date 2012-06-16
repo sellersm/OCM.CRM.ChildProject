@@ -1,0 +1,21 @@
+﻿<TaskSpec
+	xmlns="bb_appfx_task"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="2bb71fa8-2afa-4d76-a7d8-3d3ab1584d6c"
+	Name="Child Project search"
+	Description="Search for and view child projects."
+	Author="Cary Mayeda"
+	FunctionalAreaID="9ea48d9c-7e2d-42e6-91cc-210792618017"
+	TaskGroup="Opportunity" 
+	Sequence="21"
+	ImageKey="CATALOG:Blackbaud.AppFx.Constituent.School.Catalog,Blackbaud.AppFx.Constituent.School.Catalog.schoolhouse_32.png"
+	>
+
+	<!-- indicate what this task should do (navigate to a page, show a form, etc. -->
+	<ShowPage PageID="29d5b7a5-d032-4b66-80f9-b1d451292ad6" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+		<ActionContext>
+			<SearchListReturnValue SearchListID="a62848b0-d378-4c5f-886d-aa791a59fe55" />
+		</ActionContext>
+	</ShowPage>
+
+</TaskSpec>

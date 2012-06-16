@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="d6363173-0dc8-4dda-a918-a4d7a67750d9" 
+	Name="Religion Code"
+	Description="Religion" 
+	Author="Cary Mayeda"
+	DBTablename="USR_RELIGIONCODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+/>

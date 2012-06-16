@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+	<SpecFileName>ChildProject.RequiredDocs.Edit.xml</SpecFileName>
+	<Namespace></Namespace>
+	<ClassName>ChildProjectRequiredDocsEditFormUIModel</ClassName>
+	<HtmlInfo GenerateHtml="false">
+		<HtmlFile>ChildProjectRequiredDocsEditForm.html</HtmlFile>
+		<HtmlFolder>custom\ChildProject</HtmlFolder>
+	</HtmlInfo>
+	<GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

@@ -1,0 +1,185 @@
+﻿<style type="text/css">
+    .toolbar
+    {
+        width: 350px;
+        border-bottom: solid 1px #D4DCB9;
+        padding-bottom: 5px;
+    }
+    .toolbar-headertext
+    {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .boldtext
+    {
+        font-weight: bold;
+    }
+    .smallspacer
+    {
+        width: 2px;
+    }
+    .spacer
+    {
+        width: 7px;
+    }
+    
+    
+    /* Form / Section Divs */
+    ##MAP#ChildProjectCommunityThreeEditForm
+    {
+        width: 1000px;
+        height:400px;
+        padding:10px;        
+    }
+    #ColumnOne
+    {
+        float: left;
+        padding-right: 10px;
+        width: 970px;
+    }
+    
+    
+    /* object widths */
+    #LegalProtection, #ChildLabor
+    {
+        width: 970px;
+    }
+    
+    ##MAP#LOCALADOPTIONACCEPTEDCODE_value, ##MAP#FOREIGNADOPTIONLEGALCODE_value
+    {
+        width: 50px;
+    }
+</style>
+<div id="#MAP#ChildProjectCommunityThreeEditForm">
+    <h3>
+        Child Protection</h3>
+    <div id="ColumnOne">
+        <table>
+            <tr>
+                <td colspan="2" class="toolbar">
+                    Legal protection
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <input id="#MAP#CHILDLEGALPROTECTIONCODE_1" name="#MAP#CHILDLEGALPROTECTIONCODE"
+                        type="radio" value="1" />
+                    <label for="#MAP#CHILDLEGALPROTECTIONCODE_1">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <input id="#MAP#CHILDLEGALPROTECTIONCODE_2" name="#MAP#CHILDLEGALPROTECTIONCODE"
+                        type="radio" value="2" />
+                    <label for="#MAP#CHILDLEGALPROTECTIONCODE_2">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <input id="#MAP#CHILDLEGALPROTECTIONCODE_3" name="#MAP#CHILDLEGALPROTECTIONCODE"
+                        type="radio" value="3" />
+                    <label for="#MAP#CHILDLEGALPROTECTIONCODE_3">
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table id="ChildLabor">
+            <tr>
+                <td colspan="2" class="toolbar">
+                    Child labor
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <input id="#MAP#CHILDLLABORCODE_1" name="#MAP#CHILDLABORCODE" type="radio" value="1" />
+                    <label for="#MAP#CHILDLLABORCODE_1" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLLABORCODE_2" name="#MAP#CHILDLABORCODE" type="radio" value="2" />
+                    <label for="#MAP#CHILDLLABORCODE_2" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLLABORCODE_3" name="#MAP#CHILDLABORCODE" type="radio" value="3" />
+                    <label for="#MAP#CHILDLLABORCODE_3" />
+                </td>
+            </tr>
+
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="9" class="toolbar">
+                    How are children typically cared for when one or both parents are absent or not
+                    living?
+                </td>
+            </tr>
+            <tr id="#MAP#CHILDCAREWHENPARENTABSENTADOPTION_container">
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTADOPTION_value" type="checkbox" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTADOPTION_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY_value" type="checkbox" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTFOSTERCARE_value" type="checkbox" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTFOSTERCARE_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTINSTITUTION_value" type="checkbox" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTINSTITUTION_value" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTNOCARE_value" type="checkbox" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTNOCARE_value" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTOTHER_value" type="checkbox" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTOTHER_value" />
+                    <input type="text" id="#MAP#CHILDCAREWHENPARENTABSENTOTHERDESC_value" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr id="#MAP#LOCALADOPTIONACCEPTEDCODE_container">
+                <td>
+                    <label id="#MAP#LOCALADOPTIONACCEPTEDCODE_caption" for="#MAP#LOCALADOPTIONACCEPTEDCODE_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#LOCALADOPTIONACCEPTEDCODE_value" type="text" />
+                </td>
+            </tr>
+            <tr id="#MAP#FOREIGNADOPTIONLEGALCODE_container">
+                <td>
+                    <label id="#MAP#FOREIGNADOPTIONLEGALCODE_caption" for="#MAP#FOREIGNADOPTIONLEGALCODE_value">
+                    </label>
+                </td>
+                <td>
+                    <input id="#MAP#FOREIGNADOPTIONLEGALCODE_value" type="text" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- To define fields in multiple columns on the form, simply add/move the fields to this div
+        <div class="bbui-forms-fieldset-column">
+            <table>
+            </table>
+        </div>
+        -->
+</div>

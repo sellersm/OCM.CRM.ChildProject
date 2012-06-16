@@ -1,0 +1,840 @@
+﻿<style type="text/css">
+    .toolbar
+    {
+        width: 350px;
+        border-bottom: solid 1px #D4DCB9;
+        padding-bottom: 5px;
+    }
+    .toolbar-headertext
+    {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .boldtext
+    {
+        font-weight: bold;
+    }
+    .smallspacer
+    {
+        width: 2px;
+    }
+    .spacer
+    {
+        width: 7px;
+    }
+    
+    
+    /* Form / Section Divs */
+    
+    ##MAP#ChildProjectCommunityViewForm
+    {
+        width: 1000px;
+        padding:5px;
+    }
+    #CommunityInformation
+    {
+        float: left;
+        padding-right: 30px;
+        width: 530px;
+    }
+    #CommunityEnvironment
+    {
+        float: right;
+        width: 430px;
+    }
+    #Community2
+    {
+        clear: both;
+    }
+    
+    /* object widths */
+    
+    ##MAP#COMMUNITYPOPULATION_value, ##MAP#DISTANCETOCITY_value, ##MAP#NEARESTCITYPOPULATION_value, ##MAP#NUMCHRISTIANCHURCHES_value, ##MAP#PERCENTPROTESTANT_value
+    {
+        width: 50px;
+    }
+    ##MAP#DISTANCETOCITYUNITOFMEASUREMENT_value
+    {
+        width: 118px;
+    }
+    ##MAP#COMMUNITYTYPECODEID_value, ##MAP#COMMUNITYNAME_value, ##MAP#PROVINCESTATEREGIONNAME_value, ##MAP#NEARESTCITY_value
+    {
+        width: 185px;
+    }
+    ##MAP#COMMUNITYDESCRIPTION_value
+    {
+        margin-right:10px;
+        width: 345px;
+    }
+    ##MAP#RELIGIONCODEID_value
+    {
+        width: 100px;
+    }
+    ##MAP#CHRISTIANORGS_value
+    {
+        width: 410px;
+    }
+    ##MAP#TERRAINCODEID_value, ##MAP#TERRAINOTHER_value
+    {
+        width: 130px;
+    }
+    ##MAP#WARMESTMONTHCODEID_value, ##MAP#COOLESTMONTHCODEID_value
+    {
+        width: 75px;
+    }
+    ##MAP#WARMESTMONTHAVGTEMPERATURE_value, ##MAP#COOLESTMONTHAVGTEMPERATURE_value
+    {
+        width: 30px;
+    }
+    /*    .toolbar
+    {
+        width: 350px;
+        border-bottom: solid 1px #D4DCB9;
+        padding-bottom: 5px;
+    }
+    .toolbar-headertext
+    {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .boldtext
+    {
+        font-weight: bold;
+    }
+    .smallspacer
+    {
+        width: 2px;
+    }
+    .spacer
+    {
+        width : 7px;
+    }
+
+    ##MAP#ChildProjectCommunityViewForm
+    {
+        width: 955px;
+    }
+    #CommunityInformation
+    {
+        float: left;
+        padding-right: 30px;
+        width: 400px;
+    }
+    #CommunityEnvironment
+    {
+        float: right;
+        width: 525px;
+    }
+    #Community2
+    {
+        clear: both;
+    } */
+</style>
+<div id="#MAP#ChildProjectCommunityViewForm">
+    <div id="CommunityInformation">
+        <h3>
+            General Information</h3>
+        <table>
+            <tr id="#MAP#COMMUNITYNAME_container">
+                <td>
+                    <span id="#MAP#COMMUNITYNAME_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#COMMUNITYNAME_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#COMMUNITYPOPULATION_container">
+                <td>
+                    <span id="#MAP#COMMUNITYPOPULATION_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#COMMUNITYPOPULATION_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#COMMUNITYTYPECODE_container">
+                <td>
+                    <span id="#MAP#COMMUNITYTYPECODE_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#COMMUNITYTYPECODE_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#PROVINCESTATEREGIONNAME_container">
+                <td>
+                    <span id="#MAP#PROVINCESTATEREGIONNAME_caption" class="bbui-forms-captionlight">
+                    </span>
+                </td>
+                <td>
+                    <span id="#MAP#PROVINCESTATEREGIONNAME_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#NEARESTCITY_container">
+                <td>
+                    <span id="#MAP#NEARESTCITY_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#NEARESTCITY_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#DISTANCETOCITY_container">
+                <td>
+                    <span id="#MAP#DISTANCETOCITY_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#DISTANCETOCITY_value"></span>
+                    &nbsp;
+                    <span id="#MAP#DISTANCETOCITYUNITOFMEASUREMENT_value"></span>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr id="#MAP#NEARESTCITYPOPULATION_container">
+                <td>
+                    <span id="#MAP#NEARESTCITYPOPULATION_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#NEARESTCITYPOPULATION_value"></span>
+                </td>
+            </tr>
+            </table>
+            <table>
+            <tr id="#MAP#COMMUNITYDESCRIPTION_container">
+                <td>
+                    <span id="#MAP#COMMUNITYDESCRIPTION_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <textarea id="#MAP#COMMUNITYDESCRIPTION_value" rows="3" cols="2" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </table>        
+        <h3>
+            Religion</h3>
+        <table>
+            <tr id="#MAP#RELIGIONCODE_container">
+                <td>
+                    <span id="#MAP#RELIGIONCODE_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#RELIGIONCODE_value"></span>
+                </td>
+                <td>
+                    <span id="#MAP#RELIGIONOTHERSEPARATOR_value" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#RELIGIONOTHERDESC_value"></span>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr id="#MAP#NUMCHRISTIANCHURCHES_container">
+                <td>
+                    <span id="#MAP#NUMCHRISTIANCHURCHES_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#NUMCHRISTIANCHURCHES_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#PERCENTPROTESTANT_container">
+                <td>
+                    <span id="#MAP#PERCENTPROTESTANT_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#PERCENTPROTESTANT_value"></span>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr id="#MAP#CHRISTIANORGS_container">
+                <td>
+                    <span id="#MAP#CHRISTIANORGS_caption" class="bbui-forms-captionlight"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="#MAP#CHRISTIANORGS_value"></span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <h3>
+            Health</h3>
+        <table>
+            <tr id="#MAP#DISTANCETOMEDICALFACILITY_container">
+                <td>
+                    <span id="#MAP#DISTANCETOMEDICALFACILITY_caption" class="bbui-forms-captionlight">
+                    </span>
+                </td>
+                <td colspan="4">
+                    <span id="#MAP#DISTANCETOMEDICALFACILITY_value"></span>
+                    &nbsp;
+                    <span id="#MAP#DISTANCETOMEDICALFACILITYUNITOFMEASUREMENT_value"></span>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr id="#MAP#DAYSTOMEDICALFACILITY_container">
+                <td>
+                    <span id="#MAP#DAYSTOMEDICALFACILITY_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#DAYSTOMEDICALFACILITY_value"></span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">days</span>
+                </td>
+                <td>
+                    <span id="#MAP#HOURSTOMEDICALFACILITY_value"></span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">hours</span>
+                </td>
+                <td>
+                    <span id="#MAP#MINUTESTOMEDICALFACILITY_value"></span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">minutes</span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="9" class="toolbar bbui-forms-captionlight">
+                    Common health problems
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#HEALTHPROBLEMCHOLERA_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMCHOLERA_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#HEALTHPROBLEMDENGUE_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMDENGUE_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#HEALTHPROBLEMDISABILITIES_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMDISABILITIES_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#HEALTHPROBLEMHIVAIDS_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMHIVAIDS_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#HEALTHPROBLEMINTESTINAL_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMINTESTINAL_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#HEALTHPROBLEMMALARIA_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMMALARIA_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#HEALTHPROBLEMTUBERCULOSIS_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMTUBERCULOSIS_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td colspan="4">
+                    <input id="#MAP#HEALTHPROBLEMOTHER_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#HEALTHPROBLEMOTHER_value" class="bbui-forms-captionlight">
+                    </label>
+                    <span id="#MAP#HEALTHPROBLEMOTHERSEPARATOR_value" class="bbui-forms-captionlight" />
+                    &nbsp;
+                    <span id="#MAP#HEALTHPROBLEMOTHERDESC_value" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="CommunityEnvironment">
+        <h3>
+            Environment</h3>
+        <table>
+            <tr id="#MAP#TERRAINCODE_container">
+                <td>
+                    <span id="#MAP#TERRAINCODE_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#TERRAINCODE_value"></span>
+                </td>
+                <td>
+                    <span id="#MAP#TERRAINOTHERSEPARATOR_value" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#TERRAINOTHER_value"></span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="9" class="toolbar bbui-forms-captionlight">
+                    Type of transportation
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPEANIMALCART_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPEANIMALCART_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPECAR_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPECAR_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPETAXI_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPETAXI_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPEBOAT_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPEBOAT_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPEMOTORSCOOTER_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPEMOTORSCOOTER_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPEWALK_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPEWALK_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPEBUS_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPEBUS_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#TRANSPORTATIONTYPERICKSHAW_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPERICKSHAW_value" class="bbui-forms-captionlight">
+                    </label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td colspan="3">
+                    <input id="#MAP#TRANSPORTATIONTYPEOTHER_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#TRANSPORTATIONTYPEOTHER_value" class="bbui-forms-captionlight">
+                    </label>
+                    <span id="#MAP#TRANSPORTATIONTYPEOTHERSEPARATOR_value" class="bbui-forms-captionlight" /> &nbsp; 
+                    <span id="#MAP#TRANSPORTATIONTYPEOTHERDESC_value"></span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr id="#MAP#CLIMATECODE_container">
+                <td>
+                    <span id="#MAP#CLIMATECODE_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#CLIMATECODE_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#WARMESTMONTHCODE_container">
+                <td>
+                    <span id="#MAP#WARMESTMONTHCODE_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#WARMESTMONTHCODE_value"></span>
+                </td>
+                <td class="spacer">
+                </td>
+                <td>
+                    <span id="#MAP#WARMESTMONTHAVGTEMPERATURE_caption" class="bbui-forms-captionlight">
+                    </span>
+                </td>
+                <td>
+                    <span id="#MAP#WARMESTMONTHAVGTEMPERATURE_value"></span>
+                </td>
+                <td>
+                    <span id="#MAP#WARMESTMONTHAVGTEMPERATUREUNITOFMEASURE_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#COOLESTMONTHCODE_container">
+                <td>
+                    <span id="#MAP#COOLESTMONTHCODE_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#COOLESTMONTHCODE_value"></span>
+                </td>
+                <td class="spacer">
+                </td>
+                <td>
+                    <span id="#MAP#COOLESTMONTHAVGTEMPERATURE_caption" class="bbui-forms-captionlight">
+                    </span>
+                </td>
+                <td>
+                    <span id="#MAP#COOLESTMONTHAVGTEMPERATURE_value"></span>
+                </td>
+                <td>
+                    <span id="#MAP#COOLESTMONTHAVGTEMPERATUREUNITOFMEASURE_value"></span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="14" class="toolbar bbui-forms-captionlight">
+                    Primary diet
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#PRIMARYDIETBANANAS_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETBANANAS_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETBEANS_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETBEANS_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETBEEF_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETBEEF_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETBREAD_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETBREAD_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETCASSAVA_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETCASSAVA_value" class="bbui-forms-captionlight"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#PRIMARYDIETCHICKEN_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETCHICKEN_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETDALLENTILS_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETDALLENTILS_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETFISH_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETFISH_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETGOAT_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETGOAT_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETGUINEAPIG_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETGUINEAPIG_value" class="bbui-forms-captionlight"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#PRIMARYDIETMAIZE_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETMAIZE_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETNOODLES_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETNOODLES_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETPLANTAIN_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETPLANTAIN_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETPOTATO_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETPOTATO_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td>
+                    <input id="#MAP#PRIMARYDIETRICE_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETRICE_value" class="bbui-forms-captionlight"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#PRIMARYDIETUGALI_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETUGALI_value" class="bbui-forms-captionlight"></label>
+                </td>
+                <td class="smallspacer">
+                </td>
+                <td colspan="5">                
+                    <input id="#MAP#PRIMARYDIETOTHER_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#PRIMARYDIETOTHER_value" class="bbui-forms-captionlight"></label>
+                    <span id="#MAP#PRIMARYDIETOTHERSEPARATOR_value" class="bbui-forms-captionlight" />
+                    &nbsp;
+                   <span id="#MAP#PRIMARYDIETOTHERDESC_value"></span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        <table>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Jan</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Feb</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Mar</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Apr</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">May</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Jun</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Jul</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Aug</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Sep</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Oct</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Nov</span>
+                </td>
+                <td>
+                    <span class="bbui-forms-captionlight">Dec</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="bbui-forms-captionlight">
+                    Rainy season
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONJAN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONFEB_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONMAR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONAPR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONMAY_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONJUN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONJUL_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONAUG_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONSEP_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONOCT_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONNOV_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#RAINYSEASONDEC_value" type="checkbox" disabled="disabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="bbui-forms-captionlight">
+                    Planting season
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONJAN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONFEB_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONMAR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONAPR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONMAY_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONJUN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONJUL_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONAUG_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONSEP_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONOCT_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONNOV_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#PLANTINGSEASONDEC_value" type="checkbox" disabled="disabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="bbui-forms-captionlight">
+                    Harvest season
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONJAN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONFEB_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONMAR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONAPR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONMAY_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONJUN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONJUL_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONAUG_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONSEP_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONOCT_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONNOV_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#HARVESTSEASONDEC_value" type="checkbox" disabled="disabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="bbui-forms-captionlight">
+                    Time of hunger
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERJAN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERFEB_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERMAR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERAPR_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERMAY_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERJUN_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERJUL_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERAUG_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERSEP_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGEROCT_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERNOV_value" type="checkbox" disabled="disabled" />
+                </td>
+                <td>
+                    <input id="#MAP#TIMEOFHUNGERDEC_value" type="checkbox" disabled="disabled" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- To define fields in multiple columns on the form, simply add/move the fields to this div
+        <div class="bbui-forms-fieldset-column">
+            <table>
+            </table>
+        </div>
+        -->
+</div>

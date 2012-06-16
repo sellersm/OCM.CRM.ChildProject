@@ -1,0 +1,78 @@
+<PackageSpec 
+    xmlns="bb_appfx_package"
+    xmlns:common="bb_appfx_commontypes"
+    ID="8B1DFC1F-1207-4280-8C4F-39643C9BE8CC"
+    Name="Child Project Extension Package - Preload table"
+    Description="Used to load a version of the child project extension table first so that ufn can be loaded"
+    Author="Cary Mayeda"
+    >
+
+<!-- 
+Remarks:    
+
+History:
+Date            Modified By     Comments
+30-Apr-2012     CMayeda         Initial Version
+-->
+
+	<!-- Note:  the order of the items listed here is important.  For example, you won't be able to load a data form that references 
+	a table that hasn't been loaded, etc.  In general, the following order is recommended:
+	
+		(functions and procedures first)
+		SQLFunctionSpec
+		SQLStoredProcedureSpec
+		TranslationFunctionSpec
+
+		(tables next)
+		CodeTableSpec
+		TableSpec
+
+		(features next)
+		SimpleDataListSpec		
+		SearchListSpec
+		RecordOperationSpec
+		DataListSpec
+		
+		(forms next)
+		AddDataFormTemplateSpec
+		EditDataFormTemplateSpec
+		ViewDataFormTemplateSpec		
+
+		(more feature types)
+		BatchTypeSpec
+		BusinessProcessSpec
+		FlashDashSpec
+		IDMapperSpec
+		KpiSpec
+		MergeConfiguration
+		MergeTaskSpec
+		QueryViewSpec
+		ReportSpec
+		SmartFieldSpec
+		SmartQuerySpec
+
+		(functional areas, pages, and tasks last)
+		PageDefinitionSpec
+		FunctionalAreaSpec
+		TaskSpec	
+	-->
+	
+	<common:DependencyList>
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Subcategory.CodeTable.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Category.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Climate.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.CommunityType.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.DocumentationStatus.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.FormStatus.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.HighestEducation.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.MaximumGradeLevel.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProjectCountry.Performance.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Status.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Terrain.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Type.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.Month.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.Religion.CodeTable.xml" />
+        <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ExtensionPass1.Table.xml" />
+		</common:DependencyList>
+
+</PackageSpec>
