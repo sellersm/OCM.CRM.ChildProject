@@ -1,0 +1,14 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="F00520F4-487A-4123-9785-E32ED9373AAB" 
+	Name="Child Project Type"
+	Description="Child Project types"
+	Author="Cary Mayeda"
+	DBTablename="USR_CHILDPROJECTTYPECODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined" 
+/>
+
+
+

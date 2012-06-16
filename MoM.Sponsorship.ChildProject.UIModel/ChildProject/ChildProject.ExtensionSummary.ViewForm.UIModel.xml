@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+	<SpecFileName>ChildProject.ExtensionSummary.View.xml</SpecFileName>
+	<Namespace></Namespace>
+	<ClassName>ChildProjectExtensionSummaryViewFormUIModel</ClassName>
+	<HtmlInfo GenerateHtml="false">
+		<HtmlFile>ChildProjectExtensionViewForm.html</HtmlFile>
+		<HtmlFolder>custom\</HtmlFolder>
+	</HtmlInfo>
+	<GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

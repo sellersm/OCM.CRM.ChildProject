@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+	<SpecFileName>ChildProject.Quota.View.xml</SpecFileName>
+	<Namespace></Namespace>
+	<ClassName>ChildProjectQuotaViewFormUIModel</ClassName>
+	<HtmlInfo GenerateHtml="false">
+		<HtmlFile>ChildProjectQuotaViewForm.html</HtmlFile>
+		<HtmlFolder>custom\ChildProject</HtmlFolder>
+	</HtmlInfo>
+	<GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

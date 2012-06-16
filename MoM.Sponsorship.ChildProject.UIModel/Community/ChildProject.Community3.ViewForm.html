@@ -1,0 +1,174 @@
+﻿<style type="text/css">
+    .toolbar
+    {
+        width: 350px;
+        border-bottom: solid 1px #D4DCB9;
+        padding-bottom: 5px;
+    }
+    .toolbar-headertext
+    {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .boldtext
+    {
+        font-weight: bold;
+    }
+    .smallspacer
+    {
+        width: 2px;
+    }
+    .spacer
+    {
+        width: 7px;
+    }
+    
+    
+    /* Form / Section Divs */
+    ##MAP#ChildProjectCommunityThreeViewForm
+    {
+        width: 1000px;
+        padding: 5px;
+    }
+    #ColumnOne
+    {
+        float: left;
+        padding-right: 10px;
+        width: 970px;
+    }
+    
+    #LegalProtection, #ChildLabor
+    {
+        width: 970px;
+    }
+</style>
+<div id="#MAP#ChildProjectCommunityThreeViewForm">
+    <h3>
+        Child Protection</h3>
+    <div id="ColumnOne">
+        <table>
+            <tr>
+                <td colspan="2" class="toolbar bbui-forms-captionlight">
+                    Legal protection
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLEGALPROTECTIONCODE_1" name="#MAP#CHILDLEGALPROTECTIONCODE"
+                        type="radio" value="1"  disabled="disabled" />
+                    <label for="#MAP#CHILDLEGALPROTECTIONCODE_1" class="bbui-forms-captionlight" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLEGALPROTECTIONCODE_2" name="#MAP#CHILDLEGALPROTECTIONCODE"
+                        type="radio" value="2" disabled="disabled" />
+                    <label for="#MAP#CHILDLEGALPROTECTIONCODE_2" class="bbui-forms-captionlight" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLEGALPROTECTIONCODE_3" name="#MAP#CHILDLEGALPROTECTIONCODE"
+                        type="radio" value="3" disabled="disabled" />
+                    <label for="#MAP#CHILDLEGALPROTECTIONCODE_3" class="bbui-forms-captionlight" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table id="ChildLabor">
+            <tr>
+                <td colspan="2" class="toolbar bbui-forms-captionlight">
+                    Child labor
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLLABORCODE_1" name="#MAP#CHILDLABORCODE" type="radio" value="1"
+                        disabled="disabled" />
+                    <label for="#MAP#CHILDLLABORCODE_1" class="bbui-forms-captionlight" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLLABORCODE_2" name="#MAP#CHILDLABORCODE" type="radio" value="2"
+                        disabled="disabled" />
+                    <label for="#MAP#CHILDLLABORCODE_2" class="bbui-forms-captionlight" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="#MAP#CHILDLLABORCODE_3" name="#MAP#CHILDLABORCODE" type="radio" value="3"
+                        disabled="disabled" />
+                    <label for="#MAP#CHILDLLABORCODE_3" class="bbui-forms-captionlight" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td colspan="9" class="toolbar bbui-forms-captionlight">
+                    How are children typically cared for when one or both parents are absent or not
+                    living?
+                </td>
+            </tr>
+            <tr id="#MAP#CHILDCAREWHENPARENTABSENTADOPTION_container">
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTADOPTION_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTADOPTION_value" class="bbui-forms-captionlight" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY_value" class="bbui-forms-captionlight" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTFOSTERCARE_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTFOSTERCARE_value" class="bbui-forms-captionlight" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTINSTITUTION_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTINSTITUTION_value" class="bbui-forms-captionlight" />
+                </td>
+                <td class="smallspacer" />
+                <td>
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTNOCARE_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTNOCARE_value" class="bbui-forms-captionlight" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <input id="#MAP#CHILDCAREWHENPARENTABSENTOTHER_value" type="checkbox" disabled="disabled" />
+                    <label for="#MAP#CHILDCAREWHENPARENTABSENTOTHER_value" class="bbui-forms-captionlight" />
+                    <span id="#MAP#CHILDCAREWHENPARENTABSENTOTHERDESC_value" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr id="#MAP#LOCALADOPTIONACCEPTED_container">
+                <td>
+                    <span id="#MAP#LOCALADOPTIONACCEPTED_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#LOCALADOPTIONACCEPTED_value"></span>
+                </td>
+            </tr>
+            <tr id="#MAP#FOREIGNADOPTIONLEGAL_container">
+                <td>
+                    <span id="#MAP#FOREIGNADOPTIONLEGAL_caption" class="bbui-forms-captionlight"></span>
+                </td>
+                <td>
+                    <span id="#MAP#FOREIGNADOPTIONLEGAL_value"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- To define fields in multiple columns on the form, simply add/move the fields to this div
+        <div class="bbui-forms-fieldset-column">
+            <table>
+            </table>
+        </div>
+        -->
+</div>

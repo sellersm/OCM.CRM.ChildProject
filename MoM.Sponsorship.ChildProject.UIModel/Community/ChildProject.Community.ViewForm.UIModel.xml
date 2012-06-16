@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>ChildProject.Community.View.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>ChildProjectCommunityViewFormUIModel</ClassName>
+  <HtmlInfo GenerateHtml="false">
+    <HtmlFile>ChildProjectCommunityViewForm.html</HtmlFile>
+    <HtmlFolder>htmlforms\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

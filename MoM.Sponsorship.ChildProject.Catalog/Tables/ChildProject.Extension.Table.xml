@@ -1,0 +1,499 @@
+﻿<TableSpec 
+	xmlns="bb_appfx_table"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="3586fb3f-7a3a-4894-bd90-564fb0b790fd"
+	Name="Child Project Extension"
+	Description="Child Project - Project Information - organization constituent extension"
+	Author="Cary Mayeda"
+	Tablename="USR_CHILDPROJECTEXTENSION"
+	PrimaryKeyAsForeignKeyTablename="CONSTITUENT"
+	>
+
+<!-- 
+	Remarks:  This is used to extend an Organization Constituent for the Child Project.  
+			  The Child Project is used for as the field office in the sponsorship location.				
+			  The table extension contains all the child project specific data including quota, project form, community form.
+			  
+			  ChildProject.ExtensionPass1.Table.xml and USR_UFN_COUNTRYCURRENTQUOTA.xml must be loaded first.
+			  The reason is that the fields DECREASEDQUOTA, GROWTHQUOTA, CURRENTQUOTA all use USR_UFN_CHILDPROJECTCURRENTQUOTA. 
+			  However, USR_UFN_CHILDPROJECTCURRENTQUOTA can not be loaded until the table exists. 
+			  ChildProject.ExtensionPass1.Table.xml is only used once.
+
+			  Make sure not to change the ID guid.  They need to match in both table specs.
+			  
+	History:
+	Date            Modified By     Comments
+	07-Apr-2012     CMayeda         Initial Version
+	21-May-2012		CMayeda			Updated remarks to describe ChildProject.ExtensionPass1.Table.xml  
+-->
+	
+	<!-- define fields on the table -->
+	<Fields>		
+	<!-- Project Information -->
+		<CodeTableField Name="CHILDPROJECTTYPECODEID" Description="Project Type" CodeTable="USR_CHILDPROJECTTYPECODE" Required="true"/>
+		<TextField Name="CHILDPROJECTTYPEOTHER" Description="Description for Other child project type" Length="50"/>
+		<CodeTableField Name="CHILDPROJECTSTATUSCODEID" Description="Project Status" CodeTable="USR_CHILDPROJECTSTATUSCODE" Required="true"/>
+		<CodeTableField Name="CHILDPROJECTCATEGORYCODEID" Description="Project Category" CodeTable="USR_CHILDPROJECTCATEGORYCODE"/>
+		<CodeTableField Name="CHILDPROJECTSUBCATEGORYCODEID" Description="Project Subcategory" CodeTable="USR_CHILDPROJECTSUBCATEGORYCODE" />
+		<!-- OnDelete should = SetToNull, but that causes an error on load spec, so I set it to RaiseError -->
+		<ForeignKeyField Name="COUNTRYEXTENSIONID" Cardinality="ManyToOne" ForeignDataType="uniqueidentifier"  ForeignTable="USR_COUNTRYEXTENSION" ForeignFieldName="ID" OnDelete="RaiseError" Required="false" Description="Country constituent org record that the project is in as found in the Sponsorship Location hierarchy." />		
+		<BooleanField Name="TECHNOLOGYAVAILABLEELECTRICITY" Description="Technology Available Electricity" DefaultValue="false"/>
+		<BooleanField Name="TECHNOLOGYAVAILABLETELEPHONE" Description="Technology Available Telephone" DefaultValue="false"/>
+		<BooleanField Name="TECHNOLOGYAVAILABLECOMPUTER" Description="Technology Available Computer" DefaultValue="false"/>
+		<BooleanField Name="TECHNOLOGYAVAILABLEINTERNET" Description="Technology Available Internet Connection" DefaultValue="false"/>
+		<NumberField Name="MAXCHILDRENCOUNT"  Description="Maximum number of children a project can handle" Type="smallint" DefaultValue="0"/>
+		<CodeTableField Name ="MAXGRADELEVELCODEID" Description="Maximum grade level of children in program" CodeTable="USR_CHILDPROJECTMAXGRADELEVELCODE"/>
+		<TextField Name ="MAXGRADELEVEL" Description="Maximum grade level of children in program" Length="10"/>
+
+		<NumberField Name="MAXCHILDAGE"  Description="Maximum allowed program participation age" Type="tinyint" DefaultValue="0"/>
+		<TextField Name="MAXCHILDAGEEXCEPTIONREASON" Description="If maximum allowed program participation age is not 18, explain reason" Length="100"/>
+		<CodeTableField Name="MONTHSCHOOLYEARBEGINSCODEID" Description="The month the school year begins with" CodeTable="USR_MONTHCODE"/>
+		<CodeTableField Name="MONTHSCHOOLYEARENDSCODEID" Description="The month the school year ends with" CodeTable="USR_MONTHCODE"/>
+
+		<NumberField Name="PARTICIPATIONAGERANGE1LOWERLIMIT" Description="Lower age limit on the first age range" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="PARTICIPATIONAGERANGE1UPPERLIMIT" Description="Upper age limit on the first age range" Type="tinyint" DefaultValue="0"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1JAN" Description="Specifies if children in the first age range participate at the project in January" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1FEB" Description="Specifies if children in the first age range participate at the project in February" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1MAR" Description="Specifies if children in the first age range participate at the project in March" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1APR" Description="Specifies if children in the first age range participate at the project in April" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1MAY" Description="Specifies if children in the first age range participate at the project in May" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1JUN" Description="Specifies if children in the first age range participate at the project in June" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1JUL" Description="Specifies if children in the first age range participate at the project in July" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1AUG" Description="Specifies if children in the first age range participate at the project in August" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1SEP" Description="Specifies if children in the first age range participate at the project in September" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1OCT" Description="Specifies if children in the first age range participate at the project in October" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1NOV" Description="Specifies if children in the first age range participate at the project in November" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1DEC" Description="Specifies if children in the first age range participate at the project in December" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1SUN" Description="Specifies if children in the first age range participate at the project on Sunday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1MON" Description="Specifies if children in the first age range participate at the project on Monday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1TUE" Description="Specifies if children in the first age range participate at the project on Tuesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1WED" Description="Specifies if children in the first age range participate at the project on Wednesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1THU" Description="Specifies if children in the first age range participate at the project on Thursday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1FRI" Description="Specifies if children in the first age range participate at the project on Friday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE1SAT" Description="Specifies if children in the first age range participate at the project on Saturday" DefaultValue="false"/>
+		<NumberField Name="PARTICIPATIONAGERANGE1HOURSPERWEEK" Description="Hour many hours children in the first age range participate at the project per week" Type="tinyint" />
+		
+		<NumberField Name="PARTICIPATIONAGERANGE2LOWERLIMIT" Description="Lower age limit on the second age range" Type="tinyint" />
+		<NumberField Name="PARTICIPATIONAGERANGE2UPPERLIMIT" Description="Upper age limit on the second age range" Type="tinyint" />
+		<BooleanField Name="PARTICIPATIONAGERANGE2JAN" Description="Specifies if children in the second age range participate at the project in January" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2FEB" Description="Specifies if children in the second age range participate at the project in February" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2MAR" Description="Specifies if children in the second age range participate at the project in March" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2APR" Description="Specifies if children in the second age range participate at the project in April" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2MAY" Description="Specifies if children in the second age range participate at the project in May" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2JUN" Description="Specifies if children in the second age range participate at the project in June" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2JUL" Description="Specifies if children in the second age range participate at the project in July" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2AUG" Description="Specifies if children in the second age range participate at the project in August" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2SEP" Description="Specifies if children in the second age range participate at the project in September" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2OCT" Description="Specifies if children in the second age range participate at the project in October" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2NOV" Description="Specifies if children in the second age range participate at the project in November" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2DEC" Description="Specifies if children in the second age range participate at the project in December" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2SUN" Description="Specifies if children in the second age range participate at the project on Sunday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2MON" Description="Specifies if children in the second age range participate at the project on Monday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2TUE" Description="Specifies if children in the second age range participate at the project on Tuesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2WED" Description="Specifies if children in the second age range participate at the project on Wednesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2THU" Description="Specifies if children in the second age range participate at the project on Thursday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2FRI" Description="Specifies if children in the second age range participate at the project on Friday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE2SAT" Description="Specifies if children in the second age range participate at the project on Saturday" DefaultValue="false"/>
+		<NumberField Name="PARTICIPATIONAGERANGE2HOURSPERWEEK" Description="Hour many hours children in the second age range participate at the project per week" Type="tinyint" DefaultValue="0"/>
+
+		<NumberField Name="PARTICIPATIONAGERANGE3LOWERLIMIT" Description="Lower age limit on the third Age Range" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="PARTICIPATIONAGERANGE3UPPERLIMIT" Description="Upper age limit on the third Age Range" Type="tinyint" DefaultValue="0"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3JAN" Description="Specifies if children in the third age range participate at the project in January" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3FEB" Description="Specifies if children in the third age range participate at the project in February" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3MAR" Description="Specifies if children in the third age range participate at the project in March" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3APR" Description="Specifies if children in the third age range participate at the project in April" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3MAY" Description="Specifies if children in the third age range participate at the project in May" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3JUN" Description="Specifies if children in the third age range participate at the project in June" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3JUL" Description="Specifies if children in the third age range participate at the project in July" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3AUG" Description="Specifies if children in the third age range participate at the project in August" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3SEP" Description="Specifies if children in the third age range participate at the project in September" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3OCT" Description="Specifies if children in the third age range participate at the project in October" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3NOV" Description="Specifies if children in the third age range participate at the project in November" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3DEC" Description="Specifies if children in the third age range participate at the project in December" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3SUN" Description="Specifies if children in the third age range participate at the project on Sunday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3MON" Description="Specifies if children in the third age range participate at the project on Monday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3TUE" Description="Specifies if children in the third age range participate at the project on Tuesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3WED" Description="Specifies if children in the third age range participate at the project on Wednesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3THU" Description="Specifies if children in the third age range participate at the project on Thursday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3FRI" Description="Specifies if children in the third age range participate at the project on Friday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE3SAT" Description="Specifies if children in the third age range participate at the project on Saturday" DefaultValue="false"/>
+		<NumberField Name="PARTICIPATIONAGERANGE3HOURSPERWEEK" Description="Hour many hours children in the third age range participate at the project per week" Type="tinyint" DefaultValue="0"/>
+
+		<NumberField Name="PARTICIPATIONAGERANGE4LOWERLIMIT" Description="Lower age limit on the fourth Age Range" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="PARTICIPATIONAGERANGE4UPPERLIMIT" Description="Upper age limit on the fourth Age Range" Type="tinyint" DefaultValue="0"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4JAN" Description="Specifies if children in the fourth age range participate at the project in January" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4FEB" Description="Specifies if children in the fourth age range participate at the project in February" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4MAR" Description="Specifies if children in the fourth age range participate at the project in March" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4APR" Description="Specifies if children in the fourth age range participate at the project in April" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4MAY" Description="Specifies if children in the fourth age range participate at the project in May" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4JUN" Description="Specifies if children in the fourth age range participate at the project in June" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4JUL" Description="Specifies if children in the fourth age range participate at the project in July" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4AUG" Description="Specifies if children in the fourth age range participate at the project in August" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4SEP" Description="Specifies if children in the fourth age range participate at the project in September" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4OCT" Description="Specifies if children in the fourth age range participate at the project in October" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4NOV" Description="Specifies if children in the fourth age range participate at the project in November" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4DEC" Description="Specifies if children in the fourth age range participate at the project in December" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4SUN" Description="Specifies if children in the fourth age range participate at the project on Sunday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4MON" Description="Specifies if children in the fourth age range participate at the project on Monday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4TUE" Description="Specifies if children in the fourth age range participate at the project on Tuesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4WED" Description="Specifies if children in the fourth age range participate at the project on Wednesday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4THU" Description="Specifies if children in the fourth age range participate at the project on Thursday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4FRI" Description="Specifies if children in the fourth age range participate at the project on Friday" DefaultValue="false"/>
+		<BooleanField Name="PARTICIPATIONAGERANGE4SAT" Description="Specifies if children in the fourth age range participate at the project on Saturday" DefaultValue="false"/>
+		<NumberField Name="PARTICIPATIONAGERANGE4HOURSPERWEEK" Description="Hour many hours children in the fourth age range participate at the project per week" Type="tinyint" DefaultValue="0"/>
+
+
+		<!-- Project Schedule -->
+		<CodeTableField Name="HOLIDAYLETTERSDUECODEID" Description="Project Holiday Letters Due" CodeTable="USR_MONTHCODE" />
+		<CodeTableField Name="LETTER1DUECODEID" Description="Project Letters 1 Due" CodeTable="USR_MONTHCODE" />
+		<CodeTableField Name="LETTER2DUECODEID" Description="Project Letters 2 Due" CodeTable="USR_MONTHCODE" />
+		<CodeTableField Name="PHOTOUPDATEDUECODEID" Description="Project Photo Updates Due" CodeTable="USR_MONTHCODE" />
+		<CodeTableField Name="PROFILEUPDATECODEID" Description="Project Profile Update Due" CodeTable="USR_MONTHCODE" />
+
+		
+		<!-- Quota -->
+		<EnumField Name="QUOTATYPECODE" DefaultValue="0" Description="Specify whether it's Project or Country quota">
+			<EnumValues>
+				<EnumValue ID="0" Translation="Project quota"/>
+				<EnumValue ID="1" Translation="Country quota"/>
+			</EnumValues>
+		</EnumField>
+		<ComputedColumnField Name="DECREASEDQUOTA" Description ="Decreased Quota"  Expression="case when APPROVEDQUOTAINITIAL &gt; dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) then APPROVEDQUOTAINITIAL - dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) else 0 end" Persisted="false" />
+		<ComputedColumnField Name="GROWTHQUOTA" Description ="Growth Quota"  Expression="case when APPROVEDQUOTAINITIAL &lt; dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) then dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID) - APPROVEDQUOTAINITIAL else 0 end" Persisted="false" />
+		<ComputedColumnField Name="CURRENTQUOTA" Description ="Current Quota"  Expression="dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(ID)" Persisted="false" />
+		<NumberField Name="APPROVEDQUOTAINITIAL" Description ="Approved Quota Initial" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA01OCT" Description ="Approved Quota 01 Oct" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA02NOV" Description ="Approved Quota 02 Nov" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA03DEC" Description ="Approved Quota 03 Dec" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA04JAN" Description ="Approved Quota 04 Jan" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA05FEB" Description ="Approved Quota 05 Feb" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA06MAR" Description ="Approved Quota 06 Mar" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA07APR" Description ="Approved Quota 07 Apr" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA08MAY" Description ="Approved Quota 08 May" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA09JUN" Description ="Approved Quota 09 Jun" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA10JUL" Description ="Approved Quota 10 Jul" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA11AUG" Description ="Approved Quota 11 Aug" DefaultValue="0" Type="smallint" />
+		<NumberField Name="APPROVEDQUOTA12SEP" Description ="Approved Quota 12 Sep" DefaultValue="0" Type="smallint" />
+		<EnumField Name="NEWCHILDRENSTATUSCODE" DefaultValue="0" Description="New Children Status">
+			<EnumValues>
+				<EnumValue ID="0" Translation="No"/>
+				<EnumValue ID="1" Translation="Yes"/>				
+			</EnumValues>
+		</EnumField>
+		<CodeTableField Name="PERFORMANCECODEID" Description="Project Performance Status" CodeTable="USR_CHILDPROJECTPERFORMANCECODE" />
+		<EnumField Name="MARKETINGDEMANDSTATUSCODE" DefaultValue="0" Description="Marketing Demand Status">
+			<EnumValues>
+				<EnumValue ID="0" Translation="No"/>
+				<EnumValue ID="1" Translation="Yes"/>
+			</EnumValues>
+		</EnumField>
+		<EnumField Name="OVERRIDETRIGGERSTATUSCODE" DefaultValue="0" Description="Override Trigger Status">
+			<EnumValues>
+				<EnumValue ID="0" Translation="No"/>
+				<EnumValue ID="1" Translation="Yes"/>
+			</EnumValues>
+		</EnumField>
+
+
+		<!-- Required Documents -->
+		<CodeTableField Name="DOCSTATUSCOMMUNITYDESCCODEID" Description="Required Documentation Project Community Description" CodeTable="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSCOMMUNITYPHOTOCODEID" Description="Required Documentation Project Community Photo" CodeTable="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMAPPROVALFORMCODEID" Description="Required Documentation Project Form - Approval Form" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALCODEID" Description="Required Documentation Project Form - Capital Proposal Summary" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID" Description="Required Documentation Project From - Community" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID" Description="Required Documentation Project Form - Intent to Partner" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID" Description="Required Documentation Project Form - Partner Agreement" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMPARTNERINFOCODEID" Description="Required Documentation Project Form - Partner Information" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMPROGRAMCODEID" Description="Required Documentation Project Form - Program" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID" Description="Required Documentation Project Form - Sponsorship Proposal Full" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID" Description="Required Documentation Project Form - Sponsorship Proposal Summary" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+
+
+		<!-- Community General-->
+		<TextField Name="COMMUNITYNAME" Description="Community name" Length="50"/>
+		<NumberField Name="COMMUNITYPOPULATION" Description="Community population"  Type ="int" DefaultValue="0"/>
+		<CodeTableField Name="COMMUNITYTYPECODEID" Description="Type of Community" CodeTable="USR_CHILDPROJECTCOMMUNITYTYPECODE"/>
+		<TextField Name="PROVINCESTATEREGIONNAME" Description="Name of province, state or region" Length="50"/>
+		<TextField Name="NEARESTCITY" Description="Name of major city or name of nearest city" Length="50"/>
+		<NumberField Name="DISTANCETOCITY" Description="Distance in relation to major city above" Type="smallint" DefaultValue="0"/>
+		<EnumField Name="DISTANCETOCITYUNITOFMEASUREMENTCODE" Description="Unit of measurement that the distance to city is measured in" DefaultValue="0">
+			<EnumValues>
+				<EnumValue ID="0" Translation="Kilometers"/>
+				<EnumValue ID="1" Translation="Miles"/>
+			</EnumValues>
+		</EnumField>
+		<NumberField Name="NEARESTCITYPOPULATION" Description="Population of major city above" Type="int" DefaultValue="0"/>
+		<TextField Name="COMMUNITYDESCRIPTION" Description="Description of the community" Length="200"/>
+		
+		<!-- Community Environment -->
+		<CodeTableField Name="TERRAINCODEID" Description="Type of terrain" CodeTable="USR_CHILDPROJECTTERRAINCODE"/>
+		<TextField Name="TERRAINOTHER" Description="Other type of terrain" Length="25"/>
+		
+		<BooleanField Name="TRANSPORTATIONTYPEANIMALCART" Description="Type of transportation - Animal Cart" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPECAR" Description="Type of transportation - Car" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPETAXI" Description="Type of transportation - Taxi" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPEBOAT" Description="Type of transportation - Boat" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPEMOTORSCOOTER" Description="Type of transportation - Motor Scooter" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPEWALK" Description="Type of transportation - Walk" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPEBUS" Description="Type of transportation - Bus" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPERICKSHAW" Description="Type of transportation - Rickshaw" DefaultValue="false"/>
+		<BooleanField Name="TRANSPORTATIONTYPEOTHER" Description="Type of transportation - Other" DefaultValue="false"/>
+		<TextField Name="TRANSPORTATIONTYPEOTHERDESC" Description="Type of transportation - Other description" Length="25"/>
+		
+		<CodeTableField Name="CLIMATECODEID" Description="Climate" CodeTable="USR_CHILDPROJECTCLIMATECODE" />
+		<CodeTableField Name="WARMESTMONTHCODEID" Description="Warmest month of the year" CodeTable="USR_MONTHCODE"/>
+		<NumberField Name="WARMESTMONTHAVGTEMPERATURE" Description="Average temperature"  Type="tinyint" DefaultValue="0"/>
+		<EnumField Name="WARMESTMONTHAVGTEMPERATUREUNITOFMEASURECODE" Description="Unit of measurement used in the warmest month average temperature"  DefaultValue="0">
+			<EnumValues>
+				<EnumValue ID="0" Translation="Celsius"/>
+				<EnumValue ID="1" Translation="Fahrenheit"/>
+			</EnumValues>
+		</EnumField>
+		<CodeTableField Name="COOLESTMONTHCODEID" Description="Coolest month of the year" CodeTable="USR_MONTHCODE"/>
+		<NumberField Name="COOLESTMONTHAVGTEMPERATURE" Description="Average temperature"  Type="tinyint" DefaultValue="0"/>
+		<EnumField Name="COOLESTMONTHAVGTEMPERATUREUNITOFMEASURECODE" Description="Unit of measurement used in the coolest month average temperature" DefaultValue="0">
+			<EnumValues>
+				<EnumValue ID="0" Translation="Celsius"/>
+				<EnumValue ID="1" Translation="Fahrenheit"/>
+			</EnumValues>
+		</EnumField>
+		
+		<BooleanField Name="PRIMARYDIETBANANAS" Description="Primary Diet - Bananas" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETBEANS" Description="Primary Diet - Beans" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETBEEF" Description="Primary Diet - Beef" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETBREAD" Description="Primary Diet - Bread" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETCASSAVA" Description="Primary Diet - Cassava" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETCHICKEN" Description="Primary Diet - Chicken" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETDALLENTILS" Description="Primary Diet - Dal or Lentils" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETFISH" Description="Primary Diet - Fish" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETGOAT" Description="Primary Diet - Goat" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETGUINEAPIG" Description="Primary Diet - Guinea Pig" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETMAIZE" Description="Primary Diet - Maize" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETNOODLES" Description="Primary Diet - Noodles" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETPLANTAIN" Description="Primary Diet - Plantain" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETPOTATO" Description="Primary Diet - Potato" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETRICE" Description="Primary Diet - Rice" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETUGALI" Description="Primary Diet - Ugali" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYDIETOTHER" Description="Primary Diet - Other" DefaultValue="false"/>
+		<TextField Name="PRIMARYDIETOTHERDESC" Description="Primary Diet - Other - Description" Length="25" />
+		
+		<BooleanField Name="RAINYSEASONJAN" Description="Rainy season - January" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONFEB" Description="Rainy season - February" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONMAR" Description="Rainy season - March" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONAPR" Description="Rainy season - April" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONMAY" Description="Rainy season - May" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONJUN" Description="Rainy season - June" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONJUL" Description="Rainy season - July" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONAUG" Description="Rainy season - August" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONSEP" Description="Rainy season - September" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONOCT" Description="Rainy season - October" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONNOV" Description="Rainy season - November" DefaultValue="false"/>
+		<BooleanField Name="RAINYSEASONDEC" Description="Rainy season - December" DefaultValue="false"/>
+		
+		<BooleanField Name="PLANTINGSEASONJAN" Description="Planting season - January" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONFEB" Description="Planting season - February" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONMAR" Description="Planting season - March" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONAPR" Description="Planting season - April" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONMAY" Description="Planting season - May" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONJUN" Description="Planting season - June" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONJUL" Description="Planting season - July" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONAUG" Description="Planting season - August" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONSEP" Description="Planting season - September" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONOCT" Description="Planting season - October" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONNOV" Description="Planting season - November" DefaultValue="false"/>
+		<BooleanField Name="PLANTINGSEASONDEC" Description="Planting season - December" DefaultValue="false"/>
+		
+		<BooleanField Name="HARVESTSEASONJAN" Description="Harvest season - January" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONFEB" Description="Harvest season - February" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONMAR" Description="Harvest season - March" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONAPR" Description="Harvest season - April" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONMAY" Description="Harvest season - May" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONJUN" Description="Harvest season - June" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONJUL" Description="Harvest season - July" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONAUG" Description="Harvest season - August" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONSEP" Description="Harvest season - September" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONOCT" Description="Harvest season - October" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONNOV" Description="Harvest season - November" DefaultValue="false"/>
+		<BooleanField Name="HARVESTSEASONDEC" Description="Harvest season - December" DefaultValue="false"/>
+		
+		<BooleanField Name="TIMEOFHUNGERJAN" Description="Time of hunger - January" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERFEB" Description="Time of hunger - February" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERMAR" Description="Time of hunger - March" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERAPR" Description="Time of hunger - April" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERMAY" Description="Time of hunger - May" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERJUN" Description="Time of hunger - June" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERJUL" Description="Time of hunger - July" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERAUG" Description="Time of hunger - August" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERSEP" Description="Time of hunger - September" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGEROCT" Description="Time of hunger - October" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERNOV" Description="Time of hunger - November" DefaultValue="false"/>
+		<BooleanField Name="TIMEOFHUNGERDEC" Description="Time of hunger - December" DefaultValue="false"/>
+
+		
+		<!-- Community Religion-->
+		<CodeTableField Name="RELIGIONCODEID" Description="Main religion" CodeTable="USR_RELIGIONCODE"/>
+		<TextField Name="RELIGIONOTHERDESC" Description="Religion Other description" Length="50"/>
+		<NumberField Name="NUMCHRISTIANCHURCHES" Description="Number of evangelical Christian churches" Type="smallint" DefaultValue="0"/>
+		<NumberField Name="PERCENTPROTESTANT" Description="Percentage of local population that is Protestant" Type="tinyint" DefaultValue="0"/>
+		<TextField Name="CHRISTIANORGS" Description="Name of Christian agencies/organizations providing relief, development, or programmatic interventions for children" Length="50"/>
+
+		
+		<!-- Community Health -->
+		<NumberField Name="DISTANCETOMEDICALFACILITY" Description="Distance to nearest medical facility" Type="smallint" DefaultValue="0"/>
+
+		<EnumField Name="DISTANCETOMEDICALFACILITYUNITOFMEASUREMENTCODE" Description="Unit of measurement that the distance to city is measured in"  DefaultValue="0">
+			<EnumValues>
+				<EnumValue ID="0" Translation="Kilometers"/>
+				<EnumValue ID="1" Translation="Miles"/>
+			</EnumValues>
+		</EnumField>
+		<NumberField Name="DAYSTOMEDICALFACILITY" Description="Number of days to nearest medical facility" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="HOURSTOMEDICALFACILITY" Description="Number of hours to nearest medical facility" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="MINUTESTOMEDICALFACILITY" Description="Number of minutes to nearest medical facility" Type="tinyint" DefaultValue="0"/>
+
+		<BooleanField Name="HEALTHPROBLEMCHOLERA" Description="Common health problem - Cholera" DefaultValue="false"/>
+		<BooleanField Name="HEALTHPROBLEMDENGUE" Description="Common health problem - Dengue" DefaultValue="false"/>
+		<BooleanField Name="HEALTHPROBLEMDISABILITIES" Description="Common health problem - Disabilities" DefaultValue="false"/>
+		<BooleanField Name="HEALTHPROBLEMHIVAIDS" Description="Common health problem - HIV/AIDS" DefaultValue="false"/>
+		<BooleanField Name="HEALTHPROBLEMINTESTINAL" Description="Common health problem - Intestine problems" DefaultValue="false"/>
+		<BooleanField Name="HEALTHPROBLEMMALARIA" Description="Common health problem - Malaria" DefaultValue="false"/>
+		<BooleanField Name="HEALTHPROBLEMTUBERCULOSIS" Description="Common health problem - Tuberculosis" DefaultValue="false"/>
+		<BooleanField Name="HEALTHPROBLEMOTHER" Description="Common health problem - Other" DefaultValue="false"/>
+		<TextField Name="HEALTHPROBLEMOTHERDESC" Description="Common health problem - Other - description" Length="50"/>
+
+		
+		<!-- Community Education -->
+		<CodeTableField Name="HIGHESTEDUCATIONAVAILABLECODEID" Description="Higest education available in local community" CodeTable="USR_CHILDPROJECTHIGHESTEDUCATIONCODE" />
+		<TextField Name="HIGHESTEDUCATIONAVAILABLEOTHER" Description="Other highest education available" Length="50"/>
+		<TextField Name="EDUCATIONSYSTEMDIVISIONS" Description="Education system divisions" Length="200"/>
+		<BooleanField Name="EDUCATIONTYPEPUBLIC" Description="Types of education available - Public" DefaultValue="false"/>
+		<BooleanField Name="EDUCATIONTYPEPRIVATE" Description="Types of education available - Private" DefaultValue="false"/>
+		<BooleanField Name="EDUCATIONTYPERELIGIOUS" Description="Types of education available - Religious" DefaultValue="false"/>
+		<BooleanField Name="EDUCATIONTYPEOTHER" Description="Types of education available - Other" DefaultValue="false"/>
+		<TextField Name="EDUCATIONTYPEOTHERDESC" Description="Types of education available - Other description" Length="50"/>
+
+		<TextField Name="VOCATIONALTRAININGAVAILABLE" Description="Types of vocational training available" Length="200"/>
+		<NumberField Name="PERCENTCHILDRENNOTINSCHOOL" Description="Percentage of children of school age who are not in school" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL" Description="Percentage of children who have completed primary school" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL" Description="Percentage of youth who have completed secondary school" Type="tinyint" DefaultValue="0"/>
+
+		<!-- Community Economy -->
+		<DecimalField Name="AVGFAMILYMONTHLYINCOME" Description="Local average family monthly income" Precision="8" Scale="2" DefaultValue="0"  />
+		<MoneyField Name="AVGFAMILYMONTHLYINCOMEINUSDOLLARS" Description="Local average family monthly income in US dollars" DefaultValue="0"/>
+		
+		<BooleanField Name="PRIMARYOCCUPATIONHERDING" Description="Primary occupation of adults - Animal herding" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONDAYLABOR" Description="Primary occupation of adults - Day labor" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONDOMESTIC" Description="Primary occupation of adults - Domestic Services" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONFACTORY" Description="Primary occupation of adults - Factory work" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONFISHING" Description="Primary occupation of adults - Fishing" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONGOVERNMENT" Description="Primary occupation of adults - Government worker" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONSTREETVENDING" Description="Primary occupation of adults - Street vending" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONFARMING" Description="Primary occupation of adults - Subsistence farming" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONTRADING" Description="Primary occupation of adults - Petty or market trading" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONPLANTATION" Description="Primary occupation of adults - Plantation work" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONPORTER" Description="Primary occupation of adults - Porter or Coolie" DefaultValue="false"/>
+		<BooleanField Name="PRIMARYOCCUPATIONOTHER" Description="Primary occupation of adults - Other" DefaultValue="false"/>
+		<TextField Name="PRIMARYOCCUPATIONOTHERDESC" Description="Primary occupation of adults - Other - description" Length="50"/>
+		
+		<NumberField Name="AVGHOURSPERWEEK" Description="Average number of hours adults work per week" Type="tinyint" DefaultValue="0"/>
+		<NumberField Name="UNEMPLOYMENTRATE" Description="Unemployment rate" Type="tinyint" DefaultValue="0"/>
+
+
+		<!-- Community Culture -->
+		<TextField Name="LOCALTRADITIONS" Description="Local traditions, rituals and customs" Length="1000" />
+		<TextField Name="HOLIDAYS" Description="Community or local reglious holidays" Length="200"/>
+		<TextField Name="PRIMARYETHNICGROUPS" Description="Primary ethnic group(s)" Length="50"/>
+		<TextField Name="PRIMARYLANGUAGES" Description="Primary language(s)" Length="50"/>
+		
+		<BooleanField Name="FAMILYSTRUCTUREPARTRIARCHAL" Description="Family structure - Patriarchal" DefaultValue="false"/>
+		<BooleanField Name="FAMILYSTRUCTUREMATRIARCHAL" Description="Family structure - Matriarchal" DefaultValue="false"/>
+		<BooleanField Name="FAMILYSTRUCTUREFAMILYDISINTEGRATION" Description="Family structure - Family disintegration" DefaultValue="false"/>
+		<BooleanField Name="FAMILYSTRUCTURESINGLEPARENT" Description="Family structure - Single parent" DefaultValue="false"/>
+		<BooleanField Name="FAMILYSTRUCTUREEXTENDEDFAMILY" Description="Family structure - Extended family structure" DefaultValue="false"/>
+		<BooleanField Name="FAMILYSTRUCTURECHILDHEADED" Description="Family structure - Child-headed households" DefaultValue="false"/>
+		<BooleanField Name="FAMILYSTRUCTUREOTHER" Description="Family structure - Other" DefaultValue="false"/>
+		<TextField Name="FAMILYSTRUCTUREOTHERDESC" Description="Family structure - Other description" Length="50"/>
+		
+		<BooleanField Name="SOCIALISSUESALCOHOLABUSE" Description="Social issues - Alcohol abuse" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESCHILDABUSE" Description="Social issues - Child abuse/dometic violence" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESCHILDLABOR" Description="Social issues - Child labor" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESCHILDPROSTITUTION" Description="Social issues - Child prostitution" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESCHILDTRAFFICKING" Description="Social issues - Child trafficking" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESCHILDHEADEDHOUSEHOLDS" Description="Social issues - Child-headed households" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESDRUGABUSE" Description="Social issues - Drug abuse" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESFORCEDMARRIAGE" Description="Social issues - Forced/arranged marriage" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESGIRLCHILDDISCRIMINATION" Description="Social issues - Girl-child discrimination" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESHIGHDIVORCE" Description="Social issues - High divorce" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESORPHANS" Description="Social issues - Oprhans" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESREFUGEES" Description="Social issues - Refugees" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESSINGLEPARENTFAMILIES" Description="Social issues - Single-parent families" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESTRAUMA" Description="Social issues - Trauma or Post traumatic stree disorder" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESWAR" Description="Social issues - War or conflict" DefaultValue="false"/>
+		<BooleanField Name="SOCIALISSUESOTHER" Description="Social issues - Other" DefaultValue="false"/>
+		<TextField Name="SOCIALISSUESOTHERDESC" Description="Social issues - Other description" Length="50"/>
+		
+		
+		<!-- Child Protection -->
+		<EnumField Name="CHILDLEGALPROTECTIONCODE" Description="Whether a community is aware of the Convention on the Rights of the Child and whether it is enforced" DefaultValue="0" >
+			<EnumValues>
+				<EnumValue ID="0" Translation="value not selected" />
+				<EnumValue ID="1" Translation="Aware, Not enforced" />
+				<EnumValue ID="2" Translation="Unaware, Not enforced" />
+				<EnumValue ID="3" Translation="Aware, Enforced" />			  
+			</EnumValues> 
+		</EnumField>
+		<EnumField Name="CHILDLABORCODE" Description="The degree to which children participate in the labor pool and the priority of education." DefaultValue="0" >
+			<EnumValues>
+				<EnumValue ID="0" Translation="value not selected" />
+				<EnumValue ID="1" Translation="Regularly participate in labor pool" />
+				<EnumValue ID="2" Translation="Sometimes participate in labor pool" />
+				<EnumValue ID="3" Translation="Do not participate in labor pool" />
+			</EnumValues>
+		</EnumField>
+		
+		<BooleanField Name="LEGALPROTECTIONAWARENOTENFORCED" Description="Legal Protection - Community is aware of the Convention on the Rights of the Child, but it is not enforced.  There are local laws to protect children, but they are not enforced."  DefaultValue="false"/>
+		<BooleanField Name="LEGALPROTECTIONNOTAWARE" Description="Legal Protection - Community is unaware of the Convention on the Rights of the Child.  There are no local laws to protect children." DefaultValue="false"/>
+		<BooleanField Name="LEGALPROTECTIONAWAREENFORCED" Description="Legal Protection - Community is aware of the Covention on the Rights of the Child and effort is made to educate and post information on this topic.  There are local laws to protect children and they are enforced." DefaultValue="false"/>
+		
+		<BooleanField Name="CHILDLABORREGULARLYINLABORPOOL" Description="Child Labor - Children regularly participate in the labor pool and in dangerous tasks, such as farming, factory work, and exposure to hazardous materials." DefaultValue="false"/>
+		<BooleanField Name="CHILDLABORRSOMETIMESINLABORPOOL" Description="Child Labor - Children sometimes participate in the labor pool and in dangerous tasks, but do have the opportunity for education." DefaultValue="false"/>
+		<BooleanField Name="CHILDLABORNOTINLABORPOOL" Description="Child Labor - Children do not participate in the labor pool.  Education for children is  highly encouraged and supported." DefaultValue="false"/>
+
+		<BooleanField Name="CHILDCAREWHENPARENTABSENTADOPTION" Description="How are children typically cared for when one or both parents are absent or not living? - Adoption" DefaultValue="false"/>
+		<BooleanField Name="CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY" Description="How are children typically cared for when one or both parents are absent or not living? - Extended family" DefaultValue="false"/>
+		<BooleanField Name="CHILDCAREWHENPARENTABSENTFOSTERCARE" Description="How are children typically cared for when one or both parents are absent or not living? - Foster care" DefaultValue="false"/>
+		<BooleanField Name="CHILDCAREWHENPARENTABSENTINSTITUTION" Description="How are children typically cared for when one or both parents are absent or not living? - Institution" DefaultValue="false"/>
+		<BooleanField Name="CHILDCAREWHENPARENTABSENTNOCARE" Description="How are children typically cared for when one or both parents are absent or not living? - No care available" DefaultValue="false"/>
+		<BooleanField Name="CHILDCAREWHENPARENTABSENTOTHER" Description="How are children typically cared for when one or both parents are absent or not living? - Other" DefaultValue="false"/>
+		
+		<TextField Name="CHILDCAREWHENPARENTABSENTOTHERDESC" Description="How are children typically cared for when one or both parents are absent or not living? - Other description" Length="50"/>
+		<EnumField Name="LOCALADOPTIONACCEPTEDCODE" Description="Is local adoption accepted?" DefaultValue="0">
+			<EnumValues>
+				<EnumValue ID="0" Translation="No"/>
+				<EnumValue ID="1" Translation="Yes"/>
+			</EnumValues>
+		</EnumField>
+		<EnumField Name="FOREIGNADOPTIONLEGALCODE" Description="Is foreign adoption legal?" DefaultValue="0">
+			<EnumValues>
+				<EnumValue ID="0" Translation="No"/>
+				<EnumValue ID="1" Translation="Yes"/>
+			</EnumValues>
+		</EnumField>
+	</Fields>
+
+	<!-- define any additional check constraints on the table -->
+	<!--CheckConstraints>
+		<CheckConstraint Name="UC_USR_CHILDPROJECTEXTENSION_COUNTRYID" CheckExpression="">
+		</CheckConstraint>
+	</CheckConstraints-->
+	
+	
+	<!-- define any indexes on the table -->
+	<!--Indexes>
+	</Indexes-->
+	<!-- define any triggers on the table -->
+	<!--<Triggers>
+
+	</Triggers>
+	-->
+</TableSpec>

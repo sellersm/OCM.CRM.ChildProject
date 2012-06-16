@@ -1,0 +1,190 @@
+<AddDataFormTemplateSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="8adbd8d5-5657-4349-8d46-80aa7b1853ba"
+    Name="Child Project Extension Add Form"
+    Description="Used for adding a new Child Project Extension"
+    Author="Cary Mayeda"
+    RecordType="Child Project Extension"
+    DataFormInstanceID="5c128565-4494-4510-aa82-a9b8608bb613"
+    c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_adddataformtemplate"
+    >
+
+<!-- 
+Remarks:    Since there are very few actual constituent org fields entered, we chose not to extend the Add Organization data form
+			ID is a foreign key to the related CONSTITUENT.ID
+			
+			This performs the following:
+				Calls the Blackbaud sproc USP_ORGANIZATION_ADD to add the constituent.
+				Changes the standard Lookup ID to whatever the user entered.
+					Currently there is no data validation on the project id other then uniqueness
+				Adds the Child Project constituency.
+				Adds the child project extension record
+				Opens the Child Project page with the newly created record
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+	
+    <SPDataForm>
+		
+        <SaveImplementation SPName="USR_USP_DATAFORMTEMPLATE_ADD_CHILD_PROJECT_EXTENSION">
+            <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_ADD_CHILD_PROJECT_EXTENSION
+(
+    @ID uniqueidentifier = null output,
+    @CHANGEAGENTID uniqueidentifier = null,
+	@NAME nvarchar(100) = '',
+	@LOOKUPID nvarchar(36) = '',
+	
+    @CHILDPROJECTTYPECODEID uniqueidentifier,
+    @CHILDPROJECTTYPEOTHER nvarchar(50) = '',
+    @CHILDPROJECTSTATUSCODEID uniqueidentifier = null,
+	@CHILDPROJECTCATEGORYCODEID uniqueidentifier = null,
+	@CHILDPROJECTSUBCATEGORYCODEID uniqueidentifier = null
+
+)
+as
+
+set nocount on;
+
+if @CHANGEAGENTID is null  
+    exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+
+declare @CURRENTDATE datetime
+set @CURRENTDATE = getdate()
+
+
+declare @childProjectConstituencyCode uniqueidentifier
+
+begin try    
+	select @childProjectConstituencyCode = ID from CONSTITUENCYCODE where lower(DESCRIPTION) = 'child project'
+	if @childProjectConstituencyCode is null 
+		  RAISERROR 1000000 'Could not find Child Project constituency code'		
+
+	exec dbo.USP_ORGANIZATION_ADD	@ID output, 
+                                    @CHANGEAGENTID, 
+                                    @CHANGEAGENTID, 
+                                    @NAME, 		
+                                    '', --@WEBADDRESS
+                                    NULL, --@PICTURE, 
+                                    NULL, --@PICTURETHUMBNAIL, 
+                                    NULL, --@INDUSTRYCODEID,
+                                    NULL, --@NUMEMPLOYEES,
+                                    NULL, --@NUMSUBSIDIARIES,
+                                    NULL, --@PARENTCORPID,
+                                    NULL, --@ADDRESS_ADDRESSTYPECODEID,
+                                    0, --@ADDRESS_DONOTMAIL,
+                                    NULL, --@ADDRESS_COUNTRYID,
+                                    NULL, --@ADDRESS_STATEID,
+                                    NULL, --@ADDRESS_ADDRESSBLOCK,
+                                    NULL, --@ADDRESS_CITY,
+                                    NULL, --@ADDRESS_POSTCODE,
+                                    NULL, --@PHONE_PHONETYPECODEID,
+                                    NULL, --@PHONE_NUMBER,
+                                    NULL, --@SKIP_ADDING_SECURITYGROUPS,
+                                    NULL, --@EMAILADDRESS_EMAILADDRESSTYPECODEID,
+                                    NULL, --@EMAILADDRESS_EMAILADDRESS,
+                                    0, --@OMITFROMVALIDATION,
+                                    NULL, --@CART,
+                                    NULL, --@DPC,
+                                    NULL, --@LOT,
+                                    NULL, --@COUNTYCODEID,
+                                    NULL, --@CONGRESSIONALDISTRICTCODEID,
+                                    NULL, --@LASTVALIDATIONATTEMPTDATE,
+                                    '', --@VALIDATIONMESSAGE,
+                                    0, --@CERTIFICATIONDATA,
+                                    NULL, --@ADDRESS_DONOTMAILREASONCODEID,
+                                    1, --@ISPRIMARY,
+                                    NULL, --@SKIP_ADDING_SITES,
+                                    NULL, --@INFOSOURCECODEID,
+                                    1;
+
+	-- Change the LookupID to the one entered by the user
+	update CONSTITUENT
+	   set CUSTOMIDENTIFIER = @LOOKUPID
+     where ID = @ID;
+	 
+	 -- Add the Child Project constituency code
+	 if @childProjectConstituencyCode is not null
+		exec dbo.USP_DATAFORMTEMPLATE_ADD_CONSTITUENCY
+					@CHANGEAGENTID = @CHANGEAGENTID,
+					@CONSTITUENTID = @ID,
+					@CONSTITUENCYCODEID = @childProjectConstituencyCode;
+						
+	-- handle inserting the data
+	insert into dbo.USR_CHILDPROJECTEXTENSION
+		(ID, CHILDPROJECTTYPECODEID, CHILDPROJECTTYPEOTHER, CHILDPROJECTSTATUSCODEID, CHILDPROJECTCATEGORYCODEID, CHILDPROJECTSUBCATEGORYCODEID, ADDEDBYID, CHANGEDBYID, DATEADDED, DATECHANGED)
+    values
+		(@ID, @CHILDPROJECTTYPECODEID, @CHILDPROJECTTYPEOTHER, @CHILDPROJECTSTATUSCODEID, @CHILDPROJECTCATEGORYCODEID, @CHILDPROJECTSUBCATEGORYCODEID, @CHANGEAGENTID, @CHANGEAGENTID, @CURRENTDATE, @CURRENTDATE)
+
+end try
+begin catch
+    exec dbo.USP_RAISE_ERROR;
+    return 1;
+end catch
+
+return 0				
+
+]]>
+</c:CreateProcedureSQL>
+            <c:ExpectedDBExceptions>
+                <c:Constraints>
+                    <c:Constraint Name="FK_USR_CHILDPROJECTEXTENSION_CHILDPROJECTTYPECODEID" Field="CHILDPROJECTTYPECODEID" Type="ForeignKey" />
+                    <c:Constraint Name="FK_USR_CHILDPROJECTEXTENSION_CHILDPROJECTSTATUSCODEID" Field="CHILDPROJECTSTATUSCODEID" Type="ForeignKey" />
+					<c:Constraint Name="UC_CONSTITUENT_LOOKUPID" Field="LOOKUPID" Type="Unique">
+						<c:CustomErrorMsg>The Lookup ID entered already exists. Each project's Lookup ID must be unique.</c:CustomErrorMsg>
+					</c:Constraint>
+
+					<c:Constraint Name="FK_USR_CHILDPROJECTEXTENSION_CHILDPROJECTCATEGORYCODEID" Field="CHILDPROJECTCATEGORYCODEID" Type="ForeignKey" />
+					<c:Constraint Name="FK_USR_CHILDPROJECTEXTENSION_CHILDPROJECTSUBCATEGORYCODEID" Field="CHILDPROJECTSUBCATEGORYCODEID" Type="ForeignKey" />
+
+
+				</c:Constraints>
+            </c:ExpectedDBExceptions>
+        </SaveImplementation>
+    </SPDataForm>
+
+	<!-- describe the context ID for this form (if applicable), which corresponds to a parameter in the SP.
+	<Context ContextRecordType="Constituent" RecordIDParameter="CONSTITUENTID" /> -->
+
+	<c:FormMetaData>		
+        <c:FormFields>
+			<c:FormField FieldID="NAME" DataType="String" MaxLength="100" Caption="Project name" Required="true" />
+			<c:FormField FieldID="LOOKUPID" DataType="String" Caption="Lookup ID" Required="true" />
+			<c:FormField FieldID="CHILDPROJECTSTATUSCODEID" DataType="Guid" Required="true" Caption="Status">
+				<c:CodeTable CodeTableName="USR_CHILDPROJECTSTATUSCODE" />
+			</c:FormField>
+			<c:FormField FieldID="CHILDPROJECTTYPECODEID" DataType="Guid" Required="true" Caption="Project type">
+                <c:CodeTable CodeTableName="USR_CHILDPROJECTTYPECODE" />
+            </c:FormField>
+            <c:FormField FieldID="CHILDPROJECTTYPEOTHER" DataType="String" MaxLength="50" Caption="Describe other" />
+			<c:FormField FieldID="CHILDPROJECTCATEGORYCODEID" DataType="Guid" Caption="Category" Required="true">
+				<c:CodeTable CodeTableName="USR_CHILDPROJECTCATEGORYCODE" />
+			</c:FormField>
+			<c:FormField FieldID="CHILDPROJECTSUBCATEGORYCODEID" DataType="Guid" Caption="Subcategory">
+				<c:CodeTable CodeTableName="USR_CHILDPROJECTSUBCATEGORYCODE" />
+			</c:FormField>
+				
+			
+        </c:FormFields>
+
+        <c:WebUIComponent>
+            <c:UIModel AssemblyName="MoM.Sponsorship.ChildProject.UIModel.dll" ClassName="MoM.Sponsorship.ChildProject.UIModel.ChildProjectExtensionAddFormUIModel" />
+			<c:WebUI>
+				<c:ExternalResource Url="browser/htmlforms/custom/ChildProject.Extension.AddForm.html" />
+			</c:WebUI>
+		</c:WebUIComponent>
+
+        
+        
+    </c:FormMetaData>
+	
+
+	<!-- No longer used see remarks - Extending the Organization Add Data Form 
+	<c:DataFormExtension DataFormInstanceID="ca3ed110-a5f0-4b5b-8eb7-0616e0a82e8e" RenderStyle="Tab" TabCaption="Child Project" /> -->
+
+</AddDataFormTemplateSpec>

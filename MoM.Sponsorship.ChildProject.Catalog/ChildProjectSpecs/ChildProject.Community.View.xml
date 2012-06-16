@@ -1,0 +1,433 @@
+<ViewDataFormTemplateSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="c985b675-c4d9-41d0-925f-a4031eac03ca"
+    Name="Child Project Community View Form"
+    Description="Used for viewing the second tab of Community Information for a Child Project Extension"
+    Author="Cary Mayeda"
+    DataFormInstanceID="5e1ad2a6-5c0c-4e42-8841-6ab8f7ed52b5"
+    RecordType="Child Project Extension"
+    c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    OwnerIDMapperID="00000000-0000-0000-0000-000000000000"
+    xmlns="bb_appfx_viewdataformtemplate"
+    >
+
+<!-- 
+Remarks:    ID is a foreign key to the related CONSTITUENT.ID
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+	
+    <SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_COMMUNITY">
+        <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_COMMUNITY 
+(
+	@ID uniqueidentifier,
+	@DATALOADED bit = 0 output,
+    @COMMUNITYNAME nvarchar(50) = null output,
+    @COMMUNITYPOPULATION int = null output,
+    @COMMUNITYTYPECODE nvarchar(100) = null output,
+    @PROVINCESTATEREGIONNAME nvarchar(50) = null output,
+    @NEARESTCITY nvarchar(50) = null output,
+    @DISTANCETOCITY smallint = null output,
+    @DISTANCETOCITYUNITOFMEASUREMENT nvarchar(20) = null output,
+    @NEARESTCITYPOPULATION int = null output,
+    @COMMUNITYDESCRIPTION nvarchar(200) = null output,
+    @TERRAINCODE nvarchar(100) = null output,
+	@TERRAINCODEID uniqueidentifier = null output,
+    @TERRAINOTHER nvarchar(25) = null output,
+    @TRANSPORTATIONTYPEANIMALCART bit = null output,
+    @TRANSPORTATIONTYPECAR bit = null output,
+    @TRANSPORTATIONTYPETAXI bit = null output,
+    @TRANSPORTATIONTYPEBOAT bit = null output,
+    @TRANSPORTATIONTYPEMOTORSCOOTER bit = null output,
+    @TRANSPORTATIONTYPEWALK bit = null output,
+    @TRANSPORTATIONTYPEBUS bit = null output,
+    @TRANSPORTATIONTYPERICKSHAW bit = null output,
+    @TRANSPORTATIONTYPEOTHER bit = null output,
+    @TRANSPORTATIONTYPEOTHERDESC nvarchar(25) = null output,
+    @CLIMATECODE nvarchar(100) = null output,
+    @WARMESTMONTHCODE nvarchar(100) = null output,
+    @WARMESTMONTHAVGTEMPERATURE tinyint = null output,
+    @WARMESTMONTHAVGTEMPERATUREUNITOFMEASURE nvarchar(20) = null output,
+    @COOLESTMONTHCODE nvarchar(100) = null output,
+    @COOLESTMONTHAVGTEMPERATURE tinyint = null output,
+    @COOLESTMONTHAVGTEMPERATUREUNITOFMEASURE nvarchar(20) = null output,
+    @PRIMARYDIETBANANAS bit = null output,
+    @PRIMARYDIETBEANS bit = null output,
+    @PRIMARYDIETBEEF bit = null output,
+    @PRIMARYDIETBREAD bit = null output,
+    @PRIMARYDIETCASSAVA bit = null output,
+    @PRIMARYDIETCHICKEN bit = null output,
+    @PRIMARYDIETDALLENTILS bit = null output,
+    @PRIMARYDIETFISH bit = null output,
+    @PRIMARYDIETGOAT bit = null output,
+    @PRIMARYDIETGUINEAPIG bit = null output,
+    @PRIMARYDIETMAIZE bit = null output,
+    @PRIMARYDIETNOODLES bit = null output,
+    @PRIMARYDIETPLANTAIN bit = null output,
+    @PRIMARYDIETPOTATO bit = null output,
+    @PRIMARYDIETRICE bit = null output,
+    @PRIMARYDIETUGALI bit = null output,
+    @PRIMARYDIETOTHER bit = null output,
+    @PRIMARYDIETOTHERDESC nvarchar(25) = null output,
+    @RAINYSEASONJAN bit = null output,
+    @RAINYSEASONFEB bit = null output,
+    @RAINYSEASONMAR bit = null output,
+    @RAINYSEASONAPR bit = null output,
+    @RAINYSEASONMAY bit = null output,
+    @RAINYSEASONJUN bit = null output,
+    @RAINYSEASONJUL bit = null output,
+    @RAINYSEASONAUG bit = null output,
+    @RAINYSEASONSEP bit = null output,
+    @RAINYSEASONOCT bit = null output,
+    @RAINYSEASONNOV bit = null output,
+    @RAINYSEASONDEC bit = null output,
+    @PLANTINGSEASONJAN bit = null output,
+    @PLANTINGSEASONFEB bit = null output,
+    @PLANTINGSEASONMAR bit = null output,
+    @PLANTINGSEASONAPR bit = null output,
+    @PLANTINGSEASONMAY bit = null output,
+    @PLANTINGSEASONJUN bit = null output,
+    @PLANTINGSEASONJUL bit = null output,
+    @PLANTINGSEASONAUG bit = null output,
+    @PLANTINGSEASONSEP bit = null output,
+    @PLANTINGSEASONOCT bit = null output,
+    @PLANTINGSEASONNOV bit = null output,
+    @PLANTINGSEASONDEC bit = null output,
+    @HARVESTSEASONJAN bit = null output,
+    @HARVESTSEASONFEB bit = null output,
+    @HARVESTSEASONMAR bit = null output,
+    @HARVESTSEASONAPR bit = null output,
+    @HARVESTSEASONMAY bit = null output,
+    @HARVESTSEASONJUN bit = null output,
+    @HARVESTSEASONJUL bit = null output,
+    @HARVESTSEASONAUG bit = null output,
+    @HARVESTSEASONSEP bit = null output,
+    @HARVESTSEASONOCT bit = null output,
+    @HARVESTSEASONNOV bit = null output,
+    @HARVESTSEASONDEC bit = null output,
+    @TIMEOFHUNGERJAN bit = null output,
+    @TIMEOFHUNGERFEB bit = null output,
+    @TIMEOFHUNGERMAR bit = null output,
+    @TIMEOFHUNGERAPR bit = null output,
+    @TIMEOFHUNGERMAY bit = null output,
+    @TIMEOFHUNGERJUN bit = null output,
+    @TIMEOFHUNGERJUL bit = null output,
+    @TIMEOFHUNGERAUG bit = null output,
+    @TIMEOFHUNGERSEP bit = null output,
+    @TIMEOFHUNGEROCT bit = null output,
+    @TIMEOFHUNGERNOV bit = null output,
+    @TIMEOFHUNGERDEC bit = null output,
+    @RELIGIONCODE nvarchar(100) = null output,
+    @RELIGIONCODEID uniqueidentifier  = null output,
+    @RELIGIONOTHERDESC nvarchar(50) = null output,
+    @NUMCHRISTIANCHURCHES smallint = null output,
+    @PERCENTPROTESTANT tinyint = null output,
+    @CHRISTIANORGS nvarchar(50) = null output,
+	@DISTANCETOMEDICALFACILITY smallint = null output,
+    @DISTANCETOMEDICALFACILITYUNITOFMEASUREMENT nvarchar(20) = null output,
+    @DAYSTOMEDICALFACILITY tinyint = null output,
+    @HOURSTOMEDICALFACILITY tinyint = null output,
+    @MINUTESTOMEDICALFACILITY tinyint = null output,
+    @HEALTHPROBLEMCHOLERA bit = null output,
+    @HEALTHPROBLEMDENGUE bit = null output,
+    @HEALTHPROBLEMDISABILITIES bit = null output,
+    @HEALTHPROBLEMHIVAIDS bit = null output,
+    @HEALTHPROBLEMINTESTINAL bit = null output,
+    @HEALTHPROBLEMMALARIA bit = null output,
+    @HEALTHPROBLEMTUBERCULOSIS bit = null output,
+    @HEALTHPROBLEMOTHER bit = null output,
+    @HEALTHPROBLEMOTHERDESC nvarchar(50) = null output,
+
+	@RELIGIONOTHERSEPARATOR nvarchar(1) = null output,
+	@HEALTHPROBLEMOTHERSEPARATOR nvarchar(1) = null output,
+	@TERRAINOTHERSEPARATOR nvarchar(1) = null output,
+	@TRANSPORTATIONTYPEOTHERSEPARATOR nvarchar(1) = null output,
+	@PRIMARYDIETOTHERSEPARATOR nvarchar(1) = null output
+	
+	
+)
+as
+	set nocount on;
+	
+	-- be sure to set this, in case the select returns no rows
+	set @DATALOADED = 0;
+	
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.
+	select @DATALOADED = 1,
+           @COMMUNITYNAME = COMMUNITYNAME, 
+           @COMMUNITYPOPULATION = COMMUNITYPOPULATION, 
+           @COMMUNITYTYPECODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTCOMMUNITYTYPECODE where ID = COMMUNITYTYPECODEID), 
+           @PROVINCESTATEREGIONNAME = PROVINCESTATEREGIONNAME, 
+           @NEARESTCITY = NEARESTCITY, 
+           @DISTANCETOCITY = DISTANCETOCITY, 
+           @DISTANCETOCITYUNITOFMEASUREMENT = DISTANCETOCITYUNITOFMEASUREMENT, 
+           @NEARESTCITYPOPULATION = NEARESTCITYPOPULATION, 
+           @COMMUNITYDESCRIPTION = COMMUNITYDESCRIPTION, 
+           @TERRAINCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTTERRAINCODE where ID = TERRAINCODEID), 
+           @TERRAINCODEID = TERRAINCODEID, 
+           @TERRAINOTHER = TERRAINOTHER, 
+           @TRANSPORTATIONTYPEANIMALCART = TRANSPORTATIONTYPEANIMALCART, 
+           @TRANSPORTATIONTYPECAR = TRANSPORTATIONTYPECAR, 
+           @TRANSPORTATIONTYPETAXI = TRANSPORTATIONTYPETAXI, 
+           @TRANSPORTATIONTYPEBOAT = TRANSPORTATIONTYPEBOAT, 
+           @TRANSPORTATIONTYPEMOTORSCOOTER = TRANSPORTATIONTYPEMOTORSCOOTER, 
+           @TRANSPORTATIONTYPEWALK = TRANSPORTATIONTYPEWALK, 
+           @TRANSPORTATIONTYPEBUS = TRANSPORTATIONTYPEBUS, 
+           @TRANSPORTATIONTYPERICKSHAW = TRANSPORTATIONTYPERICKSHAW, 
+           @TRANSPORTATIONTYPEOTHER = TRANSPORTATIONTYPEOTHER, 
+           @TRANSPORTATIONTYPEOTHERDESC = TRANSPORTATIONTYPEOTHERDESC, 
+           @CLIMATECODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTCLIMATECODE where ID = CLIMATECODEID), 
+           @WARMESTMONTHCODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = WARMESTMONTHCODEID), 
+           @WARMESTMONTHAVGTEMPERATURE = WARMESTMONTHAVGTEMPERATURE, 
+           @WARMESTMONTHAVGTEMPERATUREUNITOFMEASURE = WARMESTMONTHAVGTEMPERATUREUNITOFMEASURE, 
+           @COOLESTMONTHCODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = COOLESTMONTHCODEID), 
+           @COOLESTMONTHAVGTEMPERATURE = COOLESTMONTHAVGTEMPERATURE, 
+           @COOLESTMONTHAVGTEMPERATUREUNITOFMEASURE = COOLESTMONTHAVGTEMPERATUREUNITOFMEASURE, 
+           @PRIMARYDIETBANANAS = PRIMARYDIETBANANAS, 
+           @PRIMARYDIETBEANS = PRIMARYDIETBEANS, 
+           @PRIMARYDIETBEEF = PRIMARYDIETBEEF, 
+           @PRIMARYDIETBREAD = PRIMARYDIETBREAD, 
+           @PRIMARYDIETCASSAVA = PRIMARYDIETCASSAVA, 
+           @PRIMARYDIETCHICKEN = PRIMARYDIETCHICKEN, 
+           @PRIMARYDIETDALLENTILS = PRIMARYDIETDALLENTILS, 
+           @PRIMARYDIETFISH = PRIMARYDIETFISH, 
+           @PRIMARYDIETGOAT = PRIMARYDIETGOAT, 
+           @PRIMARYDIETGUINEAPIG = PRIMARYDIETGUINEAPIG, 
+           @PRIMARYDIETMAIZE = PRIMARYDIETMAIZE, 
+           @PRIMARYDIETNOODLES = PRIMARYDIETNOODLES, 
+           @PRIMARYDIETPLANTAIN = PRIMARYDIETPLANTAIN, 
+           @PRIMARYDIETPOTATO = PRIMARYDIETPOTATO, 
+           @PRIMARYDIETRICE = PRIMARYDIETRICE, 
+           @PRIMARYDIETUGALI = PRIMARYDIETUGALI, 
+           @PRIMARYDIETOTHER = PRIMARYDIETOTHER, 
+           @PRIMARYDIETOTHERDESC = PRIMARYDIETOTHERDESC, 
+           @RAINYSEASONJAN = RAINYSEASONJAN, 
+           @RAINYSEASONFEB = RAINYSEASONFEB, 
+           @RAINYSEASONMAR = RAINYSEASONMAR, 
+           @RAINYSEASONAPR = RAINYSEASONAPR, 
+           @RAINYSEASONMAY = RAINYSEASONMAY, 
+           @RAINYSEASONJUN = RAINYSEASONJUN, 
+           @RAINYSEASONJUL = RAINYSEASONJUL, 
+           @RAINYSEASONAUG = RAINYSEASONAUG, 
+           @RAINYSEASONSEP = RAINYSEASONSEP, 
+           @RAINYSEASONOCT = RAINYSEASONOCT, 
+           @RAINYSEASONNOV = RAINYSEASONNOV, 
+           @RAINYSEASONDEC = RAINYSEASONDEC, 
+           @PLANTINGSEASONJAN = PLANTINGSEASONJAN, 
+           @PLANTINGSEASONFEB = PLANTINGSEASONFEB, 
+           @PLANTINGSEASONMAR = PLANTINGSEASONMAR, 
+           @PLANTINGSEASONAPR = PLANTINGSEASONAPR, 
+           @PLANTINGSEASONMAY = PLANTINGSEASONMAY, 
+           @PLANTINGSEASONJUN = PLANTINGSEASONJUN, 
+           @PLANTINGSEASONJUL = PLANTINGSEASONJUL, 
+           @PLANTINGSEASONAUG = PLANTINGSEASONAUG, 
+           @PLANTINGSEASONSEP = PLANTINGSEASONSEP, 
+           @PLANTINGSEASONOCT = PLANTINGSEASONOCT, 
+           @PLANTINGSEASONNOV = PLANTINGSEASONNOV, 
+           @PLANTINGSEASONDEC = PLANTINGSEASONDEC, 
+           @HARVESTSEASONJAN = HARVESTSEASONJAN, 
+           @HARVESTSEASONFEB = HARVESTSEASONFEB, 
+           @HARVESTSEASONMAR = HARVESTSEASONMAR, 
+           @HARVESTSEASONAPR = HARVESTSEASONAPR, 
+           @HARVESTSEASONMAY = HARVESTSEASONMAY, 
+           @HARVESTSEASONJUN = HARVESTSEASONJUN, 
+           @HARVESTSEASONJUL = HARVESTSEASONJUL, 
+           @HARVESTSEASONAUG = HARVESTSEASONAUG, 
+           @HARVESTSEASONSEP = HARVESTSEASONSEP, 
+           @HARVESTSEASONOCT = HARVESTSEASONOCT, 
+           @HARVESTSEASONNOV = HARVESTSEASONNOV, 
+           @HARVESTSEASONDEC = HARVESTSEASONDEC, 
+           @TIMEOFHUNGERJAN = TIMEOFHUNGERJAN, 
+           @TIMEOFHUNGERFEB = TIMEOFHUNGERFEB, 
+           @TIMEOFHUNGERMAR = TIMEOFHUNGERMAR, 
+           @TIMEOFHUNGERAPR = TIMEOFHUNGERAPR, 
+           @TIMEOFHUNGERMAY = TIMEOFHUNGERMAY, 
+           @TIMEOFHUNGERJUN = TIMEOFHUNGERJUN, 
+           @TIMEOFHUNGERJUL = TIMEOFHUNGERJUL, 
+           @TIMEOFHUNGERAUG = TIMEOFHUNGERAUG, 
+           @TIMEOFHUNGERSEP = TIMEOFHUNGERSEP, 
+           @TIMEOFHUNGEROCT = TIMEOFHUNGEROCT, 
+           @TIMEOFHUNGERNOV = TIMEOFHUNGERNOV, 
+           @TIMEOFHUNGERDEC = TIMEOFHUNGERDEC, 
+           @RELIGIONCODE = (select DESCRIPTION from dbo.USR_RELIGIONCODE where ID = RELIGIONCODEID), 
+		   @RELIGIONCODEID = RELIGIONCODEID,
+           @RELIGIONOTHERDESC = RELIGIONOTHERDESC, 
+           @NUMCHRISTIANCHURCHES = NUMCHRISTIANCHURCHES, 
+           @PERCENTPROTESTANT = PERCENTPROTESTANT, 
+           @CHRISTIANORGS = CHRISTIANORGS,
+		   
+		   @DISTANCETOMEDICALFACILITY = DISTANCETOMEDICALFACILITY, 
+           @DISTANCETOMEDICALFACILITYUNITOFMEASUREMENT = DISTANCETOMEDICALFACILITYUNITOFMEASUREMENT, 
+           @DAYSTOMEDICALFACILITY = DAYSTOMEDICALFACILITY, 
+           @HOURSTOMEDICALFACILITY = HOURSTOMEDICALFACILITY, 
+           @MINUTESTOMEDICALFACILITY = MINUTESTOMEDICALFACILITY, 
+           @HEALTHPROBLEMCHOLERA = HEALTHPROBLEMCHOLERA, 
+           @HEALTHPROBLEMDENGUE = HEALTHPROBLEMDENGUE, 
+           @HEALTHPROBLEMDISABILITIES = HEALTHPROBLEMDISABILITIES, 
+           @HEALTHPROBLEMHIVAIDS = HEALTHPROBLEMHIVAIDS, 
+           @HEALTHPROBLEMINTESTINAL = HEALTHPROBLEMINTESTINAL, 
+           @HEALTHPROBLEMMALARIA = HEALTHPROBLEMMALARIA, 
+           @HEALTHPROBLEMTUBERCULOSIS = HEALTHPROBLEMTUBERCULOSIS, 
+           @HEALTHPROBLEMOTHER = HEALTHPROBLEMOTHER, 
+           @HEALTHPROBLEMOTHERDESC = HEALTHPROBLEMOTHERDESC, 
+         
+		   @RELIGIONOTHERSEPARATOR = '-',
+		   @HEALTHPROBLEMOTHERSEPARATOR = '-',
+		   @TERRAINOTHERSEPARATOR = '-',
+		   @TRANSPORTATIONTYPEOTHERSEPARATOR = '-',
+ 		   @PRIMARYDIETOTHERSEPARATOR  = '-'
+		   
+	  from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	 where ID = @ID
+	
+	return 0;
+]]>
+</c:CreateProcedureSQL>
+    </SPDataForm>
+    <c:FormMetaData FixedDialog="true">
+        <c:FormFields>
+            <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
+            <c:FormField FieldID="COMMUNITYNAME" DataType="String" MaxLength="50" Caption="Community name" />
+            <c:FormField FieldID="COMMUNITYPOPULATION" DataType="Integer" Caption="Community population" />
+            <c:FormField FieldID="COMMUNITYTYPECODE" DataType="String" MaxLength="100" Caption="Type of community" />
+            <c:FormField FieldID="PROVINCESTATEREGIONNAME" MaxLength="50" Caption="Name of province, state or region" />
+            <c:FormField FieldID="NEARESTCITY" DataType="String" MaxLength="50" Caption="Name of major city or name of nearest city" />
+            <c:FormField FieldID="DISTANCETOCITY" DataType="SmallInt" Caption="Distance in relation to major city above" />
+            <c:FormField FieldID="DISTANCETOCITYUNITOFMEASUREMENT" DataType="String" MaxLength="20" Caption="Distance Unit of Measure" />
+            <c:FormField FieldID="NEARESTCITYPOPULATION" DataType="Integer" Caption="Population of major city above" />
+            <c:FormField FieldID="COMMUNITYDESCRIPTION" DataType="String" MaxLength="200" Caption="Description of the community" Multiline="true" />
+            <c:FormField FieldID="TERRAINCODE" DataType="String" MaxLength="100" Caption="Terrain" />
+			<c:FormField FieldID="TERRAINCODEID" DataType="Guid" Caption="TerrainCodeID" />  <!-- Not displayed - only used for ui conditional logic -->
+            <c:FormField FieldID="TERRAINOTHER" DataType="String" MaxLength="25" Caption="Other Terrain Description" />
+            <c:FormField FieldID="TRANSPORTATIONTYPEANIMALCART" DataType="Boolean" Caption="Animal cart" />
+            <c:FormField FieldID="TRANSPORTATIONTYPECAR" DataType="Boolean" Caption="Car" />
+            <c:FormField FieldID="TRANSPORTATIONTYPETAXI" DataType="Boolean" Caption="Taxi" />
+            <c:FormField FieldID="TRANSPORTATIONTYPEBOAT" DataType="Boolean" Caption="Boat" />
+            <c:FormField FieldID="TRANSPORTATIONTYPEMOTORSCOOTER" DataType="Boolean" Caption="Motor scooter" />
+            <c:FormField FieldID="TRANSPORTATIONTYPEWALK" DataType="Boolean" Caption="Walk" />
+            <c:FormField FieldID="TRANSPORTATIONTYPEBUS" DataType="Boolean" Caption="Bus" />
+            <c:FormField FieldID="TRANSPORTATIONTYPERICKSHAW" DataType="Boolean" Caption="Rickshaw" />
+            <c:FormField FieldID="TRANSPORTATIONTYPEOTHER" DataType="Boolean" Caption="Other" />
+            <c:FormField FieldID="TRANSPORTATIONTYPEOTHERDESC" DataType="String" MaxLength="25" Caption="Other Transportation Description" />
+            <c:FormField FieldID="CLIMATECODE" DataType="String" MaxLength="100" Caption="Climate" />
+            <c:FormField FieldID="WARMESTMONTHCODE" MaxLength="100" Caption="Warmest month" />
+            <c:FormField FieldID="WARMESTMONTHAVGTEMPERATURE" DataType="TinyInt" Caption="Avg temperature" />
+            <c:FormField FieldID="WARMESTMONTHAVGTEMPERATUREUNITOFMEASURE" DataType="String" MaxLength="20" Caption="warmestavgtempunitofmeasure" />
+            <c:FormField FieldID="COOLESTMONTHCODE" MaxLength="100" Caption="Coolest month" />
+            <c:FormField FieldID="COOLESTMONTHAVGTEMPERATURE" DataType="TinyInt" Caption="Avg temperature" />
+            <c:FormField FieldID="COOLESTMONTHAVGTEMPERATUREUNITOFMEASURE" MaxLength="20" Caption="warmestavgtempunitofmeasure" />
+            <c:FormField FieldID="PRIMARYDIETBANANAS" DataType="Boolean" Caption="Bananas" />
+            <c:FormField FieldID="PRIMARYDIETBEANS" DataType="Boolean" Caption="Beans" />
+            <c:FormField FieldID="PRIMARYDIETBEEF" DataType="Boolean" Caption="Beef" />
+            <c:FormField FieldID="PRIMARYDIETBREAD" DataType="Boolean" Caption="Bread" />
+            <c:FormField FieldID="PRIMARYDIETCASSAVA" DataType="Boolean" Caption="Cassava" />
+            <c:FormField FieldID="PRIMARYDIETCHICKEN" DataType="Boolean" Caption="Chicken" />
+            <c:FormField FieldID="PRIMARYDIETDALLENTILS" DataType="Boolean" Caption="Dal or lentils" />
+            <c:FormField FieldID="PRIMARYDIETFISH" DataType="Boolean" Caption="Fish" />
+            <c:FormField FieldID="PRIMARYDIETGOAT" DataType="Boolean" Caption="Goat" />
+            <c:FormField FieldID="PRIMARYDIETGUINEAPIG" DataType="Boolean" Caption="Guinea pig" />
+            <c:FormField FieldID="PRIMARYDIETMAIZE" DataType="Boolean" Caption="Maize" />
+            <c:FormField FieldID="PRIMARYDIETNOODLES" DataType="Boolean" Caption="Noodles" />
+            <c:FormField FieldID="PRIMARYDIETPLANTAIN" DataType="Boolean" Caption="Plantain" />
+            <c:FormField FieldID="PRIMARYDIETPOTATO" DataType="Boolean" Caption="Potato" />
+            <c:FormField FieldID="PRIMARYDIETRICE" DataType="Boolean" Caption="Rice" />
+            <c:FormField FieldID="PRIMARYDIETUGALI" DataType="Boolean" Caption="Ugali" />
+            <c:FormField FieldID="PRIMARYDIETOTHER" DataType="Boolean" Caption="Other" />
+            <c:FormField FieldID="PRIMARYDIETOTHERDESC" MaxLength="25" Caption="Other Primary Diet Description" />
+            <c:FormField FieldID="RAINYSEASONJAN" DataType="Boolean" Caption="Rainyseasonjan" />
+            <c:FormField FieldID="RAINYSEASONFEB" DataType="Boolean" Caption="Rainyseasonfeb" />
+            <c:FormField FieldID="RAINYSEASONMAR" DataType="Boolean" Caption="Rainyseasonmar" />
+            <c:FormField FieldID="RAINYSEASONAPR" DataType="Boolean" Caption="Rainyseasonapr" />
+            <c:FormField FieldID="RAINYSEASONMAY" DataType="Boolean" Caption="Rainyseasonmay" />
+            <c:FormField FieldID="RAINYSEASONJUN" DataType="Boolean" Caption="Rainyseasonjun" />
+            <c:FormField FieldID="RAINYSEASONJUL" DataType="Boolean" Caption="Rainyseasonjul" />
+            <c:FormField FieldID="RAINYSEASONAUG" DataType="Boolean" Caption="Rainyseasonaug" />
+            <c:FormField FieldID="RAINYSEASONSEP" DataType="Boolean" Caption="Rainyseasonsep" />
+            <c:FormField FieldID="RAINYSEASONOCT" DataType="Boolean" Caption="Rainyseasonoct" />
+            <c:FormField FieldID="RAINYSEASONNOV" DataType="Boolean" Caption="Rainyseasonnov" />
+            <c:FormField FieldID="RAINYSEASONDEC" DataType="Boolean" Caption="Rainyseasondec" />
+            <c:FormField FieldID="PLANTINGSEASONJAN" DataType="Boolean" Caption="Plantingseasonjan" />
+            <c:FormField FieldID="PLANTINGSEASONFEB" DataType="Boolean" Caption="Plantingseasonfeb" />
+            <c:FormField FieldID="PLANTINGSEASONMAR" DataType="Boolean" Caption="Plantingseasonmar" />
+            <c:FormField FieldID="PLANTINGSEASONAPR" DataType="Boolean" Caption="Plantingseasonapr" />
+            <c:FormField FieldID="PLANTINGSEASONMAY" DataType="Boolean" Caption="Plantingseasonmay" />
+            <c:FormField FieldID="PLANTINGSEASONJUN" DataType="Boolean" Caption="Plantingseasonjun" />
+            <c:FormField FieldID="PLANTINGSEASONJUL" DataType="Boolean" Caption="Plantingseasonjul" />
+            <c:FormField FieldID="PLANTINGSEASONAUG" DataType="Boolean" Caption="Plantingseasonaug" />
+            <c:FormField FieldID="PLANTINGSEASONSEP" DataType="Boolean" Caption="Plantingseasonsep" />
+            <c:FormField FieldID="PLANTINGSEASONOCT" DataType="Boolean" Caption="Plantingseasonoct" />
+            <c:FormField FieldID="PLANTINGSEASONNOV" DataType="Boolean" Caption="Plantingseasonnov" />
+            <c:FormField FieldID="PLANTINGSEASONDEC" DataType="Boolean" Caption="Plantingseasondec" />
+            <c:FormField FieldID="HARVESTSEASONJAN" DataType="Boolean" Caption="Harvestseasonjan" />
+            <c:FormField FieldID="HARVESTSEASONFEB" DataType="Boolean" Caption="Harvestseasonfeb" />
+            <c:FormField FieldID="HARVESTSEASONMAR" DataType="Boolean" Caption="Harvestseasonmar" />
+            <c:FormField FieldID="HARVESTSEASONAPR" DataType="Boolean" Caption="Harvestseasonapr" />
+            <c:FormField FieldID="HARVESTSEASONMAY" DataType="Boolean" Caption="Harvestseasonmay" />
+            <c:FormField FieldID="HARVESTSEASONJUN" DataType="Boolean" Caption="Harvestseasonjun" />
+            <c:FormField FieldID="HARVESTSEASONJUL" DataType="Boolean" Caption="Harvestseasonjul" />
+            <c:FormField FieldID="HARVESTSEASONAUG" DataType="Boolean" Caption="Harvestseasonaug" />
+            <c:FormField FieldID="HARVESTSEASONSEP" DataType="Boolean" Caption="Harvestseasonsep" />
+            <c:FormField FieldID="HARVESTSEASONOCT" DataType="Boolean" Caption="Harvestseasonoct" />
+            <c:FormField FieldID="HARVESTSEASONNOV" DataType="Boolean" Caption="Harvestseasonnov" />
+            <c:FormField FieldID="HARVESTSEASONDEC" DataType="Boolean" Caption="Harvestseasondec" />
+            <c:FormField FieldID="TIMEOFHUNGERJAN" DataType="Boolean" Caption="Timeofhungerjan" />
+            <c:FormField FieldID="TIMEOFHUNGERFEB" DataType="Boolean" Caption="Timeofhungerfeb" />
+            <c:FormField FieldID="TIMEOFHUNGERMAR" DataType="Boolean" Caption="Timeofhungermar" />
+            <c:FormField FieldID="TIMEOFHUNGERAPR" DataType="Boolean" Caption="Timeofhungerapr" />
+            <c:FormField FieldID="TIMEOFHUNGERMAY" DataType="Boolean" Caption="Timeofhungermay" />
+            <c:FormField FieldID="TIMEOFHUNGERJUN" DataType="Boolean" Caption="Timeofhungerjun" />
+            <c:FormField FieldID="TIMEOFHUNGERJUL" DataType="Boolean" Caption="Timeofhungerjul" />
+            <c:FormField FieldID="TIMEOFHUNGERAUG" DataType="Boolean" Caption="Timeofhungeraug" />
+            <c:FormField FieldID="TIMEOFHUNGERSEP" DataType="Boolean" Caption="Timeofhungersep" />
+            <c:FormField FieldID="TIMEOFHUNGEROCT" DataType="Boolean" Caption="Timeofhungeroct" />
+            <c:FormField FieldID="TIMEOFHUNGERNOV" DataType="Boolean" Caption="Timeofhungernov" />
+            <c:FormField FieldID="TIMEOFHUNGERDEC" DataType="Boolean" Caption="Timeofhungerdec" />
+            <c:FormField FieldID="RELIGIONCODE" MaxLength="100" Caption="Religion" />
+			<c:FormField FieldID="RELIGIONCODEID" DataType="Guid" Caption="ReligionCodeID"/>  <!-- Not displayed - only used for ui conditional logic -->
+            <c:FormField FieldID="RELIGIONOTHERDESC" MaxLength="50" Caption="Other Religion Description" />
+            <c:FormField FieldID="NUMCHRISTIANCHURCHES" DataType="SmallInt" Caption="Number of evangelical Christian churches" />
+            <c:FormField FieldID="PERCENTPROTESTANT" DataType="TinyInt" Caption="Percentage of local population that is Protestant" />
+            <c:FormField FieldID="CHRISTIANORGS" MaxLength="50" Caption="Name of Christian agencies/organizations providing relief, development, or programmatic interventions for children" />
+			<c:FormField FieldID="DISTANCETOMEDICALFACILITY" DataType="SmallInt" Caption="Distance to nearest medical facility" />
+			<c:FormField FieldID="DISTANCETOMEDICALFACILITYUNITOFMEASUREMENT" MaxLength="20" Caption="Distancetomedicalfacilityunitofmeasurement" />
+			<c:FormField FieldID="DAYSTOMEDICALFACILITY" DataType="TinyInt" Caption="Time to get to the nearest medical facility" />
+			<c:FormField FieldID="HOURSTOMEDICALFACILITY" DataType="TinyInt" Caption="Hourstomedicalfacility" />
+			<c:FormField FieldID="MINUTESTOMEDICALFACILITY" DataType="TinyInt" Caption="Minutestomedicalfacility" />
+			<c:FormField FieldID="HEALTHPROBLEMCHOLERA" DataType="Boolean" Caption="Cholera" />
+			<c:FormField FieldID="HEALTHPROBLEMDENGUE" DataType="Boolean" Caption="Dengue" />
+			<c:FormField FieldID="HEALTHPROBLEMDISABILITIES" DataType="Boolean" Caption="Disabilities" />
+			<c:FormField FieldID="HEALTHPROBLEMHIVAIDS" DataType="Boolean" Caption="HIV/AIDS" />
+			<c:FormField FieldID="HEALTHPROBLEMINTESTINAL" DataType="Boolean" Caption="Intestinal problems" />
+			<c:FormField FieldID="HEALTHPROBLEMMALARIA" DataType="Boolean" Caption="Malaria" />
+			<c:FormField FieldID="HEALTHPROBLEMTUBERCULOSIS" DataType="Boolean" Caption="Tuberculosis" />
+			<c:FormField FieldID="HEALTHPROBLEMOTHER" DataType="Boolean" Caption="Other" />
+			<c:FormField FieldID="HEALTHPROBLEMOTHERDESC" MaxLength="50" Caption="otherdesc" />
+
+			<c:FormField FieldID="RELIGIONOTHERSEPARATOR" MaxLength="1" Description="Separator for Other Religion field" />
+			<c:FormField FieldID="HEALTHPROBLEMOTHERSEPARATOR" MaxLength="1" Description="Separator for Other Health Problems field" />
+			<c:FormField FieldID="TERRAINOTHERSEPARATOR" MaxLength="1" Description="Separator for Other Terrain field" />
+			<c:FormField FieldID="TRANSPORTATIONTYPEOTHERSEPARATOR" MaxLength="1" Description="Separator for Other Transportation field" />
+			<c:FormField FieldID="PRIMARYDIETOTHERSEPARATOR" MaxLength="1" Description="Separator for Other Primary Diet field" />
+
+		</c:FormFields>
+        <c:FormUIComponent />
+
+        <c:WebUIComponent>
+            <c:UIModel AssemblyName="MoM.Sponsorship.ChildProject.UIModel.dll" ClassName="MoM.Sponsorship.ChildProject.UIModel.ChildProjectCommunityViewFormUIModel" />
+            <c:WebUI>
+                <c:ExternalResource Url="browser/htmlforms/custom/ChildProject.Community.ViewForm.html" />
+            </c:WebUI>
+        </c:WebUIComponent>
+
+        
+
+        
+    </c:FormMetaData>
+</ViewDataFormTemplateSpec>

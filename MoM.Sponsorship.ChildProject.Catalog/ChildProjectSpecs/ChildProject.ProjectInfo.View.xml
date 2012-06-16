@@ -1,0 +1,379 @@
+<ViewDataFormTemplateSpec 
+    xmlns="bb_appfx_viewdataformtemplate"
+    xmlns:common="bb_appfx_commontypes"
+    ID="9c433e5e-3537-4a11-9dc2-30b0e5ee9ac9"
+    Name="Child Project Project Info View Form"
+    Description="Used to view Child Project Project Information"
+    Author="Cary Mayeda"
+    DataFormInstanceID="8fe5c882-2f35-4906-8438-4f445d351548"
+    RecordType="Child Project Extension"
+    common:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    >
+
+<!-- 
+Remarks:    ID is a foreign key to the related CONSTITUENT.ID
+
+History:
+Date            Modified By     Comments
+27-Mar-2012     CMayeda         Initial Version
+02-May-2012		CMayeda			Removed CONSTITUENTID column
+-->
+
+	<SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_PROJECTINFO">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_PROJECTINFO
+(
+	@ID uniqueidentifier,
+	@DATALOADED bit = 0 output,
+    @HOLIDAYLETTERSDUECODE nvarchar(100) = null output,
+    @LETTER1DUECODE nvarchar(100) = null output,
+    @LETTER2DUECODE nvarchar(100) = null output,
+    @PHOTOUPDATEDUECODE nvarchar(100) = null output,
+    @PROFILEUPDATECODE nvarchar(100) = null output,
+    @TECHNOLOGYAVAILABLEELECTRICITY bit = null output,
+    @TECHNOLOGYAVAILABLETELEPHONE bit = null output,
+    @TECHNOLOGYAVAILABLECOMPUTER bit = null output,
+    @TECHNOLOGYAVAILABLEINTERNET bit = null output,
+    @MAXCHILDRENCOUNT smallint = null output,
+    @MAXGRADELEVELCODEID uniqueidentifier = null output,
+	@MAXGRADELEVELCODE nvarchar(100) = null output,
+	@MAXGRADELEVEL nvarchar(10) = null output,
+    @MAXCHILDAGE tinyint = null output,
+    @MAXCHILDAGEEXCEPTIONREASON nvarchar(100) = null output,
+    @MONTHSCHOOLYEARBEGINSCODE nvarchar(100) = null output,
+    @MONTHSCHOOLYEARENDSCODE nvarchar(100) = null output,
+	@PARTICIPATIONAGERANGE1LOWERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE1UPPERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE1JAN bit = null output,
+    @PARTICIPATIONAGERANGE1FEB bit = null output,
+    @PARTICIPATIONAGERANGE1MAR bit = null output,
+    @PARTICIPATIONAGERANGE1APR bit = null output,
+    @PARTICIPATIONAGERANGE1MAY bit = null output,
+    @PARTICIPATIONAGERANGE1JUN bit = null output,
+    @PARTICIPATIONAGERANGE1JUL bit = null output,
+    @PARTICIPATIONAGERANGE1AUG bit = null output,
+    @PARTICIPATIONAGERANGE1SEP bit = null output,
+    @PARTICIPATIONAGERANGE1OCT bit = null output,
+    @PARTICIPATIONAGERANGE1NOV bit = null output,
+    @PARTICIPATIONAGERANGE1DEC bit = null output,
+    @PARTICIPATIONAGERANGE1SUN bit = null output,
+    @PARTICIPATIONAGERANGE1MON bit = null output,
+    @PARTICIPATIONAGERANGE1TUE bit = null output,
+    @PARTICIPATIONAGERANGE1WED bit = null output,
+    @PARTICIPATIONAGERANGE1THU bit = null output,
+    @PARTICIPATIONAGERANGE1FRI bit = null output,
+    @PARTICIPATIONAGERANGE1SAT bit = null output,
+    @PARTICIPATIONAGERANGE1HOURSPERWEEK tinyint = null output,
+    @PARTICIPATIONAGERANGE2LOWERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE2UPPERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE2JAN bit = null output,
+    @PARTICIPATIONAGERANGE2FEB bit = null output,
+    @PARTICIPATIONAGERANGE2MAR bit = null output,
+    @PARTICIPATIONAGERANGE2APR bit = null output,
+    @PARTICIPATIONAGERANGE2MAY bit = null output,
+    @PARTICIPATIONAGERANGE2JUN bit = null output,
+    @PARTICIPATIONAGERANGE2JUL bit = null output,
+    @PARTICIPATIONAGERANGE2AUG bit = null output,
+    @PARTICIPATIONAGERANGE2SEP bit = null output,
+    @PARTICIPATIONAGERANGE2OCT bit = null output,
+    @PARTICIPATIONAGERANGE2NOV bit = null output,
+    @PARTICIPATIONAGERANGE2DEC bit = null output,
+    @PARTICIPATIONAGERANGE2SUN bit = null output,
+    @PARTICIPATIONAGERANGE2MON bit = null output,
+    @PARTICIPATIONAGERANGE2TUE bit = null output,
+    @PARTICIPATIONAGERANGE2WED bit = null output,
+    @PARTICIPATIONAGERANGE2THU bit = null output,
+    @PARTICIPATIONAGERANGE2FRI bit = null output,
+    @PARTICIPATIONAGERANGE2SAT bit = null output,
+    @PARTICIPATIONAGERANGE2HOURSPERWEEK tinyint = null output,
+    @PARTICIPATIONAGERANGE3LOWERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE3UPPERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE3JAN bit = null output,
+    @PARTICIPATIONAGERANGE3FEB bit = null output,
+    @PARTICIPATIONAGERANGE3MAR bit = null output,
+    @PARTICIPATIONAGERANGE3APR bit = null output,
+    @PARTICIPATIONAGERANGE3MAY bit = null output,
+    @PARTICIPATIONAGERANGE3JUN bit = null output,
+    @PARTICIPATIONAGERANGE3JUL bit = null output,
+    @PARTICIPATIONAGERANGE3AUG bit = null output,
+    @PARTICIPATIONAGERANGE3SEP bit = null output,
+    @PARTICIPATIONAGERANGE3OCT bit = null output,
+    @PARTICIPATIONAGERANGE3NOV bit = null output,
+    @PARTICIPATIONAGERANGE3DEC bit = null output,
+    @PARTICIPATIONAGERANGE3SUN bit = null output,
+    @PARTICIPATIONAGERANGE3MON bit = null output,
+    @PARTICIPATIONAGERANGE3TUE bit = null output,
+    @PARTICIPATIONAGERANGE3WED bit = null output,
+    @PARTICIPATIONAGERANGE3THU bit = null output,
+    @PARTICIPATIONAGERANGE3FRI bit = null output,
+    @PARTICIPATIONAGERANGE3SAT bit = null output,
+    @PARTICIPATIONAGERANGE3HOURSPERWEEK tinyint = null output,
+    @PARTICIPATIONAGERANGE4LOWERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE4UPPERLIMIT tinyint = null output,
+    @PARTICIPATIONAGERANGE4JAN bit = null output,
+    @PARTICIPATIONAGERANGE4FEB bit = null output,
+    @PARTICIPATIONAGERANGE4MAR bit = null output,
+    @PARTICIPATIONAGERANGE4APR bit = null output,
+    @PARTICIPATIONAGERANGE4MAY bit = null output,
+    @PARTICIPATIONAGERANGE4JUN bit = null output,
+    @PARTICIPATIONAGERANGE4JUL bit = null output,
+    @PARTICIPATIONAGERANGE4AUG bit = null output,
+    @PARTICIPATIONAGERANGE4SEP bit = null output,
+    @PARTICIPATIONAGERANGE4OCT bit = null output,
+    @PARTICIPATIONAGERANGE4NOV bit = null output,
+    @PARTICIPATIONAGERANGE4DEC bit = null output,
+    @PARTICIPATIONAGERANGE4SUN bit = null output,
+    @PARTICIPATIONAGERANGE4MON bit = null output,
+    @PARTICIPATIONAGERANGE4TUE bit = null output,
+    @PARTICIPATIONAGERANGE4WED bit = null output,
+    @PARTICIPATIONAGERANGE4THU bit = null output,
+    @PARTICIPATIONAGERANGE4FRI bit = null output,
+    @PARTICIPATIONAGERANGE4SAT bit = null output,
+    @PARTICIPATIONAGERANGE4HOURSPERWEEK tinyint = null output    
+)
+as
+	set nocount on;
+	
+	-- be sure to set this, in case the select returns no rows
+	set @DATALOADED = 0;
+	
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.
+	select @DATALOADED = 1,
+           @HOLIDAYLETTERSDUECODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = HOLIDAYLETTERSDUECODEID), 
+           @LETTER1DUECODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = LETTER1DUECODEID), 
+           @LETTER2DUECODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = LETTER2DUECODEID), 
+           @PHOTOUPDATEDUECODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = PHOTOUPDATEDUECODEID), 
+           @PROFILEUPDATECODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = PROFILEUPDATECODEID), 
+           @TECHNOLOGYAVAILABLEELECTRICITY = TECHNOLOGYAVAILABLEELECTRICITY, 
+           @TECHNOLOGYAVAILABLETELEPHONE = TECHNOLOGYAVAILABLETELEPHONE, 
+           @TECHNOLOGYAVAILABLECOMPUTER = TECHNOLOGYAVAILABLECOMPUTER, 
+           @TECHNOLOGYAVAILABLEINTERNET = TECHNOLOGYAVAILABLEINTERNET, 
+           @MAXCHILDRENCOUNT = MAXCHILDRENCOUNT, 
+           @MAXGRADELEVELCODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTMAXGRADELEVELCODE where ID = MAXGRADELEVELCODEID), 
+		   @MAXGRADELEVELCODEID = MAXGRADELEVELCODEID,
+		   @MAXGRADELEVEL = MAXGRADELEVEL,
+           @MAXCHILDAGE = MAXCHILDAGE, 
+           @MAXCHILDAGEEXCEPTIONREASON = MAXCHILDAGEEXCEPTIONREASON, 
+           @MONTHSCHOOLYEARBEGINSCODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = MONTHSCHOOLYEARBEGINSCODEID), 
+           @MONTHSCHOOLYEARENDSCODE = (select DESCRIPTION from dbo.USR_MONTHCODE where ID = MONTHSCHOOLYEARENDSCODEID),
+		   @PARTICIPATIONAGERANGE1LOWERLIMIT = PARTICIPATIONAGERANGE1LOWERLIMIT, 
+           @PARTICIPATIONAGERANGE1UPPERLIMIT = PARTICIPATIONAGERANGE1UPPERLIMIT, 
+           @PARTICIPATIONAGERANGE1JAN = PARTICIPATIONAGERANGE1JAN, 
+           @PARTICIPATIONAGERANGE1FEB = PARTICIPATIONAGERANGE1FEB, 
+           @PARTICIPATIONAGERANGE1MAR = PARTICIPATIONAGERANGE1MAR, 
+           @PARTICIPATIONAGERANGE1APR = PARTICIPATIONAGERANGE1APR, 
+           @PARTICIPATIONAGERANGE1MAY = PARTICIPATIONAGERANGE1MAY, 
+           @PARTICIPATIONAGERANGE1JUN = PARTICIPATIONAGERANGE1JUN, 
+           @PARTICIPATIONAGERANGE1JUL = PARTICIPATIONAGERANGE1JUL, 
+           @PARTICIPATIONAGERANGE1AUG = PARTICIPATIONAGERANGE1AUG, 
+           @PARTICIPATIONAGERANGE1SEP = PARTICIPATIONAGERANGE1SEP, 
+           @PARTICIPATIONAGERANGE1OCT = PARTICIPATIONAGERANGE1OCT, 
+           @PARTICIPATIONAGERANGE1NOV = PARTICIPATIONAGERANGE1NOV, 
+           @PARTICIPATIONAGERANGE1DEC = PARTICIPATIONAGERANGE1DEC, 
+           @PARTICIPATIONAGERANGE1SUN = PARTICIPATIONAGERANGE1SUN, 
+           @PARTICIPATIONAGERANGE1MON = PARTICIPATIONAGERANGE1MON, 
+           @PARTICIPATIONAGERANGE1TUE = PARTICIPATIONAGERANGE1TUE, 
+           @PARTICIPATIONAGERANGE1WED = PARTICIPATIONAGERANGE1WED, 
+           @PARTICIPATIONAGERANGE1THU = PARTICIPATIONAGERANGE1THU, 
+           @PARTICIPATIONAGERANGE1FRI = PARTICIPATIONAGERANGE1FRI, 
+           @PARTICIPATIONAGERANGE1SAT = PARTICIPATIONAGERANGE1SAT, 
+           @PARTICIPATIONAGERANGE1HOURSPERWEEK = PARTICIPATIONAGERANGE1HOURSPERWEEK, 
+           @PARTICIPATIONAGERANGE2LOWERLIMIT = PARTICIPATIONAGERANGE2LOWERLIMIT, 
+           @PARTICIPATIONAGERANGE2UPPERLIMIT = PARTICIPATIONAGERANGE2UPPERLIMIT, 
+           @PARTICIPATIONAGERANGE2JAN = PARTICIPATIONAGERANGE2JAN, 
+           @PARTICIPATIONAGERANGE2FEB = PARTICIPATIONAGERANGE2FEB, 
+           @PARTICIPATIONAGERANGE2MAR = PARTICIPATIONAGERANGE2MAR, 
+           @PARTICIPATIONAGERANGE2APR = PARTICIPATIONAGERANGE2APR, 
+           @PARTICIPATIONAGERANGE2MAY = PARTICIPATIONAGERANGE2MAY, 
+           @PARTICIPATIONAGERANGE2JUN = PARTICIPATIONAGERANGE2JUN, 
+           @PARTICIPATIONAGERANGE2JUL = PARTICIPATIONAGERANGE2JUL, 
+           @PARTICIPATIONAGERANGE2AUG = PARTICIPATIONAGERANGE2AUG, 
+           @PARTICIPATIONAGERANGE2SEP = PARTICIPATIONAGERANGE2SEP, 
+           @PARTICIPATIONAGERANGE2OCT = PARTICIPATIONAGERANGE2OCT, 
+           @PARTICIPATIONAGERANGE2NOV = PARTICIPATIONAGERANGE2NOV, 
+           @PARTICIPATIONAGERANGE2DEC = PARTICIPATIONAGERANGE2DEC, 
+           @PARTICIPATIONAGERANGE2SUN = PARTICIPATIONAGERANGE2SUN, 
+           @PARTICIPATIONAGERANGE2MON = PARTICIPATIONAGERANGE2MON, 
+           @PARTICIPATIONAGERANGE2TUE = PARTICIPATIONAGERANGE2TUE, 
+           @PARTICIPATIONAGERANGE2WED = PARTICIPATIONAGERANGE2WED, 
+           @PARTICIPATIONAGERANGE2THU = PARTICIPATIONAGERANGE2THU, 
+           @PARTICIPATIONAGERANGE2FRI = PARTICIPATIONAGERANGE2FRI, 
+           @PARTICIPATIONAGERANGE2SAT = PARTICIPATIONAGERANGE2SAT, 
+           @PARTICIPATIONAGERANGE2HOURSPERWEEK = PARTICIPATIONAGERANGE2HOURSPERWEEK, 
+           @PARTICIPATIONAGERANGE3LOWERLIMIT = PARTICIPATIONAGERANGE3LOWERLIMIT, 
+           @PARTICIPATIONAGERANGE3UPPERLIMIT = PARTICIPATIONAGERANGE3UPPERLIMIT, 
+           @PARTICIPATIONAGERANGE3JAN = PARTICIPATIONAGERANGE3JAN, 
+           @PARTICIPATIONAGERANGE3FEB = PARTICIPATIONAGERANGE3FEB, 
+           @PARTICIPATIONAGERANGE3MAR = PARTICIPATIONAGERANGE3MAR, 
+           @PARTICIPATIONAGERANGE3APR = PARTICIPATIONAGERANGE3APR, 
+           @PARTICIPATIONAGERANGE3MAY = PARTICIPATIONAGERANGE3MAY, 
+           @PARTICIPATIONAGERANGE3JUN = PARTICIPATIONAGERANGE3JUN, 
+           @PARTICIPATIONAGERANGE3JUL = PARTICIPATIONAGERANGE3JUL, 
+           @PARTICIPATIONAGERANGE3AUG = PARTICIPATIONAGERANGE3AUG, 
+           @PARTICIPATIONAGERANGE3SEP = PARTICIPATIONAGERANGE3SEP, 
+           @PARTICIPATIONAGERANGE3OCT = PARTICIPATIONAGERANGE3OCT, 
+           @PARTICIPATIONAGERANGE3NOV = PARTICIPATIONAGERANGE3NOV, 
+           @PARTICIPATIONAGERANGE3DEC = PARTICIPATIONAGERANGE3DEC, 
+           @PARTICIPATIONAGERANGE3SUN = PARTICIPATIONAGERANGE3SUN, 
+           @PARTICIPATIONAGERANGE3MON = PARTICIPATIONAGERANGE3MON, 
+           @PARTICIPATIONAGERANGE3TUE = PARTICIPATIONAGERANGE3TUE, 
+           @PARTICIPATIONAGERANGE3WED = PARTICIPATIONAGERANGE3WED, 
+           @PARTICIPATIONAGERANGE3THU = PARTICIPATIONAGERANGE3THU, 
+           @PARTICIPATIONAGERANGE3FRI = PARTICIPATIONAGERANGE3FRI, 
+           @PARTICIPATIONAGERANGE3SAT = PARTICIPATIONAGERANGE3SAT, 
+           @PARTICIPATIONAGERANGE3HOURSPERWEEK = PARTICIPATIONAGERANGE3HOURSPERWEEK, 
+           @PARTICIPATIONAGERANGE4LOWERLIMIT = PARTICIPATIONAGERANGE4LOWERLIMIT, 
+           @PARTICIPATIONAGERANGE4UPPERLIMIT = PARTICIPATIONAGERANGE4UPPERLIMIT, 
+           @PARTICIPATIONAGERANGE4JAN = PARTICIPATIONAGERANGE4JAN, 
+           @PARTICIPATIONAGERANGE4FEB = PARTICIPATIONAGERANGE4FEB, 
+           @PARTICIPATIONAGERANGE4MAR = PARTICIPATIONAGERANGE4MAR, 
+           @PARTICIPATIONAGERANGE4APR = PARTICIPATIONAGERANGE4APR, 
+           @PARTICIPATIONAGERANGE4MAY = PARTICIPATIONAGERANGE4MAY, 
+           @PARTICIPATIONAGERANGE4JUN = PARTICIPATIONAGERANGE4JUN, 
+           @PARTICIPATIONAGERANGE4JUL = PARTICIPATIONAGERANGE4JUL, 
+           @PARTICIPATIONAGERANGE4AUG = PARTICIPATIONAGERANGE4AUG, 
+           @PARTICIPATIONAGERANGE4SEP = PARTICIPATIONAGERANGE4SEP, 
+           @PARTICIPATIONAGERANGE4OCT = PARTICIPATIONAGERANGE4OCT, 
+           @PARTICIPATIONAGERANGE4NOV = PARTICIPATIONAGERANGE4NOV, 
+           @PARTICIPATIONAGERANGE4DEC = PARTICIPATIONAGERANGE4DEC, 
+           @PARTICIPATIONAGERANGE4SUN = PARTICIPATIONAGERANGE4SUN, 
+           @PARTICIPATIONAGERANGE4MON = PARTICIPATIONAGERANGE4MON, 
+           @PARTICIPATIONAGERANGE4TUE = PARTICIPATIONAGERANGE4TUE, 
+           @PARTICIPATIONAGERANGE4WED = PARTICIPATIONAGERANGE4WED, 
+           @PARTICIPATIONAGERANGE4THU = PARTICIPATIONAGERANGE4THU, 
+           @PARTICIPATIONAGERANGE4FRI = PARTICIPATIONAGERANGE4FRI, 
+           @PARTICIPATIONAGERANGE4SAT = PARTICIPATIONAGERANGE4SAT, 
+           @PARTICIPATIONAGERANGE4HOURSPERWEEK = PARTICIPATIONAGERANGE4HOURSPERWEEK
+
+	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	where ID = @ID
+	
+	return 0;
+]]>
+		</common:CreateProcedureSQL>
+	</SPDataForm>
+	<common:FormMetaData FixedDialog="true">
+		<common:FormFields>
+			<common:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
+			<common:FormField FieldID="HOLIDAYLETTERSDUECODE" MaxLength="100" Caption="Holiday letters due" />
+			<common:FormField FieldID="LETTER1DUECODE" MaxLength="100" Caption="Letter 1 due" />
+			<common:FormField FieldID="LETTER2DUECODE" MaxLength="100" Caption="Letter 2 due" />
+			<common:FormField FieldID="PHOTOUPDATEDUECODE" MaxLength="100" Caption="Photo update due" />
+			<common:FormField FieldID="PROFILEUPDATECODE" MaxLength="100" Caption="Profile update" />
+			<common:FormField FieldID="TECHNOLOGYAVAILABLEELECTRICITY" DataType="Boolean" Caption="Electricity" />
+			<common:FormField FieldID="TECHNOLOGYAVAILABLETELEPHONE" DataType="Boolean" Caption="Telephone" />
+			<common:FormField FieldID="TECHNOLOGYAVAILABLECOMPUTER" DataType="Boolean" Caption="Computer" />
+			<common:FormField FieldID="TECHNOLOGYAVAILABLEINTERNET" DataType="Boolean" Caption="Internet connection" />
+			<common:FormField FieldID="MAXCHILDRENCOUNT" DataType="SmallInt" Caption="Maximum number of children" />
+			<common:FormField FieldID="MAXGRADELEVELCODE" MaxLength="100" Caption="Maximum grade level" />
+			<common:FormField FieldID="MAXGRADELEVELCODEID" DataType="Guid" Hidden="true" Caption="MaximumGradeLevelID" />
+			<common:FormField FieldID="MAXGRADELEVEL" MaxLength="10" Caption="Grade level" />
+			<common:FormField FieldID="MAXCHILDAGE" DataType="TinyInt" Caption="Maximum child age" />
+			<common:FormField FieldID="MAXCHILDAGEEXCEPTIONREASON" MaxLength="100" Caption="If not 18, explain" />
+			<common:FormField FieldID="MONTHSCHOOLYEARBEGINSCODE" MaxLength="100" Caption="Month school year begins" />
+			<common:FormField FieldID="MONTHSCHOOLYEARENDSCODE" MaxLength="100" Caption="Month school year ends" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1LOWERLIMIT" DataType="TinyInt" Caption="Participationagerange1lowerlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1UPPERLIMIT" DataType="TinyInt" Caption="Participationagerange1upperlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1JAN" DataType="Boolean" Caption="Participationagerange1jan" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1FEB" DataType="Boolean" Caption="Participationagerange1feb" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1MAR" DataType="Boolean" Caption="Participationagerange1mar" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1APR" DataType="Boolean" Caption="Participationagerange1apr" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1MAY" DataType="Boolean" Caption="Participationagerange1may" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1JUN" DataType="Boolean" Caption="Participationagerange1jun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1JUL" DataType="Boolean" Caption="Participationagerange1jul" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1AUG" DataType="Boolean" Caption="Participationagerange1aug" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1SEP" DataType="Boolean" Caption="Participationagerange1sep" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1OCT" DataType="Boolean" Caption="Participationagerange1oct" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1NOV" DataType="Boolean" Caption="Participationagerange1nov" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1DEC" DataType="Boolean" Caption="Participationagerange1dec" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1SUN" DataType="Boolean" Caption="Participationagerange1sun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1MON" DataType="Boolean" Caption="Participationagerange1mon" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1TUE" DataType="Boolean" Caption="Participationagerange1tue" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1WED" DataType="Boolean" Caption="Participationagerange1wed" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1THU" DataType="Boolean" Caption="Participationagerange1thu" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1FRI" DataType="Boolean" Caption="Participationagerange1fri" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1SAT" DataType="Boolean" Caption="Participationagerange1sat" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE1HOURSPERWEEK" DataType="TinyInt" Caption="Participationagerange1hoursperweek" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2LOWERLIMIT" DataType="TinyInt" Caption="Participationagerange2lowerlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2UPPERLIMIT" DataType="TinyInt" Caption="Participationagerange2upperlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2JAN" DataType="Boolean" Caption="Participationagerange2jan" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2FEB" DataType="Boolean" Caption="Participationagerange2feb" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2MAR" DataType="Boolean" Caption="Participationagerange2mar" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2APR" DataType="Boolean" Caption="Participationagerange2apr" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2MAY" DataType="Boolean" Caption="Participationagerange2may" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2JUN" DataType="Boolean" Caption="Participationagerange2jun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2JUL" DataType="Boolean" Caption="Participationagerange2jul" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2AUG" DataType="Boolean" Caption="Participationagerange2aug" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2SEP" DataType="Boolean" Caption="Participationagerange2sep" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2OCT" DataType="Boolean" Caption="Participationagerange2oct" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2NOV" DataType="Boolean" Caption="Participationagerange2nov" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2DEC" DataType="Boolean" Caption="Participationagerange2dec" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2SUN" DataType="Boolean" Caption="Participationagerange2sun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2MON" DataType="Boolean" Caption="Participationagerange2mon" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2TUE" DataType="Boolean" Caption="Participationagerange2tue" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2WED" DataType="Boolean" Caption="Participationagerange2wed" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2THU" DataType="Boolean" Caption="Participationagerange2thu" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2FRI" DataType="Boolean" Caption="Participationagerange2fri" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2SAT" DataType="Boolean" Caption="Participationagerange2sat" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE2HOURSPERWEEK" DataType="TinyInt" Caption="Participationagerange2hoursperweek" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3LOWERLIMIT" DataType="TinyInt" Caption="Participationagerange3lowerlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3UPPERLIMIT" DataType="TinyInt" Caption="Participationagerange3upperlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3JAN" DataType="Boolean" Caption="Participationagerange3jan" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3FEB" DataType="Boolean" Caption="Participationagerange3feb" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3MAR" DataType="Boolean" Caption="Participationagerange3mar" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3APR" DataType="Boolean" Caption="Participationagerange3apr" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3MAY" DataType="Boolean" Caption="Participationagerange3may" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3JUN" DataType="Boolean" Caption="Participationagerange3jun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3JUL" DataType="Boolean" Caption="Participationagerange3jul" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3AUG" DataType="Boolean" Caption="Participationagerange3aug" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3SEP" DataType="Boolean" Caption="Participationagerange3sep" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3OCT" DataType="Boolean" Caption="Participationagerange3oct" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3NOV" DataType="Boolean" Caption="Participationagerange3nov" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3DEC" DataType="Boolean" Caption="Participationagerange3dec" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3SUN" DataType="Boolean" Caption="Participationagerange3sun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3MON" DataType="Boolean" Caption="Participationagerange3mon" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3TUE" DataType="Boolean" Caption="Participationagerange3tue" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3WED" DataType="Boolean" Caption="Participationagerange3wed" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3THU" DataType="Boolean" Caption="Participationagerange3thu" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3FRI" DataType="Boolean" Caption="Participationagerange3fri" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3SAT" DataType="Boolean" Caption="Participationagerange3sat" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE3HOURSPERWEEK" DataType="TinyInt" Caption="Participationagerange3hoursperweek" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4LOWERLIMIT" DataType="TinyInt" Caption="Participationagerange4lowerlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4UPPERLIMIT" DataType="TinyInt" Caption="Participationagerange4upperlimit" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4JAN" DataType="Boolean" Caption="Participationagerange4jan" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4FEB" DataType="Boolean" Caption="Participationagerange4feb" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4MAR" DataType="Boolean" Caption="Participationagerange4mar" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4APR" DataType="Boolean" Caption="Participationagerange4apr" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4MAY" DataType="Boolean" Caption="Participationagerange4may" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4JUN" DataType="Boolean" Caption="Participationagerange4jun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4JUL" DataType="Boolean" Caption="Participationagerange4jul" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4AUG" DataType="Boolean" Caption="Participationagerange4aug" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4SEP" DataType="Boolean" Caption="Participationagerange4sep" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4OCT" DataType="Boolean" Caption="Participationagerange4oct" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4NOV" DataType="Boolean" Caption="Participationagerange4nov" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4DEC" DataType="Boolean" Caption="Participationagerange4dec" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4SUN" DataType="Boolean" Caption="Participationagerange4sun" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4MON" DataType="Boolean" Caption="Participationagerange4mon" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4TUE" DataType="Boolean" Caption="Participationagerange4tue" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4WED" DataType="Boolean" Caption="Participationagerange4wed" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4THU" DataType="Boolean" Caption="Participationagerange4thu" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4FRI" DataType="Boolean" Caption="Participationagerange4fri" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4SAT" DataType="Boolean" Caption="Participationagerange4sat" />
+			<common:FormField FieldID="PARTICIPATIONAGERANGE4HOURSPERWEEK" DataType="TinyInt" Caption="Participationagerange4hoursperweek" />
+
+		</common:FormFields>
+		<common:FormUIComponent />
+
+        <common:WebUIComponent>
+            <common:UIModel AssemblyName="MoM.Sponsorship.ChildProject.UIModel.dll" ClassName="MoM.Sponsorship.ChildProject.UIModel.ChildProjectProjectInfoViewFormUIModel" />
+            <common:WebUI>
+                <common:ExternalResource Url="browser/htmlforms/custom/ChildProject.ProjectInfo.ViewForm.html" />
+            </common:WebUI>
+        </common:WebUIComponent>
+
+
+	</common:FormMetaData>
+</ViewDataFormTemplateSpec>

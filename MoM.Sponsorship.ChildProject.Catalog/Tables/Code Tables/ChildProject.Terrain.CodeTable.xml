@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="c8160439-5e58-401f-9c29-8f5b17200114" 
+	Name="Child Project Terrain"
+	Description="Terrain code types of the community that the chid project is in"
+	Author="Cary Mayeda"
+	DBTablename="USR_CHILDPROJECTTERRAINCODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+/>

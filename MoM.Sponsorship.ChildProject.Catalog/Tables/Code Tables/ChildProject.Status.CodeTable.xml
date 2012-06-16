@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="d9877ff0-e23c-4b4a-b6a0-f7d3d9e8487d" 
+	Name="Child Project Status"
+	Description="Child Project Status"
+	Author="Cary Mayeda"
+	DBTablename="USR_CHILDPROJECTSTATUSCODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+/>

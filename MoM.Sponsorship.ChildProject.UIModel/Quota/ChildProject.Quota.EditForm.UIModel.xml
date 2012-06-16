@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+	<SpecFileName>ChildProject.Quota.Edit.xml</SpecFileName>
+	<Namespace></Namespace>
+	<ClassName>ChildProjectQuotaEditFormUIModel</ClassName>
+	<HtmlInfo GenerateHtml="false">
+		<HtmlFile>ChildProjectQuotaEditForm.html</HtmlFile>
+		<HtmlFolder>custom\ChildProject</HtmlFolder>
+	</HtmlInfo>
+	<GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

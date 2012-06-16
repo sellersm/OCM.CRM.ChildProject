@@ -1,0 +1,79 @@
+﻿<RecordOperationSpec 
+	xmlns="bb_appfx_recordoperation"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="8f0b7777-709a-43c6-9f5b-650a2e0fad71" 
+	Name="Child Project Update Country" 
+	Description="Get the country id from the field office of the parent sponsorship location with type of Country Office"
+	Author="Cary Mayeda"
+	OperationType="Update"
+    RecordType="Child Project Extension"
+    common:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+	>
+
+	<SPRecord>
+		<SPOperationImplementation SPName="USP_CHILDPROJECT_UPDATE_COUNTRYID">
+			<common:CreateProcedureSQL>
+				<![CDATA[
+create procedure dbo.USP_CHILDPROJECT_UPDATE_COUNTRYID
+(
+	@ID uniqueidentifier,
+	@CHANGEAGENTID uniqueidentifier
+)
+as begin
+
+	declare @countryID uniqueidentifier
+	declare @countryOfficeLocationType uniqueidentifier
+	
+	if @CHANGEAGENTID is null  
+		exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+				
+	declare @CURRENTDATE datetime
+	set @CURRENTDATE = getdate()
+	
+	begin try
+		select @countryOfficeLocationType = ID from SPONSORSHIPLOCATIONTYPECODE where DESCRIPTION = 'Country Office'
+		if @countryOfficeLocationType is null
+			RAISERROR 1000000 'Couldn''t find the "Country Office" Sponsorship Location Type'
+	end try
+	begin catch
+	    exec dbo.USP_RAISE_ERROR
+		return 1	
+	end catch
+
+	begin try
+		select  @countryID = case 
+								when parentlocation.SPONSORSHIPLOCATIONTYPECODEID =  @countryOfficeLocationType  then parentlocation.FIELDOFFICEID
+								when grandparentlocation.SPONSORSHIPLOCATIONTYPECODEID =  @countryOfficeLocationType  then grandparentlocation.FIELDOFFICEID
+								else null
+							 end
+		  from  dbo.SPONSORSHIPLOCATION projectlocation
+	 left join  dbo.SPONSORSHIPLOCATION parentlocation ON 
+					parentlocation.HIERARCHYPATH = projectlocation.HIERARCHYPATH.GetAncestor(1)
+	 left join  dbo.SPONSORSHIPLOCATION grandparentlocation ON 		
+					grandparentlocation.HIERARCHYPATH = parentlocation.HIERARCHYPATH.GetAncestor(1)
+		 where  projectlocation.FIELDOFFICEID = @ID
+	 
+		
+		if @countryID is null 
+			RAISERROR 1000000 'Couldn''t find the "Country Office" ancestor Sponsorship Location'
+			
+		update dbo.USR_CHILDPROJECTEXTENSION set	
+			COUNTRYEXTENSIONID = @countryID
+		where ID = @ID
+	end try
+	begin catch
+	    exec dbo.USP_RAISE_ERROR
+		return 1	
+	end catch
+
+	return 0;
+	
+end
+				]]>
+			</common:CreateProcedureSQL>
+		</SPOperationImplementation>
+	</SPRecord>
+
+
+
+</RecordOperationSpec>

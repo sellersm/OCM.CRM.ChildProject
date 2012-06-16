@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="0446ff29-8310-4092-b287-3f8adfe70fb9" 
+	Name="Child Project Climate"
+	Description="Climate codes for the child project"
+	Author="Cary Mayeda"
+	DBTablename="USR_CHILDPROJECTCLIMATECODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+/>
