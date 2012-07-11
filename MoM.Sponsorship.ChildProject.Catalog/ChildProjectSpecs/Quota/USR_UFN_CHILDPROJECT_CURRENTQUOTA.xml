@@ -2,46 +2,49 @@
 	xmlns="bb_appfx_sqlfunction"
 	xmlns:common="bb_appfx_commontypes" 
 	ID="6d203954-3694-4170-b9d6-8a6bb242cde3"
-	Name="USR_UFN_CHILDPROJECTCURRENTQUOTA"
+	Name="USR_UFN_CHILDPROJECT_CURRENTQUOTA"
 	Description="Returns the current quota for a child project"
 	Author="Cary Mayeda"
-	DBFunctionName="USR_UFN_CHILDPROJECTCURRENTQUOTA"
-	>
+	DBFunctionName="USR_UFN_CHILDPROJECT_CURRENTQUOTA" >
 
-<!-- 
-Remarks:    This finds the first month with a non zero quota value starting with the current month and going backwards in time.  Future months are ignored
-			If no non-zero value is found, use the Inital Quota value.
-			Used in computed columns in the Child Project Extension table
+	<!-- 
+	Remarks:	This finds the first month with a non zero quota value starting with the current month and going backwards in time.  Future months are ignored
+				If no non-zero value is found, use the Inital Quota value.
+				Used in computed columns in the Child Project Extension table
+			
+				This returns 0 if it is a country quota.  The calling code must manage the type of quota
 
-History:
-Date            Modified By     Comments
-01-May-2012     CMayeda         Initial Version
-*************  NEED TO ACCOUNT FOR COUNTRY QUOTA  ******************
--->
+	History:
+	Date            Modified By     Comments
+	01-May-2012     CMayeda         Initial Version
+	10-Jul-2012		CMayeda			Changed this to return 0 if it is a country quota
+	-->
 
 	<CreateFunctionSQL>
 		<![CDATA[
 		
-create function dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA(@CHILDPROJECTID uniqueidentifier) 
+create function dbo.USR_UFN_CHILDPROJECT_CURRENTQUOTA(@CHILDPROJECTID uniqueidentifier) 
 returns smallint with execute as caller
 as
-BEGIN 
-	declare @currentQuota smallint -- used to store return value
+begin
+	declare @currentQuota smallint = 0 -- used to store return value
 
 	declare @quotaTypeCode tinyint 
 	select @quotaTypeCode = QUOTATYPECODE from USR_CHILDPROJECTEXTENSION where ID = @CHILDPROJECTID
 	
 	if @quotaTypeCode = 1	-- Country Quota
-	begin
-		declare @countryID uniqueidentifier
-		--select @countryID = 
+	begin 
+		--declare @countryID uniqueidentifier
+		--select @countryID = COUNTRYEXTENSIONID from USR_CHILDPROJECTEXTENSION where ID = @CHILDPROJECTID
+		--if @countryID is null
+		--	return -1
+			
+		--set @currentQuota = dbo.USR_UFN_COUNTRYCURRENTQUOTA (@countryID)
 		set @currentQuota = 0
-		--set @currentQuota = USR_UFN_COUNTRY_CURRENTQUOTA (
 	end
-	temp
+	
 	else
 	begin
-
 		declare @calendarMonth tinyint  -- The current calendar month
 		set @calendarMonth = month(getdate())
 

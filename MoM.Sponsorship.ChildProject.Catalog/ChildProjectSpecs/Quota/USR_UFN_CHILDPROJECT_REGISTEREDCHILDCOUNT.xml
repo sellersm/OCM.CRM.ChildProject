@@ -19,7 +19,7 @@ as begin
       from sponsorshipopportunity so
 	  join dbo.SPONSORSHIPLOCATION sl on
 				so.SPONSORSHIPLOCATIONID = sl.ID 					
-	 where so.ELIGIBILITYCODE in (0,1)
+	 where so.ELIGIBILITYCODE in (0,1)  -- Pending, Eligible
 	   and sl.FIELDOFFICEID = @CHILDPROJECTID ; 
 
 	return @registeredChildrenCount;

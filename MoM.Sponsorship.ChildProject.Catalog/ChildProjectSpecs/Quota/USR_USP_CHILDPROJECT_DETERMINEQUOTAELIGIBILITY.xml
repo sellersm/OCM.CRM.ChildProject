@@ -1,0 +1,124 @@
+﻿<SQLStoredProcedureSpec
+	xmlns="bb_appfx_sqlstoredprocedure"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="253dc8f9-1ed6-4878-905b-5fe65dd18939"
+	Name="USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY"
+	Description="Interrogate project to determine if it may participate in the quota fulfillment process."
+	Author="Cary Mayeda"
+	SPName="USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY"
+	>
+<!-- 
+	Remarks:    Determines if a Child Project is eligible to register new children. 
+				This is called before the determination of quota room.
+				
+				Converted this from DetermineProjectQuotaParticipation.ufn.xml
+				The reason to move this to a sproc instead of a function is because a null return value would specify a positive outcome as well as an error				
+				
+				Returns 1 NULL if Project can be included in quota.
+				Returns the ID of the Waiting List Reason value that will be passed to 
+				the child record, if the project fails any of the quota tests.
+  
+				Child project criteria for participation:
+				Override trigger must be off,
+				Project status must be Active or Active Reserved,
+				Project must accept new children,
+				Project performance must be 'Good',
+				Project market demand must be high.
+ 
+
+	History:
+	Date            Modified By     Comments
+	01-Jul-2012		CMayeda			Initial Version - modifed from Bill's DetermineProjectQuotaParticipation.ufn.xml
+									Changed to a case statement in a select instead of if then
+									Corrected var names
+
+-->
+
+	
+	<CreateProcedureSQL>
+		<![CDATA[
+create procedure dbo.USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY (
+
+	@childProjectID uniqueidentifier,						-- Child Project ID (same as the Constituent ID) of the child project to check eligibility
+	@waitingListReasonID uniqueidentifier = null output)	-- Output parm 
+															--	if child project is eligible   - Null
+															--  if child project is ineligible - The Sponsorship Reason ID to use to put a child on the waiting list 
+	
+as
+begin
+	
+	
+	begin try
+
+		-- Child Project Code values
+		
+		declare @projectStatusActiveID uniqueidentifier = null
+		select @projectStatusActiveID = ID from dbo.USR_CHILDPROJECTSTATUSCODE where lower (DESCRIPTION) = 'active'
+		if @projectStatusActiveID is null
+			RAISERROR 1000000 'Couldn''t find the "Active" child project status code'		
+		
+		declare @projectStatusActiveReservedID uniqueidentifier = null
+		select @projectStatusActiveReservedID = ID from dbo.USR_CHILDPROJECTSTATUSCODE where lower (DESCRIPTION) = 'active - reserved'
+		if @projectStatusActiveReservedID is null
+			RAISERROR 1000000 'Couldn''t find the "Active - Reserved" child project status code'		
+		
+		declare @performancePoorID uniqueidentifier = null
+		select @performancePoorID = ID from dbo.USR_CHILDPROJECTPERFORMANCECODE where lower (DESCRIPTION) = 'poor'
+		if @performancePoorID is null
+			RAISERROR 1000000 'Couldn''t find the "Poor" child project performance code'		
+
+  
+  		-- Waiting List reasons - finding these individually instead of all the start with 'Waiting List' in order to minimize accidental data entry issues
+		
+		declare @waitingListMarketDemandID uniqueidentifier = null
+		select @waitingListMarketDemandID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - market demand'
+		if @waitingListMarketDemandID is null
+			RAISERROR 1000000 'Couldn''t find the "Waiting List - market demand" sponsorship reason'		
+	
+		declare @waitingListNotAcceptingID uniqueidentifier = null
+		select @waitingListNotAcceptingID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - not accepting new children'
+		if @waitingListNotAcceptingID is null
+			RAISERROR 1000000 'Couldn''t find the "Waiting List - not accepting new children" sponsorship reason'		
+	
+		declare @waitingListProjectPerformanceID uniqueidentifier = null
+		select @waitingListProjectPerformanceID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - project performance'
+		if @waitingListProjectPerformanceID is null
+			RAISERROR 1000000 'Couldn''t find the "Waiting List - project performance" sponsorship reason'		
+
+		declare @waitingListProjectStatusID uniqueidentifier = null
+		select @waitingListProjectStatusID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - project status'
+		if @waitingListProjectStatusID is null
+			RAISERROR 1000000 'Couldn''t find the "Waiting List - project status" sponsorship reason'		
+
+  	end try
+	begin catch
+	    exec dbo.USP_RAISE_ERROR
+		return 1	
+	end catch
+	
+ 
+	select @waitingListReasonID =	case 
+										when OVERRIDETRIGGERSTATUSCODE = 1 then		-- If code value for 'Yes', then do not perform any checks
+											NULL											
+										when (CHILDPROJECTSTATUSCODEID <> @projectStatusActiveID) and (CHILDPROJECTSTATUSCODEID <> @projectStatusActiveReservedID) then
+											@waitingListProjectStatusID
+										when NEWCHILDRENSTATUSCODE = 0 then			-- if code value for 'No'
+											@waitingListNotAcceptingID
+										when PERFORMANCECODEID = @performancePoorID then
+											@waitingListProjectPerformanceID
+										when MARKETINGDEMANDSTATUSCODE = 0 then		-- if code value for 'No'
+											@waitingListMarketDemandID
+										else
+											NULL
+									end
+									
+	  from dbo.USR_CHILDPROJECTEXTENSION
+	 where ID = @childProjectID
+
+
+end
+
+		]]>
+	</CreateProcedureSQL>
+
+</SQLStoredProcedureSpec>

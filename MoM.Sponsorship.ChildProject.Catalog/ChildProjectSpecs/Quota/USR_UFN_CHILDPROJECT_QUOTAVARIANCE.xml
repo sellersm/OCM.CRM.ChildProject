@@ -1,0 +1,28 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="a8f27bef-0987-4621-bd3c-4b16f79f82be"
+	Name="USR_UFN_CHILDPROJECT_QUOTAVARIANCE"
+	Description="Determine how many kids can be registered for a project based on the currently registered kids and the current quota"
+	Author="Cary Mayeda"
+	DBFunctionName="USR_UFN_CHILDPROJECT_QUOTAVARIANCE"
+	>
+
+	<CreateFunctionSQL>
+		<![CDATA[
+create function dbo.USR_UFN_CHILDPROJECT_QUOTAVARIANCE(@CHILDPROJECTID uniqueidentifier)
+returns int
+with execute as caller
+as 
+begin
+	declare @QuotaVariance int
+		
+	set @QuotaVariance = dbo.USR_UFN_CHILDPROJECTCURRENTQUOTA (@CHILDPROJECTID) - dbo.USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT (@CHILDPROJECTID)
+		
+	return @QuotaVariance 
+end
+
+		]]>
+	</CreateFunctionSQL>
+
+</SQLFunctionSpec>

@@ -84,7 +84,7 @@ Public NotInheritable Class QuotaHelper
             model.Fields(ChildProjectFields.DECREASEDQUOTA).Visible = projectQuota
             model.Fields(ChildProjectFields.GROWTHQUOTA).Visible = projectQuota
         End If
-
+        
     End Sub
 
 
