@@ -1,0 +1,35 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="c9013d54-7949-47f9-8d64-a426dad4256e"
+	Name="USR_UFN_CHILDPROJECT_QUOTAOVERRIDE"
+	Description="Determine if the child project has a the quota override trigger set to yet"
+	Author="Cary Mayeda"
+	DBFunctionName="USR_UFN_CHILDPROJECT_QUOTAOVERRIDE"
+	>
+
+	<CreateFunctionSQL>
+		<![CDATA[
+		
+create function dbo.USR_UFN_CHILDPROJECT_QUOTAOVERRIDE(
+	@childProjectID uniqueidentifier)						-- Child Project ID (same as the Constituent ID) of the child project to check the override trigger for
+
+returns bit
+with execute as caller
+as 
+begin
+
+	declare @overrideTriggerStatusCode bit = 0
+	
+	select @overrideTriggerStatusCode = OVERRIDETRIGGERSTATUSCODE
+	  from dbo.USR_CHILDPROJECTEXTENSION
+	 where ID = @childProjectID
+
+
+	return @overrideTriggerStatusCode
+	
+end
+		]]>
+	</CreateFunctionSQL>
+
+</SQLFunctionSpec>

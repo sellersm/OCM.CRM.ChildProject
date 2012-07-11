@@ -1,0 +1,38 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="65161304-620f-4f01-a3b0-54369ecebc0c"
+	Name="USR_UFN_CHILDPROJECT_QUOTATYPE"
+	Description="Determines the quota type for a particular child project"
+	Author="Cary Mayeda"
+	DBFunctionName="USR_UFN_CHILDPROJECT_QUOTATYPE"
+	>
+	<!-- 
+	Remarks:    This finds the quota type for the child project passed in @childProjectID
+			
+				Returns 0 if the project is using a project quota
+						1 if the project is using a country quota.  
+
+	History:
+	Date            Modified By     Comments
+	10-Jul-2012		CMayeda			Initial Version
+-->
+
+	<CreateFunctionSQL>
+		<![CDATA[
+		
+create function dbo.USR_UFN_CHILDPROJECT_QUOTATYPE (
+	@childProjectID uniqueidentifier) -- The ID of the child project to find the project quota
+	
+returns tinyint with execute as caller
+as
+begin
+	declare @quotaTypeCode tinyint = 99
+	select @quotaTypeCode = QUOTATYPECODE from dbo.USR_CHILDPROJECTEXTENSION where ID = @childProjectID
+	
+	return @quotaTypeCode
+end
+		]]>
+	</CreateFunctionSQL>
+
+</SQLFunctionSpec>

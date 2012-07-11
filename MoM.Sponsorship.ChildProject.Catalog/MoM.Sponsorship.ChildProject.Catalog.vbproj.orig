@@ -53,13 +53,20 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Blackbaud.AppFx">
+    <Reference Include="Blackbaud.AppFx, Version=2.91.1535.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="Blackbaud.AppFx.XmlTypes">
+    <Reference Include="Blackbaud.AppFx.Server, Version=2.91.1535.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.UIModeling.Core, Version=2.91.1535.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.UIModeling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes, Version=2.91.1535.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.XmlTypes.dll</HintPath>
-      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes.XmlSerializers, Version=2.91.1535.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.XmlTypes.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -77,16 +84,14 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="LinkedSpecs\" />
     <Folder Include="Query Views\" />
-    <Folder Include="Tables\Code Tables\Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Add.Task.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenList.DataList.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community.Edit.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community.Edit.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community.View.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -94,17 +99,15 @@
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community2.View.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Extension.Add.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community3.Edit.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community3.View.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community3.Edit.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ChildProject.Extension.Page.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExt.View.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Extension.Add.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionSummary.Edit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionSummary.View.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Package.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ProjectInfo.Edit.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ProjectInfo.View.xml">
       <SubType>Designer</SubType>
@@ -113,12 +116,21 @@
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Quota.View.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.RequiredDocs.Edit.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.RequiredDocs.View.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionSummary.View.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.Task.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProjectPass1.Package.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\Update.Country.RecordOperation.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\USR_USP_CHILD_SETELIGIBILTY.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ChildProject.Extension.Page.xml" />
+    <EmbeddedResource Include="Pages\ChildProject.AlterConstituent.Page.xml" />
     <EmbeddedResource Include="Tables\ChildProject.Extension.Table.xml" />
+    <EmbeddedResource Include="Tables\ChildProject.ExtensionPass1.Table.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Category.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Climate.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.CommunityType.CodeTable.xml" />
@@ -126,30 +138,17 @@
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.FormStatus.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.HighestEducation.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.MaximumGradeLevel.CodeTable.xml" />
-    <EmbeddedResource Include="Tables\Code Tables\ChildProjectCountry.Performance.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Status.CodeTable.xml" />
+    <EmbeddedResource Include="Tables\Code Tables\ChildProject.Subcategory.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Terrain.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Type.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\Month.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\Religion.CodeTable.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Package.xml" />
-    <EmbeddedResource Include="Tables\Code Tables\ChildProject.Subcategory.CodeTable.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExpression.Query.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExt.View.xml" />
-    <EmbeddedResource Include="Pages\ChildProject.AlterConstituent.Page.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Update.Country.RecordOperation.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProjectPass1.Package.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml">
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_CHILDRENAWAITINGREGISTRATION.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tables\ChildProject.ExtensionPass1.Table.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTAVARIANCE.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTAOVERRIDE.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTATYPE.xml" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Climate Code.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Code Template.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Community Type Code.sql" />
