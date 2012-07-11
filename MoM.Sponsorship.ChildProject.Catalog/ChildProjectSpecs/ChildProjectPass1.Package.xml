@@ -2,7 +2,7 @@
     xmlns="bb_appfx_package"
     xmlns:common="bb_appfx_commontypes"
     ID="8B1DFC1F-1207-4280-8C4F-39643C9BE8CC"
-    Name="Child Project Package - Preload table"
+    Name="Child Project Extension Package - Preload table"
     Description="Used to load a version of the child project extension table first so that ufn can be loaded"
     Author="Cary Mayeda"
     >

@@ -207,7 +207,7 @@ return 0;
 				</c:ValueList>
 			</c:FormField>			
             <c:FormField FieldID="PERFORMANCECODEID" DataType="Guid" Caption="Performance">
-                <c:CodeTable CodeTableName="USR_CHILDPROJECTPERFORMANCECODE" />
+                <c:CodeTable CodeTableName="USR_CHILDPROJECTCOUNTRYPERFORMANCECODE" />
             </c:FormField>
 			<c:FormField FieldID="MARKETINGDEMANDSTATUSCODE" DataType="TinyInt" Caption="Marketing demand status">
 				<c:ValueList>
