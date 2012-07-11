@@ -222,7 +222,7 @@ Partial Public Class [ChildProjectQuotaEditFormUIModel]
         '
         _performancecodeid.Name = "PERFORMANCECODEID"
         _performancecodeid.Caption = "Performance"
-        _performancecodeid.CodeTableName = "USR_CHILDPROJECTPERFORMANCECODE"
+        _performancecodeid.CodeTableName = "USR_CHILDPROJECTCOUNTRYPERFORMANCECODE"
         Me.Fields.Add(_performancecodeid)
         '
         '_marketingdemandstatuscode
