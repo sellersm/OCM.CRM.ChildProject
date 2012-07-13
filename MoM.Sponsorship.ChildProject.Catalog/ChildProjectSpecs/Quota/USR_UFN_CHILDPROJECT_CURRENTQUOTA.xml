@@ -23,63 +23,52 @@
 	<CreateFunctionSQL>
 		<![CDATA[
 		
-create function dbo.USR_UFN_CHILDPROJECT_CURRENTQUOTA(@CHILDPROJECTID uniqueidentifier) 
-returns smallint with execute as caller
+create function dbo.USR_UFN_CHILDPROJECT_CURRENTQUOTA (
+	@childProjectID uniqueidentifier		-- Child Project Extension ID (same as the Constituent ID) of the child project to get the current quota for
+)	
+returns smallint 
+with execute as caller
 as
 begin
 	declare @currentQuota smallint = 0 -- used to store return value
 
 	declare @quotaTypeCode tinyint 
-	select @quotaTypeCode = QUOTATYPECODE from USR_CHILDPROJECTEXTENSION where ID = @CHILDPROJECTID
+	select @quotaTypeCode = QUOTATYPECODE from USR_CHILDPROJECTEXTENSION where ID = @childProjectID
 	
-	if @quotaTypeCode = 1	-- Country Quota
-	begin 
-		--declare @countryID uniqueidentifier
-		--select @countryID = COUNTRYEXTENSIONID from USR_CHILDPROJECTEXTENSION where ID = @CHILDPROJECTID
-		--if @countryID is null
-		--	return -1
-			
-		--set @currentQuota = dbo.USR_UFN_COUNTRYCURRENTQUOTA (@countryID)
-		set @currentQuota = 0
-	end
-	
-	else
-	begin
-		declare @calendarMonth tinyint  -- The current calendar month
-		set @calendarMonth = month(getdate())
+	declare @calendarMonth tinyint  -- The current calendar month
+	set @calendarMonth = month(getdate())
 
-		declare @fyMonth tinyint -- The fiscal month number October starts as 1.  Convert the Current Calendar Month to the corresponding fiscal month
-		set @fyMonth = case 
-						 when @calendarMonth > 9 then @calendarMonth - 9
-						 else @calendarMonth + 3
-					   end
+	declare @fyMonth tinyint -- The fiscal month number October starts as 1.  Convert the Current Calendar Month to the corresponding fiscal month
+	set @fyMonth = case 
+						when @calendarMonth > 9 then @calendarMonth - 9
+						else @calendarMonth + 3
+					end
 
-		declare @quotaMonths table  -- Because the quotas are stored as separate fields, use a table to store all the current fiscal year quotas
-		(
-		  fyMonthNumber tinyint, 
-		  quota smallint  
-		)
+	declare @quotaMonths table  -- Because the quotas are stored as separate fields, use a table to store all the current fiscal year quotas
+	(
+		fyMonthNumber tinyint, 
+		quota smallint  
+	)
 
-		-- Insert the quota values
-		insert @quotaMonths select 0, APPROVEDQUOTAINITIAL from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 1, APPROVEDQUOTA01OCT from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 2, APPROVEDQUOTA02NOV from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 3, APPROVEDQUOTA03DEC from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 4, APPROVEDQUOTA04JAN from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 5, APPROVEDQUOTA05FEB from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 6, APPROVEDQUOTA06MAR from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 7, APPROVEDQUOTA07APR from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 8, APPROVEDQUOTA08MAY from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 9, APPROVEDQUOTA09JUN from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 10, APPROVEDQUOTA10JUL from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 11, APPROVEDQUOTA11AUG from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
-		insert @quotaMonths select 12, APPROVEDQUOTA12SEP from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	-- Insert the quota values
+	insert @quotaMonths select 0, APPROVEDQUOTAINITIAL from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 1, APPROVEDQUOTA01OCT from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 2, APPROVEDQUOTA02NOV from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 3, APPROVEDQUOTA03DEC from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 4, APPROVEDQUOTA04JAN from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 5, APPROVEDQUOTA05FEB from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 6, APPROVEDQUOTA06MAR from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 7, APPROVEDQUOTA07APR from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 8, APPROVEDQUOTA08MAY from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 9, APPROVEDQUOTA09JUN from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 10, APPROVEDQUOTA10JUL from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 11, APPROVEDQUOTA11AUG from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
+	insert @quotaMonths select 12, APPROVEDQUOTA12SEP from USR_CHILDPROJECTEXTENSION where ID=@CHILDPROJECTID
 
-		-- Find the current quota
-		select @currentQuota = quota from @quotaMonths
-		  where fyMonthNumber = (select MAX (fyMonthNumber) from @quotaMonths where fyMonthNumber <= @fyMonth and quota > 0)
+	-- Find the current quota
+	select @currentQuota = quota from @quotaMonths
+		where fyMonthNumber = (select MAX (fyMonthNumber) from @quotaMonths where fyMonthNumber <= @fyMonth and quota > 0)
 
-	end
 	
 	return @currentQuota
 

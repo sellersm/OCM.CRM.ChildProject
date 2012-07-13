@@ -1,0 +1,12 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:common="bb_appfx_commontypes"
+	ID="EA7DE471-BD83-44DD-A829-FB836E21CADA" 
+	Name="Child Project and Country Performance status"
+	Description="Child Project and Country Performance Status"
+	Author="Cary Mayeda"
+	DBTablename="USR_CHILDPROJECTCOUNTRYPERFORMANCECODE"
+	Category="Child Project Extension"
+	SortMethod="UserDefined"
+
+/>

@@ -10,7 +10,9 @@
 
 	<CreateFunctionSQL>
 		<![CDATA[
-create function dbo.USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT(@CHILDPROJECTID uniqueidentifier)
+create function dbo.USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT (
+	@childProjectID uniqueidentifier		-- Child Project Extension ID (same as the Constituent ID) of the child project to find the number of registered children for 
+)
 returns smallint
 with execute as caller
 as begin
@@ -20,7 +22,7 @@ as begin
 	  join dbo.SPONSORSHIPLOCATION sl on
 				so.SPONSORSHIPLOCATIONID = sl.ID 					
 	 where so.ELIGIBILITYCODE in (0,1)  -- Pending, Eligible
-	   and sl.FIELDOFFICEID = @CHILDPROJECTID ; 
+	   and sl.FIELDOFFICEID = @childProjectID ; 
 
 	return @registeredChildrenCount;
 end

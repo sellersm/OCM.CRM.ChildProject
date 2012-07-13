@@ -38,12 +38,10 @@
 	<CreateProcedureSQL>
 		<![CDATA[
 create procedure dbo.USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY (
-
-	@childProjectID uniqueidentifier,						-- Child Project ID (same as the Constituent ID) of the child project to check eligibility
-	@waitingListReasonID uniqueidentifier = null output)	-- Output parm 
-															--	if child project is eligible   - Null
-															--  if child project is ineligible - The Sponsorship Reason ID to use to put a child on the waiting list 
-	
+	@childProjectID uniqueidentifier,						-- Child Project Extention ID (same as the Constituent ID) of the child project to check eligibility
+	@waitingListReasonID uniqueidentifier = null output	-- Output parm 
+)															--	if child project is eligible   - Null
+															--  if child project is ineligible - The Sponsorship Reason ID to use to put a child on the waiting list 	
 as
 begin
 	
@@ -63,7 +61,7 @@ begin
 			RAISERROR 1000000 'Couldn''t find the "Active - Reserved" child project status code'		
 		
 		declare @performancePoorID uniqueidentifier = null
-		select @performancePoorID = ID from dbo.USR_CHILDPROJECTPERFORMANCECODE where lower (DESCRIPTION) = 'poor'
+		select @performancePoorID = ID from dbo.USR_CHILDPROJECTCOUNTRYPERFORMANCECODE where lower (DESCRIPTION) = 'poor'
 		if @performancePoorID is null
 			RAISERROR 1000000 'Couldn''t find the "Poor" child project performance code'		
 

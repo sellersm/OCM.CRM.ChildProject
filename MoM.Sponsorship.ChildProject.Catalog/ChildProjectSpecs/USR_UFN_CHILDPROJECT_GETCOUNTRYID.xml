@@ -1,0 +1,50 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="5372ba20-58ce-4c7a-afe3-55052679e58d"
+	Name="USR_UFN_CHILDPROJECT_GETCOUNTRYID"
+	Description="Find the Country ID for the country of a child project"
+	Author="Cary Mayeda"
+	DBFunctionName="USR_UFN_CHILDPROJECT_GETCOUNTRYID" >
+
+	<!-- 
+	Remarks:    This uses the sponsorship location hierarchy to find the country extension id (same as the constituent id) of the country field office record
+				for the child project passed in @childProjectID
+
+	History:
+	Date            Modified By     Comments
+	10-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<CreateFunctionSQL>
+		<![CDATA[
+		
+create function dbo.USR_UFN_CHILDPROJECT_GETCOUNTRYID (@childProjectID uniqueidentifier)
+returns uniqueidentifier
+with execute as caller
+as begin
+
+	declare @countryID uniqueidentifier = null
+	declare @countryOfficeLocationType uniqueidentifier
+	
+	select @countryOfficeLocationType = ID from SPONSORSHIPLOCATIONTYPECODE where DESCRIPTION = 'Country Office'
+	if @countryOfficeLocationType is not null
+		select  @countryID = case 
+								when parentlocation.SPONSORSHIPLOCATIONTYPECODEID =  @countryOfficeLocationType  then parentlocation.FIELDOFFICEID
+								when grandparentlocation.SPONSORSHIPLOCATIONTYPECODEID =  @countryOfficeLocationType  then grandparentlocation.FIELDOFFICEID
+								else null
+							end
+		  from  dbo.SPONSORSHIPLOCATION projectlocation
+	 left join  dbo.SPONSORSHIPLOCATION parentlocation ON 
+					parentlocation.HIERARCHYPATH = projectlocation.HIERARCHYPATH.GetAncestor(1)
+	 left join  dbo.SPONSORSHIPLOCATION grandparentlocation ON 		
+					grandparentlocation.HIERARCHYPATH = parentlocation.HIERARCHYPATH.GetAncestor(1)
+		 where  projectlocation.FIELDOFFICEID = @childProjectID
+
+	return @countryID 
+	
+end
+		]]>
+	</CreateFunctionSQL>
+
+</SQLFunctionSpec>

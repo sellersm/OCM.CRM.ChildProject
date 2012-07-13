@@ -3,7 +3,7 @@
 	xmlns:common="bb_appfx_commontypes" 
 	ID="c9013d54-7949-47f9-8d64-a426dad4256e"
 	Name="USR_UFN_CHILDPROJECT_QUOTAOVERRIDE"
-	Description="Determine if the child project has a the quota override trigger set to yet"
+	Description="Determine if the child project has the quota override trigger set to yes"
 	Author="Cary Mayeda"
 	DBFunctionName="USR_UFN_CHILDPROJECT_QUOTAOVERRIDE"
 	>
@@ -12,8 +12,8 @@
 		<![CDATA[
 		
 create function dbo.USR_UFN_CHILDPROJECT_QUOTAOVERRIDE(
-	@childProjectID uniqueidentifier)						-- Child Project ID (same as the Constituent ID) of the child project to check the override trigger for
-
+	@childProjectID uniqueidentifier		-- Child Project Extension ID (same as the Constituent ID) of the child project to check the override trigger for
+)
 returns bit
 with execute as caller
 as 
