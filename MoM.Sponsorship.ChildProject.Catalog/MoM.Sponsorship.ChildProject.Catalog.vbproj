@@ -149,7 +149,11 @@
     <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTAOVERRIDE.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTATYPE.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTATYPE.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_GETCOUNTRYID_TABLE.xml" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Climate Code.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Code Template.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Community Type Code.sql" />

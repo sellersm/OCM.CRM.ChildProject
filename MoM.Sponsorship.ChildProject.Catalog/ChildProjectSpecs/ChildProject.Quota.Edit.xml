@@ -155,16 +155,11 @@ as
 return 0;
 ]]>
 </c:CreateProcedureSQL>
-            <c:ExpectedDBExceptions>
-                <c:Constraints>
-                    <c:Constraint Name="FK_USR_CHILDPROJECTEXTENSION_PERFORMANCECODEID" Field="PERFORMANCECODEID" Type="ForeignKey" />
-                </c:Constraints>
-            </c:ExpectedDBExceptions>
+
         </SaveImplementation>
     </SPDataForm>
     <c:FormMetaData FixedDialog="true">
         <c:FormFields>
-            <c:FormField FieldID="ID" Hidden="true" DataType="Guid" Caption="ID" />
 			<c:FormField FieldID="QUOTATYPECODE" DataType="TinyInt" Caption="Quota type">
 			<c:ValueList>
 				<c:Items>

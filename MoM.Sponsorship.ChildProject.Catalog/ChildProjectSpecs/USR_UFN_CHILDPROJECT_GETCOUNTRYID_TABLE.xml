@@ -1,0 +1,28 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="decd6245-81e5-4f8b-844e-d746185744ed"
+	Name="USR_UFN_CHILDPROJECT_GETCOUNTRYID_COLUMN"
+	Description="REPLACE_WITH_DESCRIPTION"
+	Author="BETHESDA\cmayeda"
+	DBFunctionName="USR_UFN_CHILDPROJECT_GETCOUNTRYID_COLUMN"
+	>
+
+	<CreateFunctionSQL>
+		<![CDATA[
+create function dbo.USR_UFN_CHILDPROJECT_GETCOUNTRYID_COLUMN (@childProjectID uniqueidentifier)
+returns uniqueidentifier
+with execute as caller
+as 
+begin
+	declare @countryID uniqueidentifier
+	select @countryID = COUNTRYEXTENSIONID 
+	 from dbo.USR_CHILDPROJECTEXTENSION 
+	where ID = @childProjectID
+
+return @countryID
+end
+		]]>
+	</CreateFunctionSQL>
+
+</SQLFunctionSpec>

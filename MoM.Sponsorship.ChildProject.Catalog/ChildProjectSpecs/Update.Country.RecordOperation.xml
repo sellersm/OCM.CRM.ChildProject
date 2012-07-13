@@ -7,58 +7,47 @@
 	Author="Cary Mayeda"
 	OperationType="Update"
     RecordType="Child Project Extension"
-    common:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
-	>
+    common:SecurityUIFolder="Sponsorship\Opportunity\Child Project"	>
+
+	<!-- 
+	Remarks:    This uses the USR_UFN_CHILDPROJECT_GETCOUNTRYID to find the the country extension id (same as the constituent id) of the country field office record
+				for the current child project, and then updates the COUNTRYEXTENSIONID in USR_CHILDPROJECTEXTENSION
+
+	History:
+	Date            Modified By     Comments
+	10-Jul-2012		CMayeda			Pulled the logic to find the country and placed it in USR_UFN_CHILDPROJECT_GETCOUNTRYID
+	-->
 
 	<SPRecord>
 		<SPOperationImplementation SPName="USP_CHILDPROJECT_UPDATE_COUNTRYID">
 			<common:CreateProcedureSQL>
 				<![CDATA[
-create procedure dbo.USP_CHILDPROJECT_UPDATE_COUNTRYID
-(
+				
+create procedure dbo.USP_CHILDPROJECT_UPDATE_COUNTRYID (
 	@ID uniqueidentifier,
-	@CHANGEAGENTID uniqueidentifier
+	@changeAgentID uniqueidentifier
 )
-as begin
-
-	declare @countryID uniqueidentifier
-	declare @countryOfficeLocationType uniqueidentifier
+as 
+begin
+	declare @countryID uniqueidentifier = null
 	
 	if @CHANGEAGENTID is null  
 		exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
 				
-	declare @CURRENTDATE datetime
-	set @CURRENTDATE = getdate()
+	declare @currentDate datetime
+	set @currentDate = getdate()
+
 	
 	begin try
-		select @countryOfficeLocationType = ID from SPONSORSHIPLOCATIONTYPECODE where DESCRIPTION = 'Country Office'
-		if @countryOfficeLocationType is null
-			RAISERROR 1000000 'Couldn''t find the "Country Office" Sponsorship Location Type'
-	end try
-	begin catch
-	    exec dbo.USP_RAISE_ERROR
-		return 1	
-	end catch
-
-	begin try
-		select  @countryID = case 
-								when parentlocation.SPONSORSHIPLOCATIONTYPECODEID =  @countryOfficeLocationType  then parentlocation.FIELDOFFICEID
-								when grandparentlocation.SPONSORSHIPLOCATIONTYPECODEID =  @countryOfficeLocationType  then grandparentlocation.FIELDOFFICEID
-								else null
-							 end
-		  from  dbo.SPONSORSHIPLOCATION projectlocation
-	 left join  dbo.SPONSORSHIPLOCATION parentlocation ON 
-					parentlocation.HIERARCHYPATH = projectlocation.HIERARCHYPATH.GetAncestor(1)
-	 left join  dbo.SPONSORSHIPLOCATION grandparentlocation ON 		
-					grandparentlocation.HIERARCHYPATH = parentlocation.HIERARCHYPATH.GetAncestor(1)
-		 where  projectlocation.FIELDOFFICEID = @ID
-	 
+		set @countryID = dbo.USR_UFN_CHILDPROJECT_GETCOUNTRYID (@ID)
 		
 		if @countryID is null 
 			RAISERROR 1000000 'Couldn''t find the "Country Office" ancestor Sponsorship Location'
 			
 		update dbo.USR_CHILDPROJECTEXTENSION set	
-			COUNTRYEXTENSIONID = @countryID
+			COUNTRYEXTENSIONID = @countryID,
+			CHANGEDBYID = @changeAgentID,
+			DATECHANGED = @currentDate
 		where ID = @ID
 	end try
 	begin catch

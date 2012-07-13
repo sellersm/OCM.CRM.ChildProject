@@ -22,8 +22,8 @@
 		<![CDATA[
 		
 create function dbo.USR_UFN_CHILDPROJECT_QUOTATYPE (
-	@childProjectID uniqueidentifier) -- The ID of the child project to find the project quota
-	
+	@childProjectID uniqueidentifier		-- The Child Project Extension ID of the child project to find the project quota
+)
 returns tinyint with execute as caller
 as
 begin
