@@ -23,7 +23,7 @@ Date            Modified By     Comments
 		<DataForm ID="9b09d107-78a8-487f-9699-0ab996be70b4" />
 	</SummarySection>
 	<Tabs>
-		<Tab Caption="Project Info" ID="36747a18-a1c8-41a2-b828-966aa2e0ab77">
+		<Tab Caption="Project Info 0.1.8" ID="36747a18-a1c8-41a2-b828-966aa2e0ab77">
 			<Sections>
 				<Section ID="2d46209a-27f3-41aa-9010-323579bce031" Caption="Project Information">
 					<DataForm ID="8fe5c882-2f35-4906-8438-4f445d351548" />
