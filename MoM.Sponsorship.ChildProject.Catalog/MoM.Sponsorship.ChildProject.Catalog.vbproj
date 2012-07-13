@@ -118,7 +118,9 @@
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.Task.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tables\ChildProject.Extension.Table.xml" />
+    <EmbeddedResource Include="Tables\ChildProject.Extension.Table.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Category.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Climate.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.CommunityType.CodeTable.xml" />

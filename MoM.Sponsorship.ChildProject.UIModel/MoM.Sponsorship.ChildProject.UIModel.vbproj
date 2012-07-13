@@ -68,10 +68,6 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Blackbaud.AppFx.Browser, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
-      <ExecutableExtension>.exe</ExecutableExtension>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Blackbaud.AppFx.Constituent.UIModel, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.Constituent.UIModel.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
