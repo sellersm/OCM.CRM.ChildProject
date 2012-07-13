@@ -290,6 +290,7 @@
     <Content Include="Quota\ChildProject.Quota.EditForm.html" />
     <Content Include="Quota\ChildProject.Quota.EditForm.UIModel.xml">
       <DependentUpon>ChildProject.Quota.EditForm.UIModel.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Quota\ChildProject.Quota.ViewForm.html" />
     <Content Include="Quota\ChildProject.Quota.ViewForm.UIModel.xml">
