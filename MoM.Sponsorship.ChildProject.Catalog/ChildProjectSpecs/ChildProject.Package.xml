@@ -13,6 +13,7 @@ Remarks:
 History:
 Date            Modified By     Comments
 30-Apr-2012     CMayeda         Initial Version
+14-Jul-2012		CMayeda			Added Quota specs
 -->
 
 	<!-- Note:  the order of the items listed here is important.  For example, you won't be able to load a data form that references 
@@ -59,8 +60,12 @@ Date            Modified By     Comments
 	
 	<common:DependencyList>
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml" />
-		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_QUOTAOVERRIDE.xml"/>
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_QUOTATYPE.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_QUOTAVARIANCE.xml"/>
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY.xml"/>
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Subcategory.CodeTable.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Category.CodeTable.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Climate.CodeTable.xml" />

@@ -8,6 +8,8 @@
 	DBFunctionName="USR_UFN_CHILDPROJECT_GETCOUNTRYID_COLUMN"
 	>
 
+	<!--NOT USED YET-->
+	
 	<CreateFunctionSQL>
 		<![CDATA[
 create function dbo.USR_UFN_CHILDPROJECT_GETCOUNTRYID_COLUMN (@childProjectID uniqueidentifier)
