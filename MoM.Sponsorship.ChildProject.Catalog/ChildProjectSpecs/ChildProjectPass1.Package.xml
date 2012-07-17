@@ -4,16 +4,15 @@
     ID="8B1DFC1F-1207-4280-8C4F-39643C9BE8CC"
     Name="Child Project Extension Package - Preload table"
     Description="Used to load a version of the child project extension table first so that ufn can be loaded"
-    Author="Cary Mayeda"
-    >
+    Author="Cary Mayeda" >
 
-<!-- 
-Remarks:    
+	<!-- 
+	Remarks:    This only needs to be run if the child project extension table does not exist yet.
 
-History:
-Date            Modified By     Comments
-30-Apr-2012     CMayeda         Initial Version
--->
+	History:
+	Date            Modified By     Comments
+	30-Apr-2012     CMayeda         Initial Version
+	-->
 
 	<!-- Note:  the order of the items listed here is important.  For example, you won't be able to load a data form that references 
 	a table that hasn't been loaded, etc.  In general, the following order is recommended:
@@ -58,6 +57,7 @@ Date            Modified By     Comments
 	-->
 	
 	<common:DependencyList>
+		<!-- Code Tables -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Subcategory.CodeTable.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Category.CodeTable.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Climate.CodeTable.xml" />
@@ -72,6 +72,8 @@ Date            Modified By     Comments
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Type.CodeTable.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.Month.CodeTable.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.Religion.CodeTable.xml" />
+		
+		<!-- Table -->
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ExtensionPass1.Table.xml" />
 		</common:DependencyList>
 
