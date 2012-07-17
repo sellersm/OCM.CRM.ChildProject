@@ -134,7 +134,9 @@
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Type.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\Month.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\Religion.CodeTable.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Package.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Package.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Subcategory.CodeTable.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExpression.Query.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExt.View.xml" />
