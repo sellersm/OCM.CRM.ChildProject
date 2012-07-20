@@ -128,7 +128,6 @@
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.FormStatus.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.HighestEducation.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.MaximumGradeLevel.CodeTable.xml" />
-    <EmbeddedResource Include="Tables\Code Tables\ChildProjectCountry.Performance.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Status.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Terrain.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Type.CodeTable.xml" />
@@ -157,6 +156,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.PackageVersion.DataList.xml" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Climate Code.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Code Template.sql" />
     <Content Include="Tables\Code Tables\SQL Scripts to all values\Community Type Code.sql" />
