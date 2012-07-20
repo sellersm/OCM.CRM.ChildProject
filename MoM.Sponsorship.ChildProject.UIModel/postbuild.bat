@@ -6,6 +6,7 @@ echo copy all htmlforms to the appropriate location on the webserver...
 xcopy "C:\MissionOfMercy\CRM\Source\MoM.Sponsorship.ChildProject\MoM.Sponsorship.ChildProject.UIModel\ChildProject\ChildProject.Extension.AddForm.html" "C:\Program Files\Blackbaud\bbappfx\vroot\browser\htmlforms\custom" /y /d
 xcopy "C:\MissionOfMercy\CRM\Source\MoM.Sponsorship.ChildProject\MoM.Sponsorship.ChildProject.UIModel\ChildProject\ChildProject.ExtensionSummary.ViewForm.html" "C:\Program Files\Blackbaud\bbappfx\vroot\browser\htmlforms\custom" /y /d
 xcopy "C:\MissionOfMercy\CRM\Source\MoM.Sponsorship.ChildProject\MoM.Sponsorship.ChildProject.UIModel\ChildProject\ChildProject.ExtensionSummary.EditForm.html" "C:\Program Files\Blackbaud\bbappfx\vroot\browser\htmlforms\custom" /y /d
+xcopy "C:\MissionOfMercy\CRM\Source\MoM.Sponsorship.ChildProject\MoM.Sponsorship.ChildProject.UIModel\ChildProject\ChildProject.UIModelVersion.ViewForm.html" "C:\Program Files\Blackbaud\bbappfx\vroot\browser\htmlforms\custom" /y /d
 
 xcopy "C:\MissionOfMercy\CRM\Source\MoM.Sponsorship.ChildProject\MoM.Sponsorship.ChildProject.UIModel\ProjectInfo\ChildProject.ProjectInfo.ViewForm.html" "C:\Program Files\Blackbaud\bbappfx\vroot\browser\htmlforms\custom" /y /d
 xcopy "C:\MissionOfMercy\CRM\Source\MoM.Sponsorship.ChildProject\MoM.Sponsorship.ChildProject.UIModel\ProjectInfo\ChildProject.ProjectInfo.EditForm.html" "C:\Program Files\Blackbaud\bbappfx\vroot\browser\htmlforms\custom" /y /d

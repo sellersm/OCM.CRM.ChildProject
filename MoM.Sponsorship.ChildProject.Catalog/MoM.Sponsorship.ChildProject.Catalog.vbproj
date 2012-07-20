@@ -156,22 +156,14 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.PackageVersion.DataList.xml" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Climate Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Code Template.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Community Type Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Documentation Status Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Highest Education Available Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Maximum Grade Level Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Month Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Performance Status Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Project Category Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Project Form Status Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Project Status Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Project Subcategory Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Project Type Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Religion Code.sql" />
-    <Content Include="Tables\Code Tables\SQL Scripts to all values\Terrain Code.sql" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.PackageVersion.DataList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.UIModelVersion.View.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

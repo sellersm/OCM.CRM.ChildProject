@@ -79,7 +79,7 @@ as
 			@APPROVEDQUOTA11AUG = APPROVEDQUOTA11AUG, 
 			@APPROVEDQUOTA12SEP = APPROVEDQUOTA12SEP, 
 			@NEWCHILDRENSTATUS = NEWCHILDRENSTATUS, 
-			@PERFORMANCECODE = (select DESCRIPTION from dbo.USR_CHILDPROJECTCOUNTRYPERFORMANCECODE where ID = PERFORMANCECODEID), 
+			@PERFORMANCECODE = (select DESCRIPTION from dbo.USR_SPONSORSHIPPERFORMANCECODE where ID = PERFORMANCECODEID), 
 			@MARKETINGDEMANDSTATUS = MARKETINGDEMANDSTATUS, 
 			@OVERRIDETRIGGERSTATUS = OVERRIDETRIGGERSTATUS
 	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
@@ -91,7 +91,6 @@ as
 	</SPDataForm>
 	<c:FormMetaData FixedDialog="true">
 		<c:FormFields>
-			<c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
 			<c:FormField FieldID="QUOTATYPE" DataType="String" Caption="Quota type"/>
 			<c:FormField FieldID="QUOTATYPECODE" DataType="TinyInt" Caption ="Quota type code" Hidden="true" />
 			<c:FormField FieldID="APPROVEDQUOTAINITIAL" DataType="SmallInt" Caption="Initial quota" />
