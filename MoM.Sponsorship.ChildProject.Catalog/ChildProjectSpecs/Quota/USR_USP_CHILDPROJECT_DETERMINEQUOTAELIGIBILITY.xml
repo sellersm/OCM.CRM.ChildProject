@@ -61,7 +61,7 @@ begin
 			RAISERROR 1000000 'Couldn''t find the "Active - Reserved" child project status code'		
 		
 		declare @performancePoorID uniqueidentifier = null
-		select @performancePoorID = ID from dbo.USR_CHILDPROJECTCOUNTRYPERFORMANCECODE where lower (DESCRIPTION) = 'poor'
+		select @performancePoorID = ID from dbo.USR_SPONSORSHIPPERFORMANCECODE where lower (DESCRIPTION) = 'poor'
 		if @performancePoorID is null
 			RAISERROR 1000000 'Couldn''t find the "Poor" child project performance code'		
 

@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>ChildProject.UIModelVersion.View.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>ChildProjectUIModelVersionViewFormUIModel</ClassName>
+  <HtmlInfo GenerateHtml="false">
+    <HtmlFile>ChildProject.UIModelVersion.ViewForm.html</HtmlFile>
+    <HtmlFolder>ChildProject\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

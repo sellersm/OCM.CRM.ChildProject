@@ -123,7 +123,12 @@
 		<!-- Tasks -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Add.Task.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Search.Task.xml" />
-		
+
+
+		<!-- Package Versions -->
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.PackageVersion.DataList.xml"/>
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.UIModelVersion.View.xml"/>
+
 	</common:DependencyList>
 
 </PackageSpec>

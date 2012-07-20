@@ -129,6 +129,10 @@
     <Compile Include="ChildProject\ChildProjectExtensionSummaryViewFormUIModel.CodeGen.vb">
       <DependentUpon>ChildProject.ExtensionSummary.ViewForm.UIModel.vb</DependentUpon>
     </Compile>
+    <Compile Include="ChildProject\ChildProjectUIModelVersionViewFormUIModel.CodeGen.vb">
+      <DependentUpon>ChildProject.UIModelVersion.ViewForm.UIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ChildProject\ChildProject.UIModelVersion.ViewForm.UIModel.vb" />
     <Compile Include="Community\ChildProject.Community.EditForm.UIModel.vb" />
     <Compile Include="Community\ChildProject.Community2.EditForm.UIModel.vb" />
     <Compile Include="Community\ChildProject.Community2.ViewForm.UIModel.vb" />
@@ -249,9 +253,16 @@
     <Content Include="..\MoM.Sponsorship.ChildProject.Catalog\ChildProjectSpecs\ChildProject.Quota.View.xml">
       <Link>LinkedSpecs\ChildProject.Quota.View.xml</Link>
     </Content>
+    <None Include="..\MoM.Sponsorship.ChildProject.Catalog\ChildProjectSpecs\ChildProject.UIModelVersion.View.xml">
+      <Link>LinkedSpecs\ChildProject.UIModelVersion.View.xml</Link>
+    </None>
     <Content Include="ChildProject\ChildProject.ExtensionSummary.EditForm.html" />
     <Content Include="ChildProject\ChildProject.ExtensionSummary.EditForm.UIModel.xml">
       <DependentUpon>ChildProject.ExtensionSummary.EditForm.UIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="ChildProject\ChildProject.UIModelVersion.ViewForm.html" />
+    <Content Include="ChildProject\ChildProject.UIModelVersion.ViewForm.UIModel.xml">
+      <DependentUpon>ChildProject.UIModelVersion.ViewForm.UIModel.vb</DependentUpon>
     </Content>
     <Content Include="Community\ChildProject.Community2.EditForm.UIModel.xml">
       <DependentUpon>ChildProject.Community2.EditForm.UIModel.vb</DependentUpon>
