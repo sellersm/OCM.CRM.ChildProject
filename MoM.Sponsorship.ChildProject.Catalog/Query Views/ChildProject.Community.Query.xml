@@ -1,0 +1,112 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="14175409-8C43-48FA-8F44-43F2419BC483"
+    Name="Child Project Community"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+    RecordType="Child Project Extension"
+    IsRoot="false"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+	
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	25-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTCOMMUNITY">
+        <ViewSQL>
+<![CDATA[
+
+	select	ID,
+			[COMMUNITYNAME],
+			[COMMUNITYPOPULATION],
+			(select USR_CHILDPROJECTCOMMUNITYTYPECODE.DESCRIPTION from dbo.USR_CHILDPROJECTCOMMUNITYTYPECODE where USR_CHILDPROJECTCOMMUNITYTYPECODE.ID = [COMMUNITYTYPECODEID]) as COMMUNITYTYPECODEID_TRANSLATION,
+			[PROVINCESTATEREGIONNAME],
+			[NEARESTCITY],
+			[DISTANCETOCITY],
+			[DISTANCETOCITYUNITOFMEASUREMENTCODE],
+			[NEARESTCITYPOPULATION],
+			[COMMUNITYDESCRIPTION],
+			
+			(select USR_RELIGIONCODE.DESCRIPTION from dbo.USR_RELIGIONCODE where USR_RELIGIONCODE.ID = [RELIGIONCODEID]) as RELIGIONCODEID_TRANSLATION,
+			[RELIGIONOTHERDESC],
+			[NUMCHRISTIANCHURCHES],
+			[PERCENTPROTESTANT],
+			[CHRISTIANORGS],
+			[DISTANCETOMEDICALFACILITY],
+			[DISTANCETOMEDICALFACILITYUNITOFMEASUREMENTCODE],
+			[DAYSTOMEDICALFACILITY],
+			[HOURSTOMEDICALFACILITY],
+			[MINUTESTOMEDICALFACILITY],
+			[HEALTHPROBLEMCHOLERA],
+			[HEALTHPROBLEMDENGUE],
+			[HEALTHPROBLEMDISABILITIES],
+			[HEALTHPROBLEMHIVAIDS],
+			[HEALTHPROBLEMINTESTINAL],
+			[HEALTHPROBLEMMALARIA],
+			[HEALTHPROBLEMTUBERCULOSIS],
+			[HEALTHPROBLEMOTHER],
+			[HEALTHPROBLEMOTHERDESC]
+
+	
+	  from	dbo.USR_CHILDPROJECTEXTENSION
+    
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="COMMUNITYNAME" Caption="Community name" />
+			<OutputField Name="COMMUNITYPOPULATION" Caption="Community population" DataType="Integer" />
+			<OutputField Name="COMMUNITYTYPECODEID_TRANSLATION" Caption="Community type">
+				<LookupInfo>
+					<CodeTable CodeTableName="USR_CHILDPROJECTCOMMUNITYTYPECODE" IncludeInactive="true" />
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="PROVINCESTATEREGIONNAME" Caption="Province state region name" />
+			<OutputField Name="NEARESTCITY" Caption="Nearest city" />
+			<OutputField Name="DISTANCETOCITY" Caption="Distance to city" DataType="SmallInt" />
+			<OutputField Name="DISTANCETOCITYUNITOFMEASUREMENTCODE" Caption="Distance to city unit of measurement" DataType="TinyInt" />
+			<OutputField Name="NEARESTCITYPOPULATION" Caption="Nearest city population" DataType="Integer" />
+			<OutputField Name="COMMUNITYDESCRIPTION" Caption="Community description" />
+
+			<OutputField Name="RELIGIONCODEID_TRANSLATION" Caption="Religion">
+				<LookupInfo>
+					<CodeTable CodeTableName="USR_RELIGIONCODE" IncludeInactive="true" />
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="RELIGIONOTHERDESC" Caption="Religion other description" />
+			<OutputField Name="NUMCHRISTIANCHURCHES" Caption="Number of christian churches" DataType="SmallInt" />
+			<OutputField Name="PERCENTPROTESTANT" Caption="Percent protestant" DataType="TinyInt" />
+			<OutputField Name="CHRISTIANORGS" Caption="Christian orgs" />
+			
+			<OutputField Name="DISTANCETOMEDICALFACILITY" Caption="Distance to medical facility" DataType="SmallInt" />
+			<OutputField Name="DISTANCETOMEDICALFACILITYUNITOFMEASUREMENTCODE" Caption="Distance to medical facility unit of measurement" DataType="TinyInt" />
+			<OutputField Name="DAYSTOMEDICALFACILITY" Caption="Days to medical facility" DataType="TinyInt" />
+			<OutputField Name="HOURSTOMEDICALFACILITY" Caption="Hours to medical facility" DataType="TinyInt" />
+			<OutputField Name="MINUTESTOMEDICALFACILITY" Caption="Minutes to medical facility" DataType="TinyInt" />
+			<OutputField Name="HEALTHPROBLEMCHOLERA" Caption="Health problem - cholera" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMDENGUE" Caption="Health problem - dengue" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMDISABILITIES" Caption="Health problem - disabilities" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMHIVAIDS" Caption="Health problem - hivaids" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMINTESTINAL" Caption="Health problem - intestinal" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMMALARIA" Caption="Health problem - malaria" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMTUBERCULOSIS" Caption="Health problem - tuberculosis" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMOTHER" Caption="Health problem - other" DataType="Boolean" />
+			<OutputField Name="HEALTHPROBLEMOTHERDESC" Caption="Health problem - otherdesc" />
+
+		</OutputFields>
+    </Output>
+
+
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Community"/>
+	</RelationshipOperations>
+
+</QueryViewSpec>

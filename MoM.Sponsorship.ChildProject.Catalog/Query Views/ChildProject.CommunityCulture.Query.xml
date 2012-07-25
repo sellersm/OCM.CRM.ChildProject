@@ -1,0 +1,101 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="14175409-8C43-48FA-8F44-43F2419BC483"
+    Name="Child Project Community Culture Query"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+    RecordType="Child Project Extension"
+    IsRoot="false"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+	
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	23-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTCOMMUNITYCULTURE">
+        <ViewSQL>
+<![CDATA[
+
+	select	ID,
+			[LOCALTRADITIONS],
+			[HOLIDAYS],
+			[PRIMARYETHNICGROUPS],
+			[PRIMARYLANGUAGES],
+			[FAMILYSTRUCTUREPARTRIARCHAL],
+			[FAMILYSTRUCTUREMATRIARCHAL],
+			[FAMILYSTRUCTUREFAMILYDISINTEGRATION],
+			[FAMILYSTRUCTURESINGLEPARENT],
+			[FAMILYSTRUCTUREEXTENDEDFAMILY],
+			[FAMILYSTRUCTURECHILDHEADED],
+			[FAMILYSTRUCTUREOTHER],
+			[FAMILYSTRUCTUREOTHERDESC],
+			[SOCIALISSUESALCOHOLABUSE],
+			[SOCIALISSUESCHILDABUSE],
+			[SOCIALISSUESCHILDLABOR],
+			[SOCIALISSUESCHILDPROSTITUTION],
+			[SOCIALISSUESCHILDTRAFFICKING],
+			[SOCIALISSUESCHILDHEADEDHOUSEHOLDS],
+			[SOCIALISSUESDRUGABUSE],
+			[SOCIALISSUESFORCEDMARRIAGE],
+			[SOCIALISSUESGIRLCHILDDISCRIMINATION],
+			[SOCIALISSUESHIGHDIVORCE],
+			[SOCIALISSUESORPHANS],
+			[SOCIALISSUESREFUGEES],
+			[SOCIALISSUESSINGLEPARENTFAMILIES],
+			[SOCIALISSUESTRAUMA],
+			[SOCIALISSUESWAR],
+			[SOCIALISSUESOTHER],
+			[SOCIALISSUESOTHERDESC]
+			
+	  from	dbo.USR_CHILDPROJECTEXTENSION
+    
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true"/>
+            <OutputField Name="LOCALTRADITIONS" Caption="Local traditions" />
+            <OutputField Name="HOLIDAYS" Caption="Holidays" />
+            <OutputField Name="PRIMARYETHNICGROUPS" Caption="Primary ethnic groups" />
+            <OutputField Name="PRIMARYLANGUAGES" Caption="Primary languages" />
+            <OutputField Name="FAMILYSTRUCTUREPARTRIARCHAL" Caption="Family structure - partriarchal" DataType="Boolean" />
+            <OutputField Name="FAMILYSTRUCTUREMATRIARCHAL" Caption="Family structure - matriarchal" DataType="Boolean" />
+            <OutputField Name="FAMILYSTRUCTUREFAMILYDISINTEGRATION" Caption="Family structure - family disintegration" DataType="Boolean" />
+            <OutputField Name="FAMILYSTRUCTURESINGLEPARENT" Caption="Family structure - single parent" DataType="Boolean" />
+            <OutputField Name="FAMILYSTRUCTUREEXTENDEDFAMILY" Caption="Family structure - extendedfamily" DataType="Boolean" />
+            <OutputField Name="FAMILYSTRUCTURECHILDHEADED" Caption="Family structure - child headed" DataType="Boolean" />
+            <OutputField Name="FAMILYSTRUCTUREOTHER" Caption="Family structure - other" DataType="Boolean" />
+            <OutputField Name="FAMILYSTRUCTUREOTHERDESC" Caption="Family structure - other description" />
+            <OutputField Name="SOCIALISSUESALCOHOLABUSE" Caption="Social issues - alcohol abuse" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESCHILDABUSE" Caption="Social issues - child abuse" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESCHILDLABOR" Caption="Social issues - child labor" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESCHILDPROSTITUTION" Caption="Social issues - child prostitution" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESCHILDTRAFFICKING" Caption="Social issues - child trafficking" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESCHILDHEADEDHOUSEHOLDS" Caption="Social issues - child headed households" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESDRUGABUSE" Caption="Social issues - drug abuse" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESFORCEDMARRIAGE" Caption="Social issues - forced marriage" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESGIRLCHILDDISCRIMINATION" Caption="Social issues - girl child discrimination" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESHIGHDIVORCE" Caption="Social issues - high divorce" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESORPHANS" Caption="Social issues - orphans" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESREFUGEES" Caption="Social issues - refugees" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESSINGLEPARENTFAMILIES" Caption="Social issues - single parent families" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESTRAUMA" Caption="Social issues - trauma" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESWAR" Caption="Social issues - war" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESOTHER" Caption="Social issues - other" DataType="Boolean" />
+            <OutputField Name="SOCIALISSUESOTHERDESC" Caption="Social issues - otherdesc" />
+        </OutputFields>
+    </Output>
+
+
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Community Culture"/>
+	</RelationshipOperations>
+
+</QueryViewSpec>

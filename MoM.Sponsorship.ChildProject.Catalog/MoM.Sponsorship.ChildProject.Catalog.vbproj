@@ -78,12 +78,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LinkedSpecs\" />
-    <Folder Include="Query Views\" />
     <Folder Include="Tables\Code Tables\Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Add.Task.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenList.DataList.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenList.DataList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community.Edit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -137,8 +138,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Subcategory.CodeTable.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExpression.Query.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExt.View.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExpression.View.xml" />
     <EmbeddedResource Include="Pages\ChildProject.AlterConstituent.Page.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\Update.Country.RecordOperation.xml" />
@@ -164,6 +164,35 @@
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.UIModelVersion.View.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.Participation.Query.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.Extension.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.Quota.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.CommunityEnvironment.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.CommunityChildProtection.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.CommunityCulture.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.RegisteredChildren.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.Community.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.CommunityEducationEconomy.Query.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

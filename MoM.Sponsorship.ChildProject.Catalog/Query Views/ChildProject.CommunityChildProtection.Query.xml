@@ -1,0 +1,77 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="3DA82232-83B8-46C4-9843-F114B6F9547C"
+    Name="Child Project Community Child Protection"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+    RecordType="Child Project Extension"
+    IsRoot="false"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	23-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTCOMMUNITYCHILDPROTECTION">
+        <ViewSQL>
+<![CDATA[
+
+	select	ID,
+			[CHILDLEGALPROTECTIONCODE],
+			[CHILDLABORCODE],
+			[LEGALPROTECTIONAWARENOTENFORCED],
+			[LEGALPROTECTIONNOTAWARE],
+			[LEGALPROTECTIONAWAREENFORCED],
+			[CHILDLABORREGULARLYINLABORPOOL],
+			[CHILDLABORRSOMETIMESINLABORPOOL],
+			[CHILDLABORNOTINLABORPOOL],
+			[CHILDCAREWHENPARENTABSENTADOPTION],
+			[CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY],
+			[CHILDCAREWHENPARENTABSENTFOSTERCARE],
+			[CHILDCAREWHENPARENTABSENTINSTITUTION],
+			[CHILDCAREWHENPARENTABSENTNOCARE],
+			[CHILDCAREWHENPARENTABSENTOTHER],
+			[CHILDCAREWHENPARENTABSENTOTHERDESC],
+			[LOCALADOPTIONACCEPTEDCODE],
+			[FOREIGNADOPTIONLEGALCODE]
+			
+	  from	dbo.USR_CHILDPROJECTEXTENSION
+    
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true"/>
+            <OutputField Name="CHILDLEGALPROTECTIONCODE" Caption="Child legal protection" DataType="TinyInt" />
+            <OutputField Name="CHILDLABORCODE" Caption="Child labor" DataType="TinyInt" />
+            <OutputField Name="LEGALPROTECTIONAWARENOTENFORCED" Caption="Legal protection - aware not enforced" DataType="Boolean" />
+            <OutputField Name="LEGALPROTECTIONNOTAWARE" Caption="Legal protection - not aware" DataType="Boolean" />
+            <OutputField Name="LEGALPROTECTIONAWAREENFORCED" Caption="Legal protection - aware enforced" DataType="Boolean" />
+            <OutputField Name="CHILDLABORREGULARLYINLABORPOOL" Caption="Child labor - regularly in labor pool" DataType="Boolean" />
+            <OutputField Name="CHILDLABORRSOMETIMESINLABORPOOL" Caption="Child labor - sometimes in labor pool" DataType="Boolean" />
+            <OutputField Name="CHILDLABORNOTINLABORPOOL" Caption="Child labor - not in labor pool" DataType="Boolean" />
+            <OutputField Name="CHILDCAREWHENPARENTABSENTADOPTION" Caption="Child care when parent absent - adoption" DataType="Boolean" />
+            <OutputField Name="CHILDCAREWHENPARENTABSENTEXTENDEDFAMILY" Caption="Child care when parent absent - extended family" DataType="Boolean" />
+            <OutputField Name="CHILDCAREWHENPARENTABSENTFOSTERCARE" Caption="Child care when parent absent - foster care" DataType="Boolean" />
+            <OutputField Name="CHILDCAREWHENPARENTABSENTINSTITUTION" Caption="Child care when parent absent - institution" DataType="Boolean" />
+            <OutputField Name="CHILDCAREWHENPARENTABSENTNOCARE" Caption="Child care when parent absent - no care" DataType="Boolean" />
+            <OutputField Name="CHILDCAREWHENPARENTABSENTOTHER" Caption="Child care when parent absent - other" DataType="Boolean" />
+            <OutputField Name="CHILDCAREWHENPARENTABSENTOTHERDESC" Caption="Child care when parent absent - other description" />
+            <OutputField Name="LOCALADOPTIONACCEPTEDCODE" Caption="Local adoption accepted" DataType="TinyInt" />
+            <OutputField Name="FOREIGNADOPTIONLEGALCODE" Caption="Foreign adoption legal" DataType="TinyInt" />
+        </OutputFields>
+    </Output>
+
+
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Community Child Protection"/>
+	</RelationshipOperations>
+
+</QueryViewSpec>

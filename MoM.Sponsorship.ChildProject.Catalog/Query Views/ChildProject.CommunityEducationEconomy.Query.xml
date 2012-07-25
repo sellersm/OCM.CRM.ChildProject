@@ -1,0 +1,106 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="14175409-8C43-48FA-8F44-43F2419BC483"
+    Name="Child Project Community Education and Economy Query"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+    RecordType="Child Project Extension"
+    IsRoot="false"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+	
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	25-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTCOMMUNITYEDUCATIONECONOMY">
+        <ViewSQL>
+<![CDATA[
+
+	select	ID,
+	(select USR_CHILDPROJECTHIGHESTEDUCATIONCODE.DESCRIPTION from dbo.USR_CHILDPROJECTHIGHESTEDUCATIONCODE where USR_CHILDPROJECTHIGHESTEDUCATIONCODE.ID = [HIGHESTEDUCATIONAVAILABLECODEID]) as HIGHESTEDUCATIONAVAILABLECODEID_TRANSLATION,
+			[HIGHESTEDUCATIONAVAILABLEOTHER],
+			[EDUCATIONSYSTEMDIVISIONS],
+			[EDUCATIONTYPEPUBLIC],
+			[EDUCATIONTYPEPRIVATE],
+			[EDUCATIONTYPERELIGIOUS],
+			[EDUCATIONTYPEOTHER],
+			[EDUCATIONTYPEOTHERDESC],
+			[VOCATIONALTRAININGAVAILABLE],
+			[PERCENTCHILDRENNOTINSCHOOL],
+			[PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL],
+			[PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL],
+			[AVGFAMILYMONTHLYINCOME],
+			[AVGFAMILYMONTHLYINCOMEINUSDOLLARS],
+			[PRIMARYOCCUPATIONHERDING],
+			[PRIMARYOCCUPATIONDAYLABOR],
+			[PRIMARYOCCUPATIONDOMESTIC],
+			[PRIMARYOCCUPATIONFACTORY],
+			[PRIMARYOCCUPATIONFISHING],
+			[PRIMARYOCCUPATIONGOVERNMENT],
+			[PRIMARYOCCUPATIONSTREETVENDING],
+			[PRIMARYOCCUPATIONFARMING],
+			[PRIMARYOCCUPATIONTRADING],
+			[PRIMARYOCCUPATIONPLANTATION],
+			[PRIMARYOCCUPATIONPORTER],
+			[PRIMARYOCCUPATIONOTHER],
+			[PRIMARYOCCUPATIONOTHERDESC],
+			[AVGHOURSPERWEEK],
+			[UNEMPLOYMENTRATE]
+
+	
+	  from	dbo.USR_CHILDPROJECTEXTENSION
+    
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="HIGHESTEDUCATIONAVAILABLECODEID_TRANSLATION" Caption="Highest education available">
+				<LookupInfo>
+					<CodeTable CodeTableName="USR_CHILDPROJECTHIGHESTEDUCATIONCODE" IncludeInactive="true" />
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="HIGHESTEDUCATIONAVAILABLEOTHER" Caption="Highest education available other description" />
+			<OutputField Name="EDUCATIONSYSTEMDIVISIONS" Caption="Education system divisions" />
+			<OutputField Name="EDUCATIONTYPEPUBLIC" Caption="Education type - public" DataType="Boolean" />
+			<OutputField Name="EDUCATIONTYPEPRIVATE" Caption="Education type - private" DataType="Boolean" />
+			<OutputField Name="EDUCATIONTYPERELIGIOUS" Caption="Education type - religious" DataType="Boolean" />
+			<OutputField Name="EDUCATIONTYPEOTHER" Caption="Education type - other" DataType="Boolean" />
+			<OutputField Name="EDUCATIONTYPEOTHERDESC" Caption="Education type - other description" />
+			<OutputField Name="VOCATIONALTRAININGAVAILABLE" Caption="Vocational training available" />
+			<OutputField Name="PERCENTCHILDRENNOTINSCHOOL" Caption="Percent children not in school" DataType="TinyInt" />
+			<OutputField Name="PERCENTCHILDRENCOMPLETEDPRIMARYSCHOOL" Caption="Percent children completed primary school" DataType="TinyInt" />
+			<OutputField Name="PERCENTYOUTHCOMPLETEDSECONDARYSCHOOL" Caption="Percent youth completed secondary school" DataType="TinyInt" />
+			<OutputField Name="AVGFAMILYMONTHLYINCOME" Caption="Average family monthly income" DataType="Decimal" />
+			<OutputField Name="AVGFAMILYMONTHLYINCOMEINUSDOLLARS" Caption="Average family monthly income in US dollars" DataType="Money" />
+			<OutputField Name="PRIMARYOCCUPATIONHERDING" Caption="Primary occupation - herding" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONDAYLABOR" Caption="Primary occupation - dayl abor" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONDOMESTIC" Caption="Primary occupation - domestic" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONFACTORY" Caption="Primary occupation - factory" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONFISHING" Caption="Primary occupation - fishing" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONGOVERNMENT" Caption="Primary occupation - government" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONSTREETVENDING" Caption="Primary occupation - street vending" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONFARMING" Caption="Primary occupation - farming" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONTRADING" Caption="Primary occupation - trading" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONPLANTATION" Caption="Primary occupation - plantation" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONPORTER" Caption="Primary occupation - porter" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONOTHER" Caption="Primary occupation - other" DataType="Boolean" />
+			<OutputField Name="PRIMARYOCCUPATIONOTHERDESC" Caption="Primary occupation - other description" />
+			<OutputField Name="AVGHOURSPERWEEK" Caption="Average hours per week" DataType="TinyInt" />
+			<OutputField Name="UNEMPLOYMENTRATE" Caption="Unemployment rate" DataType="TinyInt" />
+		</OutputFields>
+    </Output>
+
+
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Community Education and Economy"/>
+	</RelationshipOperations>
+
+</QueryViewSpec>

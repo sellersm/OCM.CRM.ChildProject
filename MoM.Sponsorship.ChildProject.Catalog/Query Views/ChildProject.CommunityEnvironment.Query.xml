@@ -1,0 +1,226 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="2F1F40D2-926E-4DE2-B52C-727352AE4F8A"
+    Name="Child Project Community Environment Query"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+    RecordType="Child Project Extension"
+    IsRoot="false"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	23-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTCOMMUNITYENVIRONMENT">
+        <ViewSQL>
+<![CDATA[
+	select	ID,
+			(select USR_CHILDPROJECTTERRAINCODE.DESCRIPTION from dbo.USR_CHILDPROJECTTERRAINCODE where USR_CHILDPROJECTTERRAINCODE.ID = [TERRAINCODEID]) as TERRAINCODEID_TRANSLATION,
+			[TERRAINOTHER],
+			[TRANSPORTATIONTYPEANIMALCART],
+			[TRANSPORTATIONTYPECAR],
+			[TRANSPORTATIONTYPETAXI],
+			[TRANSPORTATIONTYPEBOAT],
+			[TRANSPORTATIONTYPEMOTORSCOOTER],
+			[TRANSPORTATIONTYPEWALK],
+			[TRANSPORTATIONTYPEBUS],
+			[TRANSPORTATIONTYPERICKSHAW],
+			[TRANSPORTATIONTYPEOTHER],
+			[TRANSPORTATIONTYPEOTHERDESC],
+			(select USR_CHILDPROJECTCLIMATECODE.DESCRIPTION from dbo.USR_CHILDPROJECTCLIMATECODE where USR_CHILDPROJECTCLIMATECODE.ID = [CLIMATECODEID]) as CLIMATECODEID_TRANSLATION,
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = [WARMESTMONTHCODEID]) as WARMESTMONTHCODEID_TRANSLATION,
+			[WARMESTMONTHAVGTEMPERATURE],
+			[WARMESTMONTHAVGTEMPERATUREUNITOFMEASURECODE],
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = [COOLESTMONTHCODEID]) as COOLESTMONTHCODEID_TRANSLATION,
+			[COOLESTMONTHAVGTEMPERATURE],
+			[COOLESTMONTHAVGTEMPERATUREUNITOFMEASURECODE],
+			[PRIMARYDIETBANANAS],
+			[PRIMARYDIETBEANS],
+			[PRIMARYDIETBEEF],
+			[PRIMARYDIETBREAD],
+			[PRIMARYDIETCASSAVA],
+			[PRIMARYDIETCHICKEN],
+			[PRIMARYDIETDALLENTILS],
+			[PRIMARYDIETFISH],
+			[PRIMARYDIETGOAT],
+			[PRIMARYDIETGUINEAPIG],
+			[PRIMARYDIETMAIZE],
+			[PRIMARYDIETNOODLES],
+			[PRIMARYDIETPLANTAIN],
+			[PRIMARYDIETPOTATO],
+			[PRIMARYDIETRICE],
+			[PRIMARYDIETUGALI],
+			[PRIMARYDIETOTHER],
+			[PRIMARYDIETOTHERDESC],
+			[RAINYSEASONJAN],
+			[RAINYSEASONFEB],
+			[RAINYSEASONMAR],
+			[RAINYSEASONAPR],
+			[RAINYSEASONMAY],
+			[RAINYSEASONJUN],
+			[RAINYSEASONJUL],
+			[RAINYSEASONAUG],
+			[RAINYSEASONSEP],
+			[RAINYSEASONOCT],
+			[RAINYSEASONNOV],
+			[RAINYSEASONDEC],
+			[PLANTINGSEASONJAN],
+			[PLANTINGSEASONFEB],
+			[PLANTINGSEASONMAR],
+			[PLANTINGSEASONAPR],
+			[PLANTINGSEASONMAY],
+			[PLANTINGSEASONJUN],
+			[PLANTINGSEASONJUL],
+			[PLANTINGSEASONAUG],
+			[PLANTINGSEASONSEP],
+			[PLANTINGSEASONOCT],
+			[PLANTINGSEASONNOV],
+			[PLANTINGSEASONDEC],
+			[HARVESTSEASONJAN],
+			[HARVESTSEASONFEB],
+			[HARVESTSEASONMAR],
+			[HARVESTSEASONAPR],
+			[HARVESTSEASONMAY],
+			[HARVESTSEASONJUN],
+			[HARVESTSEASONJUL],
+			[HARVESTSEASONAUG],
+			[HARVESTSEASONSEP],
+			[HARVESTSEASONOCT],
+			[HARVESTSEASONNOV],
+			[HARVESTSEASONDEC],
+			[TIMEOFHUNGERJAN],
+			[TIMEOFHUNGERFEB],
+			[TIMEOFHUNGERMAR],
+			[TIMEOFHUNGERAPR],
+			[TIMEOFHUNGERMAY],
+			[TIMEOFHUNGERJUN],
+			[TIMEOFHUNGERJUL],
+			[TIMEOFHUNGERAUG],
+			[TIMEOFHUNGERSEP],
+			[TIMEOFHUNGEROCT],
+			[TIMEOFHUNGERNOV],
+			[TIMEOFHUNGERDEC]
+	
+	  from	dbo.USR_CHILDPROJECTEXTENSION
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" />
+            <OutputField Name="TERRAINCODEID_TRANSLATION" Caption="Terrain">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTTERRAINCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="TERRAINOTHER" Caption="Terrain other" />
+            <OutputField Name="TRANSPORTATIONTYPEANIMALCART" Caption="Transportation type - animal cart" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPECAR" Caption="Transportation type - car" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPETAXI" Caption="Transportation type - taxi" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPEBOAT" Caption="Transportation type - boat" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPEMOTORSCOOTER" Caption="Transportation type - motorscooter" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPEWALK" Caption="Transportation type - walk" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPEBUS" Caption="Transportation type - bus" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPERICKSHAW" Caption="Transportation type - rickshaw" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPEOTHER" Caption="Transportation type - other" DataType="Boolean" />
+            <OutputField Name="TRANSPORTATIONTYPEOTHERDESC" Caption="Transportation type - other description" />
+            <OutputField Name="CLIMATECODEID_TRANSLATION" Caption="Climate">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTCLIMATECODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="WARMESTMONTHCODEID_TRANSLATION" Caption="Warmest month">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="WARMESTMONTHAVGTEMPERATURE" Caption="Warmest month avg temperature" DataType="TinyInt" />
+            <OutputField Name="WARMESTMONTHAVGTEMPERATUREUNITOFMEASURECODE" Caption="Warmest month avg temperature unit of measure" DataType="TinyInt" />
+            <OutputField Name="COOLESTMONTHCODEID_TRANSLATION" Caption="Coolest month">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="COOLESTMONTHAVGTEMPERATURE" Caption="Coolest month avg temperature" DataType="TinyInt" />
+            <OutputField Name="COOLESTMONTHAVGTEMPERATUREUNITOFMEASURECODE" Caption="Coolest month avg temperature unit of measure" DataType="TinyInt" />
+            <OutputField Name="PRIMARYDIETBANANAS" Caption="Primary diet - bananas" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETBEANS" Caption="Primary diet - beans" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETBEEF" Caption="Primary diet - beef" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETBREAD" Caption="Primary diet - bread" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETCASSAVA" Caption="Primary diet - cassava" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETCHICKEN" Caption="Primary diet - chicken" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETDALLENTILS" Caption="Primary diet - dallentils" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETFISH" Caption="Primary diet - fish" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETGOAT" Caption="Primary diet - goat" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETGUINEAPIG" Caption="Primary diet - guineapig" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETMAIZE" Caption="Primary diet - maize" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETNOODLES" Caption="Primary diet - noodles" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETPLANTAIN" Caption="Primary diet - plantain" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETPOTATO" Caption="Primary diet - potato" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETRICE" Caption="Primary diet - rice" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETUGALI" Caption="Primary diet - ugali" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETOTHER" Caption="Primary diet - other" DataType="Boolean" />
+            <OutputField Name="PRIMARYDIETOTHERDESC" Caption="Primary diet - other description" />
+            <OutputField Name="RAINYSEASONJAN" Caption="Rainy season - 01 January" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONFEB" Caption="Rainy season - 02 February" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONMAR" Caption="Rainy season - 03 March" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONAPR" Caption="Rainy season - 04 April" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONMAY" Caption="Rainy season - 05 May" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONJUN" Caption="Rainy season - 06 June" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONJUL" Caption="Rainy season - 07 July" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONAUG" Caption="Rainy season - 08 August" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONSEP" Caption="Rainy season - 09 September" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONOCT" Caption="Rainy season - 10 October" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONNOV" Caption="Rainy season - 11 November" DataType="Boolean" />
+            <OutputField Name="RAINYSEASONDEC" Caption="Rainy season - 12 December" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONJAN" Caption="Planting season - 01 January" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONFEB" Caption="Planting season - 02 February" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONMAR" Caption="Planting season - 03 March" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONAPR" Caption="Planting season - 04 April" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONMAY" Caption="Planting season - 05 May" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONJUN" Caption="Planting season - 06 June" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONJUL" Caption="Planting season - 07 July" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONAUG" Caption="Planting season - 08 August" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONSEP" Caption="Planting season - 09 September" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONOCT" Caption="Planting season - 10 October" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONNOV" Caption="Planting season - 11 November" DataType="Boolean" />
+            <OutputField Name="PLANTINGSEASONDEC" Caption="Planting season - 12 December" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONJAN" Caption="Harvest season - 01 January" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONFEB" Caption="Harvest season - 02 February" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONMAR" Caption="Harvest season - 03 March" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONAPR" Caption="Harvest season - 04 April" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONMAY" Caption="Harvest season - 05 May" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONJUN" Caption="Harvest season - 06 June" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONJUL" Caption="Harvest season - 07 July" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONAUG" Caption="Harvest season - 08 August" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONSEP" Caption="Harvest season - 09 September" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONOCT" Caption="Harvest season - 10 October" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONNOV" Caption="Harvest season - 11 November" DataType="Boolean" />
+            <OutputField Name="HARVESTSEASONDEC" Caption="Harvest season - 12 December" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERJAN" Caption="Time of hunger - 01 January" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERFEB" Caption="Time of hunger - 02 February" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERMAR" Caption="Time of hunger - 03 March" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERAPR" Caption="Time of hunger - 04 April" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERMAY" Caption="Time of hunger - 05 May" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERJUN" Caption="Time of hunger - 06 June" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERJUL" Caption="Time of hunger - 07 July" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERAUG" Caption="Time of hunger - 08 August" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERSEP" Caption="Time of hunger - 09 September" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGEROCT" Caption="Time of hunger - 10 October" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERNOV" Caption="Time of hunger - 11 November" DataType="Boolean" />
+            <OutputField Name="TIMEOFHUNGERDEC" Caption="Time of hunger - 12 December" DataType="Boolean" />
+        </OutputFields>
+    </Output>
+
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Community Environment"/>
+	</RelationshipOperations>
+
+</QueryViewSpec>

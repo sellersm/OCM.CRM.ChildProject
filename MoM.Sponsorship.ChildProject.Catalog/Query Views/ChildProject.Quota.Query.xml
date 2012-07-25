@@ -1,0 +1,126 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="4A02BDD0-A2BE-45AF-A704-EDAEEF0006FE"
+    Name="Child Project Quota Query"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+	RecordType="Child Project Extension"
+    IsRoot="false"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+	
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	23-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTQUOTA">
+        <ViewSQL>
+<![CDATA[
+
+	select	ID,
+			[QUOTATYPE],
+			[DECREASEDQUOTA],
+			[GROWTHQUOTA],
+			[CURRENTQUOTA],
+			[APPROVEDQUOTAINITIAL],
+			[APPROVEDQUOTA01OCT],
+			[APPROVEDQUOTA02NOV],
+			[APPROVEDQUOTA03DEC],
+			[APPROVEDQUOTA04JAN],
+			[APPROVEDQUOTA05FEB],
+			[APPROVEDQUOTA06MAR],
+			[APPROVEDQUOTA07APR],
+			[APPROVEDQUOTA08MAY],
+			[APPROVEDQUOTA09JUN],
+			[APPROVEDQUOTA10JUL],
+			[APPROVEDQUOTA11AUG],
+			[APPROVEDQUOTA12SEP],
+			[NEWCHILDRENSTATUS],
+			(select USR_SPONSORSHIPPERFORMANCECODE.DESCRIPTION from dbo.USR_SPONSORSHIPPERFORMANCECODE where USR_SPONSORSHIPPERFORMANCECODE.ID = [PERFORMANCECODEID]) as PERFORMANCECODEID_TRANSLATION,
+			[MARKETINGDEMANDSTATUS],
+			[OVERRIDETRIGGERSTATUS]
+
+	  from	dbo.USR_CHILDPROJECTEXTENSION cp_ext
+ 
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true" />
+			<OutputField Name="QUOTATYPE" Caption="Quota type" DataType="String" >
+				<LookupInfo>
+					<TranslationList>						
+						<c:Options>
+							<c:TranslationListOption Value="Project quota" />
+							<c:TranslationListOption Value="Country quota" />
+						</c:Options>
+					</TranslationList>
+				</LookupInfo>
+			</OutputField>
+            <OutputField Name="DECREASEDQUOTA" Caption="Decreased quota"  DataType="SmallInt"/>
+            <OutputField Name="GROWTHQUOTA" Caption="Growth quota" DataType="SmallInt" />
+            <OutputField Name="CURRENTQUOTA" Caption="Current quota" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTAINITIAL" Caption="Approved quota initial" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA01OCT" Caption="Approved quota 01 October" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA02NOV" Caption="Approved quota 02 November" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA03DEC" Caption="Approved quota 03 December" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA04JAN" Caption="Approved quota 04 January" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA05FEB" Caption="Approved quota 05 February" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA06MAR" Caption="Approved quota 06 March" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA07APR" Caption="Approved quota 07 April" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA08MAY" Caption="Approved quota 08 May" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA09JUN" Caption="Approved quota 09 June" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA10JUL" Caption="Approved quota 10 July" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA11AUG" Caption="Approved quota 11 August" DataType="SmallInt" />
+            <OutputField Name="APPROVEDQUOTA12SEP" Caption="Approved quota 12 September" DataType="SmallInt" />
+            <OutputField Name="NEWCHILDRENSTATUS" Caption="New children status" DataType="String" >
+				<LookupInfo>
+					<TranslationList>
+						<c:Options>
+							<c:TranslationListOption Value="No" />
+							<c:TranslationListOption Value="Yes" />
+						</c:Options>
+					</TranslationList>
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="PERFORMANCECODEID_TRANSLATION" Caption="Performance">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_SPONSORSHIPPERFORMANCECODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>			
+            <OutputField Name="MARKETINGDEMANDSTATUS" Caption="Marketing demand status" DataType="String" >
+				<LookupInfo>
+					<TranslationList>
+						<c:Options>
+							<c:TranslationListOption Value="No" />
+							<c:TranslationListOption Value="Yes" />
+						</c:Options>
+					</TranslationList>
+				</LookupInfo>
+			</OutputField>
+
+			<OutputField Name="OVERRIDETRIGGERSTATUS" Caption="Override trigger status" DataType="String" >
+				<LookupInfo>
+					<TranslationList>
+						<c:Options>
+							<c:TranslationListOption Value="No" />
+							<c:TranslationListOption Value="Yes" />
+						</c:Options>
+					</TranslationList>
+				</LookupInfo>
+			</OutputField>
+
+		</OutputFields>
+    </Output>
+	
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Quota"/>
+	</RelationshipOperations>
+
+</QueryViewSpec>
