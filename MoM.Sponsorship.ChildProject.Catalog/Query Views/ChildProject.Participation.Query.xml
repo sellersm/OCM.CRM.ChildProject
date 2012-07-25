@@ -1,0 +1,217 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="D248CB3D-93C2-4444-A03E-01ACF19E0112"
+    Name="Child Project Participation Query"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+    RecordType="Child Project Extension"
+    IsRoot="false"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+	
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	23-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTPARTICIPATION">
+        <ViewSQL>
+<![CDATA[
+
+	select	ID,
+			[PARTICIPATIONAGERANGE1LOWERLIMIT],
+			[PARTICIPATIONAGERANGE1UPPERLIMIT],
+			[PARTICIPATIONAGERANGE1JAN],
+			[PARTICIPATIONAGERANGE1FEB],
+			[PARTICIPATIONAGERANGE1MAR],
+			[PARTICIPATIONAGERANGE1APR],
+			[PARTICIPATIONAGERANGE1MAY],
+			[PARTICIPATIONAGERANGE1JUN],
+			[PARTICIPATIONAGERANGE1JUL],
+			[PARTICIPATIONAGERANGE1AUG],
+			[PARTICIPATIONAGERANGE1SEP],
+			[PARTICIPATIONAGERANGE1OCT],
+			[PARTICIPATIONAGERANGE1NOV],
+			[PARTICIPATIONAGERANGE1DEC],
+			[PARTICIPATIONAGERANGE1SUN],
+			[PARTICIPATIONAGERANGE1MON],
+			[PARTICIPATIONAGERANGE1TUE],
+			[PARTICIPATIONAGERANGE1WED],
+			[PARTICIPATIONAGERANGE1THU],
+			[PARTICIPATIONAGERANGE1FRI],
+			[PARTICIPATIONAGERANGE1SAT],
+			[PARTICIPATIONAGERANGE1HOURSPERWEEK],
+			[PARTICIPATIONAGERANGE2LOWERLIMIT],
+			[PARTICIPATIONAGERANGE2UPPERLIMIT],
+			[PARTICIPATIONAGERANGE2JAN],
+			[PARTICIPATIONAGERANGE2FEB],
+			[PARTICIPATIONAGERANGE2MAR],
+			[PARTICIPATIONAGERANGE2APR],
+			[PARTICIPATIONAGERANGE2MAY],
+			[PARTICIPATIONAGERANGE2JUN],
+			[PARTICIPATIONAGERANGE2JUL],
+			[PARTICIPATIONAGERANGE2AUG],
+			[PARTICIPATIONAGERANGE2SEP],
+			[PARTICIPATIONAGERANGE2OCT],
+			[PARTICIPATIONAGERANGE2NOV],
+			[PARTICIPATIONAGERANGE2DEC],
+			[PARTICIPATIONAGERANGE2SUN],
+			[PARTICIPATIONAGERANGE2MON],
+			[PARTICIPATIONAGERANGE2TUE],
+			[PARTICIPATIONAGERANGE2WED],
+			[PARTICIPATIONAGERANGE2THU],
+			[PARTICIPATIONAGERANGE2FRI],
+			[PARTICIPATIONAGERANGE2SAT],
+			[PARTICIPATIONAGERANGE2HOURSPERWEEK],
+			[PARTICIPATIONAGERANGE3LOWERLIMIT],
+			[PARTICIPATIONAGERANGE3UPPERLIMIT],
+			[PARTICIPATIONAGERANGE3JAN],
+			[PARTICIPATIONAGERANGE3FEB],
+			[PARTICIPATIONAGERANGE3MAR],
+			[PARTICIPATIONAGERANGE3APR],
+			[PARTICIPATIONAGERANGE3MAY],
+			[PARTICIPATIONAGERANGE3JUN],
+			[PARTICIPATIONAGERANGE3JUL],
+			[PARTICIPATIONAGERANGE3AUG],
+			[PARTICIPATIONAGERANGE3SEP],
+			[PARTICIPATIONAGERANGE3OCT],
+			[PARTICIPATIONAGERANGE3NOV],
+			[PARTICIPATIONAGERANGE3DEC],
+			[PARTICIPATIONAGERANGE3SUN],
+			[PARTICIPATIONAGERANGE3MON],
+			[PARTICIPATIONAGERANGE3TUE],
+			[PARTICIPATIONAGERANGE3WED],
+			[PARTICIPATIONAGERANGE3THU],
+			[PARTICIPATIONAGERANGE3FRI],
+			[PARTICIPATIONAGERANGE3SAT],
+			[PARTICIPATIONAGERANGE3HOURSPERWEEK],
+			[PARTICIPATIONAGERANGE4LOWERLIMIT],
+			[PARTICIPATIONAGERANGE4UPPERLIMIT],
+			[PARTICIPATIONAGERANGE4JAN],
+			[PARTICIPATIONAGERANGE4FEB],
+			[PARTICIPATIONAGERANGE4MAR],
+			[PARTICIPATIONAGERANGE4APR],
+			[PARTICIPATIONAGERANGE4MAY],
+			[PARTICIPATIONAGERANGE4JUN],
+			[PARTICIPATIONAGERANGE4JUL],
+			[PARTICIPATIONAGERANGE4AUG],
+			[PARTICIPATIONAGERANGE4SEP],
+			[PARTICIPATIONAGERANGE4OCT],
+			[PARTICIPATIONAGERANGE4NOV],
+			[PARTICIPATIONAGERANGE4DEC],
+			[PARTICIPATIONAGERANGE4SUN],
+			[PARTICIPATIONAGERANGE4MON],
+			[PARTICIPATIONAGERANGE4TUE],
+			[PARTICIPATIONAGERANGE4WED],
+			[PARTICIPATIONAGERANGE4THU],
+			[PARTICIPATIONAGERANGE4FRI],
+			[PARTICIPATIONAGERANGE4SAT],
+			[PARTICIPATIONAGERANGE4HOURSPERWEEK]
+
+	from	dbo.USR_CHILDPROJECTEXTENSION
+	  
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true" />
+            <OutputField Name="PARTICIPATIONAGERANGE1LOWERLIMIT" Caption="Participation age range 1 - lower limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE1UPPERLIMIT" Caption="Participation age range 1 - upper limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE1JAN" Caption="Participation age range 1 - 01 January" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1FEB" Caption="Participation age range 1 - 02 February" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1MAR" Caption="Participation age range 1 - 03 March" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1APR" Caption="Participation age range 1 - 04 April" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1MAY" Caption="Participation age range 1 - 05 May" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1JUN" Caption="Participation age range 1 - 06 June" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1JUL" Caption="Participation age range 1 - 07 July" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1AUG" Caption="Participation age range 1 - 08 August" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1SEP" Caption="Participation age range 1 - 09 September" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1OCT" Caption="Participation age range 1 - 10 October" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1NOV" Caption="Participation age range 1 - 11 November" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1DEC" Caption="Participation age range 1 - 12 December" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1SUN" Caption="Participation age range 1 - day 1 Sunday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1MON" Caption="Participation age range 1 - day 2 Monday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1TUE" Caption="Participation age range 1 - day 3 Tuesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1WED" Caption="Participation age range 1 - day 4 Wednesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1THU" Caption="Participation age range 1 - day 5 Thursday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1FRI" Caption="Participation age range 1 - day 6 Friday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1SAT" Caption="Participation age range 1 - day 7 Saturday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE1HOURSPERWEEK" Caption="Participation age range 1 - hours per week" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE2LOWERLIMIT" Caption="Participation age range 2 - lower limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE2UPPERLIMIT" Caption="Participation age range 2 - upper limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE2JAN" Caption="Participation age range 2 - 01 January" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2FEB" Caption="Participation age range 2 - 01 February" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2MAR" Caption="Participation age range 2 - 03 March" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2APR" Caption="Participation age range 2 - 04 April" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2MAY" Caption="Participation age range 2 - 05 May" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2JUN" Caption="Participation age range 2 - 06 June" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2JUL" Caption="Participation age range 2 - 07 July" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2AUG" Caption="Participation age range 2 - 08 August" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2SEP" Caption="Participation age range 2 - 09 September" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2OCT" Caption="Participation age range 2 - 10 October" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2NOV" Caption="Participation age range 2 - 11 November" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2DEC" Caption="Participation age range 2 - 12 December" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2SUN" Caption="Participation age range 2 - day 1 Sunday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2MON" Caption="Participation age range 2 - day 2 Monday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2TUE" Caption="Participation age range 2 - day 3 Tuesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2WED" Caption="Participation age range 2 - day 4 Wednesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2THU" Caption="Participation age range 2 - day 5 Thursday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2FRI" Caption="Participation age range 2 - day 6 Friday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2SAT" Caption="Participation age range 2 - day 7 Saturday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE2HOURSPERWEEK" Caption="Participation age range 2 - hours per week" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE3LOWERLIMIT" Caption="Participation age range 3 - lower limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE3UPPERLIMIT" Caption="Participation age range 3 - upper limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE3JAN" Caption="Participation age range 3 - 01 January" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3FEB" Caption="Participation age range 3 - 02 February" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3MAR" Caption="Participation age range 3 - 03 March" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3APR" Caption="Participation age range 3 - 04 April" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3MAY" Caption="Participation age range 3 - 05 May" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3JUN" Caption="Participation age range 3 - 06 June" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3JUL" Caption="Participation age range 3 - 07 July" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3AUG" Caption="Participation age range 3 - 08 August" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3SEP" Caption="Participation age range 3 - 09 September" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3OCT" Caption="Participation age range 3 - 10 October" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3NOV" Caption="Participation age range 3 - 11 November" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3DEC" Caption="Participation age range 3 - 12 December" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3SUN" Caption="Participation age range 3 - day 1 Sunday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3MON" Caption="Participation age range 3 - day 2 Monday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3TUE" Caption="Participation age range 3 - day 3 Tuesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3WED" Caption="Participation age range 3 - day 4 Wednesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3THU" Caption="Participation age range 3 - day 5 Thursday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3FRI" Caption="Participation age range 3 - day 6 Friday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3SAT" Caption="Participation age range 3 - day 7 Saturday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE3HOURSPERWEEK" Caption="Participation age range 3 - hours per week" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE4LOWERLIMIT" Caption="Participation age range 4 - lower limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE4UPPERLIMIT" Caption="Participation age range 4 - upper limit" DataType="TinyInt" />
+            <OutputField Name="PARTICIPATIONAGERANGE4JAN" Caption="Participation age range 4 - 01 January" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4FEB" Caption="Participation age range 4 - 02 February" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4MAR" Caption="Participation age range 4 - 03 March" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4APR" Caption="Participation age range 4 - 04 April" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4MAY" Caption="Participation age range 4 - 05 May" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4JUN" Caption="Participation age range 4 - 06 June" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4JUL" Caption="Participation age range 4 - 07 July" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4AUG" Caption="Participation age range 4 - 08 August" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4SEP" Caption="Participation age range 4 - 09 September" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4OCT" Caption="Participation age range 4 - 10 October" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4NOV" Caption="Participation age range 4 - 11 November" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4DEC" Caption="Participation age range 4 - 12 December" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4SUN" Caption="Participation age range 4 - day 1 Sunday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4MON" Caption="Participation age range 4 - day 2 Monday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4TUE" Caption="Participation age range 4 - day 3 Tuesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4WED" Caption="Participation age range 4 - day 4 Wednesday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4THU" Caption="Participation age range 4 - day 5 Thursday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4FRI" Caption="Participation age range 4 - day 6 Friday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4SAT" Caption="Participation age range 4 - day 7 Saturday" DataType="Boolean" />
+            <OutputField Name="PARTICIPATIONAGERANGE4HOURSPERWEEK" Caption="Participation age range 4 - hours per week" DataType="TinyInt" />
+        </OutputFields>
+    </Output>
+
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Participation"/>
+	</RelationshipOperations>
+</QueryViewSpec>

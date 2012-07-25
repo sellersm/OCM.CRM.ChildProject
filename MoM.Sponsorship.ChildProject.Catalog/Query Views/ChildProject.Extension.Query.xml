@@ -1,0 +1,241 @@
+<QueryViewSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="29bb6d0d-0a5d-4102-b594-35ae3d463319"
+    Name="Child Project Extension Query"
+    Description="Provides support for querying on Child Project Extension information."
+    Author="Cary Mayeda"
+    PrimaryKeyField="ID"
+    RecordType="Child Project Extension"
+    IsRoot="true"
+	c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+    xmlns="bb_appfx_queryview" >
+
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	23-Jul-2012		CMayeda			Initial Version
+	-->
+
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTEXTENSION">
+        <ViewSQL>
+<![CDATA[
+	select	cp_ext.ID,
+			proj_const.NAME,
+			(select USR_CHILDPROJECTTYPECODE.DESCRIPTION from dbo.USR_CHILDPROJECTTYPECODE where USR_CHILDPROJECTTYPECODE.ID = cp_ext.[CHILDPROJECTTYPECODEID]) as CHILDPROJECTTYPECODEID_TRANSLATION,
+			cp_ext.[CHILDPROJECTTYPEOTHER],
+			(select USR_CHILDPROJECTSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTSTATUSCODE where USR_CHILDPROJECTSTATUSCODE.ID = cp_ext.[CHILDPROJECTSTATUSCODEID]) as CHILDPROJECTSTATUSCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTCATEGORYCODE.DESCRIPTION from dbo.USR_CHILDPROJECTCATEGORYCODE where USR_CHILDPROJECTCATEGORYCODE.ID = cp_ext.[CHILDPROJECTCATEGORYCODEID]) as CHILDPROJECTCATEGORYCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTSUBCATEGORYCODE.DESCRIPTION from dbo.USR_CHILDPROJECTSUBCATEGORYCODE where USR_CHILDPROJECTSUBCATEGORYCODE.ID = cp_ext.[CHILDPROJECTSUBCATEGORYCODEID]) as CHILDPROJECTSUBCATEGORYCODEID_TRANSLATION,
+			cp_ext.[COUNTRYEXTENSIONID],
+			cp_ext.[TECHNOLOGYAVAILABLEELECTRICITY],
+			cp_ext.[TECHNOLOGYAVAILABLETELEPHONE],
+			cp_ext.[TECHNOLOGYAVAILABLECOMPUTER],
+			cp_ext.[TECHNOLOGYAVAILABLEINTERNET],
+			cp_ext.[MAXCHILDRENCOUNT],
+			(select USR_CHILDPROJECTMAXGRADELEVELCODE.DESCRIPTION from dbo.USR_CHILDPROJECTMAXGRADELEVELCODE where USR_CHILDPROJECTMAXGRADELEVELCODE.ID = cp_ext.[MAXGRADELEVELCODEID]) as MAXGRADELEVELCODEID_TRANSLATION,
+			cp_ext.[MAXCHILDAGE],
+			cp_ext.[MAXCHILDAGEEXCEPTIONREASON],
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = cp_ext.[MONTHSCHOOLYEARBEGINSCODEID]) as MONTHSCHOOLYEARBEGINSCODEID_TRANSLATION,
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = cp_ext.[MONTHSCHOOLYEARENDSCODEID]) as MONTHSCHOOLYEARENDSCODEID_TRANSLATION,
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = cp_ext.[HOLIDAYLETTERSDUECODEID]) as HOLIDAYLETTERSDUECODEID_TRANSLATION,
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = cp_ext.[LETTER1DUECODEID]) as LETTER1DUECODEID_TRANSLATION,
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = cp_ext.[LETTER2DUECODEID]) as LETTER2DUECODEID_TRANSLATION,
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = cp_ext.[PHOTOUPDATEDUECODEID]) as PHOTOUPDATEDUECODEID_TRANSLATION,
+			(select USR_MONTHCODE.DESCRIPTION from dbo.USR_MONTHCODE where USR_MONTHCODE.ID = cp_ext.[PROFILEUPDATECODEID]) as PROFILEUPDATECODEID_TRANSLATION,
+			(select USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE where USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE.ID = cp_ext.[DOCSTATUSCOMMUNITYDESCCODEID]) as DOCSTATUSCOMMUNITYDESCCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE where USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE.ID = cp_ext.[DOCSTATUSCOMMUNITYPHOTOCODEID]) as DOCSTATUSCOMMUNITYPHOTOCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMAPPROVALFORMCODEID]) as DOCSTATUSPROJECTFORMAPPROVALFORMCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMCAPITALPROPOSALCODEID]) as DOCSTATUSPROJECTFORMCAPITALPROPOSALCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID]) as DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID]) as DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID]) as DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMPARTNERINFOCODEID]) as DOCSTATUSPROJECTFORMPARTNERINFOCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMPROGRAMCODEID]) as DOCSTATUSPROJECTFORMPROGRAMCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID]) as DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID_TRANSLATION,
+			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID]) as DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID_TRANSLATION,
+
+			
+		
+
+			ADDEDBY.APPLICATIONNAME as [ADDEDBY_APPLICATION],
+			ADDEDBY.USERNAME as [ADDEDBY_USERNAME],
+			CHANGEDBY.APPLICATIONNAME as [CHANGEDBY_APPLICATION],
+			CHANGEDBY.USERNAME as [CHANGEDBY_USERNAME],
+			cp_ext.DATEADDED,
+			cp_ext.DATECHANGED,
+			cp_ext.TSLONG
+	
+	  from	dbo.USR_CHILDPROJECTEXTENSION cp_ext
+	  
+ left join	dbo.CONSTITUENT as proj_const on proj_const.ID = cp_ext.ID
+ left join	dbo.CHANGEAGENT as [ADDEDBY] on [ADDEDBY].ID = cp_ext.ADDEDBYID
+ left join	dbo.CHANGEAGENT as [CHANGEDBY] on [CHANGEDBY].ID = cp_ext.CHANGEDBYID
+	
+]]>
+</ViewSQL>
+    </ViewImplementation>
+    <Output>
+        <OutputFields>
+            <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="COUNTRYEXTENSIONID" Caption="Country system record" Category="Country System Record" DataType="Guid" />
+			<OutputField Name="NAME" Caption="Name" IsDefaultOutput="true" />
+            <OutputField Name="CHILDPROJECTTYPECODEID_TRANSLATION" Caption="Child project type">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTTYPECODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="CHILDPROJECTTYPEOTHER" Caption="Child project type other" />
+            <OutputField Name="CHILDPROJECTSTATUSCODEID_TRANSLATION" Caption="Child project status">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="CHILDPROJECTCATEGORYCODEID_TRANSLATION" Caption="Child project category">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTCATEGORYCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="CHILDPROJECTSUBCATEGORYCODEID_TRANSLATION" Caption="Child project subcategory">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTSUBCATEGORYCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="TECHNOLOGYAVAILABLEELECTRICITY" Caption="Technology available - electricity" DataType="Boolean" />
+            <OutputField Name="TECHNOLOGYAVAILABLETELEPHONE" Caption="Technology available - telephone" DataType="Boolean" />
+            <OutputField Name="TECHNOLOGYAVAILABLECOMPUTER" Caption="Technology available - computer" DataType="Boolean" />
+            <OutputField Name="TECHNOLOGYAVAILABLEINTERNET" Caption="Technology available - internet" DataType="Boolean" />
+            <OutputField Name="MAXCHILDRENCOUNT" Caption="Maximum number of children" DataType="SmallInt" />
+            <OutputField Name="MAXGRADELEVELCODEID_TRANSLATION" Caption="Maximum grade level">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTMAXGRADELEVELCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="MAXCHILDAGE" Caption="Maximum child age" DataType="TinyInt" />
+            <OutputField Name="MAXCHILDAGEEXCEPTIONREASON" Caption="Maximum child age exception reason" />
+            <OutputField Name="MONTHSCHOOLYEARBEGINSCODEID_TRANSLATION" Caption="Month school year begins">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="MONTHSCHOOLYEARENDSCODEID_TRANSLATION" Caption="Month school year ends">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            
+			<OutputField Name="HOLIDAYLETTERSDUECODEID_TRANSLATION" Caption="Holiday letters due">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="LETTER1DUECODEID_TRANSLATION" Caption="Letter 1 due">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="LETTER2DUECODEID_TRANSLATION" Caption="Letter 2 due">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="PHOTOUPDATEDUECODEID_TRANSLATION" Caption="Photo update due">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="PROFILEUPDATECODEID_TRANSLATION" Caption="Profile update">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+
+			<OutputField Name="DOCSTATUSCOMMUNITYDESCCODEID_TRANSLATION" Caption="Documentaion status - community description">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSCOMMUNITYPHOTOCODEID_TRANSLATION" Caption="Documentaion status - community photo">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMAPPROVALFORMCODEID_TRANSLATION" Caption="Documentaion status - project form - approval form">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALCODEID_TRANSLATION" Caption="Documentaion status - project form - capital proposal">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID_TRANSLATION" Caption="Documentaion status - project form - community form">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID_TRANSLATION" Caption="Documentaion status - project form - intent to partner">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID_TRANSLATION" Caption="Documentaion status - project form - partner agreement">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMPARTNERINFOCODEID_TRANSLATION" Caption="Documentaion status - project form - partner info">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMPROGRAMCODEID_TRANSLATION" Caption="Documentaion status - project form - program">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID_TRANSLATION" Caption="Documentaion status - project form - sponsorship proposal full">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID_TRANSLATION" Caption="Documentaion status - project form - sponsorship proposal summary">
+                <LookupInfo>
+                    <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
+                </LookupInfo>
+            </OutputField>
+
+			
+            <OutputField Name="ADDEDBY_APPLICATION" Caption="Added by application" Category="System Fields">
+                <LookupInfo>
+                    <SimpleDataList SimpleDataListID="37e3e458-af0d-4dbc-8a18-a93885521a42" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="ADDEDBY_USERNAME" Caption="Added by user name" Category="System Fields">
+                <LookupInfo>
+                    <SimpleDataList SimpleDataListID="cea15e1c-e455-41be-9ecf-6b5453fa96a4" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="CHANGEDBY_APPLICATION" Caption="Changed by application" Category="System Fields">
+                <LookupInfo>
+                    <SimpleDataList SimpleDataListID="37e3e458-af0d-4dbc-8a18-a93885521a42" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="CHANGEDBY_USERNAME" Caption="Changed by user name" Category="System Fields">
+                <LookupInfo>
+                    <SimpleDataList SimpleDataListID="cea15e1c-e455-41be-9ecf-6b5453fa96a4" />
+                </LookupInfo>
+            </OutputField>
+            <OutputField Name="DATEADDED" Caption="Date added" Category="System Fields" DataType="Date" />
+            <OutputField Name="DATECHANGED" Caption="Date changed" Category="System Fields" DataType="Date" />
+            <OutputField Name="TSLONG" Caption="Timestamp value" IsHidden="true" Category="System Fields" DataType="Long" />
+        </OutputFields>
+    </Output>
+
+	<RelationshipOperations>
+		<AddRelatedView Field="ID" RelatedView="V_QUERY_CONSTITUENT" RelatedField="ID" PathAlias ="Child Project Constituent"/>
+	</RelationshipOperations>
+
+</QueryViewSpec>

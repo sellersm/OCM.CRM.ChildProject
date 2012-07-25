@@ -109,13 +109,24 @@
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ProjectInfo.View.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Quota.View.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.RequiredDocs.View.xml" />
-		
+
+		<!-- Expression Data -->
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ConstituentExpression.View.xml" />
+
 		<!-- Record Operations -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.Update.Country.RecordOperation.xml" />
 
 		<!-- Query Views -->
-		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ConstituentExt.View.xml" />
-
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Extension.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Community.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.CommunityChildProtection.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.CommunityCulture.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.CommunityEducationEconomy.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.CommunityEnvironment.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Participation.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Quota.Query.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.RegisteredChildren.Query.xml" />
+						   
 		<!-- Pages -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Extension.Page.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.AlterConstituent.Page.xml" />

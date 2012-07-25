@@ -19,10 +19,10 @@ Date            Modified By     Comments
 -->
 
 	<!-- define the SP that returns the data used by the form -->
-	<SPDataForm SPName="USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECTCONTITUENTEXT">
+	<SPDataForm SPName="USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECTCONTITUENTEXPRESSION">
 		<common:CreateProcedureSQL>
 			<![CDATA[
-create procedure dbo.USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECTCONTITUENTEXT
+create procedure dbo.USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECTCONTITUENTEXPRESSION
 (
 	@ID uniqueidentifier,
 	@DATALOADED bit = 0 output,

@@ -7,15 +7,16 @@
 	Author="Cary Mayeda"
 	common:SecurityUIFolder="Sponsorship\Opportunity\Child Project">
 
-<!-- 
-Remarks:    Lists all the children assigned to the location, whose field office is linked to this
-			Child Project organization constituent.
-			CONTEXTID is the ConstituentID 
-History:
-Date            Modified By     Comments
-27-Mar-2012     CMayeda         Initial Version
-02-May-2012		CMayeda			Changed ContextRecordType from Constituent to "Child Project Extension" 
--->
+	<!-- 
+	Remarks:    Lists all the children assigned to the location, whose field office is linked to this
+				Child Project organization constituent.
+				CONTEXTID is the ConstituentID 
+	History:
+	Date            Modified By     Comments
+	27-Mar-2012     CMayeda         Initial Version
+	02-May-2012		CMayeda			Changed ContextRecordType from Constituent to "Child Project Extension" 
+	24-Jul-2012		CMayeda			Added Registration Date
+	-->
 	
 	<!-- define the SP that returns the data for the datalist -->
 	<SPDataList SPName="USR_USP_DATALIST_CHILDPROJECTCHILDRENLIST">
@@ -29,6 +30,7 @@ as
 			so.ID SPONSORSHIPOPPORTUNITYID,
 	        so.LOOKUPID CHILDLOOKUPID,
 		    so_child.NAME,
+		    ch_ext.REGISTRATIONDATE,
 			so_child.AGE,
 	        so_child.GENDER,
 		    dbo.UFN_DATE_FROMFUZZYDATE (so_child.BIRTHDATE) BIRTHDATE,
@@ -44,6 +46,8 @@ as
 	  from	dbo.SPONSORSHIPOPPORTUNITY so 					
 inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on 
 				so.ID = so_child.ID
+ left join	dbo.USR_CHILDEXTENSION ch_ext on
+				so.ID = ch_ext.SPONSORSHIPOPPORTUNITYCHILDID
  left join  dbo.SPONSORSHIPOPPORTUNITYRESERVEPROCESS so_reserveprocess on 
 				so_reserveprocess.ID = so.RESERVATIONKEYID
  left join	dbo.SPONSORSHIPLOCATION slocation ON 
@@ -73,6 +77,7 @@ inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on
 			<OutputField FieldID="SPONSORSHIPOPPORTUNITYID" Caption="ID" DataType="Guid" IsHidden="true" />			
 			<OutputField FieldID="CHILDLOOKUPID" Caption="Lookup ID" DataType="Guid" />
 			<OutputField FieldID="NAME" Caption="Name" DataType="String" />
+			<OutputField FieldID="REGISTRATIONDATE" Caption="Registration Date" DataType="Date" />
 			<OutputField FieldID="AGE" Caption="Age" DataType="TinyInt" />
 			<OutputField FieldID="GENDER" Caption="Gender" DataType="String" />
 			<OutputField FieldID="BIRTHDATE" Caption="Birthdate" DataType="Date" />
