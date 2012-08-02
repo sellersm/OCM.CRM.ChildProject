@@ -129,6 +129,8 @@
 						   
 		<!-- Pages -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Extension.Page.xml" />
+		
+		<!-- IS THIS WORKING? -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.AlterConstituent.Page.xml" />
 
 		<!-- Tasks -->

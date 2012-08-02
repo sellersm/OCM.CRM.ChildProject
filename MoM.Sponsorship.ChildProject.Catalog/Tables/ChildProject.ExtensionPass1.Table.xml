@@ -198,7 +198,8 @@
 		<CodeTableField Name="DOCSTATUSCOMMUNITYDESCCODEID" Description="Required Documentation Project Community Description" CodeTable="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" />
 		<CodeTableField Name="DOCSTATUSCOMMUNITYPHOTOCODEID" Description="Required Documentation Project Community Photo" CodeTable="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" />
 		<CodeTableField Name="DOCSTATUSPROJECTFORMAPPROVALFORMCODEID" Description="Required Documentation Project Form - Approval Form" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
-		<CodeTableField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALCODEID" Description="Required Documentation Project Form - Capital Proposal Summary" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALFULLCODEID" Description="Required Documentation Project Form - Capital Proposal Full" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
+		<CodeTableField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALSUMMARYCODEID" Description="Required Documentation Project Form - Capital Proposal Summary" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
 		<CodeTableField Name="DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID" Description="Required Documentation Project From - Community" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
 		<CodeTableField Name="DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID" Description="Required Documentation Project Form - Intent to Partner" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />
 		<CodeTableField Name="DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID" Description="Required Documentation Project Form - Partner Agreement" CodeTable="USR_CHILDPROJECTFORMSTATUSCODE" />

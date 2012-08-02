@@ -140,7 +140,9 @@
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Subcategory.CodeTable.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExpression.View.xml" />
     <EmbeddedResource Include="Pages\ChildProject.AlterConstituent.Page.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\Update.Country.RecordOperation.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProjectPass1.Package.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml">
