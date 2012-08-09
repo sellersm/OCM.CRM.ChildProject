@@ -60,7 +60,7 @@
 	-->
 	
 	<common:DependencyList>
-		<!-- Sprocs -->
+		<!-- SQL sprocs and functions -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_QUOTAOVERRIDE.xml"/>
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_QUOTATYPE.xml" />
@@ -68,7 +68,8 @@
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY.xml"/>
-		
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.USR_UFN_CHILDPROJECT_GETLOOKUPID.xml" />
+
 		<!-- Code Tables -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Subcategory.CodeTable.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Category.CodeTable.xml" />
@@ -90,8 +91,11 @@
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Extension.Table.xml" />
 
 		<!-- Data Lists -->
-		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ChildrenList.DataList.xml" />
-
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ChildrenListRegistered.DataList.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ChildrenListWaitingList.DataList.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ChildrenListTransferred.DataList.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ChildrenListDeparted.DataList.xml"/>
+		
 		<!-- Forms -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Search.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Extension.Add.xml" />

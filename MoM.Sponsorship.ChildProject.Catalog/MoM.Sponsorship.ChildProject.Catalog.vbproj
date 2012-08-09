@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Add.Task.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenList.DataList.xml">
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListRegistered.DataList.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community.Edit.xml">
@@ -113,7 +113,9 @@
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Quota.Edit.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Quota.View.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.RequiredDocs.Edit.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.RequiredDocs.View.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.RequiredDocs.View.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionSummary.View.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.Task.xml">
@@ -157,7 +159,7 @@
     <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTATYPE.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildProjectSpecs\USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
+    <EmbeddedResource Include="Utilities\USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.PackageVersion.DataList.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -173,7 +175,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Query Views\ChildProject.Extension.Query.xml" />
+    <EmbeddedResource Include="Query Views\ChildProject.Extension.Query.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Query Views\ChildProject.Quota.Query.xml" />
@@ -195,6 +199,20 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Query Views\ChildProject.CommunityEducationEconomy.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListWaitingList.DataList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListDeparted.DataList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListTransferred.DataList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utilities\USR_UFN_CHILDPROJECT_GETLOOKUPID.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

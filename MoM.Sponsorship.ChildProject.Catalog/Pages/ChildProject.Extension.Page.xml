@@ -5,8 +5,8 @@
     Name="Child Project Extension Page"
     Description="Used to view the Child Project extension of an Organization Constituent"
     Author="Cary Mayeda"
-    ExpressionDataFormID="9b09d107-78a8-487f-9699-0ab996be70b4" 
-	ContextRecordType="Child Project Extension"	
+    ExpressionDataFormID="9b09d107-78a8-487f-9699-0ab996be70b4"
+	ContextRecordType="Child Project Extension"
 	>
 
 	<!-- 
@@ -16,14 +16,14 @@ History:
 Date            Modified By     Comments
 27-Mar-2012        CMayeda         Initial Version
 -->
-	
+
 	<!-- define how the page header should appear -->
 	<PageHeader Caption="=Page.Fields!LOOKUPID + &quot; - &quot; + Page.Fields!NAME" ImageKey="CATALOG:Blackbaud.AppFx.Constituent.School.Catalog,Blackbaud.AppFx.Constituent.School.Catalog.schoolhouse_32.png" />
 	<SummarySection ID="f7f2f4b0-a7b6-4ee2-856d-f825676a9015" Caption="Child Project" HideCaption="true">
 		<DataForm ID="9b09d107-78a8-487f-9699-0ab996be70b4" />
 	</SummarySection>
 	<Tabs>
-		<Tab Caption="Project Info 0.1.8" ID="36747a18-a1c8-41a2-b828-966aa2e0ab77">
+		<Tab Caption="Project Info" ID="36747a18-a1c8-41a2-b828-966aa2e0ab77">
 			<Sections>
 				<Section ID="2d46209a-27f3-41aa-9010-323579bce031" Caption="Project Information">
 					<DataForm ID="8fe5c882-2f35-4906-8438-4f445d351548" />
@@ -58,16 +58,17 @@ Date            Modified By     Comments
 				</Section>
 			</Sections>
 		</Tab>
-		<Tab Caption="Registered Children" ID="3b7be70e-7900-4c5c-82ab-430ca3c3a512">
+
+		<Tab Caption="Children" ID="3b7be70e-7900-4c5c-82ab-430ca3c3a512">
 			<Sections>
-				<Section ID="e24196c7-1f06-4211-9bd0-5f6fbf5b1a78" Caption="Registered Children">
+				<Section ID="e24196c7-1f06-4211-9bd0-5f6fbf5b1a78" Caption="Registered children">
 					<DataList ID="07b00060-496b-43f8-a87a-6d2dc7df464a" ShowBorder="true">
 						<RenderStyle>
 							<StandardView AutoSize="true" />
 						</RenderStyle>
 					</DataList>
 					<Actions>
-						<Action ID="a38acab2-706e-4ccd-b0b8-a027799b86f9" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)">
+						<Action ID="a38acab2-706e-4ccd-b0b8-a027799b86f9" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)" ImageKey="RES:goto_round">
 							<ShowPage PageID="0f392d71-5884-4363-b6e3-a75755f8402a" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
 								<ActionContext>
 									<SectionField>SPONSORSHIPOPPORTUNITYID</SectionField>
@@ -78,6 +79,60 @@ Date            Modified By     Comments
 				</Section>
 			</Sections>
 		</Tab>
+		<Tab Caption="Child History" ID="6F0FA7BD-D07A-4736-8DD2-5B13B769C84F">
+			<Sections>
+				<Section ID="978ac8c0-fc3f-449a-81f2-da6147132edd" Caption="Waiting list children">
+					<DataList ID="abc07cf6-2f9d-4a22-ac8d-87e811229f7f">
+						<RenderStyle>
+							<StandardView AutoSize="true" />
+						</RenderStyle>
+					</DataList>
+					<Actions>
+						<Action ID="24612752-3FCA-4A0C-AA8E-9E38A13D604C" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)" ImageKey="RES:goto_round">
+							<ShowPage PageID="0f392d71-5884-4363-b6e3-a75755f8402a" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<SectionField>SPONSORSHIPOPPORTUNITYID</SectionField>
+								</ActionContext>
+							</ShowPage>
+						</Action>
+					</Actions>
+				</Section>
+				<Section ID="BF144EE9-8FE5-4071-BFCF-B09DFD7C2F11" Caption="Children transferred to another project">
+					<DataList ID="3cccebee-ebe0-4503-b95f-f914bb393f65">
+						<RenderStyle>
+							<StandardView AutoSize="true" />
+						</RenderStyle>
+					</DataList>
+					<Actions>
+						<Action ID="9D740F4F-6BD7-48EE-8528-4C0C94EE29C0" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)" ImageKey="RES:goto_round">
+							<ShowPage PageID="0f392d71-5884-4363-b6e3-a75755f8402a" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<SectionField>SPONSORSHIPOPPORTUNITYID</SectionField>
+								</ActionContext>
+							</ShowPage>
+						</Action>
+					</Actions>
+				</Section>
+				<Section ID="039BE513-3B78-4E35-9CA3-E08986211BC1" Caption="Departed children">
+					<DataList ID="5d2bd005-7552-405e-aeaa-01f96c702227">
+						<RenderStyle>
+							<StandardView AutoSize="true" />
+						</RenderStyle>
+					</DataList>
+					<Actions>
+						<Action ID="CE3B20EB-FFAB-4E80-ADF6-22847346DC16" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)" ImageKey="RES:goto_round">
+							<ShowPage PageID="0f392d71-5884-4363-b6e3-a75755f8402a" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<SectionField>SPONSORSHIPOPPORTUNITYID</SectionField>
+								</ActionContext>
+							</ShowPage>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+
+
 		<Tab Caption="Required Documentation" ID="bd93ee6d-32a7-44e5-a072-87dc8ba29a74">
 			<Sections>
 				<Section ID="ef41f5f0-2c71-44a4-854d-aadd5fe4a530" Caption="Required Documentation">

@@ -1,0 +1,38 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="6a62be6a-a71d-431d-b540-0f21c3b30286"
+	Name="USR_UFN_CHILDPROJECT_GETLOOKUPID"
+	Description="Returns the constituent lookup ID for a specific child project extension"
+	Author="Cary Mayeda"
+	DBFunctionName="USR_UFN_CHILDPROJECT_GETLOOKUPID" >
+
+	<!-- 
+	Remarks:    USR_CHILDPROJECTEXTENSION specifies PrimaryKeyAsForeignKeyTablename="CONSTITUENT", so the LOOKUPID is on the CONSTITUENT with the same guid.
+
+	History:
+	Date            Modified By     Comments
+	07-Aug-2012		CMayeda			Initial Version
+
+	-->
+	
+	<CreateFunctionSQL>
+		<![CDATA[
+create function dbo.USR_UFN_CHILDPROJECT_GETLOOKUPID(
+	@childProjectID uniqueidentifier = null
+)
+returns nvarchar(20)
+with execute as caller
+as begin
+	declare @childProjectLookupID nvarchar(20) = ''
+	
+	select	@childProjectLookupID = LOOKUPID
+	  from	dbo.CONSTITUENT
+	 where	ID = @childProjectID
+
+	return @childProjectLookupID 
+end
+		]]>
+	</CreateFunctionSQL>
+
+</SQLFunctionSpec>

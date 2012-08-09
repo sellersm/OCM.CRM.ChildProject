@@ -1,0 +1,127 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="3cccebee-ebe0-4503-b95f-f914bb393f65"
+	Name="Child Project Transferred Children Data List"
+	Description="Data list to show a list of transferred children on the child project page."
+	Author="Cary Mayeda"
+	common:SecurityUIFolder="Sponsorship\Opportunity\Child Project">
+
+	<!-- 
+	Remarks:    Lists all the transferred children who used to be assigned to the location, whose field office is linked to this Child Project organization constituent.
+				CONTEXTID is the ConstituentID of the child project.
+	History:
+	Date            Modified By     Comments
+	05-Aug-2012     CMayeda         Initial Version, copied from USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_WAITINGLIST
+									Currently not returning any kids.  Will finish after getting transfer customizations
+	-->
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_TRANSFERRED">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_TRANSFERRED(
+	@CONTEXTID uniqueidentifier,
+	@CHILDLOOKUPID nvarchar(100) = null,
+	@CHILDNAME nvarchar(200) = null
+)
+as
+	declare @eligibilityCodeIneligible tinyint = 2
+	begin try
+		declare @numberSponsorshipReasons tinyint		-- The number of sponsorship reasons (waiting list and batch commit) that should be checked to include children with that sponsorship reason in the returned set of children
+		set @numberSponsorshipReasons = 0
+	
+		declare @sponsorhipReasonsToInclude table
+			(
+				sponsorshipReasonID uniqueidentifier
+			)
+	
+		/* -- Tranfer reaons???  Don't know if it'll use these
+		insert @sponsorhipReasonsToInclude
+		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure'
+	
+		insert @sponsorhipReasonsToInclude
+		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure - admin'
+	
+		insert @sponsorhipReasonsToInclude
+		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure - other'
+	
+		insert @sponsorhipReasonsToInclude
+		select ID from SPONSORSHIPREASON where lower (REASON) = 'program completion'
+
+		insert @sponsorhipReasonsToInclude
+		select ID from SPONSORSHIPREASON where lower (REASON) = 'death of child' */
+
+		-- Get the number of reasons inserted 
+		declare @reasonCount tinyint
+		select @reasonCount = count(*) from @sponsorhipReasonsToInclude
+
+		if @reasonCount <> @numberSponsorshipReasons  
+			RAISERROR 1000000 'Could not find all of the transfer reason ids'		
+	end try
+	begin catch
+	    exec dbo.USP_RAISE_ERROR
+		return 1	
+	end catch
+
+	set nocount on;
+
+	select 	FIELDOFFICEID,
+			so.ID SPONSORSHIPOPPORTUNITYID,
+	        so.LOOKUPID CHILDLOOKUPID,
+		    so_child.NAME,
+		    ch_ext.DATEADDED,
+			so_child.AGE,
+	        so_child.GENDER,
+		    dbo.UFN_DATE_FROMFUZZYDATE (so_child.BIRTHDATE) BIRTHDATE,
+			sreason.REASON as DEPARTUREREASON	
+        
+	  from	dbo.SPONSORSHIPOPPORTUNITY so 					
+inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on 
+				so.ID = so_child.ID
+inner join	dbo.SPONSORSHIPREASON sreason on
+				so.SPONSORSHIPREASONID = sreason.id
+ left join	dbo.USR_CHILDEXTENSION ch_ext on
+				so.ID = ch_ext.SPONSORSHIPOPPORTUNITYCHILDID
+ left join	dbo.SPONSORSHIPLOCATION slocation ON 
+				slocation.ID = so.SPONSORSHIPLOCATIONID
+				
+	 where  FIELDOFFICEID = @CONTEXTID
+	   and  exists (select sponsorshipReasonID from @sponsorhipReasonsToInclude reasonstoinclude where reasonstoinclude.sponsorshipReasonID = so.SPONSORSHIPREASONID)
+	   and	so.ELIGIBILITYCODE = @eligibilityCodeIneligible
+	   and	(@CHILDLOOKUPID is null or so.LOOKUPID like '%' + @CHILDLOOKUPID + '%')
+	   and	(@CHILDNAME is null or so_child.NAME like '%' + @CHILDNAME + '%')
+
+			]]>
+		</common:CreateProcedureSQL>
+	</SPDataList>
+
+	<!-- describe the context ID parameter for the SP (if applicable)-->
+	<Context ContextRecordType="Child Project Extension" RecordIDParameter="CONTEXTID"/>
+
+	<!-- describe any parameters (other than the context ID) defined on the SP -->
+	<Parameters>
+		<common:FormMetaData>
+			<common:FormFields>
+				<common:FormField FieldID="CHILDLOOKUPID" Caption="Child ID" DataType="String"/>
+				<common:FormField FieldID="CHILDNAME" Caption="Name" DataType="String"/>
+			</common:FormFields>
+		</common:FormMetaData>
+	</Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="FIELDOFFICEID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="SPONSORSHIPOPPORTUNITYID" Caption="Child system record ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="CHILDLOOKUPID" Caption="Child ID" DataType="String" />
+			<OutputField FieldID="NAME" Caption="Name" DataType="String" />
+			<OutputField FieldID="DATEADDED" Caption="Date Added" DataType="Date" />
+			<OutputField FieldID="AGE" Caption="Age" DataType="TinyInt" />
+			<OutputField FieldID="GENDER" Caption="Gender" DataType="String" />
+			<OutputField FieldID="BIRTHDATE" Caption="Birthdate" DataType="Date" />
+			<OutputField FieldID="DEPARTUREREASON" Caption="Departure Reason" DataType="String"/>
+		</OutputFields>
+	</Output>
+
+</DataListSpec>
