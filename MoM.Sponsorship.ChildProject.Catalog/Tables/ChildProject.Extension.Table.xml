@@ -193,6 +193,7 @@
 				<EnumValue ID="1" Translation="Yes"/>
 			</EnumValues>
 		</EnumField>
+		<NumberField Name="CHILDRENNOTENTERED" Description ="Child Project Children Not Entered" DefaultValue="0" Type="smallint" />
 
 
 		<!-- Required Documents -->

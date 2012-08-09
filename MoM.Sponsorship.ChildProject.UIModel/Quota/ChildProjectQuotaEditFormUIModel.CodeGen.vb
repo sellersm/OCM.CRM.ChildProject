@@ -83,6 +83,7 @@ Partial Public Class [ChildProjectQuotaEditFormUIModel]
     Private WithEvents _performancecodeid As Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
     Private WithEvents _marketingdemandstatuscode As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of MARKETINGDEMANDSTATUSCODES))
     Private WithEvents _overridetriggerstatuscode As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of OVERRIDETRIGGERSTATUSCODES))
+    Private WithEvents _childrennotentered As Global.Blackbaud.AppFx.UIModeling.Core.SmallIntField
 
 	<System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
     Public Sub New()
@@ -106,6 +107,7 @@ Partial Public Class [ChildProjectQuotaEditFormUIModel]
         _performancecodeid = New Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
         _marketingdemandstatuscode = New Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of MARKETINGDEMANDSTATUSCODES))
         _overridetriggerstatuscode = New Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of OVERRIDETRIGGERSTATUSCODES))
+        _childrennotentered = New Global.Blackbaud.AppFx.UIModeling.Core.SmallIntField
 
         MyBase.Mode = Global.Blackbaud.AppFx.UIModeling.Core.DataFormMode.Edit
         MyBase.DataFormTemplateId = New Guid("2c2d9665-e758-40c5-88b9-252dc93413cc")
@@ -231,6 +233,12 @@ Partial Public Class [ChildProjectQuotaEditFormUIModel]
         _overridetriggerstatuscode.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of OVERRIDETRIGGERSTATUSCODES)) With {.Value = OVERRIDETRIGGERSTATUSCODES.[No], .Translation = "No"})
         _overridetriggerstatuscode.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of OVERRIDETRIGGERSTATUSCODES)) With {.Value = OVERRIDETRIGGERSTATUSCODES.[Yes], .Translation = "Yes"})
         Me.Fields.Add(_overridetriggerstatuscode)
+        '
+        '_childrennotentered
+        '
+        _childrennotentered.Name = "CHILDRENNOTENTERED"
+        _childrennotentered.Caption = "Children not entered"
+        Me.Fields.Add(_childrennotentered)
 
 		OnCreated()
 
@@ -431,6 +439,17 @@ Partial Public Class [ChildProjectQuotaEditFormUIModel]
     Public ReadOnly Property [OVERRIDETRIGGERSTATUSCODE]() As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of OVERRIDETRIGGERSTATUSCODES))
         Get
             Return _overridetriggerstatuscode
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Children not entered
+    ''' </summary>
+    <System.ComponentModel.Description("Children not entered")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
+    Public ReadOnly Property [CHILDRENNOTENTERED]() As Global.Blackbaud.AppFx.UIModeling.Core.SmallIntField
+        Get
+            Return _childrennotentered
         End Get
     End Property
     

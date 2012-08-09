@@ -48,7 +48,9 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_QUOTA
 	@NEWCHILDRENSTATUS nvarchar(20) = null output,
 	@PERFORMANCECODE nvarchar(100) = null output,
 	@MARKETINGDEMANDSTATUS nvarchar(20) = null output,
-	@OVERRIDETRIGGERSTATUS nvarchar(20) = null output
+	@OVERRIDETRIGGERSTATUS nvarchar(20) = null output,
+	@CHILDRENNOTENTERED smallint = null output
+
 )
 as
 	set nocount on;
@@ -81,7 +83,9 @@ as
 			@NEWCHILDRENSTATUS = NEWCHILDRENSTATUS, 
 			@PERFORMANCECODE = (select DESCRIPTION from dbo.USR_SPONSORSHIPPERFORMANCECODE where ID = PERFORMANCECODEID), 
 			@MARKETINGDEMANDSTATUS = MARKETINGDEMANDSTATUS, 
-			@OVERRIDETRIGGERSTATUS = OVERRIDETRIGGERSTATUS
+			@OVERRIDETRIGGERSTATUS = OVERRIDETRIGGERSTATUS,
+			@CHILDRENNOTENTERED = CHILDRENNOTENTERED
+
 	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
 	where ID = @ID
 	
@@ -112,7 +116,8 @@ as
 			<c:FormField FieldID="NEWCHILDRENSTATUS" DataType="String" Caption="New children status" />
 			<c:FormField FieldID="PERFORMANCECODE" DataType ="String" MaxLength="100" Caption="Performance" />
 			<c:FormField FieldID="MARKETINGDEMANDSTATUS" DataType="String" Caption="Marketing demand status"/>		
-			<c:FormField FieldID="OVERRIDETRIGGERSTATUS" DataType="String" Caption="Override trigger status"/>			
+			<c:FormField FieldID="OVERRIDETRIGGERSTATUS" DataType="String" Caption="Override trigger status"/>
+			<c:FormField FieldID="CHILDRENNOTENTERED" DataType="SmallInt" Caption="Children not entered" />
 		</c:FormFields>
 		<c:FormUIComponent />
 
