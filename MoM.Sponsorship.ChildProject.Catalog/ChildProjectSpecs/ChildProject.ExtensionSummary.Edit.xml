@@ -51,8 +51,7 @@ as
 	-- can be considered.
 	select	@DATALOADED = 1,
 			@TSLONG = CONSTITUENT.TSLONG,
-			@ID = cp_ext.ID,
-			@NAME = CONSTITUENT.NAME,
+			@NAME = CONSTITUENT.KEYNAME,
 			@LOOKUPID = CONSTITUENT.LOOKUPID,
 			@CHILDPROJECTTYPECODEID = cp_ext.CHILDPROJECTTYPECODEID,
 			@CHILDPROJECTTYPEOTHER = cp_ext.CHILDPROJECTTYPEOTHER, 
@@ -107,7 +106,8 @@ as
 		
 		-- Change the LookupID to the one entered by the user
 		update dbo.CONSTITUENT
-		   set CUSTOMIDENTIFIER = @LOOKUPID
+		   set  CUSTOMIDENTIFIER = @LOOKUPID,
+				KEYNAME = @NAME
 		where ID = @ID;
 	 			    
 	end try
@@ -127,7 +127,6 @@ return 0;
 	like the record ID, DATALOADED, TSLONG, and CURRENTAPPUSERID need not be listed. -->
 	<common:FormMetaData FixedDialog="true">
 		<common:FormFields>
-			<common:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
 			<common:FormField FieldID="NAME" DataType="String" MaxLength="100" Caption="Project name" Required="true" />
 			<common:FormField FieldID="LOOKUPID" DataType="String" Caption="Lookup ID" Required="true" />
 			<common:FormField FieldID="CHILDPROJECTSTATUSCODEID" DataType="Guid" Required="true" Caption="Status">
