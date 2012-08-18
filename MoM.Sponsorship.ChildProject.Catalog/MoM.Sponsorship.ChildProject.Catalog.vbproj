@@ -214,6 +214,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\NewProject.png" />
+    <EmbeddedResource Include="Images\SearchProject.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)postbuild.bat</PostBuildEvent>
