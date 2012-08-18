@@ -8,8 +8,15 @@
 	FunctionalAreaID="9ea48d9c-7e2d-42e6-91cc-210792618017"
 	TaskGroup="Opportunity" 
 	Sequence="21"
-	ImageKey="CATALOG:Blackbaud.AppFx.Constituent.School.Catalog,Blackbaud.AppFx.Constituent.School.Catalog.schoolhouse_32.png"
-	>
+	ImageKey="CATALOG:MoM.Sponsorship.ChildProject.Catalog,MoM.Sponsorship.ChildProject.Catalog.SearchProject.png"	>
+	<!-- 
+	Remarks:    
+
+	History:
+	Date            Modified By     Comments
+	27-Mar-2012     CMayeda         Initial Version
+	17-Aug-2012		CMayeda			Updated ImageKey
+	-->
 
 	<!-- indicate what this task should do (navigate to a page, show a form, etc. -->
 	<ShowPage PageID="29d5b7a5-d032-4b66-80f9-b1d451292ad6" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
