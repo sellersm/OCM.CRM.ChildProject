@@ -37,6 +37,8 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_EXTENSION
     @CHILDPROJECTSTATUS nvarchar(100) = null output,
 	@CHILDPROJECTCATEGORY nvarchar(100) = null output,
 	@CHILDPROJECTSUBCATEGORY nvarchar(100) = null output,
+	@LOCATIONREPORTRECIPIENTID uniqueidentifier = null output,
+	@LOCATIONREPORTRECIPIENTNAME nvarchar(154) = null output,
 	
 	@CHILDPROJECTTYPEOTHERSEPARATOR nvarchar(1) = null output
 )
@@ -72,13 +74,25 @@ inner join	dbo.CONSTITUENT (nolock) on
 	 where	cp_ext.ID = @ID
 
 
+	select	@LOCATIONREPORTRECIPIENTID = sloc_ext.REPORTRECIPIENTID,
+			@LOCATIONREPORTRECIPIENTNAME = recipientconst.NAME
+		
+	  from	dbo.USR_CHILDPROJECTEXTENSION childproj 
+inner join	dbo.SPONSORSHIPLOCATION sloc on
+				childproj.ID = sloc.FIELDOFFICEID
+inner join	dbo.USR_SPONSORSHIPLOCATIONEXTENSION sloc_ext on 
+				sloc_ext.ID = sloc.ID
+inner join	dbo.CONSTITUENT recipientconst on
+				recipientconst.ID = sloc_ext.REPORTRECIPIENTID
+
+	 where  childproj.ID = @ID
+
 	return 0;
 ]]>
 </c:CreateProcedureSQL>
     </SPDataForm>
     <c:FormMetaData FixedDialog="true">
         <c:FormFields>
-            <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="Child project ID" />
             <c:FormField FieldID="LOOKUPID" DataType="String" Caption="Lookup ID" />
 			<c:FormField FieldID="NAME" DataType="String" Hidden="true" Caption="Name" />
 			<c:FormField FieldID="COUNTRY" DataType="String" Caption="Country" />
@@ -88,6 +102,8 @@ inner join	dbo.CONSTITUENT (nolock) on
             <c:FormField FieldID="CHILDPROJECTSTATUS" DataType="String" MaxLength="100" Caption="Status" />
 			<c:FormField FieldID="CHILDPROJECTCATEGORY" DataType="String" Caption="Category" />
 			<c:FormField FieldID="CHILDPROJECTSUBCATEGORY" DataType="String" Caption="Subcategory" />
+			<c:FormField FieldID="LOCATIONREPORTRECIPIENTID" DataType="Guid" Hidden="true" Caption="Report recipient system record ID" />
+			<c:FormField FieldID="LOCATIONREPORTRECIPIENTNAME" DataType="String" Caption="Report recipient" />
 
 			<c:FormField FieldID="CHILDPROJECTTYPEOTHERSEPARATOR" DataType="String" />
 		</c:FormFields>
