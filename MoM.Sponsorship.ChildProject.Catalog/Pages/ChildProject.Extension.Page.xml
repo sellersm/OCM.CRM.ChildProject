@@ -237,6 +237,18 @@ Date            Modified By     Comments
 						</PostActionEvent>
 					</ShowDataForm>
 				</Action>
+				<Action ID="0751A0A7-23F1-4D5E-8D46-100CB6871F52" Caption="=&quot;Delete &quot; + Page.Fields!NAME" ImageKey="RES:Delete">
+					<ExecuteRecordOperation RecordOperationID="2eacd3a8-953c-4135-ba0e-6c289ec78c3f" xmlns="bb_appfx_commontypes">
+						<ActionContext>
+							<PageContextID />
+						</ActionContext>
+						<PostActionEvent>
+							<GoToPage>
+								<FunctionalArea FunctionalAreaID="9ea48d9c-7e2d-42e6-91cc-210792618017" />
+							</GoToPage>
+						</PostActionEvent>
+					</ExecuteRecordOperation>
+				</Action>
 				<Action ID="4FEF0EF5-E43F-4C96-BC0E-2ABB0C630786" Caption="Update country">
 					<ExecuteRecordOperation RecordOperationID="8f0b7777-709a-43c6-9f5b-650a2e0fad71" ShowPrompt="false" xmlns="bb_appfx_commontypes">
 						<ActionContext>

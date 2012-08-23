@@ -1,0 +1,48 @@
+<RecordOperationSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="2eacd3a8-953c-4135-ba0e-6c289ec78c3f"
+    Name="Child Project Extension Delete"
+    Description="Used to delete the given Child Project Extension"
+    Author="Cary Mayeda"
+    RecordType="Child Project Extension"
+    OperationType="Delete"
+    c:SecurityUIFolder="Child Project Extension"
+    xmlns="bb_appfx_recordoperation" >
+
+	<!-- 
+	Remarks:   Use the Blackbaud OOB constituent delete, which should cascade the delete to the child project extension
+
+	History:
+	Date            Modified By     Comments
+	22-Aug-2012		CMayeda			Initial Version
+	-->
+	
+    <SPRecord>
+        <SPOperationImplementation SPName="USP_CHILD_PROJECT_EXTENSION_DELETE">
+            <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USP_CHILD_PROJECT_EXTENSION_DELETE
+(
+	@ID uniqueidentifier,
+	@CHANGEAGENTID uniqueidentifier
+)
+as begin
+	--check deletion rules, if any
+
+	-- Delete the constituent record, which should cascade the delete to the child project extension
+	exec USP_CONSTITUENT_DELETE @ID, @CHANGEAGENTID
+	
+
+	-- use the system generated delete routine to allow proper recording of the deleting agent
+	--exec USP_USR_CHILDPROJECTEXTENSION_DELETEBYID_WITHCHANGEAGENTID @ID, @CHANGEAGENTID
+	return 0;
+	
+end
+]]>
+</c:CreateProcedureSQL>
+        </SPOperationImplementation>
+    </SPRecord>
+    <Prompt>
+        <StandardPrompt Text="Are you sure you want to delete this Child Project?" />
+    </Prompt>
+</RecordOperationSpec>
