@@ -17,13 +17,13 @@
 	Date            Modified By     Comments
 	23-Jul-2012		CMayeda			Initial Version
 	22-Aug-2012		CMayeda			Related this query to sponsorship opportunity and sponsorship location queries Fogbugz Case 780
-
 	-->
 
 	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTEXTENSION">
         <ViewSQL>
 <![CDATA[
 	select	cp_ext.ID,
+			(select LOOKUPID from CONSTITUENT WHERE ID = cp_ext.ID) as LOOKUPID,
 			proj_const.NAME,
 			(select USR_CHILDPROJECTTYPECODE.DESCRIPTION from dbo.USR_CHILDPROJECTTYPECODE where USR_CHILDPROJECTTYPECODE.ID = cp_ext.[CHILDPROJECTTYPECODEID]) as CHILDPROJECTTYPECODEID_TRANSLATION,
 			cp_ext.[CHILDPROJECTTYPEOTHER],
@@ -83,140 +83,142 @@
     <Output>
         <OutputFields>
             <OutputField Name="ID" Caption="System record ID" Category="System Fields" DataType="Guid" IsHidden="true"/>
-			<OutputField Name="COUNTRYEXTENSIONID" Caption="Country system record" Category="Country System Record" DataType="Guid" />
+			<OutputField Name="COUNTRYEXTENSIONID" Caption="Country system record" Category="System Fields" DataType="Guid" />
+			<OutputField Name="LOOKUPID" Caption="Lookup ID" DataType="String" />
 			<OutputField Name="NAME" Caption="Name" IsDefaultOutput="true" />
-            <OutputField Name="CHILDPROJECTTYPECODEID_TRANSLATION" Caption="Child project type">
+            <OutputField Name="CHILDPROJECTTYPECODEID_TRANSLATION" Caption="Type" >
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTTYPECODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="CHILDPROJECTTYPEOTHER" Caption="Child project type other" />
-            <OutputField Name="CHILDPROJECTSTATUSCODEID_TRANSLATION" Caption="Child project status">
+            <OutputField Name="CHILDPROJECTTYPEOTHER" Caption="Type - other" />
+            <OutputField Name="CHILDPROJECTSTATUSCODEID_TRANSLATION" Caption="Status" >
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="CHILDPROJECTCATEGORYCODEID_TRANSLATION" Caption="Child project category">
+            <OutputField Name="CHILDPROJECTCATEGORYCODEID_TRANSLATION" Caption="Category" >
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTCATEGORYCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="CHILDPROJECTSUBCATEGORYCODEID_TRANSLATION" Caption="Child project subcategory">
+            <OutputField Name="CHILDPROJECTSUBCATEGORYCODEID_TRANSLATION" Caption="Subcategory" >
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTSUBCATEGORYCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="TECHNOLOGYAVAILABLEELECTRICITY" Caption="Technology available - electricity" DataType="Boolean" />
-            <OutputField Name="TECHNOLOGYAVAILABLETELEPHONE" Caption="Technology available - telephone" DataType="Boolean" />
-            <OutputField Name="TECHNOLOGYAVAILABLECOMPUTER" Caption="Technology available - computer" DataType="Boolean" />
-            <OutputField Name="TECHNOLOGYAVAILABLEINTERNET" Caption="Technology available - internet" DataType="Boolean" />
-            <OutputField Name="MAXCHILDRENCOUNT" Caption="Maximum number of children" DataType="SmallInt" />
+            <OutputField Name="TECHNOLOGYAVAILABLEELECTRICITY" Caption="Electricity" DataType="Boolean" Category="Technology Available"/>
+            <OutputField Name="TECHNOLOGYAVAILABLETELEPHONE" Caption="Telephone" DataType="Boolean" Category="Technology Available" />
+            <OutputField Name="TECHNOLOGYAVAILABLECOMPUTER" Caption="Computer" DataType="Boolean" Category="Technology Available" />
+            <OutputField Name="TECHNOLOGYAVAILABLEINTERNET" Caption="Internet" DataType="Boolean" Category="Technology Available" />
+			
+            <OutputField Name="MAXCHILDRENCOUNT" Caption="Maximum number of children" DataType="SmallInt" Category="Project Info"/>
             <OutputField Name="MAXGRADELEVELCODEID_TRANSLATION" Caption="Maximum grade level">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTMAXGRADELEVELCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="MAXCHILDAGE" Caption="Maximum child age" DataType="TinyInt" />
-            <OutputField Name="MAXCHILDAGEEXCEPTIONREASON" Caption="Maximum child age exception reason" />
-            <OutputField Name="MONTHSCHOOLYEARBEGINSCODEID_TRANSLATION" Caption="Month school year begins">
+            <OutputField Name="MAXCHILDAGE" Caption="Maximum child age" DataType="TinyInt" Category="Project Info"/>
+            <OutputField Name="MAXCHILDAGEEXCEPTIONREASON" Caption="Maximum child age exception reason" Category="Project Info"/>
+            <OutputField Name="MONTHSCHOOLYEARBEGINSCODEID_TRANSLATION" Caption="Month school year begins" Category="Project Info">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="MONTHSCHOOLYEARENDSCODEID_TRANSLATION" Caption="Month school year ends">
+            <OutputField Name="MONTHSCHOOLYEARENDSCODEID_TRANSLATION" Caption="Month school year ends" Category="Project Info">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
             
-			<OutputField Name="HOLIDAYLETTERSDUECODEID_TRANSLATION" Caption="Holiday letters due">
+			<OutputField Name="HOLIDAYLETTERSDUECODEID_TRANSLATION" Caption="Holiday letters due" Category="Schedule">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="LETTER1DUECODEID_TRANSLATION" Caption="Letter 1 due">
+            <OutputField Name="LETTER1DUECODEID_TRANSLATION" Caption="Letter 1 due" Category="Schedule">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="LETTER2DUECODEID_TRANSLATION" Caption="Letter 2 due">
+            <OutputField Name="LETTER2DUECODEID_TRANSLATION" Caption="Letter 2 due" Category="Schedule">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="PHOTOUPDATEDUECODEID_TRANSLATION" Caption="Photo update due">
+            <OutputField Name="PHOTOUPDATEDUECODEID_TRANSLATION" Caption="Photo update due" Category="Schedule">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="PROFILEUPDATECODEID_TRANSLATION" Caption="Profile update">
+            <OutputField Name="PROFILEUPDATECODEID_TRANSLATION" Caption="Profile update" Category="Schedule">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_MONTHCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
 
-			<OutputField Name="DOCSTATUSCOMMUNITYDESCCODEID_TRANSLATION" Caption="Documentaion status - community description">
+			<OutputField Name="DOCSTATUSCOMMUNITYDESCCODEID_TRANSLATION" Caption="Community description" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSCOMMUNITYPHOTOCODEID_TRANSLATION" Caption="Documentaion status - community photo">
+            <OutputField Name="DOCSTATUSCOMMUNITYPHOTOCODEID_TRANSLATION" Caption="Community photo" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMAPPROVALFORMCODEID_TRANSLATION" Caption="Documentaion status - project form - approval form">
+            <OutputField Name="DOCSTATUSPROJECTFORMAPPROVALFORMCODEID_TRANSLATION" Caption="Project form - approval form" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALFULLCODEID_TRANSLATION" Caption="Documentaion status - project form - capital proposal - full">
+            <OutputField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALFULLCODEID_TRANSLATION" Caption="Project form - capital proposal - full" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-			<OutputField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALSUMMARYCODEID_TRANSLATION" Caption="Documentaion status - project form - capital proposal - summary">
+			<OutputField Name="DOCSTATUSPROJECTFORMCAPITALPROPOSALSUMMARYCODEID_TRANSLATION" Caption="Project form - capital proposal - summary" Category="Documentaion Status">
 				<LookupInfo>
 					<CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
 				</LookupInfo>
 			</OutputField>
-			<OutputField Name="DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID_TRANSLATION" Caption="Documentaion status - project form - community form">
+			<OutputField Name="DOCSTATUSPROJECTFORMCOMMUNITYFORMCODEID_TRANSLATION" Caption="Project form - community form" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID_TRANSLATION" Caption="Documentaion status - project form - intent to partner">
+            <OutputField Name="DOCSTATUSPROJECTFORMINTENTTOPARTNERCODEID_TRANSLATION" Caption="Project form - intent to partner" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID_TRANSLATION" Caption="Documentaion status - project form - partner agreement">
+            <OutputField Name="DOCSTATUSPROJECTFORMPARTNERAGREEMENTCODEID_TRANSLATION" Caption="Project form - partner agreement" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMPARTNERINFOCODEID_TRANSLATION" Caption="Documentaion status - project form - partner info">
+            <OutputField Name="DOCSTATUSPROJECTFORMPARTNERINFOCODEID_TRANSLATION" Caption="Project form - partner info" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMPROGRAMCODEID_TRANSLATION" Caption="Documentaion status - project form - program">
+            <OutputField Name="DOCSTATUSPROJECTFORMPROGRAMCODEID_TRANSLATION" Caption="Project form - program" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID_TRANSLATION" Caption="Documentaion status - project form - sponsorship proposal full">
+            <OutputField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID_TRANSLATION" Caption="Project form - sponsorship proposal full" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID_TRANSLATION" Caption="Documentaion status - project form - sponsorship proposal summary">
+            <OutputField Name="DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID_TRANSLATION" Caption="Project form - sponsorship proposal summary" Category="Documentaion Status">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTFORMSTATUSCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
 
-			<OutputField Name="SPONSORSHIPLOCATIONID" Caption="Sponsorship Location system record ID" DataType="Guid" />
+			<OutputField Name="SPONSORSHIPLOCATIONID" Caption="Sponsorship Location system record ID" DataType="Guid"  Category="System Fields"/>
 			
             <OutputField Name="ADDEDBY_APPLICATION" Caption="Added by application" Category="System Fields">
                 <LookupInfo>
@@ -242,6 +244,7 @@
             <OutputField Name="DATECHANGED" Caption="Date changed" Category="System Fields" DataType="Date" />
             <OutputField Name="TSLONG" Caption="Timestamp value" IsHidden="true" Category="System Fields" DataType="Long" />
         </OutputFields>
+		
     </Output>
 
 	<RelationshipOperations>
