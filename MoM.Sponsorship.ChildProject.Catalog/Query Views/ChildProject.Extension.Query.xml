@@ -16,6 +16,8 @@
 	History:
 	Date            Modified By     Comments
 	23-Jul-2012		CMayeda			Initial Version
+	22-Aug-2012		CMayeda			Related this query to sponsorship opportunity and sponsorship location queries Fogbugz Case 780
+
 	-->
 
 	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTEXTENSION">
@@ -56,6 +58,7 @@
 			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMPROGRAMCODEID]) as DOCSTATUSPROJECTFORMPROGRAMCODEID_TRANSLATION,
 			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID]) as DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALFULLCODEID_TRANSLATION,
 			(select USR_CHILDPROJECTFORMSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTFORMSTATUSCODE where USR_CHILDPROJECTFORMSTATUSCODE.ID = cp_ext.[DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID]) as DOCSTATUSPROJECTFORMSPONSORSHIPPROPOSALSUMMARYCODEID_TRANSLATION,
+			sl.ID as SPONSORSHIPLOCATIONID,
 
 
 			ADDEDBY.APPLICATIONNAME as [ADDEDBY_APPLICATION],
@@ -71,6 +74,8 @@
  left join	dbo.CONSTITUENT as proj_const on proj_const.ID = cp_ext.ID
  left join	dbo.CHANGEAGENT as [ADDEDBY] on [ADDEDBY].ID = cp_ext.ADDEDBYID
  left join	dbo.CHANGEAGENT as [CHANGEDBY] on [CHANGEDBY].ID = cp_ext.CHANGEDBYID
+ left join	dbo.SPONSORSHIPLOCATION sl on
+				sl.FIELDOFFICEID = cp_ext.ID
 	
 ]]>
 </ViewSQL>
@@ -211,6 +216,7 @@
                 </LookupInfo>
             </OutputField>
 
+			<OutputField Name="SPONSORSHIPLOCATIONID" Caption="Sponsorship Location system record ID" DataType="Guid" />
 			
             <OutputField Name="ADDEDBY_APPLICATION" Caption="Added by application" Category="System Fields">
                 <LookupInfo>
@@ -240,6 +246,8 @@
 
 	<RelationshipOperations>
 		<AddRelatedView Field="ID" RelatedView="V_QUERY_CONSTITUENT" RelatedField="ID" PathAlias ="Child Project Constituent"/>
+		<AddToParentView ParentView="V_QUERY_SPONSORSHIPOPPORTUNITY" ParentViewRelatedField="SPONSORSHIPLOCATIONID" Field="SPONSORSHIPLOCATIONID" PathAlias="Child Project"/>
+		<AddToParentView ParentView="V_QUERY_SPONSORSHIPLOCATION" ParentViewRelatedField="FIELDOFFICEID" Field="ID" PathAlias="Child Project"/>
 	</RelationshipOperations>
 
 </QueryViewSpec>

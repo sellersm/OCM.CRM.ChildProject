@@ -81,7 +81,7 @@
     <Folder Include="Tables\Code Tables\Images\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Add.Task.xml" />
+    <EmbeddedResource Include="Tasks\ChildProject.Add.Task.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListRegistered.DataList.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -118,7 +118,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionSummary.View.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Search.Task.xml">
+    <EmbeddedResource Include="Tasks\ChildProject.Search.Task.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tables\ChildProject.Extension.Table.xml">
@@ -136,27 +136,27 @@
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Type.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\Month.CodeTable.xml" />
     <EmbeddedResource Include="Tables\Code Tables\Religion.CodeTable.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Package.xml">
+    <EmbeddedResource Include="Packages\ChildProject.Package.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tables\Code Tables\ChildProject.Subcategory.CodeTable.xml" />
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ConstituentExpression.View.xml" />
     <EmbeddedResource Include="Pages\ChildProject.AlterConstituent.Page.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml">
+    <EmbeddedResource Include="Quota\USR_UFN_CHILDPROJECT_REGISTEREDCHILDCOUNT.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildProjectSpecs\Update.Country.RecordOperation.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProjectPass1.Package.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml">
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Update.Country.RecordOperation.xml" />
+    <EmbeddedResource Include="Packages\ChildProjectPass1.Package.xml" />
+    <EmbeddedResource Include="Quota\USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tables\ChildProject.ExtensionPass1.Table.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTAVARIANCE.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY.xml" />
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTAOVERRIDE.xml">
+    <EmbeddedResource Include="Quota\USR_UFN_CHILDPROJECT_QUOTAVARIANCE.xml" />
+    <EmbeddedResource Include="Quota\USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY.xml" />
+    <EmbeddedResource Include="Quota\USR_UFN_CHILDPROJECT_QUOTAOVERRIDE.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildProjectSpecs\Quota\USR_UFN_CHILDPROJECT_QUOTATYPE.xml">
+    <EmbeddedResource Include="Quota\USR_UFN_CHILDPROJECT_QUOTATYPE.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\USR_UFN_CHILDPROJECT_GETCOUNTRYID.xml" />
@@ -180,7 +180,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Query Views\ChildProject.Quota.Query.xml" />
+    <EmbeddedResource Include="Query Views\ChildProject.Quota.Query.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Query Views\ChildProject.CommunityEnvironment.Query.xml" />
@@ -217,6 +219,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\NewProject.png" />
     <EmbeddedResource Include="Images\SearchProject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionDelete.RecordOperation.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
