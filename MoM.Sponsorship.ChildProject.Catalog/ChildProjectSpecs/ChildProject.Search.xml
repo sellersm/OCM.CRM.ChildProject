@@ -27,7 +27,7 @@ Date            Modified By     Comments
 create procedure dbo.USR_USP_SEARCHLIST_CHILDPROJECT
 (
 	@NAME nvarchar(155) = null,
-	@LOOKUPID nvarchar(7) = null,
+	@LOOKUPID nvarchar(10) = null,
 	@MAXROWS smallint = 500
 )
 as

@@ -113,7 +113,7 @@
             <OutputField Name="TECHNOLOGYAVAILABLEINTERNET" Caption="Internet" DataType="Boolean" Category="Technology Available" />
 			
             <OutputField Name="MAXCHILDRENCOUNT" Caption="Maximum number of children" DataType="SmallInt" Category="Project Info"/>
-            <OutputField Name="MAXGRADELEVELCODEID_TRANSLATION" Caption="Maximum grade level">
+            <OutputField Name="MAXGRADELEVELCODEID_TRANSLATION" Caption="Maximum grade level" Category="Project Info">
                 <LookupInfo>
                     <CodeTable CodeTableName="USR_CHILDPROJECTMAXGRADELEVELCODE" IncludeInactive="true" />
                 </LookupInfo>

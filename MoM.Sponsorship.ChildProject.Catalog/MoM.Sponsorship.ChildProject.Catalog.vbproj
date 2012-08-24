@@ -102,7 +102,9 @@
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Community3.Edit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ChildProject.Extension.Page.xml" />
+    <EmbeddedResource Include="Pages\ChildProject.Extension.Page.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionSummary.Edit.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
