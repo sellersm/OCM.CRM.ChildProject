@@ -34,8 +34,7 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
     Private WithEvents _childprojectstatus As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _childprojectcategory As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _childprojectsubcategory As Global.Blackbaud.AppFx.UIModeling.Core.StringField
-    Private WithEvents _locationreportrecipientid As Global.Blackbaud.AppFx.UIModeling.Core.GuidField
-    Private WithEvents _locationreportrecipientname As Global.Blackbaud.AppFx.UIModeling.Core.StringField
+    Private WithEvents _locationreportrecipients As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _childprojecttypeotherseparator As Global.Blackbaud.AppFx.UIModeling.Core.StringField
 
 	<System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
@@ -51,8 +50,7 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
         _childprojectstatus = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _childprojectcategory = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _childprojectsubcategory = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
-        _locationreportrecipientid = New Global.Blackbaud.AppFx.UIModeling.Core.GuidField
-        _locationreportrecipientname = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
+        _locationreportrecipients = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _childprojecttypeotherseparator = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
 
         MyBase.Mode = Global.Blackbaud.AppFx.UIModeling.Core.DataFormMode.View
@@ -135,21 +133,12 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
         _childprojectsubcategory.MaxLength = 100
         Me.Fields.Add(_childprojectsubcategory)
         '
-        '_locationreportrecipientid
+        '_locationreportrecipients
         '
-        _locationreportrecipientid.Name = "LOCATIONREPORTRECIPIENTID"
-        _locationreportrecipientid.Caption = "Report recipient system record ID"
-        _locationreportrecipientid.Visible = False
-        _locationreportrecipientid.DBReadOnly = True
-        Me.Fields.Add(_locationreportrecipientid)
-        '
-        '_locationreportrecipientname
-        '
-        _locationreportrecipientname.Name = "LOCATIONREPORTRECIPIENTNAME"
-        _locationreportrecipientname.Caption = "Report recipient"
-        _locationreportrecipientname.DBReadOnly = True
-        _locationreportrecipientname.MaxLength = 154
-        Me.Fields.Add(_locationreportrecipientname)
+        _locationreportrecipients.Name = "LOCATIONREPORTRECIPIENTS"
+        _locationreportrecipients.Caption = "Report recipient(s)"
+        _locationreportrecipients.DBReadOnly = True
+        Me.Fields.Add(_locationreportrecipients)
         '
         '_childprojecttypeotherseparator
         '
@@ -263,24 +252,13 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
     End Property
     
     ''' <summary>
-    ''' Report recipient system record ID
+    ''' Report recipient(s)
     ''' </summary>
-    <System.ComponentModel.Description("Report recipient system record ID")> _
+    <System.ComponentModel.Description("Report recipient(s)")> _
     <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
-    Public ReadOnly Property [LOCATIONREPORTRECIPIENTID]() As Global.Blackbaud.AppFx.UIModeling.Core.GuidField
+    Public ReadOnly Property [LOCATIONREPORTRECIPIENTS]() As Global.Blackbaud.AppFx.UIModeling.Core.StringField
         Get
-            Return _locationreportrecipientid
-        End Get
-    End Property
-    
-    ''' <summary>
-    ''' Report recipient
-    ''' </summary>
-    <System.ComponentModel.Description("Report recipient")> _
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
-    Public ReadOnly Property [LOCATIONREPORTRECIPIENTNAME]() As Global.Blackbaud.AppFx.UIModeling.Core.StringField
-        Get
-            Return _locationreportrecipientname
+            Return _locationreportrecipients
         End Get
     End Property
     
