@@ -12,10 +12,9 @@
 				CONTEXTID is the ConstituentID of the child project.
 	History:
 	Date            Modified By     Comments
-	05-Aug-2012     CMayeda         Initial Version, copied from USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_WAITINGLIST
-									Currently not returning any kids.  Will finish after getting transfer customizations
+	22-Aug-2012     CMayeda         Initial Version, copied from USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_WAITINGLIST Fogbugz Case 768
 	-->
-
+	
 	<!-- define the SP that returns the data for the datalist -->
 	<SPDataList SPName="USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_TRANSFERRED">
 		<common:CreateProcedureSQL>
@@ -25,73 +24,34 @@ create procedure dbo.USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_TRANSFERRED(
 	@CHILDLOOKUPID nvarchar(100) = null,
 	@CHILDNAME nvarchar(200) = null
 )
-as
-	declare @eligibilityCodeIneligible tinyint = 2
-	begin try
-		declare @numberSponsorshipReasons tinyint		-- The number of sponsorship reasons (waiting list and batch commit) that should be checked to include children with that sponsorship reason in the returned set of children
-		set @numberSponsorshipReasons = 0
-	
-		declare @sponsorhipReasonsToInclude table
-			(
-				sponsorshipReasonID uniqueidentifier
-			)
-	
-		/* -- Tranfer reaons???  Don't know if it'll use these
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure'
-	
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure - admin'
-	
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure - other'
-	
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'program completion'
-
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'death of child' */
-
-		-- Get the number of reasons inserted 
-		declare @reasonCount tinyint
-		select @reasonCount = count(*) from @sponsorhipReasonsToInclude
-
-		if @reasonCount <> @numberSponsorshipReasons  
-			RAISERROR 1000000 'Could not find all of the transfer reason ids'		
-	end try
-	begin catch
-	    exec dbo.USP_RAISE_ERROR
-		return 1	
-	end catch
-
+as begin
 	set nocount on;
 
-	select 	FIELDOFFICEID,
+	select 	slocation.FIELDOFFICEID,
 			so.ID SPONSORSHIPOPPORTUNITYID,
 	        so.LOOKUPID CHILDLOOKUPID,
 		    so_child.NAME,
-		    ch_ext.DATEADDED,
-			so_child.AGE,
+			ch_transfer.FROMREGISTRATIONDATE,
+			ch_transfer.CRMDATEOFTRANSFER,
+		    so_child.AGE,
 	        so_child.GENDER,
-		    dbo.UFN_DATE_FROMFUZZYDATE (so_child.BIRTHDATE) BIRTHDATE,
-			sreason.REASON as DEPARTUREREASON	
-        
-	  from	dbo.SPONSORSHIPOPPORTUNITY so 					
+		    dbo.UFN_DATE_FROMFUZZYDATE (so_child.BIRTHDATE) BIRTHDATE
+			
+	  from	dbo.USR_CHILDTRANSFER ch_transfer
+inner join  dbo.SPONSORSHIPOPPORTUNITY so on 
+				ch_transfer.SPONSORSHIPOPPORTUNITYCHILDID = so.ID
 inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on 
-				so.ID = so_child.ID
-inner join	dbo.SPONSORSHIPREASON sreason on
-				so.SPONSORSHIPREASONID = sreason.id
+				ch_transfer.SPONSORSHIPOPPORTUNITYCHILDID = so_child.ID
  left join	dbo.USR_CHILDEXTENSION ch_ext on
-				so.ID = ch_ext.SPONSORSHIPOPPORTUNITYCHILDID
+				so_child.ID = ch_ext.SPONSORSHIPOPPORTUNITYCHILDID
  left join	dbo.SPONSORSHIPLOCATION slocation ON 
-				slocation.ID = so.SPONSORSHIPLOCATIONID
-				
+				slocation.ID = ch_transfer.FROMPROJECTID
+	
 	 where  FIELDOFFICEID = @CONTEXTID
-	   and  exists (select sponsorshipReasonID from @sponsorhipReasonsToInclude reasonstoinclude where reasonstoinclude.sponsorshipReasonID = so.SPONSORSHIPREASONID)
-	   and	so.ELIGIBILITYCODE = @eligibilityCodeIneligible
 	   and	(@CHILDLOOKUPID is null or so.LOOKUPID like '%' + @CHILDLOOKUPID + '%')
 	   and	(@CHILDNAME is null or so_child.NAME like '%' + @CHILDNAME + '%')
 
+end
 			]]>
 		</common:CreateProcedureSQL>
 	</SPDataList>
@@ -116,11 +76,12 @@ inner join	dbo.SPONSORSHIPREASON sreason on
 			<OutputField FieldID="SPONSORSHIPOPPORTUNITYID" Caption="Child system record ID" DataType="Guid" IsHidden="true" />
 			<OutputField FieldID="CHILDLOOKUPID" Caption="Child ID" DataType="String" />
 			<OutputField FieldID="NAME" Caption="Name" DataType="String" />
-			<OutputField FieldID="DATEADDED" Caption="Date Added" DataType="Date" />
+			<OutputField FieldID="FROMREGISTRATIONDATE" Caption="Registration Date" DataType="Date" />
+			<OutputField FieldID="CRMDATEOFTRANSFER" Caption="Date of Transfer" DataType="Date" />
 			<OutputField FieldID="AGE" Caption="Age" DataType="TinyInt" />
 			<OutputField FieldID="GENDER" Caption="Gender" DataType="String" />
 			<OutputField FieldID="BIRTHDATE" Caption="Birthdate" DataType="Date" />
-			<OutputField FieldID="DEPARTUREREASON" Caption="Departure Reason" DataType="String"/>
+			
 		</OutputFields>
 	</Output>
 

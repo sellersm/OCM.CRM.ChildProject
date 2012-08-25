@@ -31,11 +31,11 @@ create procedure dbo.USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_REGISTERED(
 	@AVAILABILITYCODE tinyint = null,
 	@ELIGIBILITYCODE tinyint = null
 )
-as
+as begin
+	set nocount on;
+
 	declare @eligibilityCodePending tinyint = 0
 	declare @eligibilityCodeEligible tinyint = 1
-
-	set nocount on;
 
 	select 	FIELDOFFICEID,
 			so.ID SPONSORSHIPOPPORTUNITYID,
@@ -71,7 +71,8 @@ inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on
 	   and	(@CHILDNAME is null or so_child.NAME like '%' + @CHILDNAME + '%')
 	   and	(@AVAILABILITYCODE is null or so.AVAILABILITYCODE = @AVAILABILITYCODE)
 	   and	(@ELIGIBILITYCODE is null or so.ELIGIBILITYCODE = @ELIGIBILITYCODE)
-	 
+
+end
 			]]>
 		</common:CreateProcedureSQL>
 	</SPDataList>
