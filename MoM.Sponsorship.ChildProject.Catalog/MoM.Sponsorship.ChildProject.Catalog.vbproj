@@ -211,7 +211,9 @@
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListDeparted.DataList.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListTransferred.DataList.xml" />
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ChildrenListTransferred.DataList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Utilities\USR_UFN_CHILDPROJECT_GETLOOKUPID.xml">

@@ -25,7 +25,9 @@ create procedure dbo.USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_WAITINGLIST(
 	@CHILDLOOKUPID nvarchar(100) = null,
 	@CHILDNAME nvarchar(200) = null
 )
-as
+as begin
+	set nocount on;
+
 	declare @eligibilityCodeIneligible tinyint = 2
 	begin try
 		declare @numberSponsorshipReasons tinyint		-- The number of sponsorship reasons (waiting list and batch commit) that should be checked to include children with that sponsorship reason in the returned set of children
@@ -67,8 +69,6 @@ as
 		return 1	
 	end catch
 
-	set nocount on;
-
 	select 	FIELDOFFICEID,
 			so.ID SPONSORSHIPOPPORTUNITYID,
 	        so.LOOKUPID CHILDLOOKUPID,
@@ -95,6 +95,7 @@ inner join	dbo.SPONSORSHIPREASON sreason on
 	   and	(@CHILDLOOKUPID is null or so.LOOKUPID like '%' + @CHILDLOOKUPID + '%')
 	   and	(@CHILDNAME is null or so_child.NAME like '%' + @CHILDNAME + '%')
 
+end
 			]]>
 		</common:CreateProcedureSQL>
 	</SPDataList>
