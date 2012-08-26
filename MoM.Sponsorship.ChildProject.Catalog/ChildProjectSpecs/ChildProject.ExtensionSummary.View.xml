@@ -65,10 +65,10 @@ as
 			
 			@CHILDPROJECTTYPEOTHERSEPARATOR = '-'
 			
-	  from	dbo.USR_CHILDPROJECTEXTENSION (nolock) cp_ext
-inner join	dbo.CONSTITUENT (nolock) on 
+	  from	dbo.USR_CHILDPROJECTEXTENSION cp_ext
+inner join	dbo.CONSTITUENT on 
 				CONSTITUENT.ID = cp_ext.ID
- left join  V_QUERY_CONSTITUENTPRIMARYADDRESS (nolock) primaryaddress on
+ left join  V_QUERY_CONSTITUENTPRIMARYADDRESS primaryaddress on
 				primaryaddress.CONSTITUENTID = cp_ext.ID
 	 where	cp_ext.ID = @ID
 

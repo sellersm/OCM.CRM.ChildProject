@@ -14,6 +14,7 @@
 	Date            Modified By     Comments
 	05-Aug-2012     CMayeda         Initial Version, copied from USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_WAITINGLIST
 	24-Aug-2012		CMayeda			Added REASONTYPECODE to the retrieval of the sponsorship reasons because there are duplicate reasons. Fogbugz Case 788
+	25-Aug-2012		CMayeda			Made insert @sponsorhipReasonsToInclude easier to read
 	-->
 	
 	<!-- define the SP that returns the data for the datalist -->
@@ -41,20 +42,16 @@ as begin
 			)
 	
 		-- Departure / Completion reaons
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure' and REASONTYPECODE = @sponsorshipReasonType_ChildMarkIneligible
-	
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure - admin' and REASONTYPECODE = @sponsorshipReasonType_ChildMarkIneligible
-	
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'departure - other' and REASONTYPECODE = @sponsorshipReasonType_ChildMarkIneligible
-	
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'program completion' and REASONTYPECODE = @sponsorshipReasonType_ChildMarkIneligible
-
-		insert @sponsorhipReasonsToInclude
-		select ID from SPONSORSHIPREASON where lower (REASON) = 'death of child' and REASONTYPECODE = @sponsorshipReasonType_ChildMarkIneligible
+		insert @sponsorhipReasonsToInclude 
+		select ID 
+		  from SPONSORSHIPREASON 
+		 where REASONTYPECODE = @sponsorshipReasonType_ChildMarkIneligible
+		   and lower (REASON) in (	lower('Departure'),
+									lower('Departure - Admin'),
+									lower('Departure - Other'),
+									lower('Program Completion'),
+									lower('Death of Child')
+								 ) 
 
 		-- Get the number of reasons inserted 
 		declare @reasonCount tinyint

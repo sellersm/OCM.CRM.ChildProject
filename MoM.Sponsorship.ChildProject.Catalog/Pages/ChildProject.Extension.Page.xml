@@ -61,6 +61,22 @@ Date            Modified By     Comments
 
 		<Tab Caption="Children" ID="3b7be70e-7900-4c5c-82ab-430ca3c3a512">
 			<Sections>
+				<Section ID="978ac8c0-fc3f-449a-81f2-da6147132edd" Caption="Waiting list children">
+					<DataList ID="abc07cf6-2f9d-4a22-ac8d-87e811229f7f">
+						<RenderStyle>
+							<StandardView AutoSize="true" />
+						</RenderStyle>
+					</DataList>
+					<Actions>
+						<Action ID="24612752-3FCA-4A0C-AA8E-9E38A13D604C" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)" ImageKey="RES:goto_round">
+							<ShowPage PageID="0f392d71-5884-4363-b6e3-a75755f8402a" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<SectionField>SPONSORSHIPOPPORTUNITYID</SectionField>
+								</ActionContext>
+							</ShowPage>
+						</Action>
+					</Actions>
+				</Section>
 				<Section ID="e24196c7-1f06-4211-9bd0-5f6fbf5b1a78" Caption="Registered children">
 					<DataList ID="07b00060-496b-43f8-a87a-6d2dc7df464a" ShowBorder="true">
 						<RenderStyle>
@@ -81,22 +97,6 @@ Date            Modified By     Comments
 		</Tab>
 		<Tab Caption="Child History" ID="6F0FA7BD-D07A-4736-8DD2-5B13B769C84F">
 			<Sections>
-				<Section ID="978ac8c0-fc3f-449a-81f2-da6147132edd" Caption="Waiting list children">
-					<DataList ID="abc07cf6-2f9d-4a22-ac8d-87e811229f7f">
-						<RenderStyle>
-							<StandardView AutoSize="true" />
-						</RenderStyle>
-					</DataList>
-					<Actions>
-						<Action ID="24612752-3FCA-4A0C-AA8E-9E38A13D604C" Caption="=IfRowSelected(&quot;Go to &quot; + Fields!NAME, &quot;Go to child&quot;)" ImageKey="RES:goto_round">
-							<ShowPage PageID="0f392d71-5884-4363-b6e3-a75755f8402a" TabID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
-								<ActionContext>
-									<SectionField>SPONSORSHIPOPPORTUNITYID</SectionField>
-								</ActionContext>
-							</ShowPage>
-						</Action>
-					</Actions>
-				</Section>
 				<Section ID="BF144EE9-8FE5-4071-BFCF-B09DFD7C2F11" Caption="Children transferred to another project">
 					<DataList ID="3cccebee-ebe0-4503-b95f-f914bb393f65">
 						<RenderStyle>

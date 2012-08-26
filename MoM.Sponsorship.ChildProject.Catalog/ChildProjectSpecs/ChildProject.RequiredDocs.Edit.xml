@@ -147,7 +147,7 @@ return 0;
     <c:FormMetaData FixedDialog="true">		
         <c:FormFields>
             <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
-            <c:FormField FieldID="DOCSTATUSCOMMUNITYDESCCODEID" DataType="Guid" Caption="Community description">
+            <c:FormField FieldID="DOCSTATUSCOMMUNITYDESCCODEID" DataType="Guid" Caption="Community descriptions">
                 <c:CodeTable CodeTableName="USR_CHILDPROJECTDOCUMENTATIONSTATUSCODE" />
             </c:FormField>
             <c:FormField FieldID="DOCSTATUSCOMMUNITYPHOTOCODEID" DataType="Guid" Caption="Community photo">

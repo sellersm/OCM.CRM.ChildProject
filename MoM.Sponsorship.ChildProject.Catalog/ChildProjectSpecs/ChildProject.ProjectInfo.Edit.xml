@@ -518,8 +518,7 @@ return 0;
     </SPDataForm>
     <c:FormMetaData FixedDialog="true">
         <c:FormFields>
-            <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
-			<c:FormField FieldID="TECHNOLOGYAVAILABLEELECTRICITY" DataType="Boolean" Caption="Electricity" />
+            <c:FormField FieldID="TECHNOLOGYAVAILABLEELECTRICITY" DataType="Boolean" Caption="Electricity" />
 			<c:FormField FieldID="TECHNOLOGYAVAILABLETELEPHONE" DataType="Boolean" Caption="Telephone" />
 			<c:FormField FieldID="TECHNOLOGYAVAILABLECOMPUTER" DataType="Boolean" Caption="Computer" />
 			<c:FormField FieldID="TECHNOLOGYAVAILABLEINTERNET" DataType="Boolean" Caption="Internet connection" />
