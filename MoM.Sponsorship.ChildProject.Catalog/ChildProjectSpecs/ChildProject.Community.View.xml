@@ -284,7 +284,7 @@ as
 		   @TRANSPORTATIONTYPEOTHERSEPARATOR = '-',
  		   @PRIMARYDIETOTHERSEPARATOR  = '-'
 		   
-	  from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	  from dbo.USR_CHILDPROJECTEXTENSION
 	 where ID = @ID
 	
 	return 0;
@@ -293,7 +293,6 @@ as
     </SPDataForm>
     <c:FormMetaData FixedDialog="true">
         <c:FormFields>
-            <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
             <c:FormField FieldID="COMMUNITYNAME" DataType="String" MaxLength="50" Caption="Community name" />
             <c:FormField FieldID="COMMUNITYPOPULATION" DataType="Integer" Caption="Community population" />
             <c:FormField FieldID="COMMUNITYTYPECODE" DataType="String" MaxLength="100" Caption="Type of community" />

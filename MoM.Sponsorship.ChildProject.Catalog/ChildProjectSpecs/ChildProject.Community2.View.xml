@@ -202,7 +202,7 @@ as
 		   @FAMILYSTRUCTUREOTHERSEPARATOR = '-',
 		   @SOCIALISSUESOTHERSEPARATOR = '-'
 
-	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	from dbo.USR_CHILDPROJECTEXTENSION
 	where ID = @ID
 	
 	return 0;
@@ -211,7 +211,6 @@ as
     </SPDataForm>
     <c:FormMetaData FixedDialog="true">
         <c:FormFields>
-            <c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
             <c:FormField FieldID="HIGHESTEDUCATIONAVAILABLECODE" MaxLength="100" Caption="Higest education available in local community" />
 			<c:FormField FieldID="HIGHESTEDUCATIONAVAILABLECODEID" DataType="Guid" Caption="Higest education available in local community id" />
 			<c:FormField FieldID="HIGHESTEDUCATIONAVAILABLEOTHER" MaxLength="50" Caption="other" />

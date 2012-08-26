@@ -248,7 +248,7 @@ as
            @PARTICIPATIONAGERANGE4SAT = PARTICIPATIONAGERANGE4SAT, 
            @PARTICIPATIONAGERANGE4HOURSPERWEEK = PARTICIPATIONAGERANGE4HOURSPERWEEK
 
-	from dbo.USR_CHILDPROJECTEXTENSION (nolock)
+	from dbo.USR_CHILDPROJECTEXTENSION
 	where ID = @ID
 	
 	return 0;
@@ -257,7 +257,6 @@ as
 	</SPDataForm>
 	<common:FormMetaData FixedDialog="true">
 		<common:FormFields>
-			<common:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
 			<common:FormField FieldID="HOLIDAYLETTERSDUECODE" MaxLength="100" Caption="Holiday letters due" />
 			<common:FormField FieldID="LETTER1DUECODE" MaxLength="100" Caption="Letter 1 due" />
 			<common:FormField FieldID="LETTER2DUECODE" MaxLength="100" Caption="Letter 2 due" />

@@ -138,7 +138,6 @@ return 0;
 	like the record ID, DATALOADED, TSLONG, and CURRENTAPPUSERID need not be listed. -->
 	<common:FormMetaData FixedDialog="true">
 		<common:FormFields>
-			<common:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
 			<common:FormField FieldID="CHILDLEGALPROTECTIONCODE" DataType="TinyInt" Caption="Child Legal Protection">
 				<common:ValueList UseRadioButtons="true">
 					<common:Items>

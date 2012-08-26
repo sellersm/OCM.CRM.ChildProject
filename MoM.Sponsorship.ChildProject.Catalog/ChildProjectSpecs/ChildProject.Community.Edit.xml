@@ -552,7 +552,6 @@ return 0;
     </SPDataForm>
     <c:FormMetaData FixedDialog="true">
         <c:FormFields>
-			<c:FormField FieldID="ID" DataType="Guid" Hidden="true" Caption="ID" />
 			<c:FormField FieldID="COMMUNITYNAME" MaxLength="50" Caption="Community name" />
 			<c:FormField FieldID="COMMUNITYPOPULATION" DataType="Integer" Caption="Community population" />
 			<c:FormField FieldID="COMMUNITYTYPECODEID" DataType="Guid" Caption="Community type">

@@ -52,19 +52,24 @@ as begin
 				when AVAILABILITYCODE = 1 then 'Unsponsored - Reserved'
 				else 'Unsponsored'
 			end as SPONSORSHIPSTATUS,
-			so_reserveprocess.NAME as RESERVATIONKEY
+			so_reserveprocess.NAME as RESERVATIONKEY,
+			case 
+				when exists (select ID from dbo.USR_CHILDREACTIVATION where SPONSORSHIPOPPORTUNITYCHILDID = so.ID) then 1
+				else 0
+			end as REACTIVATED
         
 	  from	dbo.SPONSORSHIPOPPORTUNITY so 					
-inner join	dbo.SPONSORSHIPLOCATION slocation ON 
+inner join	dbo.SPONSORSHIPLOCATION slocation on
 				slocation.ID = so.SPONSORSHIPLOCATIONID
 inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on 
 				so.ID = so_child.ID
- left join	dbo.USR_CHILDEXTENSION ch_ext on
+ left outer join	
+			dbo.USR_CHILDEXTENSION ch_ext on
 				so.ID = ch_ext.SPONSORSHIPOPPORTUNITYCHILDID
- left join  dbo.SPONSORSHIPOPPORTUNITYRESERVEPROCESS so_reserveprocess on 
+ left outer join  
+			dbo.SPONSORSHIPOPPORTUNITYRESERVEPROCESS so_reserveprocess on 
 				so_reserveprocess.ID = so.RESERVATIONKEYID
-				
-	 where  FIELDOFFICEID = @CONTEXTID
+ 	 where  FIELDOFFICEID = @CONTEXTID
 	   and	ch_ext.REGISTRATIONDATE is not null
 	   and	so.ELIGIBILITYCODE in (@eligibilityCodePending, @eligibilityCodeEligible)
 	   and	(@CHILDLOOKUPID is null or so.LOOKUPID like '%' + @CHILDLOOKUPID + '%')
@@ -124,8 +129,6 @@ end
 						</common:Items>
 					</common:ValueList>
 				</common:FormField>
-
-				
 			</common:FormFields>
 		</common:FormMetaData>
 	</Parameters>
@@ -145,6 +148,20 @@ end
 			<OutputField FieldID="ELIGIBILITY" Caption="Eligibility" DataType="String" />
 			<OutputField FieldID="SPONSORSHIPSTATUS" Caption="Sponsorship Status" DataType="String" />
 			<OutputField FieldID="RESERVATIONKEY" Caption="Reservation Key" DataType="String" />
+			<OutputField FieldID="REACTIVATED" Caption="Reactivated?" DataType="TinyInt">
+				<ValueList>
+					<common:Items>
+						<common:Item>
+							<common:Value>0</common:Value>
+							<common:Label></common:Label>
+						</common:Item>
+						<common:Item>
+							<common:Value>1</common:Value>
+							<common:Label>Yes</common:Label>
+						</common:Item>
+					</common:Items>
+				</ValueList>
+			</OutputField>
 		</OutputFields>
 	</Output>
 
