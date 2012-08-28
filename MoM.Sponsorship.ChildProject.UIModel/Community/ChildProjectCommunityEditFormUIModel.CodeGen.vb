@@ -65,7 +65,6 @@ Partial Public Class [ChildProjectCommunityEditFormUIModel]
 
 #End Region
 
-    Private WithEvents _id As Global.Blackbaud.AppFx.UIModeling.Core.GuidField
     Private WithEvents _communityname As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _communitypopulation As Global.Blackbaud.AppFx.UIModeling.Core.IntegerField
     Private WithEvents _communitytypecodeid As Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
@@ -184,8 +183,7 @@ Partial Public Class [ChildProjectCommunityEditFormUIModel]
     Public Sub New()
         MyBase.New()
 
-        _id = New Global.Blackbaud.AppFx.UIModeling.Core.GuidField
-        _communityname = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
+		_communityname = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _communitypopulation = New Global.Blackbaud.AppFx.UIModeling.Core.IntegerField
         _communitytypecodeid = New Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
         _provincestateregionname = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
@@ -306,14 +304,7 @@ Partial Public Class [ChildProjectCommunityEditFormUIModel]
         MyBase.FixedDialog = True
         MyBase.UserInterfaceUrl = "browser/htmlforms/custom/ChildProject.Community.EditForm.html"
 
-        '
-        '_id
-        '
-        _id.Name = "ID"
-        _id.Caption = "ID"
-        _id.Visible = False
-        Me.Fields.Add(_id)
-        '
+		'
         '_communityname
         '
         _communityname.Name = "COMMUNITYNAME"
@@ -1020,13 +1011,6 @@ Partial Public Class [ChildProjectCommunityEditFormUIModel]
 		OnCreated()
 
     End Sub
-    
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.91.1535.0")> _
-    Public ReadOnly Property [ID]() As Global.Blackbaud.AppFx.UIModeling.Core.GuidField
-        Get
-            Return _id
-        End Get
-    End Property
     
     ''' <summary>
     ''' Community name
