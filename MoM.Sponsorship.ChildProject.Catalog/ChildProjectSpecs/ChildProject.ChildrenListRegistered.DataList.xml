@@ -148,20 +148,7 @@ end
 			<OutputField FieldID="ELIGIBILITY" Caption="Eligibility" DataType="String" />
 			<OutputField FieldID="SPONSORSHIPSTATUS" Caption="Sponsorship Status" DataType="String" />
 			<OutputField FieldID="RESERVATIONKEY" Caption="Reservation Key" DataType="String" />
-			<OutputField FieldID="REACTIVATED" Caption="Reactivated?" DataType="TinyInt">
-				<ValueList>
-					<common:Items>
-						<common:Item>
-							<common:Value>0</common:Value>
-							<common:Label></common:Label>
-						</common:Item>
-						<common:Item>
-							<common:Value>1</common:Value>
-							<common:Label>Yes</common:Label>
-						</common:Item>
-					</common:Items>
-				</ValueList>
-			</OutputField>
+			<OutputField FieldID="REACTIVATED" Caption="Reactivated?" DataType="Boolean"/>
 		</OutputFields>
 	</Output>
 
