@@ -17,6 +17,7 @@
 	Date            Modified By     Comments
 	23-Jul-2012		CMayeda			Initial Version
 	24-Jul-2012		CMayeda			Removed Availability and Eligibility because they are in the sponsorship opportunity related query
+	30-Aug-2012		CMayeda			Fixed Gender display in result set - Fogbugz Case 780
 	-->
 
 
@@ -65,8 +66,17 @@ inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on
 			<OutputField Name="NAME" Caption="Name" DataType="String" />
 			<OutputField Name="REGISTRATIONDATE" Caption="Registration Date" DataType="Date" />			
 			<OutputField Name="AGE" Caption="Age" DataType="TinyInt" />
-			<OutputField Name="GENDER" Caption="Gender" DataType="TinyInt" />
-			<OutputField Name="BIRTHDATE" Caption="Birthdate" DataType="Date" />
+			<OutputField Caption="Gender" Name="GENDER" CaptionResourceKey="$$gender">
+				<LookupInfo>
+					<TranslationList>
+						<common:Options>
+							<common:TranslationListOption Value="Unknown" />
+							<common:TranslationListOption Value="Male" />
+							<common:TranslationListOption Value="Female" />
+						</common:Options>
+					</TranslationList>
+				</LookupInfo>
+			</OutputField>			<OutputField Name="BIRTHDATE" Caption="Birthdate" DataType="Date" />
 			<!-- OutputField Name="AVAILABILITY" Caption="Availability" DataType="String" />
 			<OutputField Name="ELIGIBILITY" Caption="Eligibility" DataType="String" / >   These need lookupinfo if they are going to be needed here -->
 			<OutputField Name="SPONSORSHIPSTATUS" Caption="Sponsorship Status" DataType="String" />

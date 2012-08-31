@@ -17,6 +17,7 @@
 	Date            Modified By     Comments
 	23-Jul-2012		CMayeda			Initial Version
 	22-Aug-2012		CMayeda			Related this query to sponsorship opportunity and sponsorship location queries Fogbugz Case 780
+	30-Aug-2012		CMayeda			Added Report Recipient fields - Fogbugz Case 780
 	-->
 
 	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTEXTENSION">
@@ -31,6 +32,9 @@
 			(select USR_CHILDPROJECTCATEGORYCODE.DESCRIPTION from dbo.USR_CHILDPROJECTCATEGORYCODE where USR_CHILDPROJECTCATEGORYCODE.ID = cp_ext.[CHILDPROJECTCATEGORYCODEID]) as CHILDPROJECTCATEGORYCODEID_TRANSLATION,
 			(select USR_CHILDPROJECTSUBCATEGORYCODE.DESCRIPTION from dbo.USR_CHILDPROJECTSUBCATEGORYCODE where USR_CHILDPROJECTSUBCATEGORYCODE.ID = cp_ext.[CHILDPROJECTSUBCATEGORYCODEID]) as CHILDPROJECTSUBCATEGORYCODEID_TRANSLATION,
 			cp_ext.[COUNTRYEXTENSIONID],
+			sl_ext.REPORTRECIPIENTID,
+			reportrecip.NAME as REPORTRECIPIENT,
+			dbo.USR_UFN_SPONSORSHIPLOCATION_GETRECIPIENTS_BYFIELDOFFICEID (sl.FIELDOFFICEID) as REPORTRECIPIENTLIST,
 			cp_ext.[TECHNOLOGYAVAILABLEELECTRICITY],
 			cp_ext.[TECHNOLOGYAVAILABLETELEPHONE],
 			cp_ext.[TECHNOLOGYAVAILABLECOMPUTER],
@@ -76,6 +80,10 @@
  left join	dbo.CHANGEAGENT as [CHANGEDBY] on [CHANGEDBY].ID = cp_ext.CHANGEDBYID
  left join	dbo.SPONSORSHIPLOCATION sl on
 				sl.FIELDOFFICEID = cp_ext.ID
+ left join	dbo.USR_SPONSORSHIPLOCATIONEXTENSION sl_ext on
+				sl.ID = sl_ext.ID and sl_ext.REPORTRECIPIENTID is not null
+ left join	dbo.CONSTITUENT as reportrecip on
+				sl_ext.REPORTRECIPIENTID = reportrecip.ID
 	
 ]]>
 </ViewSQL>
@@ -107,7 +115,11 @@
                     <CodeTable CodeTableName="USR_CHILDPROJECTSUBCATEGORYCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
-            <OutputField Name="TECHNOLOGYAVAILABLEELECTRICITY" Caption="Electricity" DataType="Boolean" Category="Technology Available"/>
+			<OutputField Name="REPORTRECIPIENTID" Caption="Report recipient system record" Category="System Fields" DataType="Guid" />
+			<OutputField Name="REPORTRECIPIENT" Caption="Report recipient" DataType="String" />
+			<OutputField Name="REPORTRECIPIENTLIST" Caption="Report recipient list" DataType="String" />
+
+			<OutputField Name="TECHNOLOGYAVAILABLEELECTRICITY" Caption="Electricity" DataType="Boolean" Category="Technology Available"/>
             <OutputField Name="TECHNOLOGYAVAILABLETELEPHONE" Caption="Telephone" DataType="Boolean" Category="Technology Available" />
             <OutputField Name="TECHNOLOGYAVAILABLECOMPUTER" Caption="Computer" DataType="Boolean" Category="Technology Available" />
             <OutputField Name="TECHNOLOGYAVAILABLEINTERNET" Caption="Internet" DataType="Boolean" Category="Technology Available" />
