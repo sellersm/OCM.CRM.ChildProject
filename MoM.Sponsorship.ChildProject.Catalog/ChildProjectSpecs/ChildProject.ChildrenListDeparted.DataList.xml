@@ -15,6 +15,7 @@
 	05-Aug-2012     CMayeda         Initial Version, copied from USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_WAITINGLIST
 	24-Aug-2012		CMayeda			Added REASONTYPECODE to the retrieval of the sponsorship reasons because there are duplicate reasons. Fogbugz Case 788
 	25-Aug-2012		CMayeda			Made insert @sponsorhipReasonsToInclude easier to read
+	26-Sep-2012		CMayeda			Added DATEPROCESSED - FogBugz Case 815
 	-->
 	
 	<!-- define the SP that returns the data for the datalist -->
@@ -70,10 +71,11 @@ as begin
 	        so.LOOKUPID CHILDLOOKUPID,
 		    so_child.NAME,
 		    cast (ch_ext.REGISTRATIONDATE as date) as REGISTRATIONDATE,
+			ch_dep.DATEPROCESSED,
 			so_child.AGE,
 	        so_child.GENDER,
 		    dbo.UFN_DATE_FROMFUZZYDATE (so_child.BIRTHDATE) BIRTHDATE,
-			sreason.REASON as DEPARTUREREASON	
+			sreason.REASON as DEPARTUREREASON			
         
 	  from	dbo.SPONSORSHIPOPPORTUNITY so 					
 inner join  dbo.SPONSORSHIPOPPORTUNITYCHILD so_child on 
@@ -82,8 +84,10 @@ inner join	dbo.SPONSORSHIPREASON sreason on
 				so.SPONSORSHIPREASONID = sreason.id
  left join	dbo.USR_CHILDEXTENSION ch_ext on
 				so.ID = ch_ext.SPONSORSHIPOPPORTUNITYCHILDID
- left join	dbo.SPONSORSHIPLOCATION slocation ON 
+ left join	dbo.SPONSORSHIPLOCATION slocation on
 				slocation.ID = so.SPONSORSHIPLOCATIONID
+ left join	dbo.USR_CHILDDEPARTURE ch_dep on
+				so.ID = ch_dep.SPONSORSHIPOPPORTUNITYCHILDID
 				
 	 where  FIELDOFFICEID = @CONTEXTID
 	   and  exists (select sponsorshipReasonID from @sponsorhipReasonsToInclude reasonstoinclude where reasonstoinclude.sponsorshipReasonID = so.SPONSORSHIPREASONID)
@@ -117,6 +121,7 @@ end
 			<OutputField FieldID="CHILDLOOKUPID" Caption="Child ID" DataType="String" />
 			<OutputField FieldID="NAME" Caption="Name" DataType="String" />
 			<OutputField FieldID="REGISTRATIONDATE" Caption="Registration Date" DataType="Date" />
+			<OutputField FieldID="DATEPROCESSED" Caption="Date processed" DataType="Date" />
 			<OutputField FieldID="AGE" Caption="Age" DataType="TinyInt" />
 			<OutputField FieldID="GENDER" Caption="Gender" DataType="String" />
 			<OutputField FieldID="BIRTHDATE" Caption="Birthdate" DataType="Date" />
