@@ -148,7 +148,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Update.Country.RecordOperation.xml" />
-    <EmbeddedResource Include="Packages\ChildProjectPass1.Package.xml" />
+    <None Include="Packages\NotIncludedChildProjectPass1.Package.xml" />
     <EmbeddedResource Include="Quota\USR_UFN_CHILDPROJECT_CURRENTQUOTA.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
