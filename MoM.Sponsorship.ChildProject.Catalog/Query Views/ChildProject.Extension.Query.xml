@@ -18,6 +18,7 @@
 	23-Jul-2012		CMayeda			Initial Version
 	22-Aug-2012		CMayeda			Related this query to sponsorship opportunity and sponsorship location queries Fogbugz Case 780
 	30-Aug-2012		CMayeda			Added Report Recipient fields - Fogbugz Case 780
+	07-Jan-2013		CMayeda			Added Country Constituent related query view
 	-->
 
 	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTEXTENSION">
@@ -263,6 +264,7 @@
 		<AddRelatedView Field="ID" RelatedView="V_QUERY_CONSTITUENT" RelatedField="ID" PathAlias ="Child Project Constituent"/>
 		<AddToParentView ParentView="V_QUERY_SPONSORSHIPOPPORTUNITY" ParentViewRelatedField="SPONSORSHIPLOCATIONID" Field="SPONSORSHIPLOCATIONID" PathAlias="Child Project"/>
 		<AddToParentView ParentView="V_QUERY_SPONSORSHIPLOCATION" ParentViewRelatedField="FIELDOFFICEID" Field="ID" PathAlias="Child Project"/>
+		<AddRelatedView Field="COUNTRYEXTENSIONID" RelatedView="V_QUERY_CONSTITUENT" RelatedField="ID" PathAlias ="Country Constituent"/>
 	</RelationshipOperations>
 
 </QueryViewSpec>
