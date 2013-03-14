@@ -481,6 +481,7 @@
 				<EnumValue ID="1" Translation="Yes"/>
 			</EnumValues>
 		</EnumField>
+        <DateField Name="CLOSUREDATE" IncludeTime="false" Description="The date the project was closed." />
 	</Fields>
 
 	<!-- define any additional check constraints on the table -->
