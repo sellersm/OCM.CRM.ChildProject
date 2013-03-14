@@ -7,16 +7,16 @@
     Author="Cary Mayeda"
     DataFormInstanceID="A3D38811-6C7B-466E-8EB9-6A6A78AF2072"
     RecordType="Child Project Extension"
-    common:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
-    >
+    common:SecurityUIFolder="Sponsorship\Opportunity\Child Project" >
 
 <!-- 
-Remarks:    ID is a foreign key to the related CONSTITUENT.ID
+    Remarks:    ID is a foreign key to the related CONSTITUENT.ID
 
-History:
-Date            Modified By     Comments
-27-Mar-2012     CMayeda         Initial Version
-02-May-2012		CMayeda			Removed CONSTITUENTID column
+    History:
+    Date            Modified By     Comments
+    27-Mar-2012     CMayeda         Initial Version
+    02-May-2012		CMayeda			Removed CONSTITUENTID column
+	14-Mar-2013		CMayeda			Added CLOSUREDATE - FogBugz 1029
 -->
 
 	<SPDataForm>
@@ -34,6 +34,7 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_EDITLOAD_CHILDPROJECT_EXTENSION(
     @CHILDPROJECTTYPECODEID uniqueidentifier = null output,
     @CHILDPROJECTTYPEOTHER nvarchar(50) = null output,
     @CHILDPROJECTSTATUSCODEID uniqueidentifier = null output,
+    @CLOSUREDATE date = null output,
 	@CHILDPROJECTCATEGORYCODEID uniqueidentifier = null output,
 	@CHILDPROJECTSUBCATEGORYCODEID uniqueidentifier = null output
 )
@@ -56,6 +57,7 @@ as
 			@CHILDPROJECTTYPECODEID = cp_ext.CHILDPROJECTTYPECODEID,
 			@CHILDPROJECTTYPEOTHER = cp_ext.CHILDPROJECTTYPEOTHER, 
 			@CHILDPROJECTSTATUSCODEID = cp_ext.CHILDPROJECTSTATUSCODEID,
+            @CLOSUREDATE = cp_ext.CLOSUREDATE,
 			@CHILDPROJECTCATEGORYCODEID = cp_ext.CHILDPROJECTCATEGORYCODEID,
 			@CHILDPROJECTSUBCATEGORYCODEID = cp_ext.CHILDPROJECTSUBCATEGORYCODEID
 	  from	dbo.USR_CHILDPROJECTEXTENSION cp_ext
@@ -79,6 +81,7 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_EDIT_CHILDPROJECT_EXTENSION (
     @CHILDPROJECTTYPECODEID uniqueidentifier,
     @CHILDPROJECTTYPEOTHER nvarchar(50),
     @CHILDPROJECTSTATUSCODEID uniqueidentifier,
+    @CLOSUREDATE date,
 	@CHILDPROJECTCATEGORYCODEID uniqueidentifier,
 	@CHILDPROJECTSUBCATEGORYCODEID uniqueidentifier
 )
@@ -98,6 +101,7 @@ as
 			CHILDPROJECTTYPECODEID = @CHILDPROJECTTYPECODEID,
 			CHILDPROJECTTYPEOTHER = @CHILDPROJECTTYPEOTHER,
 			CHILDPROJECTSTATUSCODEID = @CHILDPROJECTSTATUSCODEID,
+            CLOSUREDATE = @CLOSUREDATE,
 			CHILDPROJECTCATEGORYCODEID  = @CHILDPROJECTCATEGORYCODEID,
 			CHILDPROJECTSUBCATEGORYCODEID = @CHILDPROJECTSUBCATEGORYCODEID,
 			CHANGEDBYID = @CHANGEAGENTID,
@@ -132,7 +136,8 @@ return 0;
 			<common:FormField FieldID="CHILDPROJECTSTATUSCODEID" DataType="Guid" Required="true" Caption="Status">
 				<common:CodeTable CodeTableName="USR_CHILDPROJECTSTATUSCODE" />
 			</common:FormField>
-			<common:FormField FieldID="CHILDPROJECTTYPECODEID" DataType="Guid" Required="true" Caption="Project type">
+            <common:FormField FieldID="CLOSUREDATE" DataType="Date" Caption="Closure date" />
+            <common:FormField FieldID="CHILDPROJECTTYPECODEID" DataType="Guid" Required="true" Caption="Project type">
 				<common:CodeTable CodeTableName="USR_CHILDPROJECTTYPECODE" />
 			</common:FormField>
 			<common:FormField FieldID="CHILDPROJECTTYPEOTHER" DataType="String" MaxLength="50" Caption="Describe other" />

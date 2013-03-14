@@ -28,6 +28,7 @@ Partial Public Class [ChildProjectExtensionSummaryEditFormUIModel]
     Private WithEvents _name As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _lookupid As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _childprojectstatuscodeid As Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
+    Private WithEvents _closuredate As Global.Blackbaud.AppFx.UIModeling.Core.DateField
     Private WithEvents _childprojecttypecodeid As Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
     Private WithEvents _childprojecttypeother As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _childprojectcategorycodeid As Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
@@ -40,6 +41,7 @@ Partial Public Class [ChildProjectExtensionSummaryEditFormUIModel]
         _name = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _lookupid = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _childprojectstatuscodeid = New Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
+        _closuredate = New Global.Blackbaud.AppFx.UIModeling.Core.DateField
         _childprojecttypecodeid = New Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
         _childprojecttypeother = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _childprojectcategorycodeid = New Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
@@ -76,6 +78,12 @@ Partial Public Class [ChildProjectExtensionSummaryEditFormUIModel]
         _childprojectstatuscodeid.Required = True
         _childprojectstatuscodeid.CodeTableName = "USR_CHILDPROJECTSTATUSCODE"
         Me.Fields.Add(_childprojectstatuscodeid)
+        '
+        '_closuredate
+        '
+        _closuredate.Name = "CLOSUREDATE"
+        _closuredate.Caption = "Closure date"
+        Me.Fields.Add(_closuredate)
         '
         '_childprojecttypecodeid
         '
@@ -141,6 +149,17 @@ Partial Public Class [ChildProjectExtensionSummaryEditFormUIModel]
     Public ReadOnly Property [CHILDPROJECTSTATUSCODEID]() As Global.Blackbaud.AppFx.UIModeling.Core.CodeTableField
         Get
             Return _childprojectstatuscodeid
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Closure date
+    ''' </summary>
+    <System.ComponentModel.Description("Closure date")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
+    Public ReadOnly Property [CLOSUREDATE]() As Global.Blackbaud.AppFx.UIModeling.Core.DateField
+        Get
+            Return _closuredate
         End Get
     End Property
     

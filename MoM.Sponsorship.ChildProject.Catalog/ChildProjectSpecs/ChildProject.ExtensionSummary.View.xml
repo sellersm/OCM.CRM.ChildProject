@@ -8,17 +8,18 @@
     RecordType="Child Project Extension"
     c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
     OwnerIDMapperID="00000000-0000-0000-0000-000000000000"
-    xmlns="bb_appfx_viewdataformtemplate"
-    >
+    xmlns="bb_appfx_viewdataformtemplate" >
 
 <!-- 
-Remarks:    Uses Blackbaud's view - V_QUERY_CONSTITUENTPRIMARYADDRESS to pull in the Country
-			ID is a foreign key to the related CONSTITUENT.ID
+    Remarks:    Uses Blackbaud's view - V_QUERY_CONSTITUENTPRIMARYADDRESS to pull in the Country
+			    ID is a foreign key to the related CONSTITUENT.ID
 
-History:
-Date            Modified By     Comments
-27-Mar-2012     CMayeda         Initial Version
-02-May-2012		CMayeda			Removed CONSTITUENTID column
+    History:
+    Date            Modified By     Comments
+    27-Mar-2012     CMayeda         Initial Version
+    02-May-2012		CMayeda			Removed CONSTITUENTID column
+	14-Mar-2013		CMayeda			Added CLOSUREDATE - FogBugz 1029
+
 -->
 	
     <SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_EXTENSION">
@@ -35,6 +36,7 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_EXTENSION
     @CHILDPROJECTTYPECODEID uniqueidentifier = null output,
     @CHILDPROJECTTYPEOTHER nvarchar(50) = null output,
     @CHILDPROJECTSTATUS nvarchar(100) = null output,
+    @CLOSUREDATE date = null output,
 	@CHILDPROJECTCATEGORY nvarchar(100) = null output,
 	@CHILDPROJECTSUBCATEGORY nvarchar(100) = null output,
 	@LOCATIONREPORTRECIPIENTS nvarchar(max) = null output,
@@ -60,6 +62,7 @@ as
 			@CHILDPROJECTTYPECODEID = CHILDPROJECTTYPECODEID,
 			@CHILDPROJECTTYPEOTHER = cp_ext.CHILDPROJECTTYPEOTHER, 
 			@CHILDPROJECTSTATUS = (select DESCRIPTION from dbo.USR_CHILDPROJECTSTATUSCODE where ID = cp_ext.CHILDPROJECTSTATUSCODEID),
+            @CLOSUREDATE = cp_ext.CLOSUREDATE,
 			@CHILDPROJECTCATEGORY = (select DESCRIPTION from dbo.USR_CHILDPROJECTCATEGORYCODE where ID = cp_ext.CHILDPROJECTCATEGORYCODEID),
 			@CHILDPROJECTSUBCATEGORY = (select DESCRIPTION from dbo.USR_CHILDPROJECTSUBCATEGORYCODE where ID = cp_ext.CHILDPROJECTSUBCATEGORYCODEID),
 			
@@ -87,7 +90,8 @@ inner join	dbo.CONSTITUENT on
 			<c:FormField FieldID="CHILDPROJECTTYPECODEID" DataType="Guid" Caption="Project type code" />
 			<c:FormField FieldID="CHILDPROJECTTYPEOTHER" DataType="String" MaxLength="50" Caption="Other description" />
             <c:FormField FieldID="CHILDPROJECTSTATUS" DataType="String" MaxLength="100" Caption="Status" />
-			<c:FormField FieldID="CHILDPROJECTCATEGORY" DataType="String" Caption="Category" />
+            <c:FormField FieldID="CLOSUREDATE" DataType="Date" Caption="Closure date" />
+ 			<c:FormField FieldID="CHILDPROJECTCATEGORY" DataType="String" Caption="Category" />
 			<c:FormField FieldID="CHILDPROJECTSUBCATEGORY" DataType="String" Caption="Subcategory" />
 			<c:FormField FieldID="LOCATIONREPORTRECIPIENTS" DataType="String" Caption="Report recipients" />
 

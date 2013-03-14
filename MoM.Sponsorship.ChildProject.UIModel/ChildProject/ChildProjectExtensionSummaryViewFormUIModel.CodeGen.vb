@@ -32,6 +32,7 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
     Private WithEvents _childprojecttypecodeid As Global.Blackbaud.AppFx.UIModeling.Core.GuidField
     Private WithEvents _childprojecttypeother As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _childprojectstatus As Global.Blackbaud.AppFx.UIModeling.Core.StringField
+    Private WithEvents _closuredate As Global.Blackbaud.AppFx.UIModeling.Core.DateField
     Private WithEvents _childprojectcategory As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _childprojectsubcategory As Global.Blackbaud.AppFx.UIModeling.Core.StringField
     Private WithEvents _locationreportrecipients As Global.Blackbaud.AppFx.UIModeling.Core.StringField
@@ -48,6 +49,7 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
         _childprojecttypecodeid = New Global.Blackbaud.AppFx.UIModeling.Core.GuidField
         _childprojecttypeother = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _childprojectstatus = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
+        _closuredate = New Global.Blackbaud.AppFx.UIModeling.Core.DateField
         _childprojectcategory = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _childprojectsubcategory = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
         _locationreportrecipients = New Global.Blackbaud.AppFx.UIModeling.Core.StringField
@@ -117,6 +119,14 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
         _childprojectstatus.MaxLength = 100
         Me.Fields.Add(_childprojectstatus)
         '
+        '_closuredate
+        '
+        _closuredate.Name = "CLOSUREDATE"
+        _closuredate.Caption = "CLOSUREDATE"
+        _closuredate.Description = "Project closure date"
+        _closuredate.DBReadOnly = True
+        Me.Fields.Add(_closuredate)
+        '
         '_childprojectcategory
         '
         _childprojectcategory.Name = "CHILDPROJECTCATEGORY"
@@ -136,7 +146,7 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
         '_locationreportrecipients
         '
         _locationreportrecipients.Name = "LOCATIONREPORTRECIPIENTS"
-        _locationreportrecipients.Caption = "Report recipient(s)"
+        _locationreportrecipients.Caption = "Report recipients"
         _locationreportrecipients.DBReadOnly = True
         Me.Fields.Add(_locationreportrecipients)
         '
@@ -230,6 +240,17 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
     End Property
     
     ''' <summary>
+    ''' Project closure date
+    ''' </summary>
+    <System.ComponentModel.Description("Project closure date")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
+    Public ReadOnly Property [CLOSUREDATE]() As Global.Blackbaud.AppFx.UIModeling.Core.DateField
+        Get
+            Return _closuredate
+        End Get
+    End Property
+    
+    ''' <summary>
     ''' Category
     ''' </summary>
     <System.ComponentModel.Description("Category")> _
@@ -252,9 +273,9 @@ Partial Public Class [ChildProjectExtensionSummaryViewFormUIModel]
     End Property
     
     ''' <summary>
-    ''' Report recipient(s)
+    ''' Report recipients
     ''' </summary>
-    <System.ComponentModel.Description("Report recipient(s)")> _
+    <System.ComponentModel.Description("Report recipients")> _
     <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "2.93.2034.0")> _
     Public ReadOnly Property [LOCATIONREPORTRECIPIENTS]() As Global.Blackbaud.AppFx.UIModeling.Core.StringField
         Get
