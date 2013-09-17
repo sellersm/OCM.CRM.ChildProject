@@ -19,6 +19,8 @@
 	22-Aug-2012		CMayeda			Related this query to sponsorship opportunity and sponsorship location queries Fogbugz Case 780
 	30-Aug-2012		CMayeda			Added Report Recipient fields - Fogbugz Case 780
 	07-Jan-2013		CMayeda			Added Country Constituent related query view
+	17-Sep-2013		CMayeda			Added Closure Date - V1:B-01036
+
 	-->
 
 	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECTEXTENSION">
@@ -32,6 +34,7 @@
 			(select USR_CHILDPROJECTSTATUSCODE.DESCRIPTION from dbo.USR_CHILDPROJECTSTATUSCODE where USR_CHILDPROJECTSTATUSCODE.ID = cp_ext.[CHILDPROJECTSTATUSCODEID]) as CHILDPROJECTSTATUSCODEID_TRANSLATION,
 			(select USR_CHILDPROJECTCATEGORYCODE.DESCRIPTION from dbo.USR_CHILDPROJECTCATEGORYCODE where USR_CHILDPROJECTCATEGORYCODE.ID = cp_ext.[CHILDPROJECTCATEGORYCODEID]) as CHILDPROJECTCATEGORYCODEID_TRANSLATION,
 			(select USR_CHILDPROJECTSUBCATEGORYCODE.DESCRIPTION from dbo.USR_CHILDPROJECTSUBCATEGORYCODE where USR_CHILDPROJECTSUBCATEGORYCODE.ID = cp_ext.[CHILDPROJECTSUBCATEGORYCODEID]) as CHILDPROJECTSUBCATEGORYCODEID_TRANSLATION,
+			cp_ext.CLOSUREDATE,
 			cp_ext.[COUNTRYEXTENSIONID],
 			sl_ext.REPORTRECIPIENTID,
 			reportrecip.NAME as REPORTRECIPIENT,
@@ -116,6 +119,7 @@
                     <CodeTable CodeTableName="USR_CHILDPROJECTSUBCATEGORYCODE" IncludeInactive="true" />
                 </LookupInfo>
             </OutputField>
+			<OutputField Name="CLOSUREDATE" Caption ="Closure date" />
 			<OutputField Name="REPORTRECIPIENTID" Caption="Report recipient system record" Category="System Fields" DataType="Guid" />
 			<OutputField Name="REPORTRECIPIENT" Caption="Report recipient" DataType="String" />
 			<OutputField Name="REPORTRECIPIENTLIST" Caption="Report recipient list" DataType="String" />
