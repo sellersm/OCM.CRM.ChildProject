@@ -1,0 +1,49 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="761fbeb3-c8ff-4b56-a955-9c993bc2b264"
+	Name="ChildProject Extension Admin Query"
+	Description="Displays the ChildProject Extension Admin type of fields"
+	Author="Memphis Sellers"
+	IsRoot="false"
+	PrimaryKeyField="ID"
+	RecordType="Child Project Extension"
+	common:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
+	>
+
+	<!-- 
+	Remarks:    Query view to display Admin type fields of childproject extension.  Subquery to the ChildProject Extension query.
+
+	History:
+	Date            Modified By     Comments
+	16-Oct-2013		Memphis			Added UNSPONSOREDFUND - V1: TK-01114
+	-->
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_CHILDPROJECT_ADMIN">
+		<ViewSQL>
+			<![CDATA[
+select
+	ID,
+	UNSPONSOREDFUND
+from dbo.USR_CHILDPROJECTEXTENSION		
+
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Caption="System record ID" Category="System Fields" Name="ID" />
+			<OutputField Name="UNSPONSOREDFUND" Caption="Unsponsored fund" DataType="Boolean" />
+		</OutputFields>
+	</Output>
+
+	<RelationshipOperations>
+		<AddToParentView ParentView="USR_V_QUERY_CHILDPROJECTEXTENSION" ParentViewRelatedField="ID" Field="ID" PathAlias="Admin"/>
+	</RelationshipOperations>
+
+
+</QueryViewSpec>
+

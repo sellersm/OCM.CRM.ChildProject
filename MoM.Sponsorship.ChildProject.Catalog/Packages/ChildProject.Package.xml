@@ -15,6 +15,7 @@
 	30-Apr-2012     CMayeda         Initial Version
 	14-Jul-2012		CMayeda			Added Quota specs
 	16-Jul-20121	CMayeda			Added comment headers
+	16-OCt-2013		Memphis			Added new Query & pages for ChildProjectExtension Admin field: V1: TK-01114
 	-->
 
 	<!-- Note:  the order of the items listed here is important.  For example, you won't be able to load a data form that references 
@@ -113,6 +114,8 @@
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ProjectInfo.View.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Quota.View.xml" />
         <common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.RequiredDocs.View.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Admin.Edit.xml" />
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Admin.View.xml" />
 
 		<!-- Expression Data -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.ConstituentExpression.View.xml" />
@@ -131,7 +134,8 @@
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Participation.Query.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Quota.Query.xml" />
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.RegisteredChildren.Query.xml" />
-						   
+		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Admin.Query.xml" />
+
 		<!-- Pages -->
 		<common:Dependency CatalogAssembly="MoM.Sponsorship.ChildProject.Catalog.dll" CatalogItem="MoM.Sponsorship.ChildProject.Catalog.ChildProject.Extension.Page.xml" />
 		

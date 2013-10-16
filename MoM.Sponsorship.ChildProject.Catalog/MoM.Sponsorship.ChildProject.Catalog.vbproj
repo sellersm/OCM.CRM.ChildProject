@@ -227,6 +227,15 @@
   <ItemGroup>
     <EmbeddedResource Include="ChildProjectSpecs\ChildProject.ExtensionDelete.RecordOperation.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Admin.View.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildProjectSpecs\ChildProject.Admin.Edit.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\ChildProject.Admin.Query.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)postbuild.bat</PostBuildEvent>
