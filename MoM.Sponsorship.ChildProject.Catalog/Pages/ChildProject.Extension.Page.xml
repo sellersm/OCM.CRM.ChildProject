@@ -223,6 +223,22 @@ Date            Modified By     Comments
 				</Section>
 			</Sections>
 		</Tab>
+		<Tab Caption="Admin" ID="3579d168-d556-4535-89fd-e1ad704cee12">
+			<Sections>
+				<Section ID="52598a7a-31b2-4925-84b2-4f3c13bbb978" Caption="Admin">
+					<DataForm ID="fde94cb2-6ec3-4e9a-83ec-844bc9cec76e" />
+					<Actions>
+						<Action ID="8fd5e8ce-3c3c-492c-8609-0cf624b6962f" Caption="Edit" ImageKey="res:edit">
+							<ShowDataForm DataFormID="41324659-30fa-4a12-8241-6c709bb73a0c" xmlns="bb_appfx_commontypes">
+								<ActionContext>
+									<PageContextID />
+								</ActionContext>
+							</ShowDataForm>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
 	</Tabs>
 	<PageActionGroups>
 		<PageActionGroup ID="d9500d3c-3303-4daf-a68a-fe6bd77e54bc" Caption="Tasks">
