@@ -236,9 +236,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Query Views\ChildProject.Admin.Query.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Query Views\RateIncrease.SummaryStats.Query.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)postbuild.bat</PostBuildEvent>
