@@ -363,7 +363,7 @@ Partial Public Class [ChildProjectCommunityEditFormUIModel]
         '
         _communitydescription.Name = "COMMUNITYDESCRIPTION"
         _communitydescription.Caption = "Description of the community"
-        _communitydescription.MaxLength = 200
+		_communitydescription.MaxLength = 5000
         _communitydescription.MultiLine = True
         Me.Fields.Add(_communitydescription)
         '

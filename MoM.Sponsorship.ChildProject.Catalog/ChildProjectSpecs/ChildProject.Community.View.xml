@@ -18,6 +18,7 @@ History:
 Date            Modified By     Comments
 27-Mar-2012     CMayeda         Initial Version
 02-May-2012		CMayeda			Removed CONSTITUENTID column
+02-Mar-2015		CMayeda			Increased COMMUNITYDESCRIPTION to nvarchar(max) (note: UIModel has a max of 5000)
 -->
 	
     <SPDataForm SPName="USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_COMMUNITY">
@@ -35,7 +36,7 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_VIEW_CHILDPROJECT_COMMUNITY
     @DISTANCETOCITY smallint = null output,
     @DISTANCETOCITYUNITOFMEASUREMENT nvarchar(20) = null output,
     @NEARESTCITYPOPULATION int = null output,
-    @COMMUNITYDESCRIPTION nvarchar(200) = null output,
+    @COMMUNITYDESCRIPTION nvarchar(max) = null output,
     @TERRAINCODE nvarchar(100) = null output,
 	@TERRAINCODEID uniqueidentifier = null output,
     @TERRAINOTHER nvarchar(25) = null output,
@@ -301,7 +302,7 @@ as
             <c:FormField FieldID="DISTANCETOCITY" DataType="SmallInt" Caption="Distance in relation to major city above" />
             <c:FormField FieldID="DISTANCETOCITYUNITOFMEASUREMENT" DataType="String" MaxLength="20" Caption="Distance Unit of Measure" />
             <c:FormField FieldID="NEARESTCITYPOPULATION" DataType="Integer" Caption="Population of major city above" />
-            <c:FormField FieldID="COMMUNITYDESCRIPTION" DataType="String" MaxLength="200" Caption="Description of the community" Multiline="true" />
+            <c:FormField FieldID="COMMUNITYDESCRIPTION" DataType="String" Caption="Description of the community" Multiline="true" />
             <c:FormField FieldID="TERRAINCODE" DataType="String" MaxLength="100" Caption="Terrain" />
 			<c:FormField FieldID="TERRAINCODEID" DataType="Guid" Caption="TerrainCodeID" />  <!-- Not displayed - only used for ui conditional logic -->
             <c:FormField FieldID="TERRAINOTHER" DataType="String" MaxLength="25" Caption="Other Terrain Description" />
