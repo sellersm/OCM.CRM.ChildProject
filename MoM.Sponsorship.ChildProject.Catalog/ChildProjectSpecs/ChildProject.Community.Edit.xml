@@ -18,7 +18,7 @@ History:
 Date            Modified By     Comments
 27-Mar-2012     CMayeda         Initial Version
 02-May-2012		CMayeda			Removed CONSTITUENTID column
-
+02-Mar-2015		CMayeda			Increased COMMUNITYDESCRIPTION to nvarchar(max) (note: UIModel has a max of 5000)
 -->
 	
     <SPDataForm>
@@ -38,7 +38,7 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_EDITLOAD_CHILDPROJECT_COMMUNITY
     @DISTANCETOCITY smallint = null output,
 	@DISTANCETOCITYUNITOFMEASUREMENTCODE tinyint = null output,
     @NEARESTCITYPOPULATION int = null output,
-    @COMMUNITYDESCRIPTION nvarchar(200) = null output,
+    @COMMUNITYDESCRIPTION nvarchar(max) = null output,
     @TERRAINCODEID uniqueidentifier = null output,
     @TERRAINOTHER nvarchar(25) = null output,
     @TRANSPORTATIONTYPEANIMALCART bit = null output,
@@ -296,7 +296,7 @@ create procedure dbo.USR_USP_DATAFORMTEMPLATE_EDIT_CHILDPROJECT_COMMUNITY
     @DISTANCETOCITY smallint,
     @DISTANCETOCITYUNITOFMEASUREMENTCODE tinyint,
     @NEARESTCITYPOPULATION int,
-    @COMMUNITYDESCRIPTION nvarchar(200),
+    @COMMUNITYDESCRIPTION nvarchar(max),
     @TERRAINCODEID uniqueidentifier,
     @TERRAINOTHER nvarchar(25),
     @TRANSPORTATIONTYPEANIMALCART bit,
@@ -575,7 +575,7 @@ return 0;
 				</c:ValueList>
 			</c:FormField>
 			<c:FormField FieldID="NEARESTCITYPOPULATION" DataType="Integer" Caption="Population of major city above" />
-			<c:FormField FieldID="COMMUNITYDESCRIPTION" MaxLength="200" Caption="Description of the community" Multiline="true" />
+			<c:FormField FieldID="COMMUNITYDESCRIPTION" Caption="Description of the community" Multiline="true" />
 			<c:FormField FieldID="TERRAINCODEID" DataType="Guid" Caption="Terrain">
                 <c:CodeTable CodeTableName="USR_CHILDPROJECTTERRAINCODE" />
             </c:FormField>

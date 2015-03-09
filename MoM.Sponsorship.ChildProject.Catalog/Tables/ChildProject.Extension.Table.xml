@@ -26,6 +26,8 @@
 	07-Apr-2012     CMayeda         Initial Version
 	21-May-2012		CMayeda			Updated remarks to describe ChildProject.ExtensionPass1.Table.xml  
 	16-Oct-2013		Memphis			Added new field: UNSPONSOREDFUND per TK-01114
+	02-Mar-2015		CMayeda			Changed COMMUNITYDESCRIPTION from TextField to MemoField
+
 -->
 	
 	<!-- define fields on the table -->
@@ -226,7 +228,7 @@
 			</EnumValues>
 		</EnumField>
 		<NumberField Name="NEARESTCITYPOPULATION" Description="Population of major city above" Type="int" DefaultValue="0"/>
-		<TextField Name="COMMUNITYDESCRIPTION" Description="Description of the community" Length="200"/>
+		<MemoField Name="COMMUNITYDESCRIPTION" Description="Description of the community"/>
 		
 		<!-- Community Environment -->
 		<CodeTableField Name="TERRAINCODEID" Description="Type of terrain" CodeTable="USR_CHILDPROJECTTERRAINCODE"/>
