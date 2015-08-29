@@ -16,6 +16,7 @@
 	24-Aug-2012		CMayeda			Added REASONTYPECODE to the retrieval of the sponsorship reasons because there are duplicate reasons. Fogbugz Case 788
 	25-Aug-2012		CMayeda			Made insert @sponsorhipReasonsToInclude easier to read
 	26-Sep-2012		CMayeda			Added DATEPROCESSED - FogBugz Case 815
+	27-Aug-2015		CMayeda			Changed raiserror syntax to work with SQL Server 2012 (CRM 4.0)
 	-->
 	
 	<!-- define the SP that returns the data for the datalist -->
@@ -59,7 +60,7 @@ as begin
 		select @reasonCount = count(*) from @sponsorhipReasonsToInclude
 
 		if @reasonCount <> @numberSponsorshipReasons  
-			RAISERROR 1000000 'Could not find all of the departure reason ids'		
+			RAISERROR ('Could not find all of the departure reason ids', 16, 1)
 	end try
 	begin catch
 	    exec dbo.USP_RAISE_ERROR

@@ -7,7 +7,7 @@
 	Author="Cary Mayeda"
 	SPName="USR_USP_CHILDPROJECT_DETERMINEQUOTAELIGIBILITY"
 	>
-<!-- 
+	<!-- 
 	Remarks:    Determines if a Child Project is eligible to register new children. 
 				This is called before the determination of quota room.
 				
@@ -31,8 +31,9 @@
 	01-Jul-2012		CMayeda			Initial Version - modifed from Bill's DetermineProjectQuotaParticipation.ufn.xml
 									Changed to a case statement in a select instead of if then
 									Corrected var names
+	27-Aug-2015		CMayeda			Changed raiserror syntax to work with SQL Server 2012 (CRM 4.0)
 
--->
+	-->
 
 	
 	<CreateProcedureSQL>
@@ -53,17 +54,17 @@ begin
 		declare @projectStatusActiveID uniqueidentifier = null
 		select @projectStatusActiveID = ID from dbo.USR_CHILDPROJECTSTATUSCODE where lower (DESCRIPTION) = 'active'
 		if @projectStatusActiveID is null
-			RAISERROR 1000000 'Couldn''t find the "Active" child project status code'		
+			RAISERROR ('Couldn''t find the "Active" child project status code', 16, 1)
 		
 		declare @projectStatusActiveReservedID uniqueidentifier = null
 		select @projectStatusActiveReservedID = ID from dbo.USR_CHILDPROJECTSTATUSCODE where lower (DESCRIPTION) = 'active - reserved'
 		if @projectStatusActiveReservedID is null
-			RAISERROR 1000000 'Couldn''t find the "Active - Reserved" child project status code'		
+			RAISERROR ('Couldn''t find the "Active - Reserved" child project status code', 16, 1)
 		
 		declare @performancePoorID uniqueidentifier = null
 		select @performancePoorID = ID from dbo.USR_SPONSORSHIPPERFORMANCECODE where lower (DESCRIPTION) = 'poor'
 		if @performancePoorID is null
-			RAISERROR 1000000 'Couldn''t find the "Poor" child project performance code'		
+			RAISERROR ('Couldn''t find the "Poor" child project performance code', 16, 1)
 
   
   		-- Waiting List reasons - finding these individually instead of all the start with 'Waiting List' in order to minimize accidental data entry issues
@@ -71,22 +72,22 @@ begin
 		declare @waitingListMarketDemandID uniqueidentifier = null
 		select @waitingListMarketDemandID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - market demand'
 		if @waitingListMarketDemandID is null
-			RAISERROR 1000000 'Couldn''t find the "Waiting List - market demand" sponsorship reason'		
+			RAISERROR ('Couldn''t find the "Waiting List - market demand" sponsorship reason', 16, 1)
 	
 		declare @waitingListNotAcceptingID uniqueidentifier = null
 		select @waitingListNotAcceptingID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - not accepting new children'
 		if @waitingListNotAcceptingID is null
-			RAISERROR 1000000 'Couldn''t find the "Waiting List - not accepting new children" sponsorship reason'		
+			RAISERROR ('Couldn''t find the "Waiting List - not accepting new children" sponsorship reason', 16, 1)
 	
 		declare @waitingListProjectPerformanceID uniqueidentifier = null
 		select @waitingListProjectPerformanceID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - project performance'
 		if @waitingListProjectPerformanceID is null
-			RAISERROR 1000000 'Couldn''t find the "Waiting List - project performance" sponsorship reason'		
+			RAISERROR ('Couldn''t find the "Waiting List - project performance" sponsorship reason', 16, 1)
 
 		declare @waitingListProjectStatusID uniqueidentifier = null
 		select @waitingListProjectStatusID = ID from SPONSORSHIPREASON where lower (REASON) = 'waiting list - project status'
 		if @waitingListProjectStatusID is null
-			RAISERROR 1000000 'Couldn''t find the "Waiting List - project status" sponsorship reason'		
+			RAISERROR ('Couldn''t find the "Waiting List - project status" sponsorship reason', 16, 1)
 
   	end try
 	begin catch

@@ -14,6 +14,8 @@
 	Date            Modified By     Comments
 	05-Aug-2012     CMayeda         Initial Version, copied from USR_USP_DATALIST_CHILDPROJECT_CHILDRENLIST_REGISTERED
 									This includes those that are "Batch Commit - lock failed" as well as those on the waiting list.
+	27-Aug-2015		CMayeda			Changed raiserror syntax to work with SQL Server 2012 (CRM 4.0)
+		
 	-->
 	
 	<!-- define the SP that returns the data for the datalist -->
@@ -62,7 +64,7 @@ as begin
 		select @reasonCount = count(*) from @sponsorhipReasonsToInclude
 
 		if @reasonCount <> @numberSponsorshipReasons  
-			RAISERROR 1000000 'Could not find all of the waiting list reason ids'		
+			RAISERROR ('Could not find all of the waiting list reason ids', 16, 1)
 	end try
 	begin catch
 	    exec dbo.USP_RAISE_ERROR
