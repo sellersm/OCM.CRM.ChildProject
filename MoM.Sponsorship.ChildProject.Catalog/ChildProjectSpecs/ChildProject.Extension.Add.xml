@@ -9,7 +9,7 @@
     c:SecurityUIFolder="Sponsorship\Opportunity\Child Project"
     xmlns="bb_appfx_adddataformtemplate" >
 
-<!-- 
+	<!-- 
     Remarks:    Since there are very few actual constituent org fields entered, we chose not to extend the Add Organization data form
 			    ID is a foreign key to the related CONSTITUENT.ID
 			
@@ -26,7 +26,8 @@
     27-Mar-2012     CMayeda         Initial Version
     02-May-2012		CMayeda			Removed CONSTITUENTID column
 	14-Mar-2013		CMayeda			Added CLOSUREDATE - FogBugz 1029
--->
+	27-Aug-2015		CMayeda			Changed raiserror syntax to work with SQL Server 2012 (CRM 4.0)
+	-->
 	
     <SPDataForm>
 		
@@ -64,7 +65,7 @@ declare @childProjectConstituencyCode uniqueidentifier
 begin try    
 	select @childProjectConstituencyCode = ID from CONSTITUENCYCODE where lower(DESCRIPTION) = 'child project'
 	if @childProjectConstituencyCode is null 
-		  RAISERROR 1000000 'Could not find Child Project constituency code'		
+		  RAISERROR ('Could not find Child Project constituency code', 16, 1)
 
 	exec dbo.USP_ORGANIZATION_ADD	@ID output, 
                                     @CHANGEAGENTID, 

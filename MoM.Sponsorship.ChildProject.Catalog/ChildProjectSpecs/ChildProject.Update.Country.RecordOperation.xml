@@ -16,6 +16,7 @@
 	History:
 	Date            Modified By     Comments
 	10-Jul-2012		CMayeda			Pulled the logic to find the country and placed it in USR_UFN_CHILDPROJECT_GETCOUNTRYID
+	27-Aug-2015		CMayeda			Changed raiserror syntax to work with SQL Server 2012 (CRM 4.0)
 	-->
 
 	<SPRecord>
@@ -42,7 +43,7 @@ begin
 		set @countryID = dbo.USR_UFN_CHILDPROJECT_GETCOUNTRYID (@ID)
 		
 		if @countryID is null 
-			RAISERROR 1000000 'Couldn''t find the "Country Office" ancestor Sponsorship Location'
+			RAISERROR ('Couldn''t find the "Country Office" ancestor Sponsorship Location', 16, 1)
 			
 		update dbo.USR_CHILDPROJECTEXTENSION set	
 			COUNTRYEXTENSIONID = @countryID,
