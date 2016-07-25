@@ -20,11 +20,13 @@ Public NotInheritable Class CommunityThreeHelper
         AddHandler model.Fields(ChildProjectFields.CHILDCAREWHENPARENTABSENTOTHER).ValueChanged, AddressOf ChildCareWhenParentAbsentOther_ValueChanged
     End Sub
 
-    Public Sub InitializeCodeTableVars()
+	<CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>
+	<CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId:="Vars")>
+	Public Sub InitializeCodeTableVars()
         'Initialize Code Table IDs 
     End Sub
 
-    Public Sub InitializeUIDisplay()
+	Public Sub InitializeUIDisplay()
         ' Set the UI based on loaded values
         Toggle_ChildCareWhenParentAbsentOther()
         
