@@ -32,15 +32,16 @@ Public NotInheritable Class ChildProjectSummaryHelper
         End If
     End Sub
 
-    Public Sub InitializeCodeTableVars()
+	<CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId:="Vars")>
+	Public Sub InitializeCodeTableVars()
         'Initialize Code Table IDs 
         Using crmSQLConnection = model.GetRequestContext().OpenAppDBConnection()
-            childProjectTypeOtherGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTTYPE_OTHER, True, errorTextCouldNotFindChildProjectTypeOther)
-            childProjectStatusCodeClosedGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTSTATUS_CLOSED, True, errorTextCouldNotFindChildProjectStatusCodeClosed)
-        End Using
-    End Sub
+			childProjectTypeOtherGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTTYPE_OTHER, True, errorTextCouldNotFindChildProjectTypeOther)
+			childProjectStatusCodeClosedGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTSTATUS_CLOSED, True, errorTextCouldNotFindChildProjectStatusCodeClosed)
+		End Using
+	End Sub
 
-    Public Sub InitializeUIDisplay()
+	Public Sub InitializeUIDisplay()
         ' Set the UI based on loaded values
         Toggle_ChildProjectTypeOther()
         Toggle_ChildProjectClosureDate()

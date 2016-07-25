@@ -26,14 +26,15 @@ Public NotInheritable Class CommunityTwoHelper
         AddHandler model.Fields(ChildProjectFields.SOCIALISSUESOTHER).ValueChanged, AddressOf SocialIssuesOther_ValueChanged
     End Sub
 
-    Public Sub InitializeCodeTableVars()
+	<CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId:="Vars")>
+	Public Sub InitializeCodeTableVars()
         'Initialize Code Table IDs 
         Using crmSQLConnection = model.GetRequestContext().OpenAppDBConnection()
-            highestEducationOtherGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTHIGHESTEDUCATION_OTHER, True, errorTextCouldNotFindHighestEducationOther)
-        End Using
-    End Sub
+			highestEducationOtherGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTHIGHESTEDUCATION_OTHER, True, errorTextCouldNotFindHighestEducationOther)
+		End Using
+	End Sub
 
-    Public Sub InitializeUIDisplay()
+	Public Sub InitializeUIDisplay()
         ' Set the UI based on loaded values
         Toggle_HighestEducationOther()
         Toggle_EducationTypeOther()

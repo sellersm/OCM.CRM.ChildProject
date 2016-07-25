@@ -16,8 +16,9 @@ Public NotInheritable Class ProjectInfoHelper
     Property helperMode As CRMHelper.FormMode     'Used for specific behavior for view form vs edit form
 
     ' Code Table IDs
-    Property maxGradeLevelPreSchoolGuid As String = ""
-    Property maxGradeLevelKindergartenGuid As String = ""
+    <CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId:="PreSchool")>
+	Property maxGradeLevelPreSchoolGuid As String = ""
+	Property maxGradeLevelKindergartenGuid As String = ""
 
     Public Sub New(ByVal uiModel As UIModeling.Core.RootUIModel, ByVal mode As CRMHelper.FormMode)
         model = uiModel
@@ -28,15 +29,16 @@ Public NotInheritable Class ProjectInfoHelper
         AddHandler model.Fields(ChildProjectFields.MAXGRADELEVELCODEID).ValueChanged, AddressOf MaxGradeLevel_ValueChanged
     End Sub
 
-    Public Sub InitializeCodeTableVars()
+	<CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId:="Vars")>
+	Public Sub InitializeCodeTableVars()
         'Initialize Code Table IDs 
         Using crmSQLConnection = model.GetRequestContext().OpenAppDBConnection()
-            maxGradeLevelPreSchoolGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTMAXGRADELEVEL_PRESCHOOL, True, errorTextcouldNotFindMaxGradeLevelPreSchool)
-            maxGradeLevelKindergartenGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTMAXGRADELEVEL_KINDERGARTEN, True, errorTextcouldNotFindMaxGradeLevelKindergarten)
-        End Using
-    End Sub
+			maxGradeLevelPreSchoolGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTMAXGRADELEVEL_PRESCHOOL, True, errorTextcouldNotFindMaxGradeLevelPreSchool)
+			maxGradeLevelKindergartenGuid = CRMHelper.GetCodeTableItemID(crmSQLConnection, CodeTableFields.CHILDPROJECTMAXGRADELEVEL_KINDERGARTEN, True, errorTextcouldNotFindMaxGradeLevelKindergarten)
+		End Using
+	End Sub
 
-    Public Sub InitializeUIDisplay()
+	Public Sub InitializeUIDisplay()
         ' Set the UI based on loaded values
         Toggle_MaxAgeException()
         Toggle_MaxGradeLevel()

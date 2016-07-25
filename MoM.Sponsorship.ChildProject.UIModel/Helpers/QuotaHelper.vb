@@ -32,7 +32,9 @@ Public NotInheritable Class QuotaHelper
     ''' 'Initialize Code Table IDs 
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub InitializeCodeTableVars()
+    <CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>
+	<CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId:="Vars")>
+	Public Sub InitializeCodeTableVars()
         'Using crmSQLConnection = model.GetRequestContext().OpenAppDBConnection()
 
         'End Using

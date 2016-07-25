@@ -63,35 +63,29 @@
     <OptionCompare>Binary</OptionCompare>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Blackbaud.AppFx, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.dll</HintPath>
+    <Reference Include="Blackbaud.AppFx, Version=4.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\..\References\Third Party\4.0.5\Blackbaud.AppFx.dll</HintPath>
     </Reference>
-    <Reference Include="Blackbaud.AppFx.Constituent.UIModel, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.Constituent.UIModel.dll</HintPath>
+    <Reference Include="Blackbaud.AppFx.Constituent.UIModel, Version=4.0.141.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\..\References\Third Party\4.0.5\Blackbaud.AppFx.Constituent.UIModel.dll</HintPath>
     </Reference>
-    <Reference Include="Blackbaud.AppFx.Server, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.Server.dll</HintPath>
+    <Reference Include="Blackbaud.AppFx.Server, Version=4.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\..\References\Third Party\4.0.5\Blackbaud.AppFx.Server.dll</HintPath>
     </Reference>
-    <Reference Include="Blackbaud.AppFx.UIModeling.Core, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.UIModeling.Core.dll</HintPath>
+    <Reference Include="Blackbaud.AppFx.UIModeling.Core, Version=4.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\..\References\Third Party\4.0.5\Blackbaud.AppFx.UIModeling.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Blackbaud.AppFx.XmlTypes, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.XmlTypes.dll</HintPath>
+    <Reference Include="Blackbaud.AppFx.XmlTypes, Version=4.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\..\References\Third Party\4.0.5\Blackbaud.AppFx.XmlTypes.dll</HintPath>
     </Reference>
-    <Reference Include="Blackbaud.AppFx.XmlTypes.XmlSerializers, Version=2.93.2034.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\References\Third Party\Blackbaud.AppFx.XmlTypes.XmlSerializers.dll</HintPath>
+    <Reference Include="Blackbaud.AppFx.XmlTypes.XmlSerializers, Version=4.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\..\References\Third Party\4.0.5\Blackbaud.AppFx.XmlTypes.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="MoM.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\References\MoM\MoM.Common.dll</HintPath>
@@ -157,6 +151,7 @@
     <Compile Include="Community\ChildProjectCommunity3EditFormUIModel.CodeGen.vb">
       <DependentUpon>ChildProject.Community3.EditForm.UIModel.vb</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Helpers\ChildProjectFields.vb" />
     <Compile Include="Helpers\ChildProjectSummaryHelper.vb" />
     <Compile Include="Helpers\CommunityOneHelper.vb" />
