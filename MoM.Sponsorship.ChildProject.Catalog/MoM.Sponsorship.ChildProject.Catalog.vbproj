@@ -236,6 +236,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Query Views\ChildProject.Admin.Query.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\schoolhouse_32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)postbuild.bat</PostBuildEvent>
