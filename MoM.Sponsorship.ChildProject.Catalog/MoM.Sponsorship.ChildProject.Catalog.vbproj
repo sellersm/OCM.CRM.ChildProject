@@ -239,6 +239,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\schoolhouse_32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AlterChildProject_ActionGroupChanges.Page.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)postbuild.bat</PostBuildEvent>
