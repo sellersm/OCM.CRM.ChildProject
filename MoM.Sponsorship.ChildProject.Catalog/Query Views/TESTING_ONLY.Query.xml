@@ -1,0 +1,39 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="0cec5054-7140-4139-8cf1-28e4ad51bddb"
+	Name="TESTING ONLY Query"
+	Description="A view defined for querying on testing only records"
+	Author="Memphis Sellers"
+	IsRoot="true"
+	PrimaryKeyField="ID"
+	RecordType="TESTING ONLY"
+	c:SecurityUIFolder="TESTING ONLY"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_TESTING_ONLY">
+		<ViewSQL>
+			<![CDATA[
+select 
+  cp_ext.ID,
+	(select LOOKUPID from CONSTITUENT WHERE ID = cp_ext.ID) as LOOKUPID,
+	proj_const.NAME
+from	dbo.USR_CHILDPROJECTEXTENSION cp_ext
+  left join	dbo.CONSTITUENT as proj_const on proj_const.ID = cp_ext.ID
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Caption="System record ID" Category="System Fields" Name="ID" />
+			<OutputField Name="ID" Caption="ID" DataType="Guid" />
+			<OutputField Name="LOOKUPID" Caption="LOOKUP ID" DataType="String" />
+			<OutputField Name="NAME" Caption="Name" DataType="String" />
+		</OutputFields>
+	</Output>
+
+</QueryViewSpec>
+

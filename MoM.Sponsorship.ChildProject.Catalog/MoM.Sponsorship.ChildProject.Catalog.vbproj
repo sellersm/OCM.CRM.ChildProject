@@ -242,6 +242,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Pages\AlterChildProject_ActionGroupChanges.Page.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Query Views\TESTING_ONLY.Query.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)postbuild.bat</PostBuildEvent>
